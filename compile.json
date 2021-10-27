@@ -1,0 +1,29 @@
+{
+  "$schema": "https://qooxdoo.org/schema/compile-1-0-0.json",
+  "targets": [
+    {
+      "type": "source",
+      "outputPath": "output/source",
+      "bundle": {
+        "include": "qx.*"
+      }
+    },
+    {
+      "type": "build",
+      "outputPath": "output/build"
+    }
+  ],
+  "defaultTarget": "source",
+  "locales": ["en"],
+  "environment": {
+      "qx.icontheme": "Tango"
+  },
+  "applications": [
+    {
+      "class": "elevatorSim.Application",
+      "theme": "elevatorSim.theme.Theme",
+      "name": "elevatorSim",
+      "bootPath": "source/boot"
+    }
+  ]
+}

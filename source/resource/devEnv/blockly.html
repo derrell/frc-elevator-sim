@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+  </head>
+
+  <body>
+    <div id="blocklyDiv" style="height: 100%; width: 100%;"></div>
+
+    <script>
+      var workspace =
+          Blockly.inject(
+            "blocklyDiv",
+            {
+              toolbox: 
+              {
+                "kind": "categoryToolbox",
+                "contents": [
+                  {
+                    "kind": "category",
+                    "name": "Control",
+                    "contents": [
+                      {
+                        "kind": "block",
+                        "type": "controls_if"
+                      },
+                      {
+                        "kind": "block",
+                        "type": "controls_whileUntil"
+                      },
+                      {
+                        "kind": "block",
+                        "type": "controls_for"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "category",
+                    "name": "Logic",
+                    "contents": [
+                      {
+                        "kind": "block",
+                        "type": "logic_compare"
+                      },
+                      {
+                        "kind": "block",
+                        "type": "logic_operation"
+                      },
+                      {
+                        "kind": "block",
+                        "type": "logic_boolean"
+                      }
+                    ]
+                  }
+                ]
+              }
+            });
+    </script>    
+
+    <script>
+      window.addEventListener(
+        "message",
+        (event) =>
+        {
+          console.log("Blockly received message:", event);
+        });
+      window.parent.postMessage("hello world", "*");
+    </script>
+  </body>
+</html>
