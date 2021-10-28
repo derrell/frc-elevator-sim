@@ -533,6 +533,55 @@
               toolbox: document.getElementById("blocklyToolbox")
             });
 
+      // Disable any orphans
+      workspace.addChangeListener(Blockly.Events.disableOrphans);
+
+      // Await any changes, so we can save them
+      workspace.addChangeListener(
+        (event) =>
+        {
+          let             code;
+
+          switch(event.type)
+          {
+          case Blockly.Events.BLOCK_CREATE :
+          case Blockly.Events.BLOCK_DELETE :
+          case Blockly.Events.BLOCK_CHANGE :
+          case Blockly.Events.BLOCK_MOVE :
+            code = Blockly.Xml.workspaceToDom(workspace);
+            code = (new XMLSerializer()).serializeToString(code);
+            window.parent.postMessage(
+              {
+                type  : "save",
+                name  : "change",
+                value : code
+              },
+              "*");
+            break;
+
+          default :
+console.log("unexpected event: ", event.type);
+            break;
+          }
+        });
+
+      // Create the two permanent blocks
+      var xml =
+          [
+            "<xml>",
+            "  <block type='procedures_defnoreturn' ",
+            "      deletable='false' movable='false' x='10' y='10'>",
+            "    <field name='NAME'>do initially</field>",
+            "  </block>",
+            "",
+            "  <block type='procedures_defnoreturn' ",
+            "      deletable='false' movable='false' x='400' y='10'>",
+            "    <field name='NAME'>do periodically</field>",
+            "  </block>",
+            "</xml>"
+          ].join("");
+      Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), workspace);
+
       window.addEventListener(
         "message",
         (event) =>
@@ -553,9 +602,12 @@
                 return;
               }
 
+code = Blockly.Xml.workspaceToDom(workspace);
+console.log("workspace: ", code);
+
               // Generate code from the blocks
               code = Blockly.JavaScript.workspaceToCode(workspace);
-              console.log(code);
+console.log("code: " + code);
               window.parent.postMessage(
                 {
                   type  : "control",
@@ -565,6 +617,13 @@
                 "*");
               break;
             }
+            break;
+
+          case "load" :
+            code = event.data.value;
+            Blockly.Xml.clearWorkspaceAndLoadFromXml(
+              Blockly.Xml.textToDom(code),
+              workspace);
             break;
           }
         });

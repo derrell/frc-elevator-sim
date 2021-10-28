@@ -103,7 +103,7 @@ qx.Class.define("elevatorSim.Application",
                 [
                   "elevatorSim.Elevator.getInstance().reinit();",
                   event.data.value,
-                  "interval = setInterval(do_periodically, 100);"
+                  "interval = setInterval(do_periodically, 50);"
                 ].join("\n");
               console.log("code to run: " + code);
               eval(code);
