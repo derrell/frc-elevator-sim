@@ -58,7 +58,7 @@ qx.Class.define("elevatorSim.Application",
       doc.add(label, { top : 30, left : 10 });
 
       // Create the Enabled checkbox
-      enabled = new qx.ui.form.ToggleButton("Enabled");
+      enabled = new qx.ui.form.CheckBox("Enabled");
       enabled.addListener(
         "changeValue",
         (e) =>
@@ -75,6 +75,7 @@ qx.Class.define("elevatorSim.Application",
           if (! e.getData())
           {
             clearInterval(interval);
+            elevatorSim.Elevator.getInstance().setVelocity(0);
           }
         });
       doc.add(enabled, { top : 30, right : 320 });
