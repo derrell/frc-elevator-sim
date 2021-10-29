@@ -63,6 +63,8 @@ qx.Class.define("elevatorSim.Application",
         "changeValue",
         (e) =>
         {
+          let             elevator = elevatorSim.Elevator.getInstance();
+
           this._blockly.getWindow().postMessage(
             {
               type  : "control",
@@ -71,10 +73,13 @@ qx.Class.define("elevatorSim.Application",
             },
             "*");
 
+          // Enable or disable the elevator
+          elevator.setEnabled(e.getData());
+
           if (! e.getData())
           {
             clearInterval(enabledPeriodicInterval);
-            elevatorSim.Elevator.getInstance().setVelocity(0);
+            elevator.setVelocity(0);
           }
         });
       doc.add(this._enabled, { top : 30, right : 320 });
@@ -107,6 +112,10 @@ qx.Class.define("elevatorSim.Application",
                 ].join("\n");
               console.log("code to run: " + code);
               eval(code);
+              break;
+
+            case "setEnabled" :
+              this._enabled.setValue(event.data.value);
               break;
             }
             break;

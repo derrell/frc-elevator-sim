@@ -382,6 +382,10 @@
           <field name="id">up</field>
           <field name="method">isPressed</field>
         </block>
+        <block type="elevator_floor_sensor">
+          <field name="id">1B</field>
+          <field name="method">isActive</field>
+        </block>
         <block type="elevator_motor_controller_setter">
           <field name="NAME">setVelocity</field>
           <field name="velocity">0</field>
@@ -491,18 +495,18 @@
         },
         {
           "type": "elevator_motor_controller_getter",
-          "message0": "get %1 from Elevator Motor Controller",
+          "message0": "with Elevator Motor Controller %1",
           "args0": [
             {
               "type": "field_dropdown",
               "name": "method",
               "options": [
                 [
-                  "encoder value",
+                  "get encoder value",
                   "getEncoder"
                 ],
                 [
-                  "velocity",
+                  "get velocity",
                   "getVelocity"
                 ]
               ]
@@ -515,7 +519,7 @@
         },
         {
           "type": "elevator_motor_controller_setter",
-          "message0": "with Elevator Motor Controller:  %1 to %2",
+          "message0": "with Elevator Motor Controller %1 to %2",
           "args0": [
             {
               "type": "field_dropdown",
@@ -542,7 +546,7 @@
         },
         {
           "type": "elevator_button",
-          "message0": "get %2 from Elevator Button %1",
+          "message0": "with Elevator Button %1 get %2",
           "args0": [
             {
               "type": "field_dropdown",
@@ -584,6 +588,56 @@
           "output": "Boolean",
           "colour": 60,
           "tooltip": "Returns true if the button is pressed; false otherwise",
+          "helpUrl": ""
+        },
+        {
+          "type": "elevator_floor_sensor",
+          "message0": "with Elevator Sensor %1 get %2",
+          "args0": [
+            {
+              "type": "field_dropdown",
+              "name": "id",
+              "options": [
+                [
+                  "Floor 1 Bottom",
+                  "1B"
+                ],
+                [
+                  "Floor 1 Top",
+                  "1T"
+                ],
+                [
+                  "Floor 2 Bottom",
+                  "2B"
+                ],
+                [
+                  "Floor 2 Top",
+                  "2T"
+                ],
+                [
+                  "Floor 3 Bottom",
+                  "3B"
+                ],
+                [
+                  "Floor 3 Top",
+                  "3T"
+                ]
+              ]
+            },
+            {
+              "type": "field_dropdown",
+              "name": "method",
+              "options": [
+                [
+                  "is activated",
+                  "isActivated"
+                ]
+              ]
+            }
+          ],
+          "output": "Boolean",
+          "colour": 60,
+          "tooltip": "Returns true if the sensor has been activated; false otherwise",
           "helpUrl": ""
         }
       ]);
@@ -663,6 +717,16 @@
 
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
+
+    Blockly.JavaScript['elevator_floor_sensor'] = function(block) {
+      let             code;
+      let             id = block.getFieldValue('id');
+      let             method = block.getFieldValue('method'); // isPressed
+
+      code = `elevatorSim.Elevator.getInstance().isFloorSensorActive("${id}")`;
+
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
     </script>
 
     <script>
@@ -688,38 +752,49 @@
           case Blockly.Events.BLOCK_DELETE :
           case Blockly.Events.BLOCK_CHANGE :
           case Blockly.Events.BLOCK_MOVE :
+            // Retrieve the workspace as XML
             code = Blockly.Xml.workspaceToDom(workspace);
             code = (new XMLSerializer()).serializeToString(code);
+
+            // Save it in local storage
+            window.localStorage.setItem("code_xml", code);
+
+            // Avoid confusion: disable the simulation whenever a change is made
             window.parent.postMessage(
               {
-                type  : "save",
-                name  : "change",
-                value : code
+                type  : "control",
+                name  : "setEnabled",
+                value : false
               },
               "*");
+
             break;
 
           default :
-console.log("unexpected event: ", event.type);
+            console.log("unhandled event: ", event.type);
             break;
           }
         });
 
       // Create the two permanent blocks
-      var xml =
-          [
-            "<xml>",
-            "  <block type='procedures_defnoreturn' ",
-            "      deletable='false' movable='false' x='10' y='10'>",
-            "    <field name='NAME'>do initially</field>",
-            "  </block>",
-            "",
-            "  <block type='procedures_defnoreturn' ",
-            "      deletable='false' movable='false' x='400' y='10'>",
-            "    <field name='NAME'>do periodically</field>",
-            "  </block>",
-            "</xml>"
-          ].join("");
+      var xml = window.localStorage.getItem("code_xml");
+      if (! xml)
+      {
+        xml =
+            [
+              "<xml>",
+              "  <block type='procedures_defnoreturn' ",
+              "      deletable='false' movable='false' x='10' y='10'>",
+              "    <field name='NAME'>do initially</field>",
+              "  </block>",
+              "",
+              "  <block type='procedures_defnoreturn' ",
+              "      deletable='false' movable='false' x='400' y='10'>",
+              "    <field name='NAME'>do periodically</field>",
+              "  </block>",
+              "</xml>"
+            ].join("");
+      }
       Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), workspace);
 
       window.addEventListener(
@@ -742,12 +817,12 @@ console.log("unexpected event: ", event.type);
                 return;
               }
 
-code = Blockly.Xml.workspaceToDom(workspace);
-console.log("workspace: ", code);
+              // code = Blockly.Xml.workspaceToDom(workspace);
+              // console.log("workspace: ", code);
 
               // Generate code from the blocks
               code = Blockly.JavaScript.workspaceToCode(workspace);
-console.log("code: " + code);
+              console.log("code: " + code);
               window.parent.postMessage(
                 {
                   type  : "control",

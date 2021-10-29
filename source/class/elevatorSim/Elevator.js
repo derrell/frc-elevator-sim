@@ -43,8 +43,10 @@ qx.Class.define("elevatorSim.Elevator",
     [ 10, 135, 260, 385 ].forEach(
       (bottom, i) =>
       {
+        let             floorId = (i + 1).toString();
         let             floor = new qx.ui.core.Widget();
 
+        // Add the floor itself
         floor.set(
           {
             height          : 10,
@@ -59,10 +61,10 @@ qx.Class.define("elevatorSim.Elevator",
             bottom : bottom
           });
 
-        // Add the floor label
         if (i < 3)
         {
-          let label = new qx.ui.basic.Label("" + (i + 1));
+          // Add the floor label
+          let label = new qx.ui.basic.Label("Floor " + (i + 1));
           label.setFont("bold");
           this.add(
             label,
@@ -70,8 +72,32 @@ qx.Class.define("elevatorSim.Elevator",
               left   : 20,
               bottom : bottom + 60
             });
+
+          // For each of bottom and top, add the sensors
+          [ "B", "T" ].forEach(
+            (which, j) =>
+            {
+              let             sensor;
+              let             sensorId = floorId + which;
+
+              this._sensors[sensorId] = sensor = new qx.ui.core.Widget();
+              sensor.set(
+                {
+                  height          : 4,
+                  width           : 20,
+                  backgroundColor : i == 0 ? "#008000" : "#800000"
+                });
+              this.add(
+                sensor,
+                {
+                  left   : 76,
+                  bottom : j == 0 ? bottom + 10 : bottom + 115 + 6
+                });
+              sensor.hide();
+            });
         }
       });
+
 
     // Add the button container
     buttons = new qx.ui.container.Composite(new qx.ui.layout.Grid(10, 4));
@@ -86,7 +112,7 @@ qx.Class.define("elevatorSim.Elevator",
     // Add the buttons
     //
 
-    butFloor1 = new qx.ui.form.Button("1");
+    this._buttons["1"] = butFloor1 = new qx.ui.form.Button("1");
     butFloor1.addListener("pointerdown",
                           (e) => { this._state.button["1"] = true; });
     butFloor1.addListener("pointerup",
@@ -95,7 +121,7 @@ qx.Class.define("elevatorSim.Elevator",
                           (e) => { this._state.button["1"] = false; });
     buttons.add(butFloor1, { row : 2, column : 1 });
 
-    butFloor2 = new qx.ui.form.Button("2");
+    this._buttons["2"] = butFloor2 = new qx.ui.form.Button("2");
     butFloor2.addListener("pointerdown",
                           (e) => { this._state.button["2"] = true; });
     butFloor2.addListener("pointerup",
@@ -104,7 +130,7 @@ qx.Class.define("elevatorSim.Elevator",
                           (e) => { this._state.button["2"] = false; });
     buttons.add(butFloor2, { row : 1, column : 1 });
 
-    butFloor3 = new qx.ui.form.Button("3");
+    this._buttons["3"] = butFloor3 = new qx.ui.form.Button("3");
     butFloor3.addListener("pointerdown",
                           (e) => { this._state.button["3"] = true; });
     butFloor3.addListener("pointerup",
@@ -113,7 +139,7 @@ qx.Class.define("elevatorSim.Elevator",
                           (e) => { this._state.button["3"] = false; });
     buttons.add(butFloor3, { row : 0, column : 1 });
 
-    butUp = new qx.ui.form.Button("Up");
+    this._buttons["Up"] = butUp = new qx.ui.form.Button("Up");
     butUp.addListener("pointerdown",
                           (e) => { this._state.button["Up"] = true; });
     butUp.addListener("pointerup",
@@ -122,7 +148,7 @@ qx.Class.define("elevatorSim.Elevator",
                           (e) => { this._state.button["Up"] = false; });
     buttons.add(butUp, { row : 0, column : 0 });
 
-    butDown = new qx.ui.form.Button("Down");
+    this._buttons["Down"] = butDown = new qx.ui.form.Button("Down");
     butDown.addListener("pointerdown",
                           (e) => { this._state.button["Down"] = true; });
     butDown.addListener("pointerup",
@@ -143,10 +169,13 @@ qx.Class.define("elevatorSim.Elevator",
         top    : 0
       });
 
-    status.add(new qx.ui.basic.Label("Encoder:"), { row : 0, column : 0 });
+    this._encoderLabel = new qx.ui.basic.Label("Encoder:");
+    this._encoderLabel.hide();
+    status.add(this._encoderLabel, { row : 0, column : 0 });
 
     // Create the label where we'll place the "encoder" value
     this._statusElevatorEncoder = new qx.ui.basic.Label("20");
+    this._statusElevatorEncoder.hide();
     status.add(this._statusElevatorEncoder, { row : 0, column : 1 });
 
     //
@@ -207,7 +236,10 @@ qx.Class.define("elevatorSim.Elevator",
   {
     _timer                 : null,
     _elevator              : null,
+    _encoderLabel          : null,
     _statusElevatorEncoder : null,
+    _buttons               : {},
+    _sensors               : {},
     _state                 :
     {
       velocity               : 0,
@@ -219,21 +251,21 @@ qx.Class.define("elevatorSim.Elevator",
         "1"                    : false,
         "2"                    : false,
         "3"                    : false
+      },
+      sensor                :
+      {
+        "1B"                   : true, // floor 1 bottom
+        "1T"                   : true, // floor 1 top
+        "2B"                   : false, // ...
+        "2T"                   : false,
+        "3B"                   : false,
+        "3T"                   : false,
       }
     },
     _sensorAccessAllowed   :
     {
       motorController        : false,
       encoder                : false,
-      floor                  :
-      {
-        "1B"                   : false, // floor 1 bottom
-        "1T"                   : false, // floor 1 top
-        "2B"                   : false,
-        "2T"                   : false,
-        "3B"                   : false,
-        "3T"                   : false,
-      },
       button                 :
       {
         Up                     : false,
@@ -241,6 +273,15 @@ qx.Class.define("elevatorSim.Elevator",
         "1"                    : false,
         "2"                    : false,
         "3"                    : false
+      },
+      sensor                 :
+      {
+        "1B"                   : false, // floor 1 bottom
+        "1T"                   : false, // floor 1 top
+        "2B"                   : false, // ...
+        "2T"                   : false,
+        "3B"                   : false,
+        "3T"                   : false,
       }
     },
 
@@ -251,33 +292,66 @@ qx.Class.define("elevatorSim.Elevator",
     {
       // Reinitialize sensor access
       this._sensorAccessAllowed =
-      {
-        motorController        : false,
-        encoder                : false,
-        floor                  :
         {
-          "1B"                   : false, // floor 1 bottom
-          "1T"                   : false, // floor 1 top
-          "2B"                   : false,
-          "2T"                   : false,
-          "3B"                   : false,
-          "3T"                   : false,
-        },
-        button                 :
+          motorController        : false,
+          encoder                : false,
+          button                 :
+          {
+            Up                     : false,
+            Down                   : false,
+            "1"                    : false,
+            "2"                    : false,
+            "3"                    : false
+          },
+          sensor                 :
+          {
+            "1B"                   : false, // floor 1 bottom
+            "1T"                   : false, // floor 1 top
+            "2B"                   : false,
+            "2T"                   : false,
+            "3B"                   : false,
+            "3T"                   : false,
+          }
+        };
+
+      // Reinialize state
+      this._state =
         {
-          Up                     : false,
-          Down                   : false,
-          "1"                    : false,
-          "2"                    : false,
-          "3"                    : false
-        }
-      };
+          velocity               : 0,
+          encoder                : 20,
+          button                 :
+          {
+            Up                     : false,
+            Down                   : false,
+            "1"                    : false,
+            "2"                    : false,
+            "3"                    : false
+          },
+          sensor                :
+          {
+            "1B"                   : true, // floor 1 bottom
+            "1T"                   : true, // floor 1 top
+            "2B"                   : false, // ...
+            "2T"                   : false,
+            "3B"                   : false,
+            "3T"                   : false,
+          }
+        };
+
+
+      // Hide the sensors
+      Object.keys(this._state.sensor).forEach(
+        (sensorId) =>
+        {
+          this._sensors[sensorId].hide();
+        });
 
       // Hide the elevator
       this.hide();
 
       // Reset the encoder to the initial position
       this._state.encoder = 20;
+      this._statusElevatorEncoder.setValue("20");
 
       // Move the elevator to the initial position
       this._elevator.setLayoutProperties(
@@ -296,7 +370,7 @@ qx.Class.define("elevatorSim.Elevator",
      *   The ID (label) of the button whose value is requested
      *
      * @return {Boolean}
-     *   Whether the specified button is current pressed
+     *   Whether the specified button is currently pressed
      */
     isButtonPressed : function(buttonId)
     {
@@ -309,6 +383,57 @@ qx.Class.define("elevatorSim.Elevator",
       }
 
       return this._state.button[buttonId];
+    },
+
+    /**
+     * Return whether the specified floor sensor is detecting the elevator
+     *
+     * @param sensorId {String}
+     *   The ID of the sensor whose value is requested
+     *
+     * @return {Boolean}
+     *   Whether the specified sensor is currently active (sensing elevator)
+     */
+    isFloorSensorActive : function(sensorId)
+    {
+      // Ensure the floor sensor has been properly initialized
+      if (! this._sensorAccessAllowed.sensor[sensorId])
+      {
+        let             sensorName;
+
+        switch(sensorId)
+        {
+        case "1B" :
+          sensorName = "Floor 1 Bottom";
+          break;
+
+        case "1T" :
+          sensorName = "Floor 1 Top";
+          break;
+
+        case "2B" :
+          sensorName = "Floor 2 Bottom";
+          break;
+
+        case "2T" :
+          sensorName = "Floor 2 Top";
+          break;
+
+        case "3B" :
+          sensorName = "Floor 3 Bottom";
+          break;
+
+        case "3T" :
+          sensorName = "Floor 3 Top";
+          break;
+        }
+
+        qx.core.Init.getApplication().error(
+          `Sensor at ${sensorName} accessed without being Connected`);
+        return false;
+      }
+
+      return this._state.sensor[sensorId];
     },
 
     /**
@@ -353,6 +478,7 @@ qx.Class.define("elevatorSim.Elevator",
      */
     setVelocity : function(velocity)
     {
+      let             moveElevator;
       let             distance = velocity > 0 ? -1 : 1;
 
       // Limit the velocity to range [ -100, 100 ] and we need only its
@@ -390,9 +516,7 @@ qx.Class.define("elevatorSim.Elevator",
       this._timer = new qx.event.Timer(100 - velocity);
 
       // Handle each frame of the animation
-      this._timer.addListener(
-        "interval",
-        function()
+      moveElevator = function()
         {
           let             newBottom;
           let             bOutOfBounds = false;
@@ -425,6 +549,48 @@ qx.Class.define("elevatorSim.Elevator",
           this._statusElevatorEncoder.setValue(newBottom.toString());
           this._state.encoder = newBottom;
 
+          // Update the sensor states. First, indicate all sensors see nothing
+          [ "1B", "1T", "2B", "2T", "3B", "3T" ].forEach(
+            (sensorId) =>
+            {
+              let             sensor = this._sensors[sensorId];
+
+              sensor.setBackgroundColor("#800000");
+              this._state.sensor[sensorId] = false;
+            });
+
+          // Now indicate any that are seeing the elevator
+          if (newBottom <= 20)
+          {
+            this._sensors["1B"].setBackgroundColor("#008000");
+            this._state.sensor["1B"] = true;
+          }
+          if (newBottom >= 20 && newBottom <= 134)
+          {
+            this._sensors["1T"].setBackgroundColor("#008000");
+            this._state.sensor["1T"] = true;
+          }
+          if (newBottom >= 31 && newBottom <= 145)
+          {
+            this._sensors["2B"].setBackgroundColor("#008000");
+            this._state.sensor["2B"] = true;
+          }
+          if (newBottom >= 145 && newBottom <= 259)
+          {
+            this._sensors["2T"].setBackgroundColor("#008000");
+            this._state.sensor["2T"] = true;
+          }
+          if (newBottom >= 156 && newBottom <= 271)
+          {
+            this._sensors["3B"].setBackgroundColor("#008000");
+            this._state.sensor["3B"] = true;
+          }
+          if (newBottom >= 270)
+          {
+            this._sensors["3T"].setBackgroundColor("#008000");
+            this._state.sensor["3T"] = true;
+          }
+
           // Cause the elevator to move in the canvas
           this._elevator.setLayoutProperties(
               {
@@ -439,11 +605,20 @@ qx.Class.define("elevatorSim.Elevator",
             this._timer.dispose();
             this._timer = null;
           }
-        },
-        this);
+        };
+
+      // Move the elevator its first step immediately
+      moveElevator.call(this);
+
+      // If the timer is still active (we didn't cancel it in first step)...
+      if (this._timer)
+      {
+        // ... then also animate its motion
+        this._timer.addListener("interval", moveElevator, this);
       
-      // Begin the animation
-      this._timer.start();
+        // Begin the animation
+        this._timer.start();
+      }
     },
 
     /**
@@ -453,6 +628,8 @@ qx.Class.define("elevatorSim.Elevator",
     {
       console.log("Providing access to encoder");
       this._sensorAccessAllowed.encoder = true;
+      this._encoderLabel.show();
+      this._statusElevatorEncoder.show();
     },
 
     /**
@@ -478,7 +655,8 @@ qx.Class.define("elevatorSim.Elevator",
     allowAccessFloorSensor : function(sensor)
     {
       console.log(`Providing access to sensor ${sensor}`);
-      this._sensorAccessAllowed.floor[sensor] = true;
+      this._sensorAccessAllowed.sensor[sensor] = true;
+      this._sensors[sensor].show();
     }
   }
 });
