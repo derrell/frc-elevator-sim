@@ -210,8 +210,30 @@ qx.Class.define("elevatorSim.Elevator",
     _statusElevatorEncoder : null,
     _state                 :
     {
-      encoder                : 20,
       velocity               : 0,
+      encoder                : 20,
+      button                 :
+      {
+        Up                     : false,
+        Down                   : false,
+        "1"                    : false,
+        "2"                    : false,
+        "3"                    : false
+      }
+    },
+    _sensorAccessAllowed   :
+    {
+      motorController        : false,
+      encoder                : false,
+      floor                  :
+      {
+        "1B"                   : false, // floor 1 bottom
+        "1T"                   : false, // floor 1 top
+        "2B"                   : false,
+        "2T"                   : false,
+        "3B"                   : false,
+        "3T"                   : false,
+      },
       button                 :
       {
         Up                     : false,
@@ -227,6 +249,33 @@ qx.Class.define("elevatorSim.Elevator",
      */
     reinit : function()
     {
+      // Reinitialize sensor access
+      this._sensorAccessAllowed =
+      {
+        motorController        : false,
+        encoder                : false,
+        floor                  :
+        {
+          "1B"                   : false, // floor 1 bottom
+          "1T"                   : false, // floor 1 top
+          "2B"                   : false,
+          "2T"                   : false,
+          "3B"                   : false,
+          "3T"                   : false,
+        },
+        button                 :
+        {
+          Up                     : false,
+          Down                   : false,
+          "1"                    : false,
+          "2"                    : false,
+          "3"                    : false
+        }
+      };
+
+      // Hide the elevator
+      this.hide();
+
       // Reset the encoder to the initial position
       this._state.encoder = 20;
 
@@ -251,6 +300,14 @@ qx.Class.define("elevatorSim.Elevator",
      */
     isButtonPressed : function(buttonId)
     {
+      // Ensure the button has been properly initialized
+      if (! this._sensorAccessAllowed.button[buttonId])
+      {
+        qx.core.Init.getApplication().error(
+          `Button ${buttonId} accessed without being Connected`);
+        return false;
+      }
+
       return this._state.button[buttonId];
     },
 
@@ -259,6 +316,14 @@ qx.Class.define("elevatorSim.Elevator",
      */
     getEncoder : function()
     {
+      // Ensure the encoder has been properly initialized
+      if (! this._sensorAccessAllowed.encoder)
+      {
+        qx.core.Init.getApplication().error(
+          `Encoder accessed without being Connected`);
+        return false;
+      }
+
       return this._state.encoder;
     },
 
@@ -267,6 +332,14 @@ qx.Class.define("elevatorSim.Elevator",
      */
     getVelocity : function()
     {
+      // Ensure the motor controller has been properly initialized
+      if (! this._sensorAccessAllowed.motorController)
+      {
+        qx.core.Init.getApplication().error(
+          `Motor Controller accessed without being Connected`);
+        return false;
+      }
+
       return this._state.velocity;
     },
 
@@ -371,6 +444,41 @@ qx.Class.define("elevatorSim.Elevator",
       
       // Begin the animation
       this._timer.start();
+    },
+
+    /**
+     * Allow access to the encoder
+     */
+    allowAccessEncoder : function()
+    {
+      console.log("Providing access to encoder");
+      this._sensorAccessAllowed.encoder = true;
+    },
+
+    /**
+     * Allow access to the specified button
+     *
+     * @param button {String}
+     *   The name of the button to provide access to:
+     *   "Up", "Down", "1", "2", "3"
+     */
+    allowAccessButton : function(button)
+    {
+      console.log(`Providing access to button ${button}`);
+      this._sensorAccessAllowed.button[button] = true;
+    },
+
+    /**
+     * Allow access to the specified floor sensor
+     *
+     * @param sensor {String}
+     *   The name of the sensor to provide access to:
+     *   "1B", "1T", "2B", "2T", "3B", "3T"
+     */
+    allowAccessFloorSensor : function(sensor)
+    {
+      console.log(`Providing access to sensor ${sensor}`);
+      this._sensorAccessAllowed.floor[sensor] = true;
     }
   }
 });

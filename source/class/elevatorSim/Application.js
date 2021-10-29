@@ -12,7 +12,7 @@
  * @asset(devEnv/*)
  * @ignore Blockly
  */
-var interval;                   // global to allow eval()'ed code to use
+var enabledPeriodicInterval;  // global to allow eval()'ed code to use
 
 qx.Class.define("elevatorSim.Application",
 {
@@ -21,13 +21,13 @@ qx.Class.define("elevatorSim.Application",
   members :
   {
     _blockly : null,
+    _enabled : null,
 
     main : function()
     {
       let             doc;
       let             font;
       let             label;
-      let             enabled;
       let             container;
       let             scriptLoader;
       let             elevatorCanvas;
@@ -58,12 +58,11 @@ qx.Class.define("elevatorSim.Application",
       doc.add(label, { top : 30, left : 10 });
 
       // Create the Enabled checkbox
-      enabled = new qx.ui.form.CheckBox("Enabled");
-      enabled.addListener(
+      this._enabled = new qx.ui.form.CheckBox("Enabled");
+      this._enabled.addListener(
         "changeValue",
         (e) =>
         {
-          console.log("Enabled changeValue to", e.getData());
           this._blockly.getWindow().postMessage(
             {
               type  : "control",
@@ -74,11 +73,11 @@ qx.Class.define("elevatorSim.Application",
 
           if (! e.getData())
           {
-            clearInterval(interval);
+            clearInterval(enabledPeriodicInterval);
             elevatorSim.Elevator.getInstance().setVelocity(0);
           }
         });
-      doc.add(enabled, { top : 30, right : 320 });
+      doc.add(this._enabled, { top : 30, right : 320 });
 
       // Create the container to house the Blockly editor and elevator simulator
       container = new qx.ui.container.Composite(new qx.ui.layout.HBox(10));
@@ -102,8 +101,9 @@ qx.Class.define("elevatorSim.Application",
               code =
                 [
                   "elevatorSim.Elevator.getInstance().reinit();",
+                  "do_initially();",
                   event.data.value,
-                  "interval = setInterval(do_periodically, 50);"
+                  "enabledPeriodicInterval = setInterval(do_periodically, 50);"
                 ].join("\n");
               console.log("code to run: " + code);
               eval(code);
@@ -120,6 +120,26 @@ qx.Class.define("elevatorSim.Application",
       // Add the elevator simulator
       elevatorCanvas = elevatorSim.Elevator.getInstance();
       container.add(elevatorCanvas);
+
+      // Initially hide it
+      elevatorCanvas.hide();
+    },
+
+    /**
+     * Disable the simulator and Show an error message
+     *
+     * @param message {String}
+     *   The message to be shown
+     *
+     * @ignore alert
+     */
+    error : function(message)
+    {
+      // Stop the simulator
+      this._enabled.setValue(false);
+
+      // Show the message
+      alert(message + "\nSimulation disabled");
     }
   }
 });
