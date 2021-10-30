@@ -384,7 +384,7 @@
         </block>
         <block type="elevator_floor_sensor">
           <field name="id">1B</field>
-          <field name="method">isActive</field>
+          <field name="method">isActivated</field>
         </block>
         <block type="elevator_motor_controller_setter">
           <field name="NAME">setVelocity</field>
@@ -540,6 +540,7 @@
             }
           ],
           "previousStatement": null,
+          "nextStatement": null,
           "colour": 60,
           "tooltip": "",
           "helpUrl": ""
@@ -800,11 +801,13 @@
               "  <block type='procedures_defnoreturn' ",
               "      deletable='false' movable='false' x='10' y='10'>",
               "    <field name='NAME'>do initially</field>",
+              "    <comment pinned='false' h='80' w='400'>This function is called once each time the elevator simulation is enabled.</comment>",
               "  </block>",
               "",
               "  <block type='procedures_defnoreturn' ",
               "      deletable='false' movable='false' x='400' y='10'>",
               "    <field name='NAME'>do periodically</field>",
+              "    <comment pinned='false' h='120' w='400'>This function is called after `do initially`, once every 50ms, i.e., 20 times per second, while the elevator simulation is enabled.</comment>",
               "  </block>",
               "</xml>"
             ].join("");
