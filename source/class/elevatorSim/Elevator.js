@@ -626,7 +626,6 @@ qx.Class.define("elevatorSim.Elevator",
      */
     allowAccessEncoder : function()
     {
-      console.log("Providing access to encoder");
       this._sensorAccessAllowed.encoder = true;
       this._encoderLabel.show();
       this._statusElevatorEncoder.show();
@@ -641,7 +640,6 @@ qx.Class.define("elevatorSim.Elevator",
      */
     allowAccessButton : function(button)
     {
-      console.log(`Providing access to button ${button}`);
       this._sensorAccessAllowed.button[button] = true;
     },
 
@@ -654,7 +652,6 @@ qx.Class.define("elevatorSim.Elevator",
      */
     allowAccessFloorSensor : function(sensor)
     {
-      console.log(`Providing access to sensor ${sensor}`);
       this._sensorAccessAllowed.sensor[sensor] = true;
       this._sensors[sensor].show();
     }

@@ -644,6 +644,19 @@
     </script>
 
     <script>
+    // Overwrite the default text_print block's code which calls
+    // `alert`. Instead, write to the console.
+    Blockly.JavaScript['text_print'] = function(block) {
+      {
+        let code =
+            "console.log(" +
+            (Blockly.JavaScript.valueToCode(
+              block, "TEXT", Blockly.JavaScript.ORDER_NONE) || "''") +
+            ");\n"
+        return code;
+      }
+    };
+
     Blockly.JavaScript['access_elevator_motor_controller'] = function(block) {
       {
         let code = "elevatorSim.Elevator.getInstance().show();";
@@ -771,10 +784,11 @@
             break;
 
           default :
-            console.log("unhandled event: ", event.type);
             break;
           }
         });
+
+      console.clear();
 
       // Create the two permanent blocks
       var xml = window.localStorage.getItem("code_xml");
@@ -803,8 +817,6 @@
         {
           let             code;
 
-          console.log("Blockly received message:", event);
-
           switch(event.data.type)
           {
           case "control" :
@@ -822,7 +834,7 @@
 
               // Generate code from the blocks
               code = Blockly.JavaScript.workspaceToCode(workspace);
-              console.log("code: " + code);
+              // console.log("code: " + code);
               window.parent.postMessage(
                 {
                   type  : "control",

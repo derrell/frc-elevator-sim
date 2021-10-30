@@ -95,8 +95,6 @@ qx.Class.define("elevatorSim.Application",
         {
           let             code;
 
-          console.log("Application received message:", event);
-
           switch(event.data.type)
           {
           case "control" :
@@ -105,12 +103,12 @@ qx.Class.define("elevatorSim.Application",
             case "run" :
               code =
                 [
+                  "console.clear();",
                   "elevatorSim.Elevator.getInstance().reinit();",
                   "do_initially();",
                   event.data.value,
                   "enabledPeriodicInterval = setInterval(do_periodically, 50);"
                 ].join("\n");
-              console.log("code to run: " + code);
               eval(code);
               break;
 
