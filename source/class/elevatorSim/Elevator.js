@@ -484,7 +484,7 @@ qx.Class.define("elevatorSim.Elevator",
       // Limit the velocity to range [ -100, 100 ] and we need only its
       // magnitude, as we've already pulled the sign off to use as the
       // distance to move on each timer expiration
-      velocity = Math.abs(velocity);
+      velocity = Math.floor(Math.abs(velocity));
       if (velocity > 100)
       {
         velocity = 100;

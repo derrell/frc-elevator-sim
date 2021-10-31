@@ -519,24 +519,25 @@
         },
         {
           "type": "elevator_motor_controller_setter",
-          "message0": "with Elevator Motor Controller %1 to %2",
+          "message0": "with Elevator Motor Controller:  %1 to %2 %3",
           "args0": [
             {
               "type": "field_dropdown",
               "name": "NAME",
               "options": [
                 [
-                  "set velocity",
+                  "setVelocity",
                   "setVelocity"
                 ]
               ]
             },
             {
-              "type": "field_number",
-              "name": "velocity",
-              "value": 0,
-              "min": -100,
-              "max": 100
+              "type": "input_dummy"
+            },
+            {
+              "type": "input_value",
+              "name": "VALUE",
+              "check": "Number"
             }
           ],
           "previousStatement": null,
@@ -715,10 +716,11 @@
     };
 
     Blockly.JavaScript['elevator_motor_controller_setter'] = function(block) {
-      let             code;
-      let             velocity = block.getFieldValue('velocity');
-
-      code = `elevatorSim.Elevator.getInstance().setVelocity(${velocity});\n`;
+      let code =
+          "elevatorSim.Elevator.getInstance().setVelocity(" +
+          (Blockly.JavaScript.valueToCode(
+            block, "VALUE", Blockly.JavaScript.ORDER_NONE) || "0") +
+          ");\n"
       return code;
     };
 
@@ -805,7 +807,7 @@
               "  </block>",
               "",
               "  <block type='procedures_defnoreturn' ",
-              "      deletable='false' movable='false' x='400' y='10'>",
+              "      deletable='false' movable='false' x='500' y='10'>",
               "    <field name='NAME'>do periodically</field>",
               "    <comment pinned='false' h='120' w='400'>This function is called after `do initially`, once every 50ms, i.e., 20 times per second, while the elevator simulation is enabled.</comment>",
               "  </block>",
