@@ -499,7 +499,10 @@
           "construct": true
         },
         "qx.core.Init": {},
-        "qx.event.Timer": {}
+        "qx.event.Timer": {},
+        "qx.ui.core.LayoutItem": {
+          "load": true
+        }
       },
       "extends": "qx.ui.container.Composite",
       "include": [],
