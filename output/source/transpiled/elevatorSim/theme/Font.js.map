@@ -1,0 +1,24 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/derrell/ME/FRC/training/elevatorSim/source/class/elevatorSim/theme/Font.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Theme",
+    "define",
+    "extend",
+    "theme",
+    "indigo",
+    "Font",
+    "fonts",
+    "elevatorSim"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAEAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,wBAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,KAAH,CAASC,MAAT,CAAgBC,IAD3B;AAGEC,IAAAA,KAAK,EACL;AAJF,GADA;AAVAC,EAAAA,WAAW,CAACJ,KAAZ,CAAkBE,IAAlB,CAAuBN,aAAvB,GAAuCA,aAAvC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   Copyright: 2021 Derrell Lipman\n\n   License: MIT license\n\n   Authors: Derrell Lipman (derrell) derrell.lipman@unwireduniverse.com\n\n************************************************************************ */\n\nqx.Theme.define(\"elevatorSim.theme.Font\",\n{\n  extend : qx.theme.indigo.Font,\n\n  fonts :\n  {\n  }\n});\n"
+  ]
+}

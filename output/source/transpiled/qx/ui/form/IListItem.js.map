@@ -1,0 +1,21 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/derrell/ME/FRC/training/elevatorSim/node_modules/@qooxdoo/framework/source/class/qx/ui/form/IListItem.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Interface",
+    "define",
+    "ui",
+    "form",
+    "IListItem"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,SAAH,CAAaC,MAAb,CAAoB,sBAApB,EAA4C,EAA5C;AAtBAL,EAAAA,EAAE,CAACM,EAAH,CAAMC,IAAN,CAAWC,SAAX,CAAqBL,aAArB,GAAqCA,aAArC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2021 Zenesis Ltd (https://www.zenesis.com)\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * John Spackman (github.com/johnspackman)\n\n************************************************************************ */\n\n/**\n * This is a marker interface for classes which can act as a children of\n * {@link qx.ui.form.List}\n */\nqx.Interface.define(\"qx.ui.form.IListItem\", {\n  \n});\n\n"
+  ]
+}

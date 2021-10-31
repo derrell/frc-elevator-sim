@@ -1,0 +1,52 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/derrell/ME/FRC/training/elevatorSim/node_modules/@qooxdoo/framework/source/class/qx/html/Label.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "html",
+    "Element",
+    "construct",
+    "tagName",
+    "styles",
+    "attributes",
+    "registerProperty",
+    "_setValueProperty",
+    "members",
+    "__rich",
+    "value",
+    "element",
+    "getDomElement",
+    "bom",
+    "Label",
+    "setValue",
+    "_createDomElement",
+    "rich",
+    "el",
+    "create",
+    "_content",
+    "style",
+    "overflow",
+    "_copyData",
+    "fromMarkup",
+    "propertiesFromDom",
+    "setRich",
+    "Error",
+    "_setProperty",
+    "getValue",
+    "_getProperty",
+    "resetValue",
+    "_removeProperty"
+  ],
+  "mappings": ";;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,eAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,IAAH,CAAQC,OADnB;;AAGE;AACF;AACA;AACA;AACA;AACEC,IAAAA,SAAS,EAAE,mBAASC,OAAT,EAAkBC,MAAlB,EAA0BC,UAA1B,EAAsC;AAC/C,6CAAqBF,OAArB,EAA8BC,MAA9B,EAAsCC,UAAtC;AACA,WAAKC,gBAAL,CAAsB,OAAtB,EAA+B,IAA/B,EAAqC,KAAKC,iBAA1C;AACD,KAXH;;AAeE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,OAAO,EACP;AAEEC,MAAAA,cAAM,EAAG,IAFX;;AAIE;AACJ;AACA;AACA;AACA;;AAEI;AACJ;AACA;AACA;AACA;AACIF,MAAAA,iBAAiB,EAAE,2BAASG,KAAT,EAAgB;AACjC,YAAIC,OAAO,GAAG,KAAKC,aAAL,EAAd;AACAnB,QAAAA,EAAE,CAACoB,GAAH,CAAOC,KAAP,CAAaC,QAAb,CAAsBJ,OAAtB,EAA+BD,KAA/B;AACD,OAlBH;AAoBE;AACAM,MAAAA,iBAAiB,EAAG,6BACpB;AACE,YAAIC,IAAI,GAAG,KAAKR,cAAhB;AACA,YAAIS,EAAE,GAAGzB,EAAE,CAACoB,GAAH,CAAOC,KAAP,CAAaK,MAAb,CAAoB,KAAKC,QAAzB,EAAmCH,IAAnC,CAAT;AACAC,QAAAA,EAAE,CAACG,KAAH,CAASC,QAAT,GAAoB,QAApB;AACA,eAAOJ,EAAP;AACD,OA3BH;AA8BE;AACA;AACAK,MAAAA,SAAS,EAAG,mBAASC,UAAT,EAAqBC,iBAArB,EAAwC;AAClD,iEAA4B,IAA5B,EAAkCA,iBAAlC;AACD,OAlCH;;AAuCE;AACJ;AACA;AACA;AACA;;AAEI;AACJ;AACA;AACA;AACA;AACA;AACIC,MAAAA,OAAO,EAAG,iBAAShB,KAAT,EACV;AACE,YAAIC,OAAO,GAAG,KAAKC,aAAL,EAAd;;AAEA,YAAID,OAAJ,EAAa;AACX,gBAAM,IAAIgB,KAAJ,CAAU,0DAAV,CAAN;AACD;;AAEDjB,QAAAA,KAAK,GAAG,CAAC,CAACA,KAAV;;AAEA,YAAI,KAAKD,cAAL,IAAeC,KAAnB,EAA0B;AACxB,iBAAO,IAAP;AACD;;AAED,aAAKD,cAAL,GAAcC,KAAd;AACA,eAAO,IAAP;AACD,OAnEH;;AAsEE;AACJ;AACA;AACA;AACA;AACA;AACIK,MAAAA,QAAQ,EAAG,kBAASL,KAAT,EACX;AACE,aAAKkB,YAAL,CAAkB,OAAlB,EAA2BlB,KAA3B;;AACA,eAAO,IAAP;AACD,OAhFH;;AAmFE;AACJ;AACA;AACA;AACA;AACImB,MAAAA,QAAQ,EAAG,oBAAW;AACpB,eAAO,KAAKC,YAAL,CAAkB,OAAlB,CAAP;AACD,OA1FH;;AA4FE;AACJ;AACA;AACA;AACA;AACIC,MAAAA,UAAU,EAAE,sBAAW;AACrB,eAAO,KAAKC,eAAL,CAAqB,OAArB,CAAP;AACD;AAnGH;AAtBF,GADA;AA3BAvC,EAAAA,EAAE,CAACO,IAAH,CAAQc,KAAR,CAAclB,aAAd,GAA8BA,aAA9B",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n\n************************************************************************ */\n\n/**\n * A cross browser label instance with support for rich HTML and text labels.\n *\n * Text labels supports ellipsis to reduce the text width.\n *\n * The mode can be changed through the method {@link #setRich}\n * which accepts a boolean value. The default mode is \"text\" which is\n * a good choice because it has a better performance.\n */\nqx.Class.define(\"qx.html.Label\",\n{\n  extend : qx.html.Element,\n\n  /**\n   * Creates a new Image\n   *\n   * @see constructor for {Element}\n   */\n  construct: function(tagName, styles, attributes) {\n    this.base(arguments, tagName, styles, attributes);\n    this.registerProperty(\"value\", null, this._setValueProperty);\n  },\n\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n\n    __rich : null,\n\n    /*\n    ---------------------------------------------------------------------------\n      ELEMENT API\n    ---------------------------------------------------------------------------\n    */\n    \n    /**\n     * Implementation of setter for the \"value\" property\n     * \n     * @param value {String?} value to set\n     */\n    _setValueProperty: function(value) {\n      var element = this.getDomElement();\n      qx.bom.Label.setValue(element, value);\n    },\n\n    // overridden\n    _createDomElement : function()\n    {\n      var rich = this.__rich;\n      var el = qx.bom.Label.create(this._content, rich);\n      el.style.overflow = 'hidden';\n      return el;\n    },\n\n\n    // overridden\n    // be sure that style attributes are merged and not overwritten\n    _copyData : function(fromMarkup, propertiesFromDom) {\n      return this.base(arguments, true, propertiesFromDom);\n    },\n\n\n\n\n    /*\n    ---------------------------------------------------------------------------\n      LABEL API\n    ---------------------------------------------------------------------------\n    */\n\n    /**\n     * Toggles between rich HTML mode and pure text mode.\n     *\n     * @param value {Boolean} Whether the HTML mode should be used.\n     * @return {qx.html.Label} This instance for chaining support.\n     */\n    setRich : function(value)\n    {\n      var element = this.getDomElement();\n\n      if (element) {\n        throw new Error(\"The label mode cannot be modified after initial creation\");\n      }\n\n      value = !!value;\n\n      if (this.__rich == value) {\n        return this;\n      }\n\n      this.__rich = value;\n      return this;\n    },\n\n\n    /**\n     * Sets the HTML/text content depending on the content mode.\n     *\n     * @param value {String} The content to be used.\n     * @return {qx.html.Label} This instance for for chaining support.\n     */\n    setValue : function(value)\n    {\n      this._setProperty(\"value\", value);\n      return this;\n    },\n\n\n    /**\n     * Get the current content.\n     *\n     * @return {String} The labels's content\n     */\n    getValue : function() {\n      return this._getProperty(\"value\");\n    },\n\n    /**\n     * Reset the current content\n     *\n     * @return {qx.html.Label} This instance for for chaining support.\n     */\n    resetValue: function() {\n      return this._removeProperty(\"value\");\n    }\n  }\n});\n"
+  ]
+}

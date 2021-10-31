@@ -1,0 +1,24 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/derrell/ME/FRC/training/elevatorSim/node_modules/@qooxdoo/framework/source/class/qx/test/MDecoration.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Theme",
+    "define",
+    "decorations",
+    "style",
+    "backgroundImage",
+    "backgroundRepeat",
+    "test",
+    "MDecoration"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,qBAAhB,EAAuC;AACrCC,IAAAA,WAAW,EAAE;AAEX,0CAAoC;AAClCC,QAAAA,KAAK,EAAE;AACLC,UAAAA,eAAe,EAAE,qCADZ;AAELC,UAAAA,gBAAgB,EAAE;AAFb;AAD2B;AAFzB;AADwB,GAAvC;AAtBAT,EAAAA,EAAE,CAACU,IAAH,CAAQC,WAAR,CAAoBR,aAApB,GAAoCA,aAApC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2020 Zenesis Limited https://www.zenesis.com\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * John Spackman (github.com/johnspackman john.spackman@zenesis.com)\n\n************************************************************************ */\n\n/**\n * This mixin must be included into themes decoration if you want to use that\n * theme with the testrunner \n */\nqx.Theme.define(\"qx.test.MDecoration\", {\n  decorations: {\n    \n    \"test-ui-basic-image-toolbar-part\": {\n      style: {\n        backgroundImage: \"decoration/toolbar/toolbar-part.gif\",\n        backgroundRepeat: \"repeat-y\"\n      }\n    }\n\n  }\n});\n"
+  ]
+}
