@@ -109,7 +109,7 @@
 
         this._activateEvents();
       },
-      __timer__P_53_0: null,
+      __timer__P_54_0: null,
 
       /**
        * Fires <code>changeTheme</code> event.
@@ -284,18 +284,18 @@
     construct: function construct() {
       qx.core.Object.constructor.call(this); // Register events
 
-      qx.event.Registration.addListener(document.body, "pointerover", this.__onPointerOverRoot__P_54_0, this, true); // Instantiate timers
+      qx.event.Registration.addListener(document.body, "pointerover", this.__onPointerOverRoot__P_55_0, this, true); // Instantiate timers
 
-      this.__showTimer__P_54_1 = new qx.event.Timer();
+      this.__showTimer__P_55_1 = new qx.event.Timer();
 
-      this.__showTimer__P_54_1.addListener("interval", this.__onShowInterval__P_54_2, this);
+      this.__showTimer__P_55_1.addListener("interval", this.__onShowInterval__P_55_2, this);
 
-      this.__hideTimer__P_54_3 = new qx.event.Timer();
+      this.__hideTimer__P_55_3 = new qx.event.Timer();
 
-      this.__hideTimer__P_54_3.addListener("interval", this.__onHideInterval__P_54_4, this); // Init pointer position
+      this.__hideTimer__P_55_3.addListener("interval", this.__onHideInterval__P_55_4, this); // Init pointer position
 
 
-      this.__pointerPosition__P_54_5 = {
+      this.__pointerPosition__P_55_5 = {
         left: 0,
         top: 0
       };
@@ -333,11 +333,11 @@
     *****************************************************************************
     */
     members: {
-      __pointerPosition__P_54_5: null,
-      __hideTimer__P_54_3: null,
-      __showTimer__P_54_1: null,
-      __sharedToolTip__P_54_6: null,
-      __sharedErrorToolTip__P_54_7: null,
+      __pointerPosition__P_55_5: null,
+      __hideTimer__P_55_3: null,
+      __showTimer__P_55_1: null,
+      __sharedToolTip__P_55_6: null,
+      __sharedErrorToolTip__P_55_7: null,
 
       /**
        * Get the shared tooltip, which is used to display the
@@ -349,13 +349,13 @@
        * @return {qx.ui.tooltip.ToolTip} The shared tooltip
        */
       getSharedTooltip: function getSharedTooltip() {
-        if (!this.__sharedToolTip__P_54_6) {
-          this.__sharedToolTip__P_54_6 = new qx.ui.tooltip.ToolTip().set({
+        if (!this.__sharedToolTip__P_55_6) {
+          this.__sharedToolTip__P_55_6 = new qx.ui.tooltip.ToolTip().set({
             rich: true
           });
         }
 
-        return this.__sharedToolTip__P_54_6;
+        return this.__sharedToolTip__P_55_6;
       },
 
       /**
@@ -369,19 +369,19 @@
        * @return {qx.ui.tooltip.ToolTip} The shared tooltip
        */
       getSharedErrorTooltip: function getSharedErrorTooltip() {
-        if (!this.__sharedErrorToolTip__P_54_7) {
-          this.__sharedErrorToolTip__P_54_7 = new qx.ui.tooltip.ToolTip().set({
+        if (!this.__sharedErrorToolTip__P_55_7) {
+          this.__sharedErrorToolTip__P_55_7 = new qx.ui.tooltip.ToolTip().set({
             appearance: "tooltip-error",
             rich: true
           });
 
-          this.__sharedErrorToolTip__P_54_7.setLabel(""); // trigger label widget creation
+          this.__sharedErrorToolTip__P_55_7.setLabel(""); // trigger label widget creation
 
 
-          this.__sharedErrorToolTip__P_54_7.syncAppearance();
+          this.__sharedErrorToolTip__P_55_7.syncAppearance();
         }
 
-        return this.__sharedErrorToolTip__P_54_7;
+        return this.__sharedErrorToolTip__P_55_7;
       },
 
       /*
@@ -402,26 +402,26 @@
             old.exclude();
           }
 
-          this.__showTimer__P_54_1.stop();
+          this.__showTimer__P_55_1.stop();
 
-          this.__hideTimer__P_54_3.stop();
+          this.__hideTimer__P_55_3.stop();
         }
 
         var Registration = qx.event.Registration;
         var el = document.body; // If new tooltip is not null, set it up and start the timer
 
         if (value) {
-          this.__showTimer__P_54_1.startWith(value.getShowTimeout()); // Register hide handler
+          this.__showTimer__P_55_1.startWith(value.getShowTimeout()); // Register hide handler
 
 
-          Registration.addListener(el, "pointerout", this.__onPointerOutRoot__P_54_8, this, true);
-          Registration.addListener(el, "focusout", this.__onFocusOutRoot__P_54_9, this, true);
-          Registration.addListener(el, "pointermove", this.__onPointerMoveRoot__P_54_10, this, true);
+          Registration.addListener(el, "pointerout", this.__onPointerOutRoot__P_55_8, this, true);
+          Registration.addListener(el, "focusout", this.__onFocusOutRoot__P_55_9, this, true);
+          Registration.addListener(el, "pointermove", this.__onPointerMoveRoot__P_55_10, this, true);
         } else {
           // Deregister hide handler
-          Registration.removeListener(el, "pointerout", this.__onPointerOutRoot__P_54_8, this, true);
-          Registration.removeListener(el, "focusout", this.__onFocusOutRoot__P_54_9, this, true);
-          Registration.removeListener(el, "pointermove", this.__onPointerMoveRoot__P_54_10, this, true);
+          Registration.removeListener(el, "pointerout", this.__onPointerOutRoot__P_55_8, this, true);
+          Registration.removeListener(el, "focusout", this.__onFocusOutRoot__P_55_9, this, true);
+          Registration.removeListener(el, "pointermove", this.__onPointerMoveRoot__P_55_10, this, true);
         }
       },
 
@@ -436,22 +436,22 @@
        *
        * @param e {qx.event.type.Event} Event object
        */
-      __onShowInterval__P_54_2: function __onShowInterval__P_54_2(e) {
+      __onShowInterval__P_55_2: function __onShowInterval__P_55_2(e) {
         var current = this.getCurrent();
 
         if (current && !current.isDisposed()) {
-          this.__hideTimer__P_54_3.startWith(current.getHideTimeout());
+          this.__hideTimer__P_55_3.startWith(current.getHideTimeout());
 
           if (current.getPlaceMethod() == "widget") {
             current.placeToWidget(current.getOpener());
           } else {
-            current.placeToPoint(this.__pointerPosition__P_54_5);
+            current.placeToPoint(this.__pointerPosition__P_55_5);
           }
 
           current.show();
         }
 
-        this.__showTimer__P_54_1.stop();
+        this.__showTimer__P_55_1.stop();
       },
 
       /**
@@ -459,7 +459,7 @@
        *
        * @param e {qx.event.type.Event} Event object
        */
-      __onHideInterval__P_54_4: function __onHideInterval__P_54_4(e) {
+      __onHideInterval__P_55_4: function __onHideInterval__P_55_4(e) {
         var current = this.getCurrent();
 
         if (current && !current.getAutoHide()) {
@@ -470,7 +470,7 @@
           current.exclude();
         }
 
-        this.__hideTimer__P_54_3.stop();
+        this.__hideTimer__P_55_3.stop();
 
         this.resetCurrent();
       },
@@ -486,8 +486,8 @@
        *
        * @param e {qx.event.type.Pointer} The move pointer event
        */
-      __onPointerMoveRoot__P_54_10: function __onPointerMoveRoot__P_54_10(e) {
-        var pos = this.__pointerPosition__P_54_5;
+      __onPointerMoveRoot__P_55_10: function __onPointerMoveRoot__P_55_10(e) {
+        var pos = this.__pointerPosition__P_55_5;
         pos.left = Math.round(e.getDocumentLeft());
         pos.top = Math.round(e.getDocumentTop());
       },
@@ -499,10 +499,10 @@
        *
        * @param e {qx.event.type.Pointer} pointerover event
        */
-      __onPointerOverRoot__P_54_0: function __onPointerOverRoot__P_54_0(e) {
+      __onPointerOverRoot__P_55_0: function __onPointerOverRoot__P_55_0(e) {
         var target = qx.ui.core.Widget.getWidgetByElement(e.getTarget()); // take first coordinates as backup if no move event will be fired (e.g. touch devices)
 
-        this.__onPointerMoveRoot__P_54_10(e);
+        this.__onPointerMoveRoot__P_55_10(e);
 
         this.showToolTip(target);
       },
@@ -568,7 +568,7 @@
        *
        * @param e {qx.event.type.Pointer} pointerout event
        */
-      __onPointerOutRoot__P_54_8: function __onPointerOutRoot__P_54_8(e) {
+      __onPointerOutRoot__P_55_8: function __onPointerOutRoot__P_55_8(e) {
         var target = qx.ui.core.Widget.getWidgetByElement(e.getTarget());
 
         if (!target) {
@@ -619,7 +619,7 @@
        *
        * @param e {qx.event.type.Focus} blur event
        */
-      __onFocusOutRoot__P_54_9: function __onFocusOutRoot__P_54_9(e) {
+      __onFocusOutRoot__P_55_9: function __onFocusOutRoot__P_55_9(e) {
         var target = qx.ui.core.Widget.getWidgetByElement(e.getTarget());
 
         if (!target) {
@@ -647,11 +647,11 @@
     */
     destruct: function destruct() {
       // Deregister events
-      qx.event.Registration.removeListener(document.body, "pointerover", this.__onPointerOverRoot__P_54_0, this, true); // Dispose timers
+      qx.event.Registration.removeListener(document.body, "pointerover", this.__onPointerOverRoot__P_55_0, this, true); // Dispose timers
 
-      this._disposeObjects("__showTimer__P_54_1", "__hideTimer__P_54_3", "__sharedToolTip__P_54_6");
+      this._disposeObjects("__showTimer__P_55_1", "__hideTimer__P_55_3", "__sharedToolTip__P_55_6");
 
-      this.__pointerPosition__P_54_5 = null;
+      this.__pointerPosition__P_55_5 = null;
     }
   });
   qx.ui.tooltip.Manager.$$dbClassInfo = $$dbClassInfo;
@@ -702,12 +702,12 @@
     extend: qx.core.Object,
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__sheet__P_55_0 = qx.bom.Stylesheet.createElement();
-      this.__rules__P_55_1 = [];
+      this.__sheet__P_56_0 = qx.bom.Stylesheet.createElement();
+      this.__rules__P_56_1 = [];
     },
     members: {
-      __rules__P_55_1: null,
-      __sheet__P_55_0: null,
+      __rules__P_56_1: null,
+      __sheet__P_56_0: null,
 
       /**
        * Adds a rule to the global stylesheet.
@@ -719,9 +719,9 @@
           return;
         }
 
-        qx.bom.Stylesheet.addRule(this.__sheet__P_55_0, selector, css);
+        qx.bom.Stylesheet.addRule(this.__sheet__P_56_0, selector, css);
 
-        this.__rules__P_55_1.push(selector);
+        this.__rules__P_56_1.push(selector);
       },
 
       /**
@@ -730,7 +730,7 @@
        * @return {Boolean} <code>true</code> if the rule exists
        */
       hasRule: function hasRule(selector) {
-        return this.__rules__P_55_1.indexOf(selector) != -1;
+        return this.__rules__P_56_1.indexOf(selector) != -1;
       },
 
       /**
@@ -738,8 +738,8 @@
        * @param selector {String} The selector to identify the rule.
        */
       removeRule: function removeRule(selector) {
-        delete this.__rules__P_55_1[this.__rules__P_55_1.indexOf(selector)];
-        qx.bom.Stylesheet.removeRule(this.__sheet__P_55_0, selector);
+        delete this.__rules__P_56_1[this.__rules__P_56_1.indexOf(selector)];
+        qx.bom.Stylesheet.removeRule(this.__sheet__P_56_0, selector);
       }
     }
   });
@@ -809,8 +809,8 @@
     construct: function construct(manager) {
       qx.core.Object.constructor.call(this); // Define shorthands
 
-      this.__manager__P_63_0 = manager;
-      this.__window__P_63_1 = manager.getWindow();
+      this.__manager__P_64_0 = manager;
+      this.__window__P_64_1 = manager.getWindow();
     },
 
     /*
@@ -840,8 +840,8 @@
     *****************************************************************************
     */
     members: {
-      __manager__P_63_0: null,
-      __window__P_63_1: null,
+      __manager__P_64_0: null,
+      __window__P_64_1: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -864,7 +864,7 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__manager__P_63_0 = this.__window__P_63_1 = null;
+      this.__manager__P_64_0 = this.__window__P_64_1 = null;
     },
 
     /*
@@ -951,16 +951,16 @@
   qx.Class.define("qx.ui.core.queue.Manager", {
     statics: {
       /** @type {Boolean} Whether a flush was scheduled */
-      __scheduled__P_56_0: false,
+      __scheduled__P_57_0: false,
 
       /** @type {Boolean} true, if the flush should not be executed */
-      __canceled__P_56_1: false,
+      __canceled__P_57_1: false,
 
       /** @type {Map} Internal data structure for the current job list */
-      __jobs__P_56_2: {},
+      __jobs__P_57_2: {},
 
       /** @type {Integer} Counts how often a flush failed due to exceptions */
-      __retries__P_56_3: 0,
+      __retries__P_57_3: 0,
 
       /** @type {Integer} Maximum number of flush retries */
       MAX_RETRIES: 10,
@@ -974,19 +974,19 @@
       scheduleFlush: function scheduleFlush(job) {
         // Sometimes not executed in context, fix this
         var self = qx.ui.core.queue.Manager;
-        self.__jobs__P_56_2[job] = true;
+        self.__jobs__P_57_2[job] = true;
 
-        if (!self.__scheduled__P_56_0) {
-          self.__canceled__P_56_1 = false;
+        if (!self.__scheduled__P_57_0) {
+          self.__canceled__P_57_1 = false;
           qx.bom.AnimationFrame.request(function () {
-            if (self.__canceled__P_56_1) {
-              self.__canceled__P_56_1 = false;
+            if (self.__canceled__P_57_1) {
+              self.__canceled__P_57_1 = false;
               return;
             }
 
             self.flush();
           }, self);
-          self.__scheduled__P_56_0 = true;
+          self.__scheduled__P_57_0 = true;
         }
       },
 
@@ -999,16 +999,16 @@
         // Sometimes not executed in context, fix this
         var self = qx.ui.core.queue.Manager; // Stop when already executed
 
-        if (self.__inFlush__P_56_4) {
+        if (self.__inFlush__P_57_4) {
           return;
         }
 
-        self.__inFlush__P_56_4 = true; // Cancel timeout if called manually
+        self.__inFlush__P_57_4 = true; // Cancel timeout if called manually
 
-        self.__canceled__P_56_1 = true;
-        var jobs = self.__jobs__P_56_2;
+        self.__canceled__P_57_1 = true;
+        var jobs = self.__jobs__P_57_2;
 
-        self.__executeAndRescheduleOnError__P_56_5(function () {
+        self.__executeAndRescheduleOnError__P_57_5(function () {
           // Process jobs
           while (jobs.visibility || jobs.widget || jobs.appearance || jobs.layout || jobs.element) {
             // No else blocks here because each flush can influence the following flushes!
@@ -1072,10 +1072,10 @@
             }
           }
         }, function () {
-          self.__scheduled__P_56_0 = false;
+          self.__scheduled__P_57_0 = false;
         });
 
-        self.__executeAndRescheduleOnError__P_56_5(function () {
+        self.__executeAndRescheduleOnError__P_57_5(function () {
           if (jobs.dispose) {
             delete jobs.dispose;
             {
@@ -1088,11 +1088,11 @@
           }
         }, function () {
           // Clear flag
-          self.__inFlush__P_56_4 = false;
+          self.__inFlush__P_57_4 = false;
         }); // flush succeeded successfully. Reset retries
 
 
-        self.__retries__P_56_3 = 0;
+        self.__retries__P_57_3 = 0;
       },
 
       /**
@@ -1104,7 +1104,7 @@
        * @param callback {Function} the callback function
        * @param finallyCode {Function} function to be called in the finally block
        */
-      __executeAndRescheduleOnError__P_56_5: function __executeAndRescheduleOnError__P_56_5(callback, finallyCode) {
+      __executeAndRescheduleOnError__P_57_5: function __executeAndRescheduleOnError__P_57_5(callback, finallyCode) {
         callback();
         finallyCode();
       },
@@ -1119,7 +1119,7 @@
        *
        * @param e {qx.event.type.Data} The user action data event.
        */
-      __onUserAction__P_56_6: function __onUserAction__P_56_6(e) {
+      __onUserAction__P_57_6: function __onUserAction__P_57_6(e) {
         qx.ui.core.queue.Manager.flush();
       }
     },
@@ -1135,7 +1135,7 @@
       // before the HTML element flush.
       qx.html.Element._scheduleFlush = statics.scheduleFlush; // Register to user action
 
-      qx.event.Registration.addListener(window, "useraction", qx.core.Environment.get("event.touch") ? statics.__onUserAction__P_56_6 : statics.flush);
+      qx.event.Registration.addListener(window, "useraction", qx.core.Environment.get("event.touch") ? statics.__onUserAction__P_57_6 : statics.flush);
     }
   });
   qx.ui.core.queue.Manager.$$dbClassInfo = $$dbClassInfo;
@@ -1210,7 +1210,7 @@
                 position: "absolute",
                 visibility: "hidden"
               };
-              elementHeight = qx.module.Css.__swap__P_140_0(elem, stylesToSwap, "_getHeight", this);
+              elementHeight = qx.module.Css.__swap__P_142_0(elem, stylesToSwap, "_getHeight", this);
             } else {
               elementHeight = qx.bom.element.Dimension.getHeight(elem);
             }
@@ -1247,7 +1247,7 @@
                 position: "absolute",
                 visibility: "hidden"
               };
-              elementWidth = qx.module.Css.__swap__P_140_0(elem, stylesToSwap, "_getWidth", this);
+              elementWidth = qx.module.Css.__swap__P_142_0(elem, stylesToSwap, "_getWidth", this);
             } else {
               elementWidth = qx.bom.element.Dimension.getWidth(elem);
             }
@@ -1285,7 +1285,7 @@
               visibility: "hidden",
               display: "block"
             };
-            contentHeight = qx.module.Css.__swap__P_140_0(obj, stylesToSwap, "_getContentHeight", this);
+            contentHeight = qx.module.Css.__swap__P_142_0(obj, stylesToSwap, "_getContentHeight", this);
           } else {
             contentHeight = qx.bom.element.Dimension.getContentHeight(obj);
           }
@@ -1318,7 +1318,7 @@
               visibility: "hidden",
               display: "block"
             };
-            contentWidth = qx.module.Css.__swap__P_140_0(obj, stylesToSwap, "_getContentWidth", this);
+            contentWidth = qx.module.Css.__swap__P_142_0(obj, stylesToSwap, "_getContentWidth", this);
           } else {
             contentWidth = qx.bom.element.Dimension.getContentWidth(obj);
           }
@@ -1332,7 +1332,7 @@
       /**
        * Maps HTML elements to their default "display" style values.
        */
-      __displayDefaults__P_140_1: {},
+      __displayDefaults__P_142_1: {},
 
       /**
        * Attempts tp determine the default "display" style value for
@@ -1343,8 +1343,8 @@
        * @return {String} The default "display" value, e.g. <code>inline</code>
        * or <code>block</code>
        */
-      __getDisplayDefault__P_140_2: function __getDisplayDefault__P_140_2(tagName, doc) {
-        var defaults = qx.module.Css.__displayDefaults__P_140_1;
+      __getDisplayDefault__P_142_2: function __getDisplayDefault__P_142_2(tagName, doc) {
+        var defaults = qx.module.Css.__displayDefaults__P_142_1;
 
         if (!defaults[tagName]) {
           var docu = doc || document;
@@ -1368,7 +1368,7 @@
        * @param context {Object} the context in which the callback should be called
        * @return {Object} the return value of the callback
        */
-      __swap__P_140_0: function __swap__P_140_0(element, styles, methodName, context) {
+      __swap__P_142_0: function __swap__P_142_0(element, styles, methodName, context) {
         // get the current values
         var currentValues = {};
 
@@ -1462,7 +1462,7 @@
               newVal = prevVal;
             } else {
               var doc = qxWeb.getDocument(item[0]);
-              newVal = qx.module.Css.__getDisplayDefault__P_140_2(item[0].tagName, doc);
+              newVal = qx.module.Css.__getDisplayDefault__P_142_2(item[0].tagName, doc);
             }
 
             item.setStyle("display", newVal);
@@ -2340,7 +2340,7 @@
 
   qx.type.BaseArray.$$dbClassInfo = $$dbClassInfo;
 })();
-//# sourceMappingURL=package-3.js.map?dt=1635701584052
+//# sourceMappingURL=package-3.js.map?dt=1635861023333
 qx.$$packageData['3'] = {
   "locales": {},
   "resources": {},

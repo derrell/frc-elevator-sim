@@ -43,8 +43,8 @@
     *****************************************************************************
     */
     members: {
-      __data__P_38_0: null,
-      __old__P_38_1: null,
+      __data__P_41_0: null,
+      __old__P_41_1: null,
 
       /**
        * Initializes an event object.
@@ -61,8 +61,8 @@
        */
       init: function init(data, old, cancelable) {
         qx.event.type.Data.prototype.init.base.call(this, false, cancelable);
-        this.__data__P_38_0 = data;
-        this.__old__P_38_1 = old;
+        this.__data__P_41_0 = data;
+        this.__old__P_41_1 = old;
         return this;
       },
 
@@ -77,8 +77,8 @@
        */
       clone: function clone(embryo) {
         var clone = qx.event.type.Data.prototype.clone.base.call(this, embryo);
-        clone.__data__P_38_0 = this.__data__P_38_0;
-        clone.__old__P_38_1 = this.__old__P_38_1;
+        clone.__data__P_41_0 = this.__data__P_41_0;
+        clone.__old__P_41_1 = this.__old__P_41_1;
         return clone;
       },
 
@@ -89,7 +89,7 @@
        * @return {var} The new data of the event
        */
       getData: function getData() {
-        return this.__data__P_38_0;
+        return this.__data__P_41_0;
       },
 
       /**
@@ -99,11 +99,11 @@
        * @return {var} The old data of the event
        */
       getOldData: function getOldData() {
-        return this.__old__P_38_1;
+        return this.__old__P_41_1;
       }
     }
   });
   qx.event.type.Data.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Data.js.map?dt=1635364919907
+//# sourceMappingURL=Data.js.map?dt=1635778901589

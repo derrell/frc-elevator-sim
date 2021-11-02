@@ -87,8 +87,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     },
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__rules__P_40_0 = [];
-      this.__legacyIe__P_40_1 = qx.core.Environment.get("engine.name") == "mshtml" && qx.core.Environment.get("browser.documentmode") < 9;
+      this.__rules__P_43_0 = [];
+      this.__legacyIe__P_43_1 = qx.core.Environment.get("engine.name") == "mshtml" && qx.core.Environment.get("browser.documentmode") < 9;
     },
 
     /*
@@ -112,9 +112,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __dynamic__P_40_2: null,
-      __rules__P_40_0: null,
-      __legacyIe__P_40_1: false,
+      __dynamic__P_43_2: null,
+      __rules__P_43_0: null,
+      __legacyIe__P_43_1: false,
 
       /**
        * Returns the name which will be / is used as css class name.
@@ -173,9 +173,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               innerCss += innerKey + ":" + innerStyles[innerKey] + ";";
             }
 
-            var innerSelector = this.__legacyIe__P_40_1 ? selector : selector + (inner ? ":" : "");
+            var innerSelector = this.__legacyIe__P_43_1 ? selector : selector + (inner ? ":" : "");
 
-            this.__rules__P_40_0.push(innerSelector + key);
+            this.__rules__P_43_0.push(innerSelector + key);
 
             sheet.addRule(innerSelector + key, innerCss);
             return;
@@ -187,7 +187,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         if (css) {
           sheet.addRule(selector, css);
 
-          this.__rules__P_40_0.push(selector);
+          this.__rules__P_43_0.push(selector);
         }
 
         return value;
@@ -199,12 +199,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       removeAllCssClasses: function removeAllCssClasses() {
         // remove old rules
-        for (var i = 0; i < this.__rules__P_40_0.length; i++) {
-          var selector = this.__rules__P_40_0[i];
+        for (var i = 0; i < this.__rules__P_43_0.length; i++) {
+          var selector = this.__rules__P_43_0[i];
           qx.ui.style.Stylesheet.getInstance().removeRule(selector);
         }
 
-        this.__rules__P_40_0 = [];
+        this.__rules__P_43_0 = [];
       },
 
       /**
@@ -222,10 +222,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           return value;
         }
 
-        var cache = this.__dynamic__P_40_2;
+        var cache = this.__dynamic__P_43_2;
 
         if (!cache) {
-          cache = this.__dynamic__P_40_2 = {};
+          cache = this.__dynamic__P_43_2 = {};
         }
 
         var resolved = cache[value];
@@ -312,7 +312,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @internal
        */
       isCached: function isCached(decorator) {
-        return !this.__dynamic__P_40_2 ? false : qx.lang.Object.contains(this.__dynamic__P_40_2, decorator);
+        return !this.__dynamic__P_43_2 ? false : qx.lang.Object.contains(this.__dynamic__P_43_2, decorator);
       },
       // property apply
       _applyTheme: function _applyTheme(value, old) {
@@ -332,9 +332,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         }
 
-        this._disposeMap("__dynamic__P_40_2");
+        this._disposeMap("__dynamic__P_43_2");
 
-        this.__dynamic__P_40_2 = {};
+        this.__dynamic__P_43_2 = {};
       },
 
       /**
@@ -354,9 +354,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         this.removeAllCssClasses();
 
-        this._disposeMap("__dynamic__P_40_2");
+        this._disposeMap("__dynamic__P_43_2");
 
-        this.__dynamic__P_40_2 = {};
+        this.__dynamic__P_43_2 = {};
       },
 
       /**
@@ -388,4 +388,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.theme.manager.Decoration.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Decoration.js.map?dt=1635364920011
+//# sourceMappingURL=Decoration.js.map?dt=1635778901712

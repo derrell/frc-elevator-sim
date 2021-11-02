@@ -13149,8 +13149,8 @@
   "descendants": [
     "qx.ui.basic.Label",
     "qx.ui.container.Composite",
-    "qx.ui.embed.AbstractIframe",
     "qx.ui.basic.Atom",
+    "qx.ui.embed.AbstractIframe",
     "qx.ui.root.Abstract",
     "qx.ui.basic.Image"
   ]

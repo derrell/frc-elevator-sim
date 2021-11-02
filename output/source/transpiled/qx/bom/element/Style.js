@@ -155,13 +155,13 @@
     *****************************************************************************
     */
     statics: {
-      __styleNames__P_60_0: null,
-      __cssNames__P_60_1: null,
+      __styleNames__P_61_0: null,
+      __cssNames__P_61_1: null,
 
       /**
        * Detect vendor specific properties.
        */
-      __detectVendorProperties__P_60_2: function __detectVendorProperties__P_60_2() {
+      __detectVendorProperties__P_61_2: function __detectVendorProperties__P_61_2() {
         var styleNames = {
           "appearance": qx.core.Environment.get("css.appearance"),
           "userSelect": qx.core.Environment.get("css.userselect"),
@@ -171,21 +171,21 @@
           "userModify": qx.core.Environment.get("css.usermodify"),
           "boxSizing": qx.core.Environment.get("css.boxsizing")
         };
-        this.__cssNames__P_60_1 = {};
+        this.__cssNames__P_61_1 = {};
 
         for (var key in qx.lang.Object.clone(styleNames)) {
           if (!styleNames[key]) {
             delete styleNames[key];
           } else {
             if (key === 'float') {
-              this.__cssNames__P_60_1['cssFloat'] = key;
+              this.__cssNames__P_61_1['cssFloat'] = key;
             } else {
-              this.__cssNames__P_60_1[key] = qx.bom.Style.getCssName(styleNames[key]);
+              this.__cssNames__P_61_1[key] = qx.bom.Style.getCssName(styleNames[key]);
             }
           }
         }
 
-        this.__styleNames__P_60_0 = styleNames;
+        this.__styleNames__P_61_0 = styleNames;
       },
 
       /**
@@ -196,11 +196,11 @@
        * @return {String|null} The client-specific name of the property, or
        * <code>null</code> if it's not supported.
        */
-      __getStyleName__P_60_3: function __getStyleName__P_60_3(name) {
+      __getStyleName__P_61_3: function __getStyleName__P_61_3(name) {
         var styleName = qx.bom.Style.getPropertyName(name);
 
         if (styleName) {
-          this.__styleNames__P_60_0[name] = styleName;
+          this.__styleNames__P_61_0[name] = styleName;
         }
 
         return styleName;
@@ -212,7 +212,7 @@
        *
        * @internal
        */
-      __mshtmlPixel__P_60_4: {
+      __mshtmlPixel__P_61_4: {
         width: "pixelWidth",
         height: "pixelHeight",
         left: "pixelLeft",
@@ -226,7 +226,7 @@
        *
        * @internal
        */
-      __special__P_60_5: {
+      __special__P_61_5: {
         clip: qx.bom.element.Clip,
         cursor: qx.bom.element.Cursor,
         opacity: qx.bom.element.Opacity,
@@ -248,8 +248,8 @@
        */
       compile: function compile(map) {
         var html = [];
-        var special = this.__special__P_60_5;
-        var cssNames = this.__cssNames__P_60_1;
+        var special = this.__special__P_61_5;
+        var cssNames = this.__cssNames__P_61_1;
         var name, value;
 
         for (name in map) {
@@ -261,7 +261,7 @@
           } // normalize name
 
 
-          name = this.__cssNames__P_60_1[name] || name; // process special properties
+          name = this.__cssNames__P_61_1[name] || name; // process special properties
 
           if (special[name]) {
             html.push(special[name].compile(value));
@@ -317,7 +317,7 @@
        * @return {Boolean} Whether the property id supported
        */
       isPropertySupported: function isPropertySupported(propertyName) {
-        return this.__special__P_60_5[propertyName] || this.__styleNames__P_60_0[propertyName] || propertyName in document.documentElement.style;
+        return this.__special__P_61_5[propertyName] || this.__styleNames__P_61_0[propertyName] || propertyName in document.documentElement.style;
       },
 
       /** @type {Integer} Computed value of a style property. Compared to the cascaded style,
@@ -354,12 +354,12 @@
           }
         } // normalize name
 
-        name = this.__styleNames__P_60_0[name] || this.__getStyleName__P_60_3(name) || name; // special handling for specific properties
+        name = this.__styleNames__P_61_0[name] || this.__getStyleName__P_61_3(name) || name; // special handling for specific properties
         // through this good working switch this part costs nothing when
         // processing non-smart properties
 
-        if (smart !== false && this.__special__P_60_5[name]) {
-          this.__special__P_60_5[name].set(element, value);
+        if (smart !== false && this.__special__P_61_5[name]) {
+          this.__special__P_61_5[name].set(element, value);
         } else {
           element.style[name] = value !== null ? value : "";
         }
@@ -385,13 +385,13 @@
         } // inline calls to "set" and "reset" because this method is very
         // performance critical!
 
-        var styleNames = this.__styleNames__P_60_0;
-        var special = this.__special__P_60_5;
+        var styleNames = this.__styleNames__P_61_0;
+        var special = this.__special__P_61_5;
         var style = element.style;
 
         for (var key in styles) {
           var value = styles[key];
-          var name = styleNames[key] || this.__getStyleName__P_60_3(key) || key;
+          var name = styleNames[key] || this.__getStyleName__P_61_3(key) || key;
 
           if (value === undefined) {
             if (smart !== false && special[name]) {
@@ -419,10 +419,10 @@
        */
       reset: function reset(element, name, smart) {
         // normalize name
-        name = this.__styleNames__P_60_0[name] || this.__getStyleName__P_60_3(name) || name; // special handling for specific properties
+        name = this.__styleNames__P_61_0[name] || this.__getStyleName__P_61_3(name) || name; // special handling for specific properties
 
-        if (smart !== false && this.__special__P_60_5[name]) {
-          this.__special__P_60_5[name].reset(element);
+        if (smart !== false && this.__special__P_61_5[name]) {
+          this.__special__P_61_5[name].reset(element);
         } else {
           element.style[name] = "";
         }
@@ -456,10 +456,10 @@
        */
       get: function get(element, name, mode, smart) {
         // normalize name
-        name = this.__styleNames__P_60_0[name] || this.__getStyleName__P_60_3(name) || name; // special handling
+        name = this.__styleNames__P_61_0[name] || this.__getStyleName__P_61_3(name) || name; // special handling
 
-        if (smart !== false && this.__special__P_60_5[name]) {
-          return this.__special__P_60_5[name].get(element, mode);
+        if (smart !== false && this.__special__P_61_5[name]) {
+          return this.__special__P_61_5[name].get(element, mode);
         } // switch to right mode
 
 
@@ -516,7 +516,7 @@
               } // Try to convert non-pixel values
 
 
-              var pixel = this.__mshtmlPixel__P_60_4[name];
+              var pixel = this.__mshtmlPixel__P_61_4[name];
 
               if (pixel && pixel in element.style) {
                 // Backup local and runtime style
@@ -541,10 +541,10 @@
       }
     },
     defer: function defer(statics) {
-      statics.__detectVendorProperties__P_60_2();
+      statics.__detectVendorProperties__P_61_2();
     }
   });
   qx.bom.element.Style.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Style.js.map?dt=1635364921843
+//# sourceMappingURL=Style.js.map?dt=1635778903706

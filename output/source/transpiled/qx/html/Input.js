@@ -83,7 +83,7 @@
       }
 
       qx.html.Element.constructor.call(this, nodeName, styles, attributes);
-      this.__type__P_157_0 = type;
+      this.__type__P_161_0 = type;
       this.registerProperty("value", this._getValueProperty, this._setValueProperty);
       this.registerProperty("wrap", null, this._setWrapProperty);
     },
@@ -94,10 +94,10 @@
     *****************************************************************************
     */
     members: {
-      __type__P_157_0: null,
+      __type__P_161_0: null,
       // used for webkit only
-      __selectable__P_157_1: null,
-      __enabled__P_157_2: null,
+      __selectable__P_161_1: null,
+      __enabled__P_161_2: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -109,7 +109,7 @@
       },
       //overridden
       _createDomElement: function _createDomElement() {
-        return qx.bom.Input.create(this.__type__P_157_0);
+        return qx.bom.Input.create(this.__type__P_161_0);
       },
 
       /**
@@ -162,7 +162,7 @@
        * @param value {Boolean} true, if the input element should be enabled.
        */
       setEnabled: function setEnabled(value) {
-        this.__enabled__P_157_2 = value;
+        this.__enabled__P_161_2 = value;
         this.setAttribute("disabled", value === false);
 
         if (qx.core.Environment.get("engine.name") == "webkit") {
@@ -174,7 +174,7 @@
           } else {
             this.setStyles({
               "userModify": null,
-              "userSelect": this.__selectable__P_157_1 ? null : "none"
+              "userSelect": this.__selectable__P_161_1 ? null : "none"
             });
           }
         }
@@ -190,9 +190,9 @@
        */
       setSelectable: qx.core.Environment.select("engine.name", {
         "webkit": function webkit(value) {
-          this.__selectable__P_157_1 = value; // Only apply the value when it is enabled
+          this.__selectable__P_161_1 = value; // Only apply the value when it is enabled
 
-          qx.html.Input.prototype.setSelectable.base.call(this, this.__enabled__P_157_2 && value);
+          qx.html.Input.prototype.setSelectable.base.call(this, this.__enabled__P_161_2 && value);
         },
         "default": function _default(value) {
           qx.html.Input.prototype.setSelectable.base.call(this, value);
@@ -253,7 +253,7 @@
        * @return {qx.html.Input} This instance for for chaining support.
        */
       setWrap: function setWrap(wrap, direct) {
-        if (this.__type__P_157_0 === "textarea") {
+        if (this.__type__P_161_0 === "textarea") {
           this._setProperty("wrap", wrap, direct);
         } else {
           throw new Error("Text wrapping is only support by textareas!");
@@ -270,7 +270,7 @@
        * @return {Boolean} Whether wrapping is enabled or disabled.
        */
       getWrap: function getWrap() {
-        if (this.__type__P_157_0 === "textarea") {
+        if (this.__type__P_161_0 === "textarea") {
           return this._getProperty("wrap");
         } else {
           throw new Error("Text wrapping is only support by textareas!");
@@ -281,4 +281,4 @@
   qx.html.Input.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Input.js.map?dt=1635364927168
+//# sourceMappingURL=Input.js.map?dt=1635778910939

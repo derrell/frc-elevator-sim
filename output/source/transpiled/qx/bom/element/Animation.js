@@ -112,7 +112,7 @@
        *   the animation.
        */
       animate: function animate(el, desc, duration) {
-        var onlyCssKeys = qx.bom.element.Animation.__hasOnlyCssKeys__P_142_0(el, desc.keyFrames);
+        var onlyCssKeys = qx.bom.element.Animation.__hasOnlyCssKeys__P_144_0(el, desc.keyFrames);
 
         if (qx.core.Environment.get("css.animation") && onlyCssKeys) {
           return qx.bom.element.AnimationCss.animate(el, desc, duration);
@@ -132,7 +132,7 @@
        *   the animation.
        */
       animateReverse: function animateReverse(el, desc, duration) {
-        var onlyCssKeys = qx.bom.element.Animation.__hasOnlyCssKeys__P_142_0(el, desc.keyFrames);
+        var onlyCssKeys = qx.bom.element.Animation.__hasOnlyCssKeys__P_144_0(el, desc.keyFrames);
 
         if (qx.core.Environment.get("css.animation") && onlyCssKeys) {
           return qx.bom.element.AnimationCss.animateReverse(el, desc, duration);
@@ -148,7 +148,7 @@
        * @param keyFrames {Map} The keyFrames of the animation.
        * @return {Boolean} <code>true</code> if only css properties are included.
        */
-      __hasOnlyCssKeys__P_142_0: function __hasOnlyCssKeys__P_142_0(el, keyFrames) {
+      __hasOnlyCssKeys__P_144_0: function __hasOnlyCssKeys__P_144_0(el, keyFrames) {
         var keys = [];
 
         for (var nr in keyFrames) {
@@ -188,4 +188,4 @@
   qx.bom.element.Animation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Animation.js.map?dt=1635364926271
+//# sourceMappingURL=Animation.js.map?dt=1635778909384

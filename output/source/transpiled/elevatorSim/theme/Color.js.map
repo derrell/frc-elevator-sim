@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [
-    "/home/derrell/ME/FRC/training/elevatorSim/source/class/elevatorSim/theme/Color.js"
+    "/home/derrell/ME/FRC/frc-elevator-sim.git/source/class/elevatorSim/theme/Color.js"
   ],
   "names": [
     "qx",

@@ -553,7 +553,7 @@
         this.setSource(source);
       }
 
-      this._getIframeElement().addListener("navigate", this.__onNavigate__P_41_0, this);
+      this._getIframeElement().addListener("navigate", this.__onNavigate__P_44_0, this);
     },
     events: {
       /**
@@ -658,7 +658,7 @@
       *
       * @param e {qx.event.type.Data} navigate event
       */
-      __onNavigate__P_41_0: function __onNavigate__P_41_0(e) {
+      __onNavigate__P_44_0: function __onNavigate__P_44_0(e) {
         var actualUrl = e.getData();
 
         if (actualUrl) {
@@ -1480,8 +1480,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     },
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__rules__P_40_0 = [];
-      this.__legacyIe__P_40_1 = qx.core.Environment.get("engine.name") == "mshtml" && qx.core.Environment.get("browser.documentmode") < 9;
+      this.__rules__P_43_0 = [];
+      this.__legacyIe__P_43_1 = qx.core.Environment.get("engine.name") == "mshtml" && qx.core.Environment.get("browser.documentmode") < 9;
     },
 
     /*
@@ -1505,9 +1505,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __dynamic__P_40_2: null,
-      __rules__P_40_0: null,
-      __legacyIe__P_40_1: false,
+      __dynamic__P_43_2: null,
+      __rules__P_43_0: null,
+      __legacyIe__P_43_1: false,
 
       /**
        * Returns the name which will be / is used as css class name.
@@ -1566,9 +1566,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               innerCss += innerKey + ":" + innerStyles[innerKey] + ";";
             }
 
-            var innerSelector = this.__legacyIe__P_40_1 ? selector : selector + (inner ? ":" : "");
+            var innerSelector = this.__legacyIe__P_43_1 ? selector : selector + (inner ? ":" : "");
 
-            this.__rules__P_40_0.push(innerSelector + key);
+            this.__rules__P_43_0.push(innerSelector + key);
 
             sheet.addRule(innerSelector + key, innerCss);
             return;
@@ -1580,7 +1580,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         if (css) {
           sheet.addRule(selector, css);
 
-          this.__rules__P_40_0.push(selector);
+          this.__rules__P_43_0.push(selector);
         }
 
         return value;
@@ -1592,12 +1592,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       removeAllCssClasses: function removeAllCssClasses() {
         // remove old rules
-        for (var i = 0; i < this.__rules__P_40_0.length; i++) {
-          var selector = this.__rules__P_40_0[i];
+        for (var i = 0; i < this.__rules__P_43_0.length; i++) {
+          var selector = this.__rules__P_43_0[i];
           qx.ui.style.Stylesheet.getInstance().removeRule(selector);
         }
 
-        this.__rules__P_40_0 = [];
+        this.__rules__P_43_0 = [];
       },
 
       /**
@@ -1615,10 +1615,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           return value;
         }
 
-        var cache = this.__dynamic__P_40_2;
+        var cache = this.__dynamic__P_43_2;
 
         if (!cache) {
-          cache = this.__dynamic__P_40_2 = {};
+          cache = this.__dynamic__P_43_2 = {};
         }
 
         var resolved = cache[value];
@@ -1705,7 +1705,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @internal
        */
       isCached: function isCached(decorator) {
-        return !this.__dynamic__P_40_2 ? false : qx.lang.Object.contains(this.__dynamic__P_40_2, decorator);
+        return !this.__dynamic__P_43_2 ? false : qx.lang.Object.contains(this.__dynamic__P_43_2, decorator);
       },
       // property apply
       _applyTheme: function _applyTheme(value, old) {
@@ -1725,9 +1725,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         }
 
-        this._disposeMap("__dynamic__P_40_2");
+        this._disposeMap("__dynamic__P_43_2");
 
-        this.__dynamic__P_40_2 = {};
+        this.__dynamic__P_43_2 = {};
       },
 
       /**
@@ -1747,9 +1747,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         this.removeAllCssClasses();
 
-        this._disposeMap("__dynamic__P_40_2");
+        this._disposeMap("__dynamic__P_43_2");
 
-        this.__dynamic__P_40_2 = {};
+        this.__dynamic__P_43_2 = {};
       },
 
       /**
@@ -2179,8 +2179,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__styleCache__P_81_0 = {};
-      this.__aliasMap__P_81_1 = {};
+      this.__styleCache__P_82_0 = {};
+      this.__aliasMap__P_82_1 = {};
     },
 
     /*
@@ -2209,14 +2209,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * @lint ignoreReferenceField(__defaultStates)
        */
-      __defaultStates__P_81_2: {},
-      __styleCache__P_81_0: null,
-      __aliasMap__P_81_1: null,
+      __defaultStates__P_82_2: {},
+      __styleCache__P_82_0: null,
+      __aliasMap__P_82_1: null,
       // property apply
       _applyTheme: function _applyTheme() {
         // empty the caches
-        this.__aliasMap__P_81_1 = {};
-        this.__styleCache__P_81_0 = {};
+        this.__aliasMap__P_82_1 = {};
+        this.__styleCache__P_82_0 = {};
       },
 
       /*
@@ -2235,7 +2235,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param chain {Array} The appearance id chain.
        * @return {String} Resolved ID
        */
-      __resolveId__P_81_3: function __resolveId__P_81_3(id, theme, defaultId, chain) {
+      __resolveId__P_82_3: function __resolveId__P_82_3(id, theme, defaultId, chain) {
         var db = theme.appearances;
         var entry = db[id];
 
@@ -2256,7 +2256,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
               if (typeof alias === "string") {
                 var mapped = alias + divider + end.join(divider);
-                return this.__resolveId__P_81_3(mapped, theme, defaultId, chainCopy);
+                return this.__resolveId__P_82_3(mapped, theme, defaultId, chainCopy);
               }
             }
           } // check if we find a control fitting in the appearance [BUG #4020]
@@ -2268,7 +2268,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
             var subId = end.join(divider);
 
-            var resolved = this.__resolveId__P_81_3(subId, theme, null, chainCopy);
+            var resolved = this.__resolveId__P_82_3(subId, theme, null, chainCopy);
 
             if (resolved) {
               return resolved;
@@ -2277,7 +2277,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
           if (defaultId != null) {
-            return this.__resolveId__P_81_3(defaultId, theme, null, chainCopy);
+            return this.__resolveId__P_82_3(defaultId, theme, null, chainCopy);
           } // it's safe to output this message here since we can be sure that the return
           // value is 'null' and something went wrong with the id lookup.
 
@@ -2293,9 +2293,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
           return null;
         } else if (typeof entry === "string") {
-          return this.__resolveId__P_81_3(entry, theme, defaultId, chainCopy);
+          return this.__resolveId__P_82_3(entry, theme, defaultId, chainCopy);
         } else if (entry.include && !entry.style) {
-          return this.__resolveId__P_81_3(entry.include, theme, defaultId, chainCopy);
+          return this.__resolveId__P_82_3(entry.include, theme, defaultId, chainCopy);
         }
 
         return id;
@@ -2316,7 +2316,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // Resolve ID
 
 
-        var aliasMap = this.__aliasMap__P_81_1;
+        var aliasMap = this.__aliasMap__P_82_1;
 
         if (!aliasMap[theme.name]) {
           aliasMap[theme.name] = {};
@@ -2325,7 +2325,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var resolved = aliasMap[theme.name][id];
 
         if (!resolved) {
-          resolved = aliasMap[theme.name][id] = this.__resolveId__P_81_3(id, theme, defaultId);
+          resolved = aliasMap[theme.name][id] = this.__resolveId__P_82_3(id, theme, defaultId);
         } // Query theme for ID
 
 
@@ -2377,7 +2377,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // Using cache if available
 
 
-        var cache = this.__styleCache__P_81_0;
+        var cache = this.__styleCache__P_82_0;
 
         if (cache[theme.name] && cache[theme.name][unique] !== undefined) {
           return cache[theme.name][unique];
@@ -2385,7 +2385,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
         if (!states) {
-          states = this.__defaultStates__P_81_2;
+          states = this.__defaultStates__P_82_2;
         } // Compile the appearance
 
 
@@ -3042,7 +3042,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
       var self = this;
 
-      this.__oninterval__P_46_0 = function () {
+      this.__oninterval__P_40_0 = function () {
         self._oninterval.call(self);
       };
     },
@@ -3084,12 +3084,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var timer = new qx.event.Timer(timeout); // Bug #3481: append original function to timer instance so it can be
         // read by a debugger
 
-        timer.__onceFunc__P_46_1 = func; // Add event listener to interval
+        timer.__onceFunc__P_40_1 = func; // Add event listener to interval
 
         timer.addListener("interval", function (e) {
           timer.stop();
           func.call(obj, e);
-          delete timer.__onceFunc__P_46_1;
+          delete timer.__onceFunc__P_40_1;
           timer.dispose();
           obj = null;
         }, obj); // Directly start timer
@@ -3134,8 +3134,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __intervalHandler__P_46_2: null,
-      __oninterval__P_46_0: null,
+      __intervalHandler__P_40_2: null,
+      __oninterval__P_40_0: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -3163,10 +3163,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       _applyEnabled: function _applyEnabled(value, old) {
         if (old) {
-          window.clearInterval(this.__intervalHandler__P_46_2);
-          this.__intervalHandler__P_46_2 = null;
+          window.clearInterval(this.__intervalHandler__P_40_2);
+          this.__intervalHandler__P_40_2 = null;
         } else if (value) {
-          this.__intervalHandler__P_46_2 = window.setInterval(this.__oninterval__P_46_0, this.getInterval());
+          this.__intervalHandler__P_40_2 = window.setInterval(this.__oninterval__P_40_0, this.getInterval());
         }
       },
 
@@ -3250,11 +3250,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     destruct: function destruct() {
-      if (this.__intervalHandler__P_46_2) {
-        window.clearInterval(this.__intervalHandler__P_46_2);
+      if (this.__intervalHandler__P_40_2) {
+        window.clearInterval(this.__intervalHandler__P_40_2);
       }
 
-      this.__intervalHandler__P_46_2 = this.__oninterval__P_46_0 = null;
+      this.__intervalHandler__P_40_2 = this.__oninterval__P_40_0 = null;
     }
   });
   qx.event.Timer.$$dbClassInfo = $$dbClassInfo;
@@ -3301,8 +3301,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    */
   qx.Mixin.define("qx.ui.core.MPlacement", {
     statics: {
-      __visible__P_123_0: null,
-      __direction__P_123_1: "left",
+      __visible__P_124_0: null,
+      __direction__P_124_1: "left",
 
       /**
        * Set the always visible element. If an element is set, the
@@ -3312,7 +3312,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param elem {qx.ui.core.Widget} The widget which should always be visible.
        */
       setVisibleElement: function setVisibleElement(elem) {
-        this.__visible__P_123_0 = elem;
+        this.__visible__P_124_0 = elem;
       },
 
       /**
@@ -3322,7 +3322,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.ui.core.Widget|null} The given widget.
        */
       getVisibleElement: function getVisibleElement() {
-        return this.__visible__P_123_0;
+        return this.__visible__P_124_0;
       },
 
       /**
@@ -3333,7 +3333,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       setMoveDirection: function setMoveDirection(direction) {
         if (direction === "top" || direction === "left") {
-          this.__direction__P_123_1 = direction;
+          this.__direction__P_124_1 = direction;
         } else {
           throw new Error("Invalid value for the parameter 'direction' [qx.ui.core.MPlacement.setMoveDirection()], the value was '" + direction + "' " + "but 'top' or 'left' are allowed.");
         }
@@ -3346,7 +3346,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} The move direction.
        */
       getMoveDirection: function getMoveDirection() {
-        return this.__direction__P_123_1;
+        return this.__direction__P_124_1;
       }
     },
     properties: {
@@ -3455,9 +3455,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       }
     },
     members: {
-      __ptwLiveUpdater__P_123_2: null,
-      __ptwLiveDisappearListener__P_123_3: null,
-      __ptwLiveUpdateDisappearListener__P_123_4: null,
+      __ptwLiveUpdater__P_124_2: null,
+      __ptwLiveDisappearListener__P_124_3: null,
+      __ptwLiveUpdateDisappearListener__P_124_4: null,
 
       /**
        * Returns the location data like {qx.bom.element.Location#get} does,
@@ -3594,17 +3594,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         // Use the idle event to make sure that the widget's position gets
         // updated automatically (e.g. the widget gets scrolled).
         if (liveupdate) {
-          this.__cleanupFromLastPlaceToWidgetLiveUpdate__P_123_5(); // Bind target and livupdate to placeToWidget
+          this.__cleanupFromLastPlaceToWidgetLiveUpdate__P_124_5(); // Bind target and livupdate to placeToWidget
 
 
-          this.__ptwLiveUpdater__P_123_2 = qx.lang.Function.bind(this.placeToWidget, this, target, false);
-          qx.event.Idle.getInstance().addListener("interval", this.__ptwLiveUpdater__P_123_2); // Remove the listener when the element disappears.
+          this.__ptwLiveUpdater__P_124_2 = qx.lang.Function.bind(this.placeToWidget, this, target, false);
+          qx.event.Idle.getInstance().addListener("interval", this.__ptwLiveUpdater__P_124_2); // Remove the listener when the element disappears.
 
-          this.__ptwLiveUpdateDisappearListener__P_123_4 = function () {
-            this.__cleanupFromLastPlaceToWidgetLiveUpdate__P_123_5();
+          this.__ptwLiveUpdateDisappearListener__P_124_4 = function () {
+            this.__cleanupFromLastPlaceToWidgetLiveUpdate__P_124_5();
           };
 
-          this.addListener("disappear", this.__ptwLiveUpdateDisappearListener__P_123_4, this);
+          this.addListener("disappear", this.__ptwLiveUpdateDisappearListener__P_124_4, this);
         }
 
         var coords = target.getContentLocation() || this.getLayoutLocation(target);
@@ -3621,15 +3621,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * Removes all resources allocated by the last run of placeToWidget with liveupdate=true
        */
-      __cleanupFromLastPlaceToWidgetLiveUpdate__P_123_5: function __cleanupFromLastPlaceToWidgetLiveUpdate__P_123_5() {
-        if (this.__ptwLiveUpdater__P_123_2) {
-          qx.event.Idle.getInstance().removeListener("interval", this.__ptwLiveUpdater__P_123_2);
-          this.__ptwLiveUpdater__P_123_2 = null;
+      __cleanupFromLastPlaceToWidgetLiveUpdate__P_124_5: function __cleanupFromLastPlaceToWidgetLiveUpdate__P_124_5() {
+        if (this.__ptwLiveUpdater__P_124_2) {
+          qx.event.Idle.getInstance().removeListener("interval", this.__ptwLiveUpdater__P_124_2);
+          this.__ptwLiveUpdater__P_124_2 = null;
         }
 
-        if (this.__ptwLiveUpdateDisappearListener__P_123_4) {
-          this.removeListener("disappear", this.__ptwLiveUpdateDisappearListener__P_123_4, this);
-          this.__ptwLiveUpdateDisappearListener__P_123_4 = null;
+        if (this.__ptwLiveUpdateDisappearListener__P_124_4) {
+          this.removeListener("disappear", this.__ptwLiveUpdateDisappearListener__P_124_4, this);
+          this.__ptwLiveUpdateDisappearListener__P_124_4 = null;
         }
       },
 
@@ -3670,13 +3670,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         if (liveupdate) {
           // Bind target and livupdate to placeToWidget
-          this.__ptwLiveUpdater__P_123_2 = qx.lang.Function.bind(this.placeToElement, this, elem, false);
-          qx.event.Idle.getInstance().addListener("interval", this.__ptwLiveUpdater__P_123_2); // Remove the listener when the element disappears.
+          this.__ptwLiveUpdater__P_124_2 = qx.lang.Function.bind(this.placeToElement, this, elem, false);
+          qx.event.Idle.getInstance().addListener("interval", this.__ptwLiveUpdater__P_124_2); // Remove the listener when the element disappears.
 
           this.addListener("disappear", function () {
-            if (this.__ptwLiveUpdater__P_123_2) {
-              qx.event.Idle.getInstance().removeListener("interval", this.__ptwLiveUpdater__P_123_2);
-              this.__ptwLiveUpdater__P_123_2 = null;
+            if (this.__ptwLiveUpdater__P_124_2) {
+              qx.event.Idle.getInstance().removeListener("interval", this.__ptwLiveUpdater__P_124_2);
+              this.__ptwLiveUpdater__P_124_2 = null;
             }
           }, this);
         }
@@ -3726,7 +3726,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *  @param callback {Function} This function will be called with the size as
        *    first argument
        */
-      __getPlacementSize__P_123_6: function __getPlacementSize__P_123_6(callback) {
+      __getPlacementSize__P_124_6: function __getPlacementSize__P_124_6(callback) {
         var size = null;
 
         if (this._computePlacementSize) {
@@ -3737,7 +3737,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         if (size == null) {
           this.addListenerOnce("appear", function () {
-            this.__getPlacementSize__P_123_6(callback);
+            this.__getPlacementSize__P_124_6(callback);
           }, this);
         } else {
           callback.call(this, size);
@@ -3753,7 +3753,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   and <code>bottom</code>.
        */
       _place: function _place(coords) {
-        this.__getPlacementSize__P_123_6(function (size) {
+        this.__getPlacementSize__P_124_6(function (size) {
           var result = qx.util.placement.Placement.compute(size, this.getLayoutParent().getBounds(), coords, this._getPlacementOffsets(), this.getPosition(), this.getPlacementModeX(), this.getPlacementModeY()); // state handling for tooltips e.g.
 
           this.removeState("placementLeft");
@@ -3764,7 +3764,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       }
     },
     destruct: function destruct() {
-      this.__cleanupFromLastPlaceToWidgetLiveUpdate__P_123_5();
+      this.__cleanupFromLastPlaceToWidgetLiveUpdate__P_124_5();
     }
   });
   qx.ui.core.MPlacement.$$dbClassInfo = $$dbClassInfo;
@@ -4187,12 +4187,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {StyleSheet} Stylesheet element
        */
-      __getStylesheet__P_68_0: function __getStylesheet__P_68_0() {
-        if (!qx.bom.client.Stylesheet.__stylesheet__P_68_1) {
-          qx.bom.client.Stylesheet.__stylesheet__P_68_1 = qx.bom.Stylesheet.createElement();
+      __getStylesheet__P_69_0: function __getStylesheet__P_69_0() {
+        if (!qx.bom.client.Stylesheet.__stylesheet__P_69_1) {
+          qx.bom.client.Stylesheet.__stylesheet__P_69_1 = qx.bom.Stylesheet.createElement();
         }
 
-        return qx.bom.client.Stylesheet.__stylesheet__P_68_1;
+        return qx.bom.client.Stylesheet.__stylesheet__P_69_1;
       },
 
       /**
@@ -4216,7 +4216,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code> if insertRule is supported
        */
       getInsertRule: function getInsertRule() {
-        return typeof qx.bom.client.Stylesheet.__getStylesheet__P_68_0().insertRule === "function";
+        return typeof qx.bom.client.Stylesheet.__getStylesheet__P_69_0().insertRule === "function";
       },
 
       /**
@@ -4226,7 +4226,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code> if deleteRule is supported
        */
       getDeleteRule: function getDeleteRule() {
-        return typeof qx.bom.client.Stylesheet.__getStylesheet__P_68_0().deleteRule === "function";
+        return typeof qx.bom.client.Stylesheet.__getStylesheet__P_69_0().deleteRule === "function";
       },
 
       /**
@@ -4237,7 +4237,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code> if stylesheet.addImport is supported
        */
       getAddImport: function getAddImport() {
-        return _typeof(qx.bom.client.Stylesheet.__getStylesheet__P_68_0().addImport) === "object";
+        return _typeof(qx.bom.client.Stylesheet.__getStylesheet__P_69_0().addImport) === "object";
       },
 
       /**
@@ -4248,7 +4248,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code> if stylesheet.removeImport is supported
        */
       getRemoveImport: function getRemoveImport() {
-        return _typeof(qx.bom.client.Stylesheet.__getStylesheet__P_68_0().removeImport) === "object";
+        return _typeof(qx.bom.client.Stylesheet.__getStylesheet__P_69_0().removeImport) === "object";
       }
     },
     defer: function defer(statics) {
@@ -4575,11 +4575,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     extend: Object,
     statics: {
       /** Static storage for all event listener */
-      __storage__P_137_0: []
+      __storage__P_139_0: []
     },
     members: {
-      __listener__P_137_1: null,
-      __any__P_137_2: null,
+      __listener__P_139_1: null,
+      __any__P_139_2: null,
 
       /**
        * Attach a listener to the event emitter. The given <code>name</code>
@@ -4592,16 +4592,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Integer} An unique <code>id</code> for the attached listener.
        */
       on: function on(name, listener, ctx) {
-        var id = qx.event.Emitter.__storage__P_137_0.length;
+        var id = qx.event.Emitter.__storage__P_139_0.length;
 
-        this.__getStorage__P_137_3(name).push({
+        this.__getStorage__P_139_3(name).push({
           listener: listener,
           ctx: ctx,
           id: id,
           name: name
         });
 
-        qx.event.Emitter.__storage__P_137_0.push({
+        qx.event.Emitter.__storage__P_139_0.push({
           name: name,
           listener: listener,
           ctx: ctx
@@ -4621,16 +4621,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Integer} An unique <code>id</code> for the attached listener.
        */
       once: function once(name, listener, ctx) {
-        var id = qx.event.Emitter.__storage__P_137_0.length;
+        var id = qx.event.Emitter.__storage__P_139_0.length;
 
-        this.__getStorage__P_137_3(name).push({
+        this.__getStorage__P_139_3(name).push({
           listener: listener,
           ctx: ctx,
           once: true,
           id: id
         });
 
-        qx.event.Emitter.__storage__P_137_0.push({
+        qx.event.Emitter.__storage__P_139_0.push({
           name: name,
           listener: listener,
           ctx: ctx
@@ -4650,14 +4650,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * <code>null</code> if it wasn't found
        */
       off: function off(name, listener, ctx) {
-        var storage = this.__getStorage__P_137_3(name);
+        var storage = this.__getStorage__P_139_3(name);
 
         for (var i = storage.length - 1; i >= 0; i--) {
           var entry = storage[i];
 
           if (entry.listener == listener && entry.ctx == ctx) {
             storage.splice(i, 1);
-            qx.event.Emitter.__storage__P_137_0[entry.id] = null;
+            qx.event.Emitter.__storage__P_139_0[entry.id] = null;
             return entry.id;
           }
         }
@@ -4674,7 +4674,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * <code>null</code> if it wasn't found
        */
       offById: function offById(id) {
-        var entry = qx.event.Emitter.__storage__P_137_0[id];
+        var entry = qx.event.Emitter.__storage__P_139_0[id];
 
         if (entry) {
           this.off(entry.name, entry.listener, entry.ctx);
@@ -4730,7 +4730,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param data {var?undefined} The data which should be passed to the listener.
        */
       emit: function emit(name, data) {
-        var storage = this.__getStorage__P_137_3(name).concat();
+        var storage = this.__getStorage__P_139_3(name).concat();
 
         var toDelete = [];
 
@@ -4746,13 +4746,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
         toDelete.forEach(function (entry) {
-          var origStorage = this.__getStorage__P_137_3(name);
+          var origStorage = this.__getStorage__P_139_3(name);
 
           var idx = origStorage.indexOf(entry);
           origStorage.splice(idx, 1);
         }.bind(this)); // call on any
 
-        storage = this.__getStorage__P_137_3("*");
+        storage = this.__getStorage__P_139_3("*");
 
         for (var i = storage.length - 1; i >= 0; i--) {
           var entry = storage[i];
@@ -4767,7 +4767,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   arrays containing a map with 'listener' and 'ctx'.
        */
       getListeners: function getListeners() {
-        return this.__listener__P_137_1;
+        return this.__listener__P_139_1;
       },
 
       /**
@@ -4778,8 +4778,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Map|undefined} The data entry if found
        */
       getEntryById: function getEntryById(id) {
-        for (var name in this.__listener__P_137_1) {
-          var store = this.__listener__P_137_1[name];
+        for (var name in this.__listener__P_139_1) {
+          var store = this.__listener__P_139_1[name];
 
           for (var i = 0, j = store.length; i < j; i++) {
             if (store[i].id === id) {
@@ -4795,16 +4795,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Array} An array which is the storage for the listener and
        *   the given event name.
        */
-      __getStorage__P_137_3: function __getStorage__P_137_3(name) {
-        if (this.__listener__P_137_1 == null) {
-          this.__listener__P_137_1 = {};
+      __getStorage__P_139_3: function __getStorage__P_139_3(name) {
+        if (this.__listener__P_139_1 == null) {
+          this.__listener__P_139_1 = {};
         }
 
-        if (this.__listener__P_137_1[name] == null) {
-          this.__listener__P_137_1[name] = [];
+        if (this.__listener__P_139_1[name] == null) {
+          this.__listener__P_139_1[name] = [];
         }
 
-        return this.__listener__P_137_1[name];
+        return this.__listener__P_139_1[name];
       }
     }
   });
@@ -5148,7 +5148,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       "frame": "Number"
     },
     members: {
-      __canceled__P_105_0: false,
+      __canceled__P_106_0: false,
 
       /**
        * Method used to start a series of animation frames. The series will end as
@@ -5159,11 +5159,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @ignore(performance.*)
        */
       startSequence: function startSequence(duration) {
-        this.__canceled__P_105_0 = false;
-        var start = window.performance && performance.now ? performance.now() + qx.bom.AnimationFrame.__start__P_105_1 : Date.now();
+        this.__canceled__P_106_0 = false;
+        var start = window.performance && performance.now ? performance.now() + qx.bom.AnimationFrame.__start__P_106_1 : Date.now();
 
         var cb = function cb(time) {
-          if (this.__canceled__P_105_0) {
+          if (this.__canceled__P_106_0) {
             this.id = null;
             return;
           } // final call
@@ -5187,7 +5187,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * sequence is running.
        */
       cancelSequence: function cancelSequence() {
-        this.__canceled__P_105_0 = true;
+        this.__canceled__P_106_0 = true;
       }
     },
     statics: {
@@ -5252,7 +5252,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var cb = function cb(time) {
           // check for high resolution time
           if (time < 1e10) {
-            time = qx.bom.AnimationFrame.__start__P_105_1 + time;
+            time = qx.bom.AnimationFrame.__start__P_106_1 + time;
           }
 
           time = time || Date.now();
@@ -5276,10 +5276,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      */
     defer: function defer(statics) {
       // check and use the high resolution start time if available
-      statics.__start__P_105_1 = window.performance && performance.timing && performance.timing.navigationStart; // if not, simply use the current time
+      statics.__start__P_106_1 = window.performance && performance.timing && performance.timing.navigationStart; // if not, simply use the current time
 
-      if (!statics.__start__P_105_1) {
-        statics.__start__P_105_1 = Date.now();
+      if (!statics.__start__P_106_1) {
+        statics.__start__P_106_1 = Date.now();
       }
     }
   });
@@ -5330,13 +5330,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.Class.define("qx.ui.core.queue.Widget", {
     statics: {
       /** @type {Array} This contains all the queued widgets for the next flush. */
-      __queue__P_84_0: [],
+      __queue__P_85_0: [],
 
       /**
        * @type {Object} This contains a map of widgets hash ($$hash) and their
        * corresponding map of jobs.
        */
-      __jobs__P_84_1: {},
+      __jobs__P_85_1: {},
 
       /**
        * Clears given job of a widget from the internal queue. If no jobs left, the
@@ -5349,7 +5349,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * "$$default".
        */
       remove: function remove(widget, job) {
-        var queue = this.__queue__P_84_0;
+        var queue = this.__queue__P_85_0;
 
         if (!queue.includes(widget)) {
           return;
@@ -5359,14 +5359,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         if (job == null) {
           qx.lang.Array.remove(queue, widget);
-          delete this.__jobs__P_84_1[hash];
+          delete this.__jobs__P_85_1[hash];
           return;
         }
 
-        if (this.__jobs__P_84_1[hash]) {
-          delete this.__jobs__P_84_1[hash][job];
+        if (this.__jobs__P_85_1[hash]) {
+          delete this.__jobs__P_85_1[hash][job];
 
-          if (qx.lang.Object.getLength(this.__jobs__P_84_1[hash]) == 0) {
+          if (qx.lang.Object.getLength(this.__jobs__P_85_1[hash]) == 0) {
             qx.lang.Array.remove(queue, widget);
           }
         }
@@ -5382,7 +5382,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * "$$default".
        */
       add: function add(widget, job) {
-        var queue = this.__queue__P_84_0; //add widget if not containing
+        var queue = this.__queue__P_85_0; //add widget if not containing
 
         if (!queue.includes(widget)) {
           queue.unshift(widget);
@@ -5395,11 +5395,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         var hash = widget.toHashCode();
 
-        if (!this.__jobs__P_84_1[hash]) {
-          this.__jobs__P_84_1[hash] = {};
+        if (!this.__jobs__P_85_1[hash]) {
+          this.__jobs__P_85_1[hash] = {};
         }
 
-        this.__jobs__P_84_1[hash][job] = true;
+        this.__jobs__P_85_1[hash][job] = true;
         qx.ui.core.queue.Manager.scheduleFlush("widget");
       },
 
@@ -5410,13 +5410,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       flush: function flush() {
         // Process all registered widgets
-        var queue = this.__queue__P_84_0;
+        var queue = this.__queue__P_85_0;
         var obj, jobs;
 
         for (var i = queue.length - 1; i >= 0; i--) {
           // Order is important to allow the same widget to be requeued directly
           obj = queue[i];
-          jobs = this.__jobs__P_84_1[obj.toHashCode()];
+          jobs = this.__jobs__P_85_1[obj.toHashCode()];
           queue.splice(i, 1);
           obj.syncWidget(jobs);
         } // Empty check
@@ -5427,8 +5427,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // Recreate the array is cheaper compared to keep a sparse array over time
 
 
-        this.__queue__P_84_0 = [];
-        this.__jobs__P_84_1 = {};
+        this.__queue__P_85_0 = [];
+        this.__jobs__P_85_1 = {};
       }
     }
   });
@@ -5475,10 +5475,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.Class.define("qx.ui.core.queue.Appearance", {
     statics: {
       /** @type {Array} This contains all the queued widgets for the next flush. */
-      __queue__P_80_0: [],
+      __queue__P_81_0: [],
 
       /** @type {Map} map of widgets by hash code which are in the queue */
-      __lookup__P_80_1: {},
+      __lookup__P_81_1: {},
 
       /**
        * Clears the widget from the internal queue. Normally only used
@@ -5487,9 +5487,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param widget {qx.ui.core.Widget} The widget to clear
        */
       remove: function remove(widget) {
-        if (this.__lookup__P_80_1[widget.toHashCode()]) {
-          qx.lang.Array.remove(this.__queue__P_80_0, widget);
-          delete this.__lookup__P_80_1[widget.toHashCode()];
+        if (this.__lookup__P_81_1[widget.toHashCode()]) {
+          qx.lang.Array.remove(this.__queue__P_81_0, widget);
+          delete this.__lookup__P_81_1[widget.toHashCode()];
         }
       },
 
@@ -5501,13 +5501,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param widget {qx.ui.core.Widget} The widget to add.
        */
       add: function add(widget) {
-        if (this.__lookup__P_80_1[widget.toHashCode()]) {
+        if (this.__lookup__P_81_1[widget.toHashCode()]) {
           return;
         }
 
-        this.__queue__P_80_0.unshift(widget);
+        this.__queue__P_81_0.unshift(widget);
 
-        this.__lookup__P_80_1[widget.toHashCode()] = widget;
+        this.__lookup__P_81_1[widget.toHashCode()] = widget;
         qx.ui.core.queue.Manager.scheduleFlush("appearance");
       },
 
@@ -5518,7 +5518,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code> if the widget is queued
        */
       has: function has(widget) {
-        return !!this.__lookup__P_80_1[widget.toHashCode()];
+        return !!this.__lookup__P_81_1[widget.toHashCode()];
       },
 
       /**
@@ -5528,14 +5528,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       flush: function flush() {
         var Visibility = qx.ui.core.queue.Visibility;
-        var queue = this.__queue__P_80_0;
+        var queue = this.__queue__P_81_0;
         var obj;
 
         for (var i = queue.length - 1; i >= 0; i--) {
           // Order is important to allow the same widget to be re-queued directly
           obj = queue[i];
           queue.splice(i, 1);
-          delete this.__lookup__P_80_1[obj.toHashCode()]; // Only apply to currently visible widgets
+          delete this.__lookup__P_81_1[obj.toHashCode()]; // Only apply to currently visible widgets
 
           if (Visibility.isVisible(obj)) {
             obj.syncAppearance();
@@ -5843,7 +5843,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.Class.define("qx.ui.core.queue.Dispose", {
     statics: {
       /** @type {Array} This contains all the queued widgets for the next flush. */
-      __queue__P_83_0: [],
+      __queue__P_84_0: [],
 
       /**
        * Adds a widget to the queue.
@@ -5853,7 +5853,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param widget {qx.ui.core.Widget} The widget to add.
        */
       add: function add(widget) {
-        var queue = this.__queue__P_83_0;
+        var queue = this.__queue__P_84_0;
 
         if (queue.includes(widget)) {
           return;
@@ -5869,7 +5869,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @internal
        */
       isEmpty: function isEmpty() {
-        return this.__queue__P_83_0.length == 0;
+        return this.__queue__P_84_0.length == 0;
       },
 
       /**
@@ -5879,7 +5879,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       flush: function flush() {
         // Dispose all registered objects
-        var queue = this.__queue__P_83_0;
+        var queue = this.__queue__P_84_0;
 
         for (var i = queue.length - 1; i >= 0; i--) {
           var widget = queue[i];
@@ -5893,7 +5893,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // Recreate the array is cheaper compared to keep a sparse array over time
 
 
-        this.__queue__P_83_0 = [];
+        this.__queue__P_84_0 = [];
       }
     }
   });
@@ -6056,7 +6056,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       },
 
       /** @type {Map} Contains all overflow values where scrollbars are invisible */
-      __hiddenScrollbars__P_91_0: {
+      __hiddenScrollbars__P_92_0: {
         visible: true,
         hidden: true
       },
@@ -6081,7 +6081,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var paddingLeft = parseInt(Style.get(element, "paddingLeft") || "0px", 10);
         var paddingRight = parseInt(Style.get(element, "paddingRight") || "0px", 10);
 
-        if (this.__hiddenScrollbars__P_91_0[overflowX]) {
+        if (this.__hiddenScrollbars__P_92_0[overflowX]) {
           var contentWidth = element.clientWidth;
 
           if (qx.core.Environment.get("engine.name") == "opera" || qx.dom.Node.isBlockNode(element)) {
@@ -6135,7 +6135,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var paddingTop = parseInt(Style.get(element, "paddingTop") || "0px", 10);
         var paddingBottom = parseInt(Style.get(element, "paddingBottom") || "0px", 10);
 
-        if (this.__hiddenScrollbars__P_91_0[overflowY]) {
+        if (this.__hiddenScrollbars__P_92_0[overflowY]) {
           return element.clientHeight - paddingTop - paddingBottom;
         } else {
           if (element.clientHeight >= element.scrollHeight) {
@@ -6580,7 +6580,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param win {Window} The window to query
        * @return {Map} Orientation normalizing value
        */
-      __getOrientationNormalizer__P_59_0: function __getOrientationNormalizer__P_59_0(win) {
+      __getOrientationNormalizer__P_60_0: function __getOrientationNormalizer__P_60_0(win) {
         // Calculate own understanding of orientation (0 = portrait, 90 = landscape)
         var currentOrientation = this.getWidth(win) > this.getHeight(win) ? 90 : 0;
         var deviceOrientation = win.orientation;
@@ -6610,7 +6610,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
       },
       // Cache orientation normalizer map on start
-      __orientationNormalizer__P_59_1: null,
+      __orientationNormalizer__P_60_1: null,
 
       /**
        * Returns the current orientation of the viewport in degree.
@@ -6641,12 +6641,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           // Calculate orientation from window width and window height
           orientation = this.getWidth(win) > this.getHeight(win) ? 90 : 0;
         } else {
-          if (this.__orientationNormalizer__P_59_1 == null) {
-            this.__orientationNormalizer__P_59_1 = this.__getOrientationNormalizer__P_59_0(win);
+          if (this.__orientationNormalizer__P_60_1 == null) {
+            this.__orientationNormalizer__P_60_1 = this.__getOrientationNormalizer__P_60_0(win);
           } // Normalize orientation value
 
 
-          orientation = this.__orientationNormalizer__P_59_1[orientation];
+          orientation = this.__orientationNormalizer__P_60_1[orientation];
         }
 
         return orientation;
@@ -6774,7 +6774,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param style {String} Style property
        * @return {String} Value of given style property
        */
-      __style__P_82_0: function __style__P_82_0(elem, style) {
+      __style__P_83_0: function __style__P_83_0(elem, style) {
         return qx.bom.element.Style.get(elem, style, qx.bom.element.Style.COMPUTED_MODE, false);
       },
 
@@ -6785,7 +6785,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param style {String} Style property
        * @return {Integer} Value of given style property
        */
-      __num__P_82_1: function __num__P_82_1(elem, style) {
+      __num__P_83_1: function __num__P_83_1(elem, style) {
         return parseInt(qx.bom.element.Style.get(elem, style, qx.bom.element.Style.COMPUTED_MODE, false), 10) || 0;
       },
 
@@ -6796,7 +6796,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param elem {Element} DOM element to query
        * @return {Map} Map which contains the <code>left</code> and <code>top</code> scroll offsets
        */
-      __computeScroll__P_82_2: function __computeScroll__P_82_2(elem) {
+      __computeScroll__P_83_2: function __computeScroll__P_83_2(elem) {
         var left = 0,
             top = 0; // Find window
 
@@ -6816,7 +6816,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param elem {Element} DOM element to query
        * @return {Map} Map which contains the <code>left</code> and <code>top</code> offsets
        */
-      __computeBody__P_82_3: qx.core.Environment.select("engine.name", {
+      __computeBody__P_83_3: qx.core.Environment.select("engine.name", {
         "mshtml": function mshtml(elem) {
           // Find body element
           var doc = qx.dom.Node.getDocument(elem);
@@ -6827,8 +6827,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           top -= body.clientTop + doc.documentElement.clientTop;
 
           if (!qx.core.Environment.get("browser.quirksmode")) {
-            left += this.__num__P_82_1(body, "borderLeftWidth");
-            top += this.__num__P_82_1(body, "borderTopWidth");
+            left += this.__num__P_83_1(body, "borderLeftWidth");
+            top += this.__num__P_83_1(body, "borderTopWidth");
           }
 
           return {
@@ -6856,8 +6856,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           var top = body.offsetTop; // Correct substracted border (only in content-box mode)
 
           if (qx.bom.element.BoxSizing.get(body) !== "border-box") {
-            left += this.__num__P_82_1(body, "borderLeftWidth");
-            top += this.__num__P_82_1(body, "borderTopWidth");
+            left += this.__num__P_83_1(body, "borderLeftWidth");
+            top += this.__num__P_83_1(body, "borderTopWidth");
           }
 
           return {
@@ -6886,7 +6886,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param elem {Element} DOM element to query
        * @return {Map} Map which contains the <code>left</code> and <code>top</code> offsets
        */
-      __computeOffset__P_82_4: function __computeOffset__P_82_4(elem) {
+      __computeOffset__P_83_4: function __computeOffset__P_83_4(elem) {
         var rect = elem.getBoundingClientRect(); // Firefox 3.0 alpha 6 (gecko 1.9) returns floating point numbers
         // use Math.round() to round them to style compatible numbers
         // MSHTML returns integer numbers
@@ -6917,20 +6917,20 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       get: function get(elem, mode) {
         if (elem.tagName == "BODY") {
-          var location = this.__getBodyLocation__P_82_5(elem);
+          var location = this.__getBodyLocation__P_83_5(elem);
 
           var left = location.left;
           var top = location.top;
         } else {
-          var body = this.__computeBody__P_82_3(elem);
+          var body = this.__computeBody__P_83_3(elem);
 
-          var offset = this.__computeOffset__P_82_4(elem); // Reduce by viewport scrolling.
+          var offset = this.__computeOffset__P_83_4(elem); // Reduce by viewport scrolling.
           // Hint: getBoundingClientRect returns the location of the
           // element in relation to the viewport which includes
           // the scrolling
 
 
-          var scroll = this.__computeScroll__P_82_2(elem);
+          var scroll = this.__computeScroll__P_83_2(elem);
 
           var left = offset.left + body.left - scroll.left;
           var top = offset.top + body.top - scroll.top;
@@ -6958,22 +6958,22 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             var overX = qx.bom.element.Style.get(elem, "overflowX");
 
             if (overX == "scroll" || overX == "auto") {
-              right += elem.scrollWidth - elementWidth + this.__num__P_82_1(elem, "borderLeftWidth") + this.__num__P_82_1(elem, "borderRightWidth");
+              right += elem.scrollWidth - elementWidth + this.__num__P_83_1(elem, "borderLeftWidth") + this.__num__P_83_1(elem, "borderRightWidth");
             }
 
             var overY = qx.bom.element.Style.get(elem, "overflowY");
 
             if (overY == "scroll" || overY == "auto") {
-              bottom += elem.scrollHeight - elementHeight + this.__num__P_82_1(elem, "borderTopWidth") + this.__num__P_82_1(elem, "borderBottomWidth");
+              bottom += elem.scrollHeight - elementHeight + this.__num__P_83_1(elem, "borderTopWidth") + this.__num__P_83_1(elem, "borderBottomWidth");
             }
           }
 
           switch (mode) {
             case "padding":
-              left += this.__num__P_82_1(elem, "paddingLeft");
-              top += this.__num__P_82_1(elem, "paddingTop");
-              right -= this.__num__P_82_1(elem, "paddingRight");
-              bottom -= this.__num__P_82_1(elem, "paddingBottom");
+              left += this.__num__P_83_1(elem, "paddingLeft");
+              top += this.__num__P_83_1(elem, "paddingTop");
+              right -= this.__num__P_83_1(elem, "paddingRight");
+              bottom -= this.__num__P_83_1(elem, "paddingBottom");
             // no break here
 
             case "scroll":
@@ -6984,17 +6984,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             // no break here
 
             case "border":
-              left += this.__num__P_82_1(elem, "borderLeftWidth");
-              top += this.__num__P_82_1(elem, "borderTopWidth");
-              right -= this.__num__P_82_1(elem, "borderRightWidth");
-              bottom -= this.__num__P_82_1(elem, "borderBottomWidth");
+              left += this.__num__P_83_1(elem, "borderLeftWidth");
+              top += this.__num__P_83_1(elem, "borderTopWidth");
+              right -= this.__num__P_83_1(elem, "borderRightWidth");
+              bottom -= this.__num__P_83_1(elem, "borderBottomWidth");
               break;
 
             case "margin":
-              left -= this.__num__P_82_1(elem, "marginLeft");
-              top -= this.__num__P_82_1(elem, "marginTop");
-              right += this.__num__P_82_1(elem, "marginRight");
-              bottom += this.__num__P_82_1(elem, "marginBottom");
+              left -= this.__num__P_83_1(elem, "marginLeft");
+              top -= this.__num__P_83_1(elem, "marginTop");
+              right += this.__num__P_83_1(elem, "marginRight");
+              bottom += this.__num__P_83_1(elem, "marginBottom");
               break;
           }
         }
@@ -7012,15 +7012,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param body {Element} The body element.
        * @return {Map} map with the keys <code>left</code> and <code>top</code>
        */
-      __getBodyLocation__P_82_5: function __getBodyLocation__P_82_5(body) {
+      __getBodyLocation__P_83_5: function __getBodyLocation__P_83_5(body) {
         var top = body.offsetTop;
         var left = body.offsetLeft;
-        top += this.__num__P_82_1(body, "marginTop");
-        left += this.__num__P_82_1(body, "marginLeft");
+        top += this.__num__P_83_1(body, "marginTop");
+        left += this.__num__P_83_1(body, "marginLeft");
 
         if (qx.core.Environment.get("engine.name") === "gecko") {
-          top += this.__num__P_82_1(body, "borderLeftWidth");
-          left += this.__num__P_82_1(body, "borderTopWidth");
+          top += this.__num__P_83_1(body, "borderLeftWidth");
+          left += this.__num__P_83_1(body, "borderTopWidth");
         }
 
         return {
@@ -7452,7 +7452,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     */
     statics: {
       /** Internal helper structure to map cursor values to supported ones */
-      __map__P_108_0: {},
+      __map__P_109_0: {},
 
       /**
        * Compiles the given cursor into a CSS compatible string.
@@ -7461,7 +7461,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} CSS string
        */
       compile: function compile(cursor) {
-        return "cursor:" + (this.__map__P_108_0[cursor] || cursor) + ";";
+        return "cursor:" + (this.__map__P_109_0[cursor] || cursor) + ";";
       },
 
       /**
@@ -7484,7 +7484,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param value {String} New cursor value to set
        */
       set: function set(element, value) {
-        element.style.cursor = this.__map__P_108_0[value] || value;
+        element.style.cursor = this.__map__P_109_0[value] || value;
       },
 
       /**
@@ -7499,8 +7499,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     defer: function defer(statics) {
       // < IE 9
       if (qx.core.Environment.get("engine.name") == "mshtml" && (parseFloat(qx.core.Environment.get("engine.version")) < 9 || qx.core.Environment.get("browser.documentmode") < 9) && !qx.core.Environment.get("browser.quirksmode")) {
-        statics.__map__P_108_0["nesw-resize"] = "ne-resize";
-        statics.__map__P_108_0["nwse-resize"] = "nw-resize";
+        statics.__map__P_109_0["nesw-resize"] = "ne-resize";
+        statics.__map__P_109_0["nwse-resize"] = "nw-resize";
       }
     }
   });
@@ -7814,7 +7814,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     */
     statics: {
       /** @type {Map} Internal data structure for __usesNativeBorderBox() */
-      __nativeBorderBox__P_109_0: {
+      __nativeBorderBox__P_110_0: {
         tags: {
           button: true,
           select: true
@@ -7835,8 +7835,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param element {Element} DOM element to query
        * @return {Boolean} true when the element uses "border-box" independently from the doctype
        */
-      __usesNativeBorderBox__P_109_1: function __usesNativeBorderBox__P_109_1(element) {
-        var map = this.__nativeBorderBox__P_109_0;
+      __usesNativeBorderBox__P_110_1: function __usesNativeBorderBox__P_110_1(element) {
+        var map = this.__nativeBorderBox__P_110_0;
         return map.tags[element.tagName.toLowerCase()] || map.types[element.type];
       },
 
@@ -7870,7 +7870,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
 
         if (qx.bom.Document.isStandardMode(qx.dom.Node.getWindow(element))) {
-          if (!this.__usesNativeBorderBox__P_109_1(element)) {
+          if (!this.__usesNativeBorderBox__P_110_1(element)) {
             return "content-box";
           }
         }
@@ -8071,13 +8071,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     statics: {
-      __styleNames__P_60_0: null,
-      __cssNames__P_60_1: null,
+      __styleNames__P_61_0: null,
+      __cssNames__P_61_1: null,
 
       /**
        * Detect vendor specific properties.
        */
-      __detectVendorProperties__P_60_2: function __detectVendorProperties__P_60_2() {
+      __detectVendorProperties__P_61_2: function __detectVendorProperties__P_61_2() {
         var styleNames = {
           "appearance": qx.core.Environment.get("css.appearance"),
           "userSelect": qx.core.Environment.get("css.userselect"),
@@ -8087,21 +8087,21 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           "userModify": qx.core.Environment.get("css.usermodify"),
           "boxSizing": qx.core.Environment.get("css.boxsizing")
         };
-        this.__cssNames__P_60_1 = {};
+        this.__cssNames__P_61_1 = {};
 
         for (var key in qx.lang.Object.clone(styleNames)) {
           if (!styleNames[key]) {
             delete styleNames[key];
           } else {
             if (key === 'float') {
-              this.__cssNames__P_60_1['cssFloat'] = key;
+              this.__cssNames__P_61_1['cssFloat'] = key;
             } else {
-              this.__cssNames__P_60_1[key] = qx.bom.Style.getCssName(styleNames[key]);
+              this.__cssNames__P_61_1[key] = qx.bom.Style.getCssName(styleNames[key]);
             }
           }
         }
 
-        this.__styleNames__P_60_0 = styleNames;
+        this.__styleNames__P_61_0 = styleNames;
       },
 
       /**
@@ -8112,11 +8112,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String|null} The client-specific name of the property, or
        * <code>null</code> if it's not supported.
        */
-      __getStyleName__P_60_3: function __getStyleName__P_60_3(name) {
+      __getStyleName__P_61_3: function __getStyleName__P_61_3(name) {
         var styleName = qx.bom.Style.getPropertyName(name);
 
         if (styleName) {
-          this.__styleNames__P_60_0[name] = styleName;
+          this.__styleNames__P_61_0[name] = styleName;
         }
 
         return styleName;
@@ -8128,7 +8128,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @internal
        */
-      __mshtmlPixel__P_60_4: {
+      __mshtmlPixel__P_61_4: {
         width: "pixelWidth",
         height: "pixelHeight",
         left: "pixelLeft",
@@ -8142,7 +8142,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @internal
        */
-      __special__P_60_5: {
+      __special__P_61_5: {
         clip: qx.bom.element.Clip,
         cursor: qx.bom.element.Cursor,
         opacity: qx.bom.element.Opacity,
@@ -8164,8 +8164,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       compile: function compile(map) {
         var html = [];
-        var special = this.__special__P_60_5;
-        var cssNames = this.__cssNames__P_60_1;
+        var special = this.__special__P_61_5;
+        var cssNames = this.__cssNames__P_61_1;
         var name, value;
 
         for (name in map) {
@@ -8177,7 +8177,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           } // normalize name
 
 
-          name = this.__cssNames__P_60_1[name] || name; // process special properties
+          name = this.__cssNames__P_61_1[name] || name; // process special properties
 
           if (special[name]) {
             html.push(special[name].compile(value));
@@ -8233,7 +8233,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} Whether the property id supported
        */
       isPropertySupported: function isPropertySupported(propertyName) {
-        return this.__special__P_60_5[propertyName] || this.__styleNames__P_60_0[propertyName] || propertyName in document.documentElement.style;
+        return this.__special__P_61_5[propertyName] || this.__styleNames__P_61_0[propertyName] || propertyName in document.documentElement.style;
       },
 
       /** @type {Integer} Computed value of a style property. Compared to the cascaded style,
@@ -8270,12 +8270,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         } // normalize name
 
-        name = this.__styleNames__P_60_0[name] || this.__getStyleName__P_60_3(name) || name; // special handling for specific properties
+        name = this.__styleNames__P_61_0[name] || this.__getStyleName__P_61_3(name) || name; // special handling for specific properties
         // through this good working switch this part costs nothing when
         // processing non-smart properties
 
-        if (smart !== false && this.__special__P_60_5[name]) {
-          this.__special__P_60_5[name].set(element, value);
+        if (smart !== false && this.__special__P_61_5[name]) {
+          this.__special__P_61_5[name].set(element, value);
         } else {
           element.style[name] = value !== null ? value : "";
         }
@@ -8301,13 +8301,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // inline calls to "set" and "reset" because this method is very
         // performance critical!
 
-        var styleNames = this.__styleNames__P_60_0;
-        var special = this.__special__P_60_5;
+        var styleNames = this.__styleNames__P_61_0;
+        var special = this.__special__P_61_5;
         var style = element.style;
 
         for (var key in styles) {
           var value = styles[key];
-          var name = styleNames[key] || this.__getStyleName__P_60_3(key) || key;
+          var name = styleNames[key] || this.__getStyleName__P_61_3(key) || key;
 
           if (value === undefined) {
             if (smart !== false && special[name]) {
@@ -8335,10 +8335,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       reset: function reset(element, name, smart) {
         // normalize name
-        name = this.__styleNames__P_60_0[name] || this.__getStyleName__P_60_3(name) || name; // special handling for specific properties
+        name = this.__styleNames__P_61_0[name] || this.__getStyleName__P_61_3(name) || name; // special handling for specific properties
 
-        if (smart !== false && this.__special__P_60_5[name]) {
-          this.__special__P_60_5[name].reset(element);
+        if (smart !== false && this.__special__P_61_5[name]) {
+          this.__special__P_61_5[name].reset(element);
         } else {
           element.style[name] = "";
         }
@@ -8372,10 +8372,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       get: function get(element, name, mode, smart) {
         // normalize name
-        name = this.__styleNames__P_60_0[name] || this.__getStyleName__P_60_3(name) || name; // special handling
+        name = this.__styleNames__P_61_0[name] || this.__getStyleName__P_61_3(name) || name; // special handling
 
-        if (smart !== false && this.__special__P_60_5[name]) {
-          return this.__special__P_60_5[name].get(element, mode);
+        if (smart !== false && this.__special__P_61_5[name]) {
+          return this.__special__P_61_5[name].get(element, mode);
         } // switch to right mode
 
 
@@ -8432,7 +8432,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               } // Try to convert non-pixel values
 
 
-              var pixel = this.__mshtmlPixel__P_60_4[name];
+              var pixel = this.__mshtmlPixel__P_61_4[name];
 
               if (pixel && pixel in element.style) {
                 // Backup local and runtime style
@@ -8457,7 +8457,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       }
     },
     defer: function defer(statics) {
-      statics.__detectVendorProperties__P_60_2();
+      statics.__detectVendorProperties__P_61_2();
     }
   });
   qx.bom.element.Style.$$dbClassInfo = $$dbClassInfo;
@@ -8541,10 +8541,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     */
     statics: {
       /** @type {RegExp} Regular expressions to split class names */
-      __splitter__P_154_0: /\s+/g,
+      __splitter__P_158_0: /\s+/g,
 
       /** @type {RegExp} String trim regular expression. */
-      __trim__P_154_1: /^\s+|\s+$/g,
+      __trim__P_158_1: /^\s+|\s+$/g,
 
       /**
        * Adds a className to the given element
@@ -8596,7 +8596,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           var old = element.className;
 
           if (old) {
-            result = old.split(this.__splitter__P_154_0);
+            result = old.split(this.__splitter__P_158_0);
 
             for (var i = 0, l = result.length; i < l; i++) {
               keys[result[i]] = true;
@@ -8703,7 +8703,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         },
         "default": function _default(element, classes) {
           var reg = new RegExp("\\b" + classes.join("\\b|\\b") + "\\b", "g");
-          return element.className = element.className.replace(reg, "").replace(this.__trim__P_154_1, "").replace(this.__splitter__P_154_0, " ");
+          return element.className = element.className.replace(reg, "").replace(this.__trim__P_158_1, "").replace(this.__splitter__P_158_0, " ");
         }
       }[qx.core.Environment.get("html.classlist") ? "native" : "default"],
 
@@ -8872,7 +8872,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   the animation.
        */
       animate: function animate(el, desc, duration) {
-        var onlyCssKeys = qx.bom.element.Animation.__hasOnlyCssKeys__P_142_0(el, desc.keyFrames);
+        var onlyCssKeys = qx.bom.element.Animation.__hasOnlyCssKeys__P_144_0(el, desc.keyFrames);
 
         if (qx.core.Environment.get("css.animation") && onlyCssKeys) {
           return qx.bom.element.AnimationCss.animate(el, desc, duration);
@@ -8892,7 +8892,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   the animation.
        */
       animateReverse: function animateReverse(el, desc, duration) {
-        var onlyCssKeys = qx.bom.element.Animation.__hasOnlyCssKeys__P_142_0(el, desc.keyFrames);
+        var onlyCssKeys = qx.bom.element.Animation.__hasOnlyCssKeys__P_144_0(el, desc.keyFrames);
 
         if (qx.core.Environment.get("css.animation") && onlyCssKeys) {
           return qx.bom.element.AnimationCss.animateReverse(el, desc, duration);
@@ -8908,7 +8908,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param keyFrames {Map} The keyFrames of the animation.
        * @return {Boolean} <code>true</code> if only css properties are included.
        */
-      __hasOnlyCssKeys__P_142_0: function __hasOnlyCssKeys__P_142_0(el, keyFrames) {
+      __hasOnlyCssKeys__P_144_0: function __hasOnlyCssKeys__P_144_0(el, keyFrames) {
         var keys = [];
 
         for (var nr in keyFrames) {
@@ -9002,7 +9002,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     type: "singleton",
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__factoriesByTagName__P_144_0 = {};
+      this.__factoriesByTagName__P_146_0 = {};
       this.registerFactory("#text", function (tagName, attributes, styles) {
         return new qx.html.Text("");
       });
@@ -9015,7 +9015,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       });
     },
     members: {
-      __factoriesByTagName__P_144_0: null,
+      __factoriesByTagName__P_146_0: null,
 
       /**
        * Registers a factory; a factory is either a class, or a function which is 
@@ -9028,11 +9028,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       registerFactory: function registerFactory(tagName, factory) {
         tagName = tagName.toLowerCase();
 
-        if (this.__factoriesByTagName__P_144_0[tagName] === undefined) {
-          this.__factoriesByTagName__P_144_0[tagName] = [];
+        if (this.__factoriesByTagName__P_146_0[tagName] === undefined) {
+          this.__factoriesByTagName__P_146_0[tagName] = [];
         }
 
-        this.__factoriesByTagName__P_144_0[tagName].push(factory);
+        this.__factoriesByTagName__P_146_0[tagName].push(factory);
       },
 
       /**
@@ -9082,7 +9082,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         }
 
-        var factories = this.__factoriesByTagName__P_144_0[tagName];
+        var factories = this.__factoriesByTagName__P_146_0[tagName];
 
         if (factories) {
           for (var i = factories.length - 1; i > -1; i--) {
@@ -9150,8 +9150,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     extend: qx.core.Object,
     type: "singleton",
     members: {
-      __registeredObjects__P_120_0: null,
-      __registeredIdHashes__P_120_1: null,
+      __registeredObjects__P_121_0: null,
+      __registeredIdHashes__P_121_1: null,
 
       /*
        * @Override
@@ -9167,8 +9167,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @Override
        */
       _createQxObjectImpl: function _createQxObjectImpl(id) {
-        if (this.__registeredObjects__P_120_0) {
-          var obj = this.__registeredObjects__P_120_0[id];
+        if (this.__registeredObjects__P_121_0) {
+          var obj = this.__registeredObjects__P_121_0[id];
 
           if (obj !== undefined) {
             return obj;
@@ -9200,7 +9200,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} full path to the object
        */
       getAbsoluteIdOf: function getAbsoluteIdOf(obj, suppressWarnings) {
-        if (this.__registeredIdHashes__P_120_1 && this.__registeredIdHashes__P_120_1[obj.toHashCode()]) {
+        if (this.__registeredIdHashes__P_121_1 && this.__registeredIdHashes__P_121_1[obj.toHashCode()]) {
           return obj.getQxObjectId();
         }
 
@@ -9228,7 +9228,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             if (owner === application) {
               ownerId = "application";
             } else {
-              ownerId = this.__registeredIdHashes__P_120_1 && this.__registeredIdHashes__P_120_1[owner.toHashCode()] || null;
+              ownerId = this.__registeredIdHashes__P_121_1 && this.__registeredIdHashes__P_121_1[owner.toHashCode()] || null;
             } // When we have found the ID of a top level object, add it to the path and stop
 
 
@@ -9261,17 +9261,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param id {String?} the ID to register the object under, otherwise the object's own Object Id is used
        */
       register: function register(obj, id) {
-        if (!this.__registeredObjects__P_120_0) {
-          this.__registeredObjects__P_120_0 = {};
-          this.__registeredIdHashes__P_120_1 = {};
+        if (!this.__registeredObjects__P_121_0) {
+          this.__registeredObjects__P_121_0 = {};
+          this.__registeredIdHashes__P_121_1 = {};
         }
 
         if (!id) {
           id = obj.getQxObjectId();
         }
 
-        this.__registeredObjects__P_120_0[id] = obj;
-        this.__registeredIdHashes__P_120_1[obj.toHashCode()] = id;
+        this.__registeredObjects__P_121_0[id] = obj;
+        this.__registeredIdHashes__P_121_1[obj.toHashCode()] = id;
 
         obj._cascadeQxObjectIdChanges();
       },
@@ -9283,7 +9283,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} whether there was an object to unregister
        */
       unregister: function unregister(data) {
-        if (!this.__registeredObjects__P_120_0) {
+        if (!this.__registeredObjects__P_121_0) {
           return false;
         }
 
@@ -9293,18 +9293,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           id = data;
         } else {
           var hash = data.toHashCode();
-          id = this.__registeredIdHashes__P_120_1[hash];
+          id = this.__registeredIdHashes__P_121_1[hash];
 
           if (!id) {
             return false;
           }
         }
 
-        var obj = this.__registeredObjects__P_120_0[id];
+        var obj = this.__registeredObjects__P_121_0[id];
 
         if (obj) {
-          delete this.__registeredObjects__P_120_0[id];
-          delete this.__registeredIdHashes__P_120_1[obj.toHashCode()];
+          delete this.__registeredObjects__P_121_0[id];
+          delete this.__registeredIdHashes__P_121_1[obj.toHashCode()];
 
           obj._cascadeQxObjectIdChanges();
 
@@ -9320,7 +9320,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Object}
        */
       getRegisteredObjects: function getRegisteredObjects() {
-        return this.__registeredObjects__P_120_0;
+        return this.__registeredObjects__P_121_0;
       }
     },
     statics: {
@@ -9463,10 +9463,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     construct: function construct(manager) {
       qx.core.Object.constructor.call(this); // Define shorthands
 
-      this.__manager__P_145_0 = manager;
-      this.__window__P_145_1 = manager.getWindow();
-      this.__root__P_145_2 = this.__window__P_145_1.document;
-      this.__onNativeListener__P_145_3 = qx.lang.Function.listener(this._onNative, this); // Initialize observers
+      this.__manager__P_147_0 = manager;
+      this.__window__P_147_1 = manager.getWindow();
+      this.__root__P_147_2 = this.__window__P_147_1.document;
+      this.__onNativeListener__P_147_3 = qx.lang.Function.listener(this._onNative, this); // Initialize observers
 
       this._initButtonObserver();
 
@@ -9519,18 +9519,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __onButtonEventWrapper__P_145_4: null,
-      __onMoveEventWrapper__P_145_5: null,
-      __onWheelEventWrapper__P_145_6: null,
-      __lastEventType__P_145_7: null,
-      __lastMouseDownTarget__P_145_8: null,
-      __manager__P_145_0: null,
-      __window__P_145_1: null,
-      __root__P_145_2: null,
-      __preventNextClick__P_145_9: null,
+      __onButtonEventWrapper__P_147_4: null,
+      __onMoveEventWrapper__P_147_5: null,
+      __onWheelEventWrapper__P_147_6: null,
+      __lastEventType__P_147_7: null,
+      __lastMouseDownTarget__P_147_8: null,
+      __manager__P_147_0: null,
+      __window__P_147_1: null,
+      __root__P_147_2: null,
+      __preventNextClick__P_147_9: null,
 
       /** @type{Function} wrapper for `_onNative`, bound as a native listener */
-      __onNativeListener__P_145_3: null,
+      __onNativeListener__P_147_3: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -9545,7 +9545,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       registerEvent: function registerEvent(target, type, capture) {
         if (qx.event.handler.Mouse.NON_BUBBLING_EVENTS[type]) {
-          qx.bom.Event.addNativeListener(target, type, this.__onNativeListener__P_145_3);
+          qx.bom.Event.addNativeListener(target, type, this.__onNativeListener__P_147_3);
         } else if (qx.core.Environment.get("os.name") === "ios") {
           // The iPhone requires for attaching mouse events natively to every element which
           // should react on mouse events. As of version 3.0 it also requires to keep the
@@ -9562,7 +9562,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       unregisterEvent: function unregisterEvent(target, type, capture) {
         if (qx.event.handler.Mouse.NON_BUBBLING_EVENTS[type]) {
-          qx.bom.Event.removeNativeListener(target, type, this.__onNativeListener__P_145_3);
+          qx.bom.Event.removeNativeListener(target, type, this.__onNativeListener__P_147_3);
         } else if (qx.core.Environment.get("os.name") === "ios") {
           target["on" + type] = undefined;
         }
@@ -9592,7 +9592,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param type {String} type of the event
        * @param target {Element} event target
        */
-      __fireEvent__P_145_10: function __fireEvent__P_145_10(domEvent, type, target) {
+      __fireEvent__P_147_10: function __fireEvent__P_147_10(domEvent, type, target) {
         if (!target) {
           target = qx.bom.Event.getTarget(domEvent);
         } // we need a true node for the fireEvent
@@ -9605,7 +9605,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // Fire user action event
 
 
-        qx.event.Registration.fireEvent(this.__window__P_145_1, "useraction", qx.event.type.Data, [type || domEvent.type]);
+        qx.event.Registration.fireEvent(this.__window__P_147_1, "useraction", qx.event.type.Data, [type || domEvent.type]);
       },
 
       /**
@@ -9613,7 +9613,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @internal
        */
       preventNextClick: function preventNextClick() {
-        this.__preventNextClick__P_145_9 = true;
+        this.__preventNextClick__P_147_9 = true;
       },
 
       /*
@@ -9628,14 +9628,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @signature function()
        */
       _initButtonObserver: function _initButtonObserver() {
-        this.__onButtonEventWrapper__P_145_4 = qx.lang.Function.listener(this._onButtonEvent, this);
+        this.__onButtonEventWrapper__P_147_4 = qx.lang.Function.listener(this._onButtonEvent, this);
         var Event = qx.bom.Event;
-        Event.addNativeListener(this.__root__P_145_2, "mousedown", this.__onButtonEventWrapper__P_145_4);
-        Event.addNativeListener(this.__root__P_145_2, "mouseup", this.__onButtonEventWrapper__P_145_4);
-        Event.addNativeListener(this.__root__P_145_2, "click", this.__onButtonEventWrapper__P_145_4);
-        Event.addNativeListener(this.__root__P_145_2, "auxclick", this.__onButtonEventWrapper__P_145_4);
-        Event.addNativeListener(this.__root__P_145_2, "dblclick", this.__onButtonEventWrapper__P_145_4);
-        Event.addNativeListener(this.__root__P_145_2, "contextmenu", this.__onButtonEventWrapper__P_145_4);
+        Event.addNativeListener(this.__root__P_147_2, "mousedown", this.__onButtonEventWrapper__P_147_4);
+        Event.addNativeListener(this.__root__P_147_2, "mouseup", this.__onButtonEventWrapper__P_147_4);
+        Event.addNativeListener(this.__root__P_147_2, "click", this.__onButtonEventWrapper__P_147_4);
+        Event.addNativeListener(this.__root__P_147_2, "auxclick", this.__onButtonEventWrapper__P_147_4);
+        Event.addNativeListener(this.__root__P_147_2, "dblclick", this.__onButtonEventWrapper__P_147_4);
+        Event.addNativeListener(this.__root__P_147_2, "contextmenu", this.__onButtonEventWrapper__P_147_4);
       },
 
       /**
@@ -9644,11 +9644,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @signature function()
        */
       _initMoveObserver: function _initMoveObserver() {
-        this.__onMoveEventWrapper__P_145_5 = qx.lang.Function.listener(this._onMoveEvent, this);
+        this.__onMoveEventWrapper__P_147_5 = qx.lang.Function.listener(this._onMoveEvent, this);
         var Event = qx.bom.Event;
-        Event.addNativeListener(this.__root__P_145_2, "mousemove", this.__onMoveEventWrapper__P_145_5);
-        Event.addNativeListener(this.__root__P_145_2, "mouseout", this.__onMoveEventWrapper__P_145_5);
-        Event.addNativeListener(this.__root__P_145_2, "mouseover", this.__onMoveEventWrapper__P_145_5);
+        Event.addNativeListener(this.__root__P_147_2, "mousemove", this.__onMoveEventWrapper__P_147_5);
+        Event.addNativeListener(this.__root__P_147_2, "mouseout", this.__onMoveEventWrapper__P_147_5);
+        Event.addNativeListener(this.__root__P_147_2, "mouseover", this.__onMoveEventWrapper__P_147_5);
       },
 
       /**
@@ -9657,9 +9657,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @signature function()
        */
       _initWheelObserver: function _initWheelObserver() {
-        this.__onWheelEventWrapper__P_145_6 = qx.lang.Function.listener(this._onWheelEvent, this);
-        var data = qx.bom.client.Event.getMouseWheel(this.__window__P_145_1);
-        qx.bom.Event.addNativeListener(data.target, data.type, this.__onWheelEventWrapper__P_145_6);
+        this.__onWheelEventWrapper__P_147_6 = qx.lang.Function.listener(this._onWheelEvent, this);
+        var data = qx.bom.client.Event.getMouseWheel(this.__window__P_147_1);
+        qx.bom.Event.addNativeListener(data.target, data.type, this.__onWheelEventWrapper__P_147_6);
       },
 
       /*
@@ -9675,11 +9675,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       _stopButtonObserver: function _stopButtonObserver() {
         var Event = qx.bom.Event;
-        Event.removeNativeListener(this.__root__P_145_2, "mousedown", this.__onButtonEventWrapper__P_145_4);
-        Event.removeNativeListener(this.__root__P_145_2, "mouseup", this.__onButtonEventWrapper__P_145_4);
-        Event.removeNativeListener(this.__root__P_145_2, "click", this.__onButtonEventWrapper__P_145_4);
-        Event.removeNativeListener(this.__root__P_145_2, "dblclick", this.__onButtonEventWrapper__P_145_4);
-        Event.removeNativeListener(this.__root__P_145_2, "contextmenu", this.__onButtonEventWrapper__P_145_4);
+        Event.removeNativeListener(this.__root__P_147_2, "mousedown", this.__onButtonEventWrapper__P_147_4);
+        Event.removeNativeListener(this.__root__P_147_2, "mouseup", this.__onButtonEventWrapper__P_147_4);
+        Event.removeNativeListener(this.__root__P_147_2, "click", this.__onButtonEventWrapper__P_147_4);
+        Event.removeNativeListener(this.__root__P_147_2, "dblclick", this.__onButtonEventWrapper__P_147_4);
+        Event.removeNativeListener(this.__root__P_147_2, "contextmenu", this.__onButtonEventWrapper__P_147_4);
       },
 
       /**
@@ -9689,9 +9689,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       _stopMoveObserver: function _stopMoveObserver() {
         var Event = qx.bom.Event;
-        Event.removeNativeListener(this.__root__P_145_2, "mousemove", this.__onMoveEventWrapper__P_145_5);
-        Event.removeNativeListener(this.__root__P_145_2, "mouseover", this.__onMoveEventWrapper__P_145_5);
-        Event.removeNativeListener(this.__root__P_145_2, "mouseout", this.__onMoveEventWrapper__P_145_5);
+        Event.removeNativeListener(this.__root__P_147_2, "mousemove", this.__onMoveEventWrapper__P_147_5);
+        Event.removeNativeListener(this.__root__P_147_2, "mouseover", this.__onMoveEventWrapper__P_147_5);
+        Event.removeNativeListener(this.__root__P_147_2, "mouseout", this.__onMoveEventWrapper__P_147_5);
       },
 
       /**
@@ -9700,8 +9700,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @signature function()
        */
       _stopWheelObserver: function _stopWheelObserver() {
-        var data = qx.bom.client.Event.getMouseWheel(this.__window__P_145_1);
-        qx.bom.Event.removeNativeListener(data.target, data.type, this.__onWheelEventWrapper__P_145_6);
+        var data = qx.bom.client.Event.getMouseWheel(this.__window__P_147_1);
+        qx.bom.Event.removeNativeListener(data.target, data.type, this.__onWheelEventWrapper__P_147_6);
       },
 
       /*
@@ -9718,7 +9718,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param domEvent {Event} DOM event
        */
       _onMoveEvent: qx.event.GlobalError.observeMethod(function (domEvent) {
-        this.__fireEvent__P_145_10(domEvent);
+        this.__fireEvent__P_147_10(domEvent);
       }),
 
       /**
@@ -9732,8 +9732,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var type = domEvent.type;
         var target = qx.bom.Event.getTarget(domEvent);
 
-        if (type == "click" && this.__preventNextClick__P_145_9) {
-          delete this.__preventNextClick__P_145_9;
+        if (type == "click" && this.__preventNextClick__P_147_9) {
+          delete this.__preventNextClick__P_147_9;
           return;
         } // Safari (and maybe gecko) takes text nodes as targets for events
         // See: http://www.quirksmode.org/js/events_properties.html
@@ -9746,17 +9746,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // prevent click events on drop during Drag&Drop [BUG #6846]
 
 
-        var isDrag = qx.event.handler.DragDrop && this.__manager__P_145_0.getHandler(qx.event.handler.DragDrop).isSessionActive();
+        var isDrag = qx.event.handler.DragDrop && this.__manager__P_147_0.getHandler(qx.event.handler.DragDrop).isSessionActive();
 
         if (isDrag && type == "click") {
           return;
         }
 
-        if (this.__doubleClickFixPre__P_145_11) {
-          this.__doubleClickFixPre__P_145_11(domEvent, type, target);
+        if (this.__doubleClickFixPre__P_147_11) {
+          this.__doubleClickFixPre__P_147_11(domEvent, type, target);
         }
 
-        this.__fireEvent__P_145_10(domEvent, type, target);
+        this.__fireEvent__P_147_10(domEvent, type, target);
         /*
          * In order to normalize middle button click events we
          * need to fire an artificial click event if the client
@@ -9767,18 +9767,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
         if (type == "auxclick" && domEvent.button == 1) {
-          this.__fireEvent__P_145_10(domEvent, "click", target);
+          this.__fireEvent__P_147_10(domEvent, "click", target);
         }
 
-        if (this.__rightClickFixPost__P_145_12) {
-          this.__rightClickFixPost__P_145_12(domEvent, type, target);
+        if (this.__rightClickFixPost__P_147_12) {
+          this.__rightClickFixPost__P_147_12(domEvent, type, target);
         }
 
-        if (this.__differentTargetClickFixPost__P_145_13 && !isDrag) {
-          this.__differentTargetClickFixPost__P_145_13(domEvent, type, target);
+        if (this.__differentTargetClickFixPost__P_147_13 && !isDrag) {
+          this.__differentTargetClickFixPost__P_147_13(domEvent, type, target);
         }
 
-        this.__lastEventType__P_145_7 = type;
+        this.__lastEventType__P_147_7 = type;
       }),
 
       /**
@@ -9788,7 +9788,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param domEvent {Event} DOM event
        */
       _onWheelEvent: qx.event.GlobalError.observeMethod(function (domEvent) {
-        this.__fireEvent__P_145_10(domEvent, "mousewheel");
+        this.__fireEvent__P_147_10(domEvent, "mousewheel");
       }),
 
       /*
@@ -9811,10 +9811,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @signature function(domEvent, type, target)
        */
-      __rightClickFixPost__P_145_12: qx.core.Environment.select("engine.name", {
+      __rightClickFixPost__P_147_12: qx.core.Environment.select("engine.name", {
         "opera": function opera(domEvent, type, target) {
           if (type == "mouseup" && domEvent.button == 2) {
-            this.__fireEvent__P_145_10(domEvent, "contextmenu", target);
+            this.__fireEvent__P_147_10(domEvent, "contextmenu", target);
           }
         },
         "default": null
@@ -9841,7 +9841,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @signature function(domEvent, type, target)
        */
-      __doubleClickFixPre__P_145_11: qx.core.Environment.select("engine.name", {
+      __doubleClickFixPre__P_147_11: qx.core.Environment.select("engine.name", {
         "mshtml": function mshtml(domEvent, type, target) {
           // Do only apply the fix when the event is from the IE event model,
           // otherwise do not apply the fix.
@@ -9849,10 +9849,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             return;
           }
 
-          if (type == "mouseup" && this.__lastEventType__P_145_7 == "click") {
-            this.__fireEvent__P_145_10(domEvent, "mousedown", target);
+          if (type == "mouseup" && this.__lastEventType__P_147_7 == "click") {
+            this.__fireEvent__P_147_10(domEvent, "mousedown", target);
           } else if (type == "dblclick") {
-            this.__fireEvent__P_145_10(domEvent, "click", target);
+            this.__fireEvent__P_147_10(domEvent, "click", target);
           }
         },
         "default": null
@@ -9871,20 +9871,20 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @signature function(domEvent, type, target)
        */
-      __differentTargetClickFixPost__P_145_13: qx.core.Environment.select("engine.name", {
+      __differentTargetClickFixPost__P_147_13: qx.core.Environment.select("engine.name", {
         "mshtml": null,
         "default": function _default(domEvent, type, target) {
           switch (type) {
             case "mousedown":
-              this.__lastMouseDownTarget__P_145_8 = target;
+              this.__lastMouseDownTarget__P_147_8 = target;
               break;
 
             case "mouseup":
-              if (target !== this.__lastMouseDownTarget__P_145_8) {
-                var commonParent = qx.dom.Hierarchy.getCommonParent(target, this.__lastMouseDownTarget__P_145_8);
+              if (target !== this.__lastMouseDownTarget__P_147_8) {
+                var commonParent = qx.dom.Hierarchy.getCommonParent(target, this.__lastMouseDownTarget__P_147_8);
 
                 if (commonParent) {
-                  this.__fireEvent__P_145_10(domEvent, "click", commonParent);
+                  this.__fireEvent__P_147_10(domEvent, "click", commonParent);
                 }
               }
 
@@ -9905,7 +9905,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
       this._stopWheelObserver();
 
-      this.__manager__P_145_0 = this.__window__P_145_1 = this.__root__P_145_2 = this.__lastMouseDownTarget__P_145_8 = null;
+      this.__manager__P_147_0 = this.__window__P_147_1 = this.__root__P_147_2 = this.__lastMouseDownTarget__P_147_8 = null;
     },
 
     /*
@@ -10232,10 +10232,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      */
     construct: function construct(manager) {
       qx.core.Object.constructor.call(this);
-      this.__manager__P_119_0 = manager;
-      this.__targets__P_119_1 = {}; // Register
+      this.__manager__P_120_0 = manager;
+      this.__targets__P_120_1 = {}; // Register
 
-      qx.event.handler.Appear.__instances__P_119_2[this.toHashCode()] = this;
+      qx.event.handler.Appear.__instances__P_120_2[this.toHashCode()] = this;
     },
 
     /*
@@ -10260,7 +10260,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       IGNORE_CAN_HANDLE: true,
 
       /** @type {Map} Stores all appear manager instances */
-      __instances__P_119_2: {},
+      __instances__P_120_2: {},
 
       /**
        * Refreshes all appear handlers. Useful after massive DOM manipulations e.g.
@@ -10268,7 +10268,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        */
       refresh: function refresh() {
-        var all = this.__instances__P_119_2;
+        var all = this.__instances__P_120_2;
 
         for (var hash in all) {
           all[hash].refresh();
@@ -10282,8 +10282,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __manager__P_119_0: null,
-      __targets__P_119_1: null,
+      __manager__P_120_0: null,
+      __targets__P_120_1: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -10295,7 +10295,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       // interface implementation
       registerEvent: function registerEvent(target, type, capture) {
         var hash = qx.core.ObjectRegistry.toHashCode(target) + type;
-        var targets = this.__targets__P_119_1;
+        var targets = this.__targets__P_120_1;
 
         if (targets && !targets[hash]) {
           targets[hash] = target;
@@ -10305,7 +10305,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       // interface implementation
       unregisterEvent: function unregisterEvent(target, type, capture) {
         var hash = qx.core.ObjectRegistry.toHashCode(target) + type;
-        var targets = this.__targets__P_119_1;
+        var targets = this.__targets__P_120_1;
 
         if (!targets) {
           return;
@@ -10329,7 +10329,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.Promise?} a promise, if one or more of the event handlers returned one 
        */
       refresh: function refresh() {
-        var targets = this.__targets__P_119_1;
+        var targets = this.__targets__P_120_1;
         var legacyIe = qx.core.Environment.get("engine.name") == "mshtml" && qx.core.Environment.get("browser.documentmode") < 9;
         var tracker = {};
         var self = this;
@@ -10351,7 +10351,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             if (!!elem.$$displayed !== displayed) {
               elem.$$displayed = displayed;
               var evt = qx.event.Registration.createEvent(displayed ? "appear" : "disappear");
-              return self.__manager__P_119_0.dispatchEvent(elem, evt);
+              return self.__manager__P_120_0.dispatchEvent(elem, evt);
             }
           });
         });
@@ -10365,9 +10365,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__manager__P_119_0 = this.__targets__P_119_1 = null; // Deregister
+      this.__manager__P_120_0 = this.__targets__P_120_1 = null; // Deregister
 
-      delete qx.event.handler.Appear.__instances__P_119_2[this.toHashCode()];
+      delete qx.event.handler.Appear.__instances__P_120_2[this.toHashCode()];
     },
 
     /*
@@ -10487,8 +10487,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     construct: function construct(manager) {
       qx.core.Object.constructor.call(this); // Define shorthands
 
-      this.__manager__P_158_0 = manager;
-      this.__window__P_158_1 = manager.getWindow();
+      this.__manager__P_162_0 = manager;
+      this.__window__P_162_1 = manager.getWindow();
 
       this._initObserver();
     },
@@ -10520,11 +10520,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __manager__P_158_0: null,
-      __window__P_158_1: null,
-      __nativeEventType__P_158_2: null,
+      __manager__P_162_0: null,
+      __window__P_162_1: null,
+      __nativeEventType__P_162_2: null,
       _currentOrientation: null,
-      __onNativeWrapper__P_158_3: null,
+      __onNativeWrapper__P_162_3: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -10551,13 +10551,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Initializes the native orientation change event listeners.
        */
       _initObserver: function _initObserver() {
-        this.__onNativeWrapper__P_158_3 = qx.lang.Function.listener(this._onNative, this); // Handle orientation change event for Android devices by the resize event.
+        this.__onNativeWrapper__P_162_3 = qx.lang.Function.listener(this._onNative, this); // Handle orientation change event for Android devices by the resize event.
         // See http://stackoverflow.com/questions/1649086/detect-rotation-of-android-phone-in-the-browser-with-javascript
         // for more information.
 
-        this.__nativeEventType__P_158_2 = qx.bom.Event.supportsEvent(this.__window__P_158_1, "orientationchange") ? "orientationchange" : "resize";
+        this.__nativeEventType__P_162_2 = qx.bom.Event.supportsEvent(this.__window__P_162_1, "orientationchange") ? "orientationchange" : "resize";
         var Event = qx.bom.Event;
-        Event.addNativeListener(this.__window__P_158_1, this.__nativeEventType__P_158_2, this.__onNativeWrapper__P_158_3);
+        Event.addNativeListener(this.__window__P_162_1, this.__nativeEventType__P_162_2, this.__onNativeWrapper__P_162_3);
       },
 
       /*
@@ -10571,7 +10571,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       _stopObserver: function _stopObserver() {
         var Event = qx.bom.Event;
-        Event.removeNativeListener(this.__window__P_158_1, this.__nativeEventType__P_158_2, this.__onNativeWrapper__P_158_3);
+        Event.removeNativeListener(this.__window__P_162_1, this.__nativeEventType__P_162_2, this.__onNativeWrapper__P_162_3);
       },
 
       /*
@@ -10609,7 +10609,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         if (this._currentOrientation != orientation) {
           this._currentOrientation = orientation;
           var mode = Viewport.isLandscape(domEvent.target) ? "landscape" : "portrait";
-          qx.event.Registration.fireEvent(this.__window__P_158_1, "orientationchange", qx.event.type.Orientation, [orientation, mode]);
+          qx.event.Registration.fireEvent(this.__window__P_162_1, "orientationchange", qx.event.type.Orientation, [orientation, mode]);
         }
       }
     },
@@ -10622,7 +10622,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     destruct: function destruct() {
       this._stopObserver();
 
-      this.__manager__P_158_0 = this.__window__P_158_1 = null;
+      this.__manager__P_162_0 = this.__window__P_162_1 = null;
     },
 
     /*
@@ -10767,25 +10767,25 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      * @param emitter {qx.event.Emitter} Event emitter object
      */
     construct: function construct(target, emitter) {
-      this.__target__P_159_0 = target;
-      this.__emitter__P_159_1 = emitter;
+      this.__target__P_163_0 = target;
+      this.__emitter__P_163_1 = emitter;
 
       this._initTouchObserver();
 
-      this.__pointers__P_159_2 = [];
-      this.__touchStartPosition__P_159_3 = {};
+      this.__pointers__P_163_2 = [];
+      this.__touchStartPosition__P_163_3 = {};
     },
     members: {
-      __target__P_159_0: null,
-      __emitter__P_159_1: null,
-      __onTouchEventWrapper__P_159_4: null,
-      __originalTarget__P_159_5: null,
-      __touchStartPosition__P_159_3: null,
-      __startTime__P_159_6: null,
-      __beginScalingDistance__P_159_7: null,
-      __beginRotation__P_159_8: null,
-      __pointers__P_159_2: null,
-      __touchEventNames__P_159_9: null,
+      __target__P_163_0: null,
+      __emitter__P_163_1: null,
+      __onTouchEventWrapper__P_163_4: null,
+      __originalTarget__P_163_5: null,
+      __touchStartPosition__P_163_3: null,
+      __startTime__P_163_6: null,
+      __beginScalingDistance__P_163_7: null,
+      __beginRotation__P_163_8: null,
+      __pointers__P_163_2: null,
+      __touchEventNames__P_163_9: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -10797,23 +10797,23 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Initializes the native touch event listeners.
        */
       _initTouchObserver: function _initTouchObserver() {
-        this.__onTouchEventWrapper__P_159_4 = qx.lang.Function.listener(this._onTouchEvent, this);
-        this.__touchEventNames__P_159_9 = ["touchstart", "touchmove", "touchend", "touchcancel"];
+        this.__onTouchEventWrapper__P_163_4 = qx.lang.Function.listener(this._onTouchEvent, this);
+        this.__touchEventNames__P_163_9 = ["touchstart", "touchmove", "touchend", "touchcancel"];
 
         if (qx.core.Environment.get("event.mspointer")) {
           var engineVersion = parseInt(qx.core.Environment.get("engine.version"), 10);
 
           if (engineVersion == 10) {
             // IE 10
-            this.__touchEventNames__P_159_9 = ["MSPointerDown", "MSPointerMove", "MSPointerUp", "MSPointerCancel"];
+            this.__touchEventNames__P_163_9 = ["MSPointerDown", "MSPointerMove", "MSPointerUp", "MSPointerCancel"];
           } else {
             // IE 11+
-            this.__touchEventNames__P_159_9 = ["pointerdown", "pointermove", "pointerup", "pointercancel"];
+            this.__touchEventNames__P_163_9 = ["pointerdown", "pointermove", "pointerup", "pointercancel"];
           }
         }
 
-        for (var i = 0; i < this.__touchEventNames__P_159_9.length; i++) {
-          qx.bom.Event.addNativeListener(this.__target__P_159_0, this.__touchEventNames__P_159_9[i], this.__onTouchEventWrapper__P_159_4);
+        for (var i = 0; i < this.__touchEventNames__P_163_9.length; i++) {
+          qx.bom.Event.addNativeListener(this.__target__P_163_0, this.__touchEventNames__P_163_9[i], this.__onTouchEventWrapper__P_163_4);
         }
       },
 
@@ -10827,8 +10827,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Disconnects the native touch event listeners.
        */
       _stopTouchObserver: function _stopTouchObserver() {
-        for (var i = 0; i < this.__touchEventNames__P_159_9.length; i++) {
-          qx.bom.Event.removeNativeListener(this.__target__P_159_0, this.__touchEventNames__P_159_9[i], this.__onTouchEventWrapper__P_159_4);
+        for (var i = 0; i < this.__touchEventNames__P_163_9.length; i++) {
+          qx.bom.Event.removeNativeListener(this.__target__P_163_0, this.__touchEventNames__P_163_9[i], this.__onTouchEventWrapper__P_163_4);
         }
       },
 
@@ -10891,8 +10891,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Map} a map containing deltaX as <code>x</code>, deltaY as <code>y</code>, the direction of the movement as <code>axis</code> and the touch identifier as <code>identifier</code>.
        */
       _calcSingleTouchDelta: function _calcSingleTouchDelta(touch) {
-        if (this.__touchStartPosition__P_159_3.hasOwnProperty(touch.identifier)) {
-          var touchStartPosition = this.__touchStartPosition__P_159_3[touch.identifier];
+        if (this.__touchStartPosition__P_163_3.hasOwnProperty(touch.identifier)) {
+          var touchStartPosition = this.__touchStartPosition__P_163_3[touch.identifier];
           var deltaX = Math.floor(touch.clientX - touchStartPosition[0]);
           var deltaY = Math.floor(touch.clientY - touchStartPosition[1]);
           var axis = "x";
@@ -10939,16 +10939,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         domEvent.delta = [];
 
         if (type == "touchstart") {
-          this.__originalTarget__P_159_5 = this._getTarget(domEvent);
+          this.__originalTarget__P_163_5 = this._getTarget(domEvent);
 
           if (domEvent.touches && domEvent.touches.length > 1) {
-            this.__beginScalingDistance__P_159_7 = this._getScalingDistance(domEvent.touches[0], domEvent.touches[1]);
-            this.__beginRotation__P_159_8 = this._getRotationAngle(domEvent.touches[0], domEvent.touches[1]);
+            this.__beginScalingDistance__P_163_7 = this._getScalingDistance(domEvent.touches[0], domEvent.touches[1]);
+            this.__beginRotation__P_163_8 = this._getRotationAngle(domEvent.touches[0], domEvent.touches[1]);
           }
 
           for (var i = 0; i < domEvent.changedTouches.length; i++) {
             var touch = domEvent.changedTouches[i];
-            this.__touchStartPosition__P_159_3[touch.identifier] = [touch.clientX, touch.clientY];
+            this.__touchStartPosition__P_163_3[touch.identifier] = [touch.clientX, touch.clientY];
           }
         }
 
@@ -10957,29 +10957,29 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           if (typeof domEvent.scale == "undefined" && domEvent.targetTouches.length > 1) {
             var currentScalingDistance = this._getScalingDistance(domEvent.targetTouches[0], domEvent.targetTouches[1]);
 
-            domEvent.scale = currentScalingDistance / this.__beginScalingDistance__P_159_7;
+            domEvent.scale = currentScalingDistance / this.__beginScalingDistance__P_163_7;
           } // Polyfill for rotation
 
 
           if ((typeof domEvent.rotation == "undefined" || qx.core.Environment.get("event.mspointer")) && domEvent.targetTouches.length > 1) {
             var currentRotation = this._getRotationAngle(domEvent.targetTouches[0], domEvent.targetTouches[1]);
 
-            domEvent._rotation = currentRotation - this.__beginRotation__P_159_8;
+            domEvent._rotation = currentRotation - this.__beginRotation__P_163_8;
           }
 
           domEvent.delta = this._calcTouchesDelta(domEvent.targetTouches);
         }
 
-        this._fireEvent(domEvent, type, this.__originalTarget__P_159_5);
+        this._fireEvent(domEvent, type, this.__originalTarget__P_163_5);
 
         if (qx.core.Environment.get("event.mspointer")) {
           if (type == "touchend" || type == "touchcancel") {
-            delete this.__pointers__P_159_2[domEvent.pointerId];
+            delete this.__pointers__P_163_2[domEvent.pointerId];
           }
         }
 
         if ((type == "touchend" || type == "touchcancel") && domEvent.changedTouches[0]) {
-          delete this.__touchStartPosition__P_159_3[domEvent.changedTouches[0].identifier];
+          delete this.__touchStartPosition__P_163_3[domEvent.changedTouches[0].identifier];
         }
       },
 
@@ -10994,13 +10994,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var touches = [];
 
         if (type == "touchstart") {
-          this.__pointers__P_159_2[domEvent.pointerId] = domEvent;
+          this.__pointers__P_163_2[domEvent.pointerId] = domEvent;
         } else if (type == "touchmove") {
-          this.__pointers__P_159_2[domEvent.pointerId] = domEvent;
+          this.__pointers__P_163_2[domEvent.pointerId] = domEvent;
         }
 
-        for (var pointerId in this.__pointers__P_159_2) {
-          var pointer = this.__pointers__P_159_2[pointerId];
+        for (var pointerId in this.__pointers__P_163_2) {
+          var pointer = this.__pointers__P_163_2[pointerId];
           touches.push(pointer);
         }
 
@@ -11048,7 +11048,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           // for which the fix was intended
           // See: https://github.com/qooxdoo/qooxdoo/issues/9481
           //
-          var targetForIE = this.__evaluateTarget__P_159_10(domEvent);
+          var targetForIE = this.__evaluateTarget__P_163_10(domEvent);
 
           if (targetForIE) {
             target = targetForIE;
@@ -11065,7 +11065,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param domEvent {Event} DOM event
        * @return {Element | null} Event target
        */
-      __evaluateTarget__P_159_10: function __evaluateTarget__P_159_10(domEvent) {
+      __evaluateTarget__P_163_10: function __evaluateTarget__P_163_10(domEvent) {
         var clientX = null;
         var clientY = null;
 
@@ -11106,8 +11106,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         var type = type || domEvent.type;
 
-        if (target && target.nodeType && this.__emitter__P_159_1) {
-          this.__emitter__P_159_1.emit(type, domEvent);
+        if (target && target.nodeType && this.__emitter__P_163_1) {
+          this.__emitter__P_163_1.emit(type, domEvent);
         }
       },
 
@@ -11117,7 +11117,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       dispose: function dispose() {
         this._stopTouchObserver();
 
-        this.__originalTarget__P_159_5 = this.__target__P_159_0 = this.__touchEventNames__P_159_9 = this.__pointers__P_159_2 = this.__emitter__P_159_1 = this.__beginScalingDistance__P_159_7 = this.__beginRotation__P_159_8 = null;
+        this.__originalTarget__P_163_5 = this.__target__P_163_0 = this.__touchEventNames__P_163_9 = this.__pointers__P_163_2 = this.__emitter__P_163_1 = this.__beginScalingDistance__P_163_7 = this.__beginRotation__P_163_8 = null;
       }
     }
   });
@@ -11248,10 +11248,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      */
     construct: function construct(manager) {
       // Define shorthands
-      this.__manager__P_146_0 = manager;
-      this.__window__P_146_1 = manager.getWindow();
-      this.__root__P_146_2 = this.__window__P_146_1.document;
-      qx.event.handler.TouchCore.apply(this, [this.__root__P_146_2]);
+      this.__manager__P_148_0 = manager;
+      this.__window__P_148_1 = manager.getWindow();
+      this.__root__P_148_2 = this.__window__P_148_1.document;
+      qx.event.handler.TouchCore.apply(this, [this.__root__P_148_2]);
     },
 
     /*
@@ -11295,11 +11295,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __manager__P_146_0: null,
-      __window__P_146_1: null,
-      __root__P_146_2: null,
+      __manager__P_148_0: null,
+      __window__P_148_1: null,
+      __root__P_148_2: null,
       // Checks if the mouse movement is happening while simulating a touch event
-      __isInTouch__P_146_3: false,
+      __isInTouch__P_148_3: false,
 
       /*
       ---------------------------------------------------------------------------
@@ -11341,7 +11341,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // Fire user action event
 
 
-        qx.event.Registration.fireEvent(this.__window__P_146_1, "useraction", qx.event.type.Data, [type]);
+        qx.event.Registration.fireEvent(this.__window__P_148_1, "useraction", qx.event.type.Data, [type]);
       },
 
       /*
@@ -11364,9 +11364,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Dispose this object
        */
       dispose: function dispose() {
-        this.__callBase__P_146_4("dispose");
+        this.__callBase__P_148_4("dispose");
 
-        this.__manager__P_146_0 = this.__window__P_146_1 = this.__root__P_146_2 = null;
+        this.__manager__P_148_0 = this.__window__P_148_1 = this.__root__P_148_2 = null;
       },
 
       /**
@@ -11375,7 +11375,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param method {String} Name of the overridden method.
        * @param args {Array} Arguments.
        */
-      __callBase__P_146_4: function __callBase__P_146_4(method, args) {
+      __callBase__P_148_4: function __callBase__P_148_4(method, args) {
         qx.event.handler.TouchCore.prototype[method].apply(this, args || []);
       }
     },
@@ -11471,8 +11471,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      */
     construct: function construct(manager) {
       qx.core.Object.constructor.call(this);
-      this.__manager__P_147_0 = manager;
-      this.__window__P_147_1 = manager.getWindow();
+      this.__manager__P_149_0 = manager;
+      this.__window__P_149_1 = manager.getWindow();
 
       this._initObserver();
     },
@@ -11505,9 +11505,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __manager__P_147_0: null,
-      __window__P_147_1: null,
-      __onNativeWrapper__P_147_2: null,
+      __manager__P_149_0: null,
+      __window__P_149_1: null,
+      __onNativeWrapper__P_149_2: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -11527,17 +11527,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Connects the native online and offline event listeners.
        */
       _initObserver: function _initObserver() {
-        this.__onNativeWrapper__P_147_2 = qx.lang.Function.listener(this._onNative, this);
-        qx.bom.Event.addNativeListener(this.__window__P_147_1, "offline", this.__onNativeWrapper__P_147_2);
-        qx.bom.Event.addNativeListener(this.__window__P_147_1, "online", this.__onNativeWrapper__P_147_2);
+        this.__onNativeWrapper__P_149_2 = qx.lang.Function.listener(this._onNative, this);
+        qx.bom.Event.addNativeListener(this.__window__P_149_1, "offline", this.__onNativeWrapper__P_149_2);
+        qx.bom.Event.addNativeListener(this.__window__P_149_1, "online", this.__onNativeWrapper__P_149_2);
       },
 
       /**
        * Disconnects the native online and offline event listeners.
        */
       _stopObserver: function _stopObserver() {
-        qx.bom.Event.removeNativeListener(this.__window__P_147_1, "offline", this.__onNativeWrapper__P_147_2);
-        qx.bom.Event.removeNativeListener(this.__window__P_147_1, "online", this.__onNativeWrapper__P_147_2);
+        qx.bom.Event.removeNativeListener(this.__window__P_149_1, "offline", this.__onNativeWrapper__P_149_2);
+        qx.bom.Event.removeNativeListener(this.__window__P_149_1, "online", this.__onNativeWrapper__P_149_2);
       },
 
       /**
@@ -11546,7 +11546,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param domEvent {Event} Native DOM event
        */
       _onNative: qx.event.GlobalError.observeMethod(function (domEvent) {
-        qx.event.Registration.fireEvent(this.__window__P_147_1, domEvent.type, qx.event.type.Event, []);
+        qx.event.Registration.fireEvent(this.__window__P_149_1, domEvent.type, qx.event.type.Event, []);
       }),
 
       /*
@@ -11560,7 +11560,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code> if its online
        */
       isOnline: function isOnline() {
-        return !!this.__window__P_147_1.navigator.onLine;
+        return !!this.__window__P_149_1.navigator.onLine;
       }
     },
 
@@ -11570,12 +11570,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__manager__P_147_0 = null;
+      this.__manager__P_149_0 = null;
 
       this._stopObserver(); // Deregister
 
 
-      delete qx.event.handler.Appear.__instances__P_147_3[this.toHashCode()];
+      delete qx.event.handler.Appear.__instances__P_149_3[this.toHashCode()];
     },
 
     /*
@@ -11749,12 +11749,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     */
     members: {
       // special handling for opera
-      __enter__P_148_0: false,
-      __onInputTimeoutId__P_148_1: null,
+      __enter__P_150_0: false,
+      __onInputTimeoutId__P_150_1: null,
       // stores the former set value for opera and IE
-      __oldValue__P_148_2: null,
+      __oldValue__P_150_2: null,
       // stores the former set value for IE
-      __oldInputValue__P_148_3: null,
+      __oldInputValue__P_150_3: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -11778,7 +11778,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       // interface implementation
       registerEvent: function registerEvent(target, type, capture) {
         if (qx.core.Environment.get("engine.name") == "mshtml" && (qx.core.Environment.get("engine.version") < 9 || qx.core.Environment.get("engine.version") >= 9 && qx.core.Environment.get("browser.documentmode") < 9)) {
-          if (!target.__inputHandlerAttached__P_148_4) {
+          if (!target.__inputHandlerAttached__P_150_4) {
             var tag = target.tagName.toLowerCase();
             var elementType = target.type;
 
@@ -11795,11 +11795,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               qx.bom.Event.addNativeListener(target, "keypress", this._onKeyPressWrapped);
             }
 
-            target.__inputHandlerAttached__P_148_4 = true;
+            target.__inputHandlerAttached__P_150_4 = true;
           }
         } else {
           if (type === "input") {
-            this.__registerInputListener__P_148_5(target);
+            this.__registerInputListener__P_150_5(target);
           } else if (type === "change") {
             if (target.type === "radio" || target.type === "checkbox") {
               qx.bom.Event.addNativeListener(target, "change", this._onChangeCheckedWrapper);
@@ -11817,7 +11817,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         }
       },
-      __registerInputListener__P_148_5: qx.core.Environment.select("engine.name", {
+      __registerInputListener__P_150_5: qx.core.Environment.select("engine.name", {
         "mshtml": function mshtml(target) {
           if (qx.core.Environment.get("engine.version") >= 9 && qx.core.Environment.get("browser.documentmode") >= 9) {
             qx.bom.Event.addNativeListener(target, "input", this._onInputWrapper);
@@ -11853,7 +11853,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       // interface implementation
       unregisterEvent: function unregisterEvent(target, type) {
         if (qx.core.Environment.get("engine.name") == "mshtml" && qx.core.Environment.get("engine.version") < 9 && qx.core.Environment.get("browser.documentmode") < 9) {
-          if (target.__inputHandlerAttached__P_148_4) {
+          if (target.__inputHandlerAttached__P_150_4) {
             var tag = target.tagName.toLowerCase();
             var elementType = target.type;
 
@@ -11870,14 +11870,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             }
 
             try {
-              delete target.__inputHandlerAttached__P_148_4;
+              delete target.__inputHandlerAttached__P_150_4;
             } catch (ex) {
-              target.__inputHandlerAttached__P_148_4 = null;
+              target.__inputHandlerAttached__P_150_4 = null;
             }
           }
         } else {
           if (type === "input") {
-            this.__unregisterInputListener__P_148_6(target);
+            this.__unregisterInputListener__P_150_6(target);
           } else if (type === "change") {
             if (target.type === "radio" || target.type === "checkbox") {
               qx.bom.Event.removeNativeListener(target, "change", this._onChangeCheckedWrapper);
@@ -11893,7 +11893,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         }
       },
-      __unregisterInputListener__P_148_6: qx.core.Environment.select("engine.name", {
+      __unregisterInputListener__P_150_6: qx.core.Environment.select("engine.name", {
         "mshtml": function mshtml(target) {
           if (qx.core.Environment.get("engine.version") >= 9 && qx.core.Environment.get("browser.documentmode") >= 9) {
             qx.bom.Event.removeNativeListener(target, "input", this._onInputWrapper);
@@ -11944,16 +11944,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       _onKeyPress: qx.core.Environment.select("engine.name", {
         "mshtml": function mshtml(e, target) {
           if (e.keyCode === 13) {
-            if (target.value !== this.__oldValue__P_148_2) {
-              this.__oldValue__P_148_2 = target.value;
+            if (target.value !== this.__oldValue__P_150_2) {
+              this.__oldValue__P_150_2 = target.value;
               qx.event.Registration.fireEvent(target, "change", qx.event.type.Data, [target.value]);
             }
           }
         },
         "opera": function opera(e, target) {
           if (e.keyCode === 13) {
-            if (target.value !== this.__oldValue__P_148_2) {
-              this.__oldValue__P_148_2 = target.value;
+            if (target.value !== this.__oldValue__P_150_2) {
+              this.__oldValue__P_150_2 = target.value;
               qx.event.Registration.fireEvent(target, "change", qx.event.type.Data, [target.value]);
             }
           }
@@ -11982,8 +11982,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       _inputFix: qx.core.Environment.select("engine.name", {
         "mshtml": function mshtml(e, target) {
           if (e.keyCode === 46 || e.keyCode === 8) {
-            if (target.value !== this.__oldInputValue__P_148_3) {
-              this.__oldInputValue__P_148_3 = target.value;
+            if (target.value !== this.__oldInputValue__P_150_3) {
+              this.__oldInputValue__P_150_3 = target.value;
               qx.event.Registration.fireEvent(target, "input", qx.event.type.Data, [target.value]);
             }
           }
@@ -12008,7 +12008,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         "opera": function opera(e) {
           // enter is pressed
           if (e.keyCode === 13) {
-            this.__enter__P_148_0 = true;
+            this.__enter__P_150_0 = true;
           }
         },
         "default": null
@@ -12025,7 +12025,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         "opera": function opera(e) {
           // enter is pressed
           if (e.keyCode === 13) {
-            this.__enter__P_148_0 = false;
+            this.__enter__P_150_0 = false;
           }
         },
         "default": null
@@ -12047,11 +12047,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var target = qx.bom.Event.getTarget(e);
         var tag = target.tagName.toLowerCase(); // ignore native input event when triggered by return in input element
 
-        if (!this.__enter__P_148_0 || tag !== "input") {
+        if (!this.__enter__P_150_0 || tag !== "input") {
           // opera lower 10.6 needs a special treatment for input events because
           // they are also fired on blur
           if (qx.core.Environment.get("engine.name") == "opera" && qx.core.Environment.get("browser.version") < 10.6) {
-            this.__onInputTimeoutId__P_148_1 = window.setTimeout(function () {
+            this.__onInputTimeoutId__P_150_1 = window.setTimeout(function () {
               qx.event.Registration.fireEvent(target, "input", qx.event.type.Data, [target.value]);
             }, 0);
           } else {
@@ -12197,7 +12197,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     implement: qx.event.IEventHandler,
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__onNativeListener__P_149_0 = qx.lang.Function.listener(this._onNative, this);
+      this.__onNativeListener__P_151_0 = qx.lang.Function.listener(this._onNative, this);
     },
     statics: {
       /** @type {Integer} Priority of this handler */
@@ -12248,7 +12248,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       },
       // interface implementation
       registerEvent: function registerEvent(target, type, capture) {
-        qx.bom.Event.addNativeListener(target, type, this.__onNativeListener__P_149_0);
+        qx.bom.Event.addNativeListener(target, type, this.__onNativeListener__P_151_0);
       },
 
       /**
@@ -12263,7 +12263,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       }),
       // interface implementation
       unregisterEvent: function unregisterEvent(target, type) {
-        qx.bom.Event.removeNativeListener(target, type, this.__onNativeListener__P_149_0);
+        qx.bom.Event.removeNativeListener(target, type, this.__onNativeListener__P_151_0);
       }
     },
     defer: function defer(statics) {
@@ -13119,7 +13119,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     */
     statics: {
       /** @type {Integer} The typical native scrollbar size in the environment */
-      __scrollbarSize__P_118_0: null,
+      __scrollbarSize__P_119_0: null,
 
       /**
        * Get the typical native scrollbar size in the environment
@@ -13127,8 +13127,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Number} The native scrollbar size
        */
       getScrollbarWidth: function getScrollbarWidth() {
-        if (this.__scrollbarSize__P_118_0 !== null) {
-          return this.__scrollbarSize__P_118_0;
+        if (this.__scrollbarSize__P_119_0 !== null) {
+          return this.__scrollbarSize__P_119_0;
         }
 
         var Style = qx.bom.element.Style;
@@ -13176,9 +13176,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         s.overflow = "scroll";
         document.body.appendChild(t);
         var c = getScrollBarSizeRight(t);
-        this.__scrollbarSize__P_118_0 = c;
+        this.__scrollbarSize__P_119_0 = c;
         document.body.removeChild(t);
-        return this.__scrollbarSize__P_118_0;
+        return this.__scrollbarSize__P_119_0;
       },
 
       /*
@@ -13503,7 +13503,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         },
         // suitable for gecko, opera and webkit
         "default": function _default(node) {
-          if (this.__isInputOrTextarea__P_112_0(node)) {
+          if (this.__isInputOrTextarea__P_113_0(node)) {
             return node.value.substring(node.selectionStart, node.selectionEnd);
           } else {
             return this.getSelectionObject(qx.dom.Node.getDocument(node)).toString();
@@ -13532,7 +13532,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           if (qx.core.Environment.get("engine.name") == "opera") {
             var selectedValue, selectedLength, split;
 
-            if (this.__isInputOrTextarea__P_112_0(node)) {
+            if (this.__isInputOrTextarea__P_113_0(node)) {
               var start = node.selectionStart;
               var end = node.selectionEnd;
               selectedValue = node.value.substring(start, end);
@@ -13551,7 +13551,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           } // suitable for gecko and webkit
 
 
-          if (this.__isInputOrTextarea__P_112_0(node)) {
+          if (this.__isInputOrTextarea__P_113_0(node)) {
             return node.selectionEnd - node.selectionStart;
           } else {
             return this.get(node).length;
@@ -13569,7 +13569,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       getStart: qx.core.Environment.select("html.selection", {
         "selection": function selection(node) {
-          if (this.__isInputOrTextarea__P_112_0(node)) {
+          if (this.__isInputOrTextarea__P_113_0(node)) {
             var documentRange = qx.bom.Range.get(); // Check if the document.selection is the text range inside the input element
 
             if (!node.contains(documentRange.parentElement())) {
@@ -13628,7 +13628,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         },
         "default": function _default(node) {
           if (qx.core.Environment.get("engine.name") === "gecko" || qx.core.Environment.get("engine.name") === "webkit") {
-            if (this.__isInputOrTextarea__P_112_0(node)) {
+            if (this.__isInputOrTextarea__P_113_0(node)) {
               return node.selectionStart;
             } else {
               var documentElement = qx.dom.Node.getDocument(node);
@@ -13643,7 +13643,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             }
           }
 
-          if (this.__isInputOrTextarea__P_112_0(node)) {
+          if (this.__isInputOrTextarea__P_113_0(node)) {
             return node.selectionStart;
           } else {
             return qx.bom.Selection.getSelectionObject(qx.dom.Node.getDocument(node)).anchorOffset;
@@ -13660,7 +13660,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       getEnd: qx.core.Environment.select("html.selection", {
         "selection": function selection(node) {
-          if (this.__isInputOrTextarea__P_112_0(node)) {
+          if (this.__isInputOrTextarea__P_113_0(node)) {
             var documentRange = qx.bom.Range.get(); // Check if the document.selection is the text range inside the input element
 
             if (!node.contains(documentRange.parentElement())) {
@@ -13720,7 +13720,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         },
         "default": function _default(node) {
           if (qx.core.Environment.get("engine.name") === "gecko" || qx.core.Environment.get("engine.name") === "webkit") {
-            if (this.__isInputOrTextarea__P_112_0(node)) {
+            if (this.__isInputOrTextarea__P_113_0(node)) {
               return node.selectionEnd;
             } else {
               var documentElement = qx.dom.Node.getDocument(node);
@@ -13735,7 +13735,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             }
           }
 
-          if (this.__isInputOrTextarea__P_112_0(node)) {
+          if (this.__isInputOrTextarea__P_113_0(node)) {
             return node.selectionEnd;
           } else {
             return qx.bom.Selection.getSelectionObject(qx.dom.Node.getDocument(node)).focusOffset;
@@ -13749,7 +13749,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param node {Node} node to check
        * @return {Boolean} Whether the given node is an input or textarea element
        */
-      __isInputOrTextarea__P_112_0: function __isInputOrTextarea__P_112_0(node) {
+      __isInputOrTextarea__P_113_0: function __isInputOrTextarea__P_113_0(node) {
         return qx.dom.Node.isElement(node) && (node.nodeName.toLowerCase() == "input" || node.nodeName.toLowerCase() == "textarea");
       },
 
@@ -14146,7 +14146,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       this._body = this._document.body;
 
       if (qx.core.Environment.get("os.name") == "ios" && parseFloat(qx.core.Environment.get("os.version")) > 6 && (!qx.application.Inline || !qx.core.Init.getApplication() instanceof qx.application.Inline)) {
-        this.__needsScrollFix__P_65_0 = true;
+        this.__needsScrollFix__P_66_0 = true;
       } // Initialize
 
 
@@ -14243,20 +14243,20 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __onNativeMouseDownWrapper__P_65_1: null,
-      __onNativeMouseUpWrapper__P_65_2: null,
-      __onNativeFocusWrapper__P_65_3: null,
-      __onNativeBlurWrapper__P_65_4: null,
-      __onNativeDragGestureWrapper__P_65_5: null,
-      __onNativeSelectStartWrapper__P_65_6: null,
-      __onNativeFocusInWrapper__P_65_7: null,
-      __onNativeFocusOutWrapper__P_65_8: null,
-      __previousFocus__P_65_9: null,
-      __previousActive__P_65_10: null,
-      __down__P_65_11: "",
-      __up__P_65_12: "",
-      __needsScrollFix__P_65_0: false,
-      __relatedTarget__P_65_13: null,
+      __onNativeMouseDownWrapper__P_66_1: null,
+      __onNativeMouseUpWrapper__P_66_2: null,
+      __onNativeFocusWrapper__P_66_3: null,
+      __onNativeBlurWrapper__P_66_4: null,
+      __onNativeDragGestureWrapper__P_66_5: null,
+      __onNativeSelectStartWrapper__P_66_6: null,
+      __onNativeFocusInWrapper__P_66_7: null,
+      __onNativeFocusOutWrapper__P_66_8: null,
+      __previousFocus__P_66_9: null,
+      __previousActive__P_66_10: null,
+      __down__P_66_11: "",
+      __up__P_66_12: "",
+      __needsScrollFix__P_66_0: false,
+      __relatedTarget__P_66_13: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -14363,7 +14363,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param element {Element} DOM element to activate
        */
       tryActivate: function tryActivate(element) {
-        var active = this.__findActivatableElement__P_65_14(element);
+        var active = this.__findActivatableElement__P_66_14(element);
 
         if (active) {
           this.setActive(active);
@@ -14385,7 +14385,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param bubbles {Boolean} Whether the event should bubble
        * @return {qx.Promise?} a promise, if one or more of the event handlers returned a promise
        */
-      __fireEvent__P_65_15: function __fireEvent__P_65_15(target, related, type, bubbles) {
+      __fireEvent__P_66_15: function __fireEvent__P_66_15(target, related, type, bubbles) {
         var Registration = qx.event.Registration;
         var evt = Registration.createEvent(type, qx.event.type.Focus, [target, related, bubbles]);
         return Registration.dispatchEvent(target, evt);
@@ -14403,26 +14403,26 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * Helper for native event listeners to react on window blur
        */
-      __doWindowBlur__P_65_16: function __doWindowBlur__P_65_16() {
+      __doWindowBlur__P_66_16: function __doWindowBlur__P_66_16() {
         // Omit doubled blur events
         // which is a common behavior at least for gecko based clients
         if (this._windowFocused) {
           this._windowFocused = false;
 
-          this.__fireEvent__P_65_15(this._window, null, "blur", false);
+          this.__fireEvent__P_66_15(this._window, null, "blur", false);
         }
       },
 
       /**
        * Helper for native event listeners to react on window focus
        */
-      __doWindowFocus__P_65_17: function __doWindowFocus__P_65_17() {
+      __doWindowFocus__P_66_17: function __doWindowFocus__P_66_17() {
         // Omit doubled focus events
         // which is a common behavior at least for gecko based clients
         if (!this._windowFocused) {
           this._windowFocused = true;
 
-          this.__fireEvent__P_65_15(this._window, null, "focus", false);
+          this.__fireEvent__P_66_15(this._window, null, "focus", false);
         }
       },
 
@@ -14440,39 +14440,39 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       _initObserver: qx.core.Environment.select("engine.name", {
         "gecko": function gecko() {
           // Bind methods
-          this.__onNativeMouseDownWrapper__P_65_1 = qx.lang.Function.listener(this.__onNativeMouseDown__P_65_18, this);
-          this.__onNativeMouseUpWrapper__P_65_2 = qx.lang.Function.listener(this.__onNativeMouseUp__P_65_19, this);
-          this.__onNativeFocusWrapper__P_65_3 = qx.lang.Function.listener(this.__onNativeFocus__P_65_20, this);
-          this.__onNativeBlurWrapper__P_65_4 = qx.lang.Function.listener(this.__onNativeBlur__P_65_21, this);
-          this.__onNativeDragGestureWrapper__P_65_5 = qx.lang.Function.listener(this.__onNativeDragGesture__P_65_22, this); // Register events
+          this.__onNativeMouseDownWrapper__P_66_1 = qx.lang.Function.listener(this.__onNativeMouseDown__P_66_18, this);
+          this.__onNativeMouseUpWrapper__P_66_2 = qx.lang.Function.listener(this.__onNativeMouseUp__P_66_19, this);
+          this.__onNativeFocusWrapper__P_66_3 = qx.lang.Function.listener(this.__onNativeFocus__P_66_20, this);
+          this.__onNativeBlurWrapper__P_66_4 = qx.lang.Function.listener(this.__onNativeBlur__P_66_21, this);
+          this.__onNativeDragGestureWrapper__P_66_5 = qx.lang.Function.listener(this.__onNativeDragGesture__P_66_22, this); // Register events
 
-          qx.bom.Event.addNativeListener(this._document, "mousedown", this.__onNativeMouseDownWrapper__P_65_1, true);
-          qx.bom.Event.addNativeListener(this._document, "mouseup", this.__onNativeMouseUpWrapper__P_65_2, true); // Capturing is needed for gecko to correctly
+          qx.bom.Event.addNativeListener(this._document, "mousedown", this.__onNativeMouseDownWrapper__P_66_1, true);
+          qx.bom.Event.addNativeListener(this._document, "mouseup", this.__onNativeMouseUpWrapper__P_66_2, true); // Capturing is needed for gecko to correctly
           // handle focus of input and textarea fields
 
-          qx.bom.Event.addNativeListener(this._window, "focus", this.__onNativeFocusWrapper__P_65_3, true);
-          qx.bom.Event.addNativeListener(this._window, "blur", this.__onNativeBlurWrapper__P_65_4, true); // Capture drag events
+          qx.bom.Event.addNativeListener(this._window, "focus", this.__onNativeFocusWrapper__P_66_3, true);
+          qx.bom.Event.addNativeListener(this._window, "blur", this.__onNativeBlurWrapper__P_66_4, true); // Capture drag events
 
-          qx.bom.Event.addNativeListener(this._window, "draggesture", this.__onNativeDragGestureWrapper__P_65_5, true);
+          qx.bom.Event.addNativeListener(this._window, "draggesture", this.__onNativeDragGestureWrapper__P_66_5, true);
         },
         "mshtml": function mshtml() {
           // Bind methods
-          this.__onNativeMouseDownWrapper__P_65_1 = qx.lang.Function.listener(this.__onNativeMouseDown__P_65_18, this);
-          this.__onNativeMouseUpWrapper__P_65_2 = qx.lang.Function.listener(this.__onNativeMouseUp__P_65_19, this);
-          this.__onNativeFocusInWrapper__P_65_7 = qx.lang.Function.listener(this.__onNativeFocusIn__P_65_23, this);
-          this.__onNativeFocusOutWrapper__P_65_8 = qx.lang.Function.listener(this.__onNativeFocusOut__P_65_24, this);
-          this.__onNativeSelectStartWrapper__P_65_6 = qx.lang.Function.listener(this.__onNativeSelectStart__P_65_25, this); // Register events
+          this.__onNativeMouseDownWrapper__P_66_1 = qx.lang.Function.listener(this.__onNativeMouseDown__P_66_18, this);
+          this.__onNativeMouseUpWrapper__P_66_2 = qx.lang.Function.listener(this.__onNativeMouseUp__P_66_19, this);
+          this.__onNativeFocusInWrapper__P_66_7 = qx.lang.Function.listener(this.__onNativeFocusIn__P_66_23, this);
+          this.__onNativeFocusOutWrapper__P_66_8 = qx.lang.Function.listener(this.__onNativeFocusOut__P_66_24, this);
+          this.__onNativeSelectStartWrapper__P_66_6 = qx.lang.Function.listener(this.__onNativeSelectStart__P_66_25, this); // Register events
 
-          qx.bom.Event.addNativeListener(this._document, "mousedown", this.__onNativeMouseDownWrapper__P_65_1);
-          qx.bom.Event.addNativeListener(this._document, "mouseup", this.__onNativeMouseUpWrapper__P_65_2); // MSHTML supports their own focusin and focusout events
+          qx.bom.Event.addNativeListener(this._document, "mousedown", this.__onNativeMouseDownWrapper__P_66_1);
+          qx.bom.Event.addNativeListener(this._document, "mouseup", this.__onNativeMouseUpWrapper__P_66_2); // MSHTML supports their own focusin and focusout events
           // To detect which elements get focus the target is useful
           // The window blur can detected using focusout and look
           // for the toTarget property which is empty in this case.
 
-          qx.bom.Event.addNativeListener(this._document, "focusin", this.__onNativeFocusInWrapper__P_65_7);
-          qx.bom.Event.addNativeListener(this._document, "focusout", this.__onNativeFocusOutWrapper__P_65_8); // Add selectstart to prevent selection
+          qx.bom.Event.addNativeListener(this._document, "focusin", this.__onNativeFocusInWrapper__P_66_7);
+          qx.bom.Event.addNativeListener(this._document, "focusout", this.__onNativeFocusOutWrapper__P_66_8); // Add selectstart to prevent selection
 
-          qx.bom.Event.addNativeListener(this._document, "selectstart", this.__onNativeSelectStartWrapper__P_65_6);
+          qx.bom.Event.addNativeListener(this._document, "selectstart", this.__onNativeSelectStartWrapper__P_66_6);
         },
         "webkit": qx.core.Environment.select("browser.name", {
           // fix for [ISSUE #9174]
@@ -14480,46 +14480,46 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           // as engine webkit and all other webkit browsers
           "edge": function edge(domEvent) {
             // Bind methods
-            this.__onNativeMouseDownWrapper__P_65_1 = qx.lang.Function.listener(this.__onNativeMouseDown__P_65_18, this);
-            this.__onNativeMouseUpWrapper__P_65_2 = qx.lang.Function.listener(this.__onNativeMouseUp__P_65_19, this);
-            this.__onNativeFocusOutWrapper__P_65_8 = qx.lang.Function.listener(this.__onNativeFocusOut__P_65_24, this);
-            this.__onNativeFocusInWrapper__P_65_7 = qx.lang.Function.listener(this.__onNativeFocusIn__P_65_23, this);
-            this.__onNativeSelectStartWrapper__P_65_6 = qx.lang.Function.listener(this.__onNativeSelectStart__P_65_25, this); // Register events
+            this.__onNativeMouseDownWrapper__P_66_1 = qx.lang.Function.listener(this.__onNativeMouseDown__P_66_18, this);
+            this.__onNativeMouseUpWrapper__P_66_2 = qx.lang.Function.listener(this.__onNativeMouseUp__P_66_19, this);
+            this.__onNativeFocusOutWrapper__P_66_8 = qx.lang.Function.listener(this.__onNativeFocusOut__P_66_24, this);
+            this.__onNativeFocusInWrapper__P_66_7 = qx.lang.Function.listener(this.__onNativeFocusIn__P_66_23, this);
+            this.__onNativeSelectStartWrapper__P_66_6 = qx.lang.Function.listener(this.__onNativeSelectStart__P_66_25, this); // Register events
 
-            qx.bom.Event.addNativeListener(this._document, "mousedown", this.__onNativeMouseDownWrapper__P_65_1, true);
-            qx.bom.Event.addNativeListener(this._document, "mouseup", this.__onNativeMouseUpWrapper__P_65_2, true);
-            qx.bom.Event.addNativeListener(this._document, "selectstart", this.__onNativeSelectStartWrapper__P_65_6, false);
-            qx.bom.Event.addNativeListener(this._document, "focusin", this.__onNativeFocusInWrapper__P_65_7);
-            qx.bom.Event.addNativeListener(this._document, "focusout", this.__onNativeFocusOutWrapper__P_65_8);
+            qx.bom.Event.addNativeListener(this._document, "mousedown", this.__onNativeMouseDownWrapper__P_66_1, true);
+            qx.bom.Event.addNativeListener(this._document, "mouseup", this.__onNativeMouseUpWrapper__P_66_2, true);
+            qx.bom.Event.addNativeListener(this._document, "selectstart", this.__onNativeSelectStartWrapper__P_66_6, false);
+            qx.bom.Event.addNativeListener(this._document, "focusin", this.__onNativeFocusInWrapper__P_66_7);
+            qx.bom.Event.addNativeListener(this._document, "focusout", this.__onNativeFocusOutWrapper__P_66_8);
           },
           "default": function _default(domEvent) {
             // Bind methods
-            this.__onNativeMouseDownWrapper__P_65_1 = qx.lang.Function.listener(this.__onNativeMouseDown__P_65_18, this);
-            this.__onNativeMouseUpWrapper__P_65_2 = qx.lang.Function.listener(this.__onNativeMouseUp__P_65_19, this);
-            this.__onNativeFocusOutWrapper__P_65_8 = qx.lang.Function.listener(this.__onNativeFocusOut__P_65_24, this);
-            this.__onNativeFocusWrapper__P_65_3 = qx.lang.Function.listener(this.__onNativeFocus__P_65_20, this);
-            this.__onNativeBlurWrapper__P_65_4 = qx.lang.Function.listener(this.__onNativeBlur__P_65_21, this);
-            this.__onNativeSelectStartWrapper__P_65_6 = qx.lang.Function.listener(this.__onNativeSelectStart__P_65_25, this); // Register events
+            this.__onNativeMouseDownWrapper__P_66_1 = qx.lang.Function.listener(this.__onNativeMouseDown__P_66_18, this);
+            this.__onNativeMouseUpWrapper__P_66_2 = qx.lang.Function.listener(this.__onNativeMouseUp__P_66_19, this);
+            this.__onNativeFocusOutWrapper__P_66_8 = qx.lang.Function.listener(this.__onNativeFocusOut__P_66_24, this);
+            this.__onNativeFocusWrapper__P_66_3 = qx.lang.Function.listener(this.__onNativeFocus__P_66_20, this);
+            this.__onNativeBlurWrapper__P_66_4 = qx.lang.Function.listener(this.__onNativeBlur__P_66_21, this);
+            this.__onNativeSelectStartWrapper__P_66_6 = qx.lang.Function.listener(this.__onNativeSelectStart__P_66_25, this); // Register events
 
-            qx.bom.Event.addNativeListener(this._document, "mousedown", this.__onNativeMouseDownWrapper__P_65_1, true);
-            qx.bom.Event.addNativeListener(this._document, "mouseup", this.__onNativeMouseUpWrapper__P_65_2, true);
-            qx.bom.Event.addNativeListener(this._document, "selectstart", this.__onNativeSelectStartWrapper__P_65_6, false);
-            qx.bom.Event.addNativeListener(this._window, "DOMFocusOut", this.__onNativeFocusOutWrapper__P_65_8, true);
-            qx.bom.Event.addNativeListener(this._window, "focus", this.__onNativeFocusWrapper__P_65_3, true);
-            qx.bom.Event.addNativeListener(this._window, "blur", this.__onNativeBlurWrapper__P_65_4, true);
+            qx.bom.Event.addNativeListener(this._document, "mousedown", this.__onNativeMouseDownWrapper__P_66_1, true);
+            qx.bom.Event.addNativeListener(this._document, "mouseup", this.__onNativeMouseUpWrapper__P_66_2, true);
+            qx.bom.Event.addNativeListener(this._document, "selectstart", this.__onNativeSelectStartWrapper__P_66_6, false);
+            qx.bom.Event.addNativeListener(this._window, "DOMFocusOut", this.__onNativeFocusOutWrapper__P_66_8, true);
+            qx.bom.Event.addNativeListener(this._window, "focus", this.__onNativeFocusWrapper__P_66_3, true);
+            qx.bom.Event.addNativeListener(this._window, "blur", this.__onNativeBlurWrapper__P_66_4, true);
           }
         }),
         "opera": function opera() {
           // Bind methods
-          this.__onNativeMouseDownWrapper__P_65_1 = qx.lang.Function.listener(this.__onNativeMouseDown__P_65_18, this);
-          this.__onNativeMouseUpWrapper__P_65_2 = qx.lang.Function.listener(this.__onNativeMouseUp__P_65_19, this);
-          this.__onNativeFocusInWrapper__P_65_7 = qx.lang.Function.listener(this.__onNativeFocusIn__P_65_23, this);
-          this.__onNativeFocusOutWrapper__P_65_8 = qx.lang.Function.listener(this.__onNativeFocusOut__P_65_24, this); // Register events
+          this.__onNativeMouseDownWrapper__P_66_1 = qx.lang.Function.listener(this.__onNativeMouseDown__P_66_18, this);
+          this.__onNativeMouseUpWrapper__P_66_2 = qx.lang.Function.listener(this.__onNativeMouseUp__P_66_19, this);
+          this.__onNativeFocusInWrapper__P_66_7 = qx.lang.Function.listener(this.__onNativeFocusIn__P_66_23, this);
+          this.__onNativeFocusOutWrapper__P_66_8 = qx.lang.Function.listener(this.__onNativeFocusOut__P_66_24, this); // Register events
 
-          qx.bom.Event.addNativeListener(this._document, "mousedown", this.__onNativeMouseDownWrapper__P_65_1, true);
-          qx.bom.Event.addNativeListener(this._document, "mouseup", this.__onNativeMouseUpWrapper__P_65_2, true);
-          qx.bom.Event.addNativeListener(this._window, "DOMFocusIn", this.__onNativeFocusInWrapper__P_65_7, true);
-          qx.bom.Event.addNativeListener(this._window, "DOMFocusOut", this.__onNativeFocusOutWrapper__P_65_8, true);
+          qx.bom.Event.addNativeListener(this._document, "mousedown", this.__onNativeMouseDownWrapper__P_66_1, true);
+          qx.bom.Event.addNativeListener(this._document, "mouseup", this.__onNativeMouseUpWrapper__P_66_2, true);
+          qx.bom.Event.addNativeListener(this._window, "DOMFocusIn", this.__onNativeFocusInWrapper__P_66_7, true);
+          qx.bom.Event.addNativeListener(this._window, "DOMFocusOut", this.__onNativeFocusOutWrapper__P_66_8, true);
         }
       }),
 
@@ -14530,44 +14530,44 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       _stopObserver: qx.core.Environment.select("engine.name", {
         "gecko": function gecko() {
-          qx.bom.Event.removeNativeListener(this._document, "mousedown", this.__onNativeMouseDownWrapper__P_65_1, true);
-          qx.bom.Event.removeNativeListener(this._document, "mouseup", this.__onNativeMouseUpWrapper__P_65_2, true);
-          qx.bom.Event.removeNativeListener(this._window, "focus", this.__onNativeFocusWrapper__P_65_3, true);
-          qx.bom.Event.removeNativeListener(this._window, "blur", this.__onNativeBlurWrapper__P_65_4, true);
-          qx.bom.Event.removeNativeListener(this._window, "draggesture", this.__onNativeDragGestureWrapper__P_65_5, true);
+          qx.bom.Event.removeNativeListener(this._document, "mousedown", this.__onNativeMouseDownWrapper__P_66_1, true);
+          qx.bom.Event.removeNativeListener(this._document, "mouseup", this.__onNativeMouseUpWrapper__P_66_2, true);
+          qx.bom.Event.removeNativeListener(this._window, "focus", this.__onNativeFocusWrapper__P_66_3, true);
+          qx.bom.Event.removeNativeListener(this._window, "blur", this.__onNativeBlurWrapper__P_66_4, true);
+          qx.bom.Event.removeNativeListener(this._window, "draggesture", this.__onNativeDragGestureWrapper__P_66_5, true);
         },
         "mshtml": function mshtml() {
-          qx.bom.Event.removeNativeListener(this._document, "mousedown", this.__onNativeMouseDownWrapper__P_65_1);
-          qx.bom.Event.removeNativeListener(this._document, "mouseup", this.__onNativeMouseUpWrapper__P_65_2);
-          qx.bom.Event.removeNativeListener(this._document, "focusin", this.__onNativeFocusInWrapper__P_65_7);
-          qx.bom.Event.removeNativeListener(this._document, "focusout", this.__onNativeFocusOutWrapper__P_65_8);
-          qx.bom.Event.removeNativeListener(this._document, "selectstart", this.__onNativeSelectStartWrapper__P_65_6);
+          qx.bom.Event.removeNativeListener(this._document, "mousedown", this.__onNativeMouseDownWrapper__P_66_1);
+          qx.bom.Event.removeNativeListener(this._document, "mouseup", this.__onNativeMouseUpWrapper__P_66_2);
+          qx.bom.Event.removeNativeListener(this._document, "focusin", this.__onNativeFocusInWrapper__P_66_7);
+          qx.bom.Event.removeNativeListener(this._document, "focusout", this.__onNativeFocusOutWrapper__P_66_8);
+          qx.bom.Event.removeNativeListener(this._document, "selectstart", this.__onNativeSelectStartWrapper__P_66_6);
         },
         "webkit": qx.core.Environment.select("browser.name", {
           // fix for [ISSUE #9174]
           // distinguish bettween MS Edge, which is reported
           // as engine webkit and all other webkit browsers
           "edge": function edge() {
-            qx.bom.Event.removeNativeListener(this._document, "mousedown", this.__onNativeMouseDownWrapper__P_65_1);
-            qx.bom.Event.removeNativeListener(this._document, "mouseup", this.__onNativeMouseUpWrapper__P_65_2);
-            qx.bom.Event.removeNativeListener(this._document, "focusin", this.__onNativeFocusInWrapper__P_65_7);
-            qx.bom.Event.removeNativeListener(this._document, "focusout", this.__onNativeFocusOutWrapper__P_65_8);
-            qx.bom.Event.removeNativeListener(this._document, "selectstart", this.__onNativeSelectStartWrapper__P_65_6);
+            qx.bom.Event.removeNativeListener(this._document, "mousedown", this.__onNativeMouseDownWrapper__P_66_1);
+            qx.bom.Event.removeNativeListener(this._document, "mouseup", this.__onNativeMouseUpWrapper__P_66_2);
+            qx.bom.Event.removeNativeListener(this._document, "focusin", this.__onNativeFocusInWrapper__P_66_7);
+            qx.bom.Event.removeNativeListener(this._document, "focusout", this.__onNativeFocusOutWrapper__P_66_8);
+            qx.bom.Event.removeNativeListener(this._document, "selectstart", this.__onNativeSelectStartWrapper__P_66_6);
           },
           "default": function _default() {
-            qx.bom.Event.removeNativeListener(this._document, "mousedown", this.__onNativeMouseDownWrapper__P_65_1, true);
-            qx.bom.Event.removeNativeListener(this._document, "mouseup", this.__onNativeMouseUpWrapper__P_65_2, true);
-            qx.bom.Event.removeNativeListener(this._document, "selectstart", this.__onNativeSelectStartWrapper__P_65_6, false);
-            qx.bom.Event.removeNativeListener(this._window, "DOMFocusOut", this.__onNativeFocusOutWrapper__P_65_8, true);
-            qx.bom.Event.removeNativeListener(this._window, "focus", this.__onNativeFocusWrapper__P_65_3, true);
-            qx.bom.Event.removeNativeListener(this._window, "blur", this.__onNativeBlurWrapper__P_65_4, true);
+            qx.bom.Event.removeNativeListener(this._document, "mousedown", this.__onNativeMouseDownWrapper__P_66_1, true);
+            qx.bom.Event.removeNativeListener(this._document, "mouseup", this.__onNativeMouseUpWrapper__P_66_2, true);
+            qx.bom.Event.removeNativeListener(this._document, "selectstart", this.__onNativeSelectStartWrapper__P_66_6, false);
+            qx.bom.Event.removeNativeListener(this._window, "DOMFocusOut", this.__onNativeFocusOutWrapper__P_66_8, true);
+            qx.bom.Event.removeNativeListener(this._window, "focus", this.__onNativeFocusWrapper__P_66_3, true);
+            qx.bom.Event.removeNativeListener(this._window, "blur", this.__onNativeBlurWrapper__P_66_4, true);
           }
         }),
         "opera": function opera() {
-          qx.bom.Event.removeNativeListener(this._document, "mousedown", this.__onNativeMouseDownWrapper__P_65_1, true);
-          qx.bom.Event.removeNativeListener(this._document, "mouseup", this.__onNativeMouseUpWrapper__P_65_2, true);
-          qx.bom.Event.removeNativeListener(this._window, "DOMFocusIn", this.__onNativeFocusInWrapper__P_65_7, true);
-          qx.bom.Event.removeNativeListener(this._window, "DOMFocusOut", this.__onNativeFocusOutWrapper__P_65_8, true);
+          qx.bom.Event.removeNativeListener(this._document, "mousedown", this.__onNativeMouseDownWrapper__P_66_1, true);
+          qx.bom.Event.removeNativeListener(this._document, "mouseup", this.__onNativeMouseUpWrapper__P_66_2, true);
+          qx.bom.Event.removeNativeListener(this._window, "DOMFocusIn", this.__onNativeFocusInWrapper__P_66_7, true);
+          qx.bom.Event.removeNativeListener(this._window, "DOMFocusOut", this.__onNativeFocusOutWrapper__P_66_8, true);
         }
       }),
 
@@ -14586,11 +14586,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @signature function(domEvent)
        * @param domEvent {Event} Native event
        */
-      __onNativeDragGesture__P_65_22: qx.event.GlobalError.observeMethod(qx.core.Environment.select("engine.name", {
+      __onNativeDragGesture__P_66_22: qx.event.GlobalError.observeMethod(qx.core.Environment.select("engine.name", {
         "gecko": function gecko(domEvent) {
           var target = qx.bom.Event.getTarget(domEvent);
 
-          if (!this.__isSelectable__P_65_26(target)) {
+          if (!this.__isSelectable__P_66_26(target)) {
             qx.bom.Event.preventDefault(domEvent);
           }
         },
@@ -14604,16 +14604,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @signature function(domEvent)
        * @param domEvent {Event} Native event
        */
-      __onNativeFocusIn__P_65_23: qx.event.GlobalError.observeMethod(qx.core.Environment.select("engine.name", {
+      __onNativeFocusIn__P_66_23: qx.event.GlobalError.observeMethod(qx.core.Environment.select("engine.name", {
         "mshtml": function mshtml(domEvent) {
           // Force window focus to be the first
-          this.__doWindowFocus__P_65_17(); // Update internal data
+          this.__doWindowFocus__P_66_17(); // Update internal data
 
 
           var target = qx.bom.Event.getTarget(domEvent); // IE focusin is also fired on elements which are not focusable at all
           // We need to look up for the next focusable element.
 
-          var focusTarget = this.__findFocusableElement__P_65_27(target);
+          var focusTarget = this.__findFocusableElement__P_66_27(target);
 
           if (focusTarget) {
             this.setFocus(focusTarget);
@@ -14628,13 +14628,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           // as engine webkit and all other webkit browsers
           "edge": function edge(domEvent) {
             // Force window focus to be the first
-            this.__doWindowFocus__P_65_17(); // Update internal data
+            this.__doWindowFocus__P_66_17(); // Update internal data
 
 
             var target = qx.bom.Event.getTarget(domEvent); // IE focusin is also fired on elements which are not focusable at all
             // We need to look up for the next focusable element.
 
-            var focusTarget = this.__findFocusableElement__P_65_27(target);
+            var focusTarget = this.__findFocusableElement__P_66_27(target);
 
             if (focusTarget) {
               this.setFocus(focusTarget);
@@ -14649,22 +14649,22 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           var target = qx.bom.Event.getTarget(domEvent);
 
           if (target == this._document || target == this._window) {
-            this.__doWindowFocus__P_65_17();
+            this.__doWindowFocus__P_66_17();
 
-            if (this.__previousFocus__P_65_9) {
-              this.setFocus(this.__previousFocus__P_65_9);
-              delete this.__previousFocus__P_65_9;
+            if (this.__previousFocus__P_66_9) {
+              this.setFocus(this.__previousFocus__P_66_9);
+              delete this.__previousFocus__P_66_9;
             }
 
-            if (this.__previousActive__P_65_10) {
-              this.setActive(this.__previousActive__P_65_10);
-              delete this.__previousActive__P_65_10;
+            if (this.__previousActive__P_66_10) {
+              this.setActive(this.__previousActive__P_66_10);
+              delete this.__previousActive__P_66_10;
             }
           } else {
             this.setFocus(target);
             this.tryActivate(target); // Clear selection
 
-            if (!this.__isSelectable__P_65_26(target)) {
+            if (!this.__isSelectable__P_66_26(target)) {
               target.selectionStart = 0;
               target.selectionEnd = 0;
             }
@@ -14680,13 +14680,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @signature function(domEvent)
        * @param domEvent {Event} Native event
        */
-      __onNativeFocusOut__P_65_24: qx.event.GlobalError.observeMethod(qx.core.Environment.select("engine.name", {
+      __onNativeFocusOut__P_66_24: qx.event.GlobalError.observeMethod(qx.core.Environment.select("engine.name", {
         "mshtml": function mshtml(domEvent) {
           var relatedTarget = qx.bom.Event.getRelatedTarget(domEvent); // If the focus goes to nowhere (the document is blurred)
 
           if (relatedTarget == null) {
             // Update internal representation
-            this.__doWindowBlur__P_65_16(); // Reset active and focus
+            this.__doWindowBlur__P_66_16(); // Reset active and focus
 
 
             this.resetFocus();
@@ -14702,7 +14702,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
             if (relatedTarget == null) {
               // Update internal representation
-              this.__doWindowBlur__P_65_16(); // Reset active and focus
+              this.__doWindowBlur__P_66_16(); // Reset active and focus
 
 
               this.resetFocus();
@@ -14725,13 +14725,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           var target = qx.bom.Event.getTarget(domEvent);
 
           if (target == this._document) {
-            this.__doWindowBlur__P_65_16(); // Store old focus/active elements
+            this.__doWindowBlur__P_66_16(); // Store old focus/active elements
             // Opera do not fire focus events for them
             // when refocussing the window (in my opinion an error)
 
 
-            this.__previousFocus__P_65_9 = this.getFocus();
-            this.__previousActive__P_65_10 = this.getActive();
+            this.__previousFocus__P_66_9 = this.getFocus();
+            this.__previousActive__P_66_10 = this.getActive();
             this.resetFocus();
             this.resetActive();
           } else {
@@ -14753,12 +14753,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @signature function(domEvent)
        * @param domEvent {Event} Native event
        */
-      __onNativeBlur__P_65_21: qx.event.GlobalError.observeMethod(qx.core.Environment.select("engine.name", {
+      __onNativeBlur__P_66_21: qx.event.GlobalError.observeMethod(qx.core.Environment.select("engine.name", {
         "gecko": function gecko(domEvent) {
           var target = qx.bom.Event.getTarget(domEvent);
 
           if (target === this._window || target === this._document) {
-            this.__doWindowBlur__P_65_16();
+            this.__doWindowBlur__P_66_16();
 
             this.resetActive();
             this.resetFocus();
@@ -14768,13 +14768,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           var target = qx.bom.Event.getTarget(domEvent);
 
           if (target === this._window || target === this._document) {
-            this.__doWindowBlur__P_65_16(); // Store old focus/active elements
+            this.__doWindowBlur__P_66_16(); // Store old focus/active elements
             // Opera do not fire focus events for them
             // when refocussing the window (in my opinion an error)
 
 
-            this.__previousFocus__P_65_9 = this.getFocus();
-            this.__previousActive__P_65_10 = this.getActive();
+            this.__previousFocus__P_66_9 = this.getFocus();
+            this.__previousActive__P_66_10 = this.getActive();
             this.resetActive();
             this.resetFocus();
           }
@@ -14788,12 +14788,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @signature function(domEvent)
        * @param domEvent {Event} Native event
        */
-      __onNativeFocus__P_65_20: qx.event.GlobalError.observeMethod(qx.core.Environment.select("engine.name", {
+      __onNativeFocus__P_66_20: qx.event.GlobalError.observeMethod(qx.core.Environment.select("engine.name", {
         "gecko": function gecko(domEvent) {
           var target = qx.bom.Event.getTarget(domEvent);
 
           if (target === this._window || target === this._document) {
-            this.__doWindowFocus__P_65_17(); // Always speak of the body, not the window or document
+            this.__doWindowFocus__P_66_17(); // Always speak of the body, not the window or document
 
 
             target = this._body;
@@ -14806,21 +14806,21 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           var target = qx.bom.Event.getTarget(domEvent);
 
           if (target === this._window || target === this._document) {
-            this.__doWindowFocus__P_65_17();
+            this.__doWindowFocus__P_66_17();
 
-            if (this.__previousFocus__P_65_9) {
-              this.setFocus(this.__previousFocus__P_65_9);
-              delete this.__previousFocus__P_65_9;
+            if (this.__previousFocus__P_66_9) {
+              this.setFocus(this.__previousFocus__P_66_9);
+              delete this.__previousFocus__P_66_9;
             }
 
-            if (this.__previousActive__P_65_10) {
-              this.setActive(this.__previousActive__P_65_10);
-              delete this.__previousActive__P_65_10;
+            if (this.__previousActive__P_66_10) {
+              this.setActive(this.__previousActive__P_66_10);
+              delete this.__previousActive__P_66_10;
             }
           } else {
-            this.__relatedTarget__P_65_13 = domEvent.relatedTarget;
+            this.__relatedTarget__P_66_13 = domEvent.relatedTarget;
             this.setFocus(target);
-            this.__relatedTarget__P_65_13 = null;
+            this.__relatedTarget__P_66_13 = null;
             this.tryActivate(target);
           }
         },
@@ -14833,15 +14833,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @signature function(domEvent)
        * @param domEvent {Event} Native event
        */
-      __onNativeMouseDown__P_65_18: qx.event.GlobalError.observeMethod(qx.core.Environment.select("engine.name", {
+      __onNativeMouseDown__P_66_18: qx.event.GlobalError.observeMethod(qx.core.Environment.select("engine.name", {
         "mshtml": function mshtml(domEvent) {
           var target = qx.bom.Event.getTarget(domEvent); // Stop events when no focus element available (or blocked)
 
-          var focusTarget = this.__findFocusableElement__P_65_27(target);
+          var focusTarget = this.__findFocusableElement__P_66_27(target);
 
           if (focusTarget) {
             // Add unselectable to keep selection
-            if (!this.__isSelectable__P_65_26(target)) {
+            if (!this.__isSelectable__P_66_26(target)) {
               // The element is not selectable. Block selection.
               target.unselectable = "on"; // Unselectable may keep the current selection which
               // is not what we like when changing the focus element.
@@ -14865,7 +14865,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             // Stop event for blocking support
             qx.bom.Event.preventDefault(domEvent); // Add unselectable to keep selection
 
-            if (!this.__isSelectable__P_65_26(target)) {
+            if (!this.__isSelectable__P_66_26(target)) {
               target.unselectable = "on";
             }
           }
@@ -14873,7 +14873,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         "webkit": function webkit(domEvent) {
           var target = qx.bom.Event.getTarget(domEvent);
 
-          var focusTarget = this.__findFocusableElement__P_65_27(target);
+          var focusTarget = this.__findFocusableElement__P_66_27(target);
 
           if (focusTarget) {
             this.setFocus(focusTarget);
@@ -14884,7 +14884,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         "gecko": function gecko(domEvent) {
           var target = qx.bom.Event.getTarget(domEvent);
 
-          var focusTarget = this.__findFocusableElement__P_65_27(target);
+          var focusTarget = this.__findFocusableElement__P_66_27(target);
 
           if (focusTarget) {
             this.setFocus(focusTarget);
@@ -14895,9 +14895,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         "opera": function opera(domEvent) {
           var target = qx.bom.Event.getTarget(domEvent);
 
-          var focusTarget = this.__findFocusableElement__P_65_27(target);
+          var focusTarget = this.__findFocusableElement__P_66_27(target);
 
-          if (!this.__isSelectable__P_65_26(target)) {
+          if (!this.__isSelectable__P_66_26(target)) {
             // Prevent the default action for all non-selectable
             // targets. This prevents text selection and context menu.
             qx.bom.Event.preventDefault(domEvent); // The stopped event keeps the selection
@@ -14932,7 +14932,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @signature function(domEvent)
        * @param domEvent {Event} Native event
        */
-      __onNativeMouseUp__P_65_19: qx.event.GlobalError.observeMethod(qx.core.Environment.select("engine.name", {
+      __onNativeMouseUp__P_66_19: qx.event.GlobalError.observeMethod(qx.core.Environment.select("engine.name", {
         "mshtml": function mshtml(domEvent) {
           var target = qx.bom.Event.getTarget(domEvent);
 
@@ -14940,7 +14940,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             target.unselectable = "off";
           }
 
-          this.tryActivate(this.__fixFocus__P_65_28(target));
+          this.tryActivate(this.__fixFocus__P_66_28(target));
         },
         "gecko": function gecko(domEvent) {
           // As of Firefox 3.0:
@@ -14958,11 +14958,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         },
         "webkit": function webkit(domEvent) {
           var target = qx.bom.Event.getTarget(domEvent);
-          this.tryActivate(this.__fixFocus__P_65_28(target));
+          this.tryActivate(this.__fixFocus__P_66_28(target));
         },
         "opera": function opera(domEvent) {
           var target = qx.bom.Event.getTarget(domEvent);
-          this.tryActivate(this.__fixFocus__P_65_28(target));
+          this.tryActivate(this.__fixFocus__P_66_28(target));
         },
         "default": null
       })),
@@ -14974,7 +14974,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param target {Element} element to check
        * @return {Element} return correct target (in case of compound input controls should always return textfield);
        */
-      __getCorrectFocusTarget__P_65_29: function __getCorrectFocusTarget__P_65_29(target) {
+      __getCorrectFocusTarget__P_66_29: function __getCorrectFocusTarget__P_66_29(target) {
         var focusedElement = this.getFocus();
 
         if (focusedElement && target != focusedElement) {
@@ -15003,12 +15003,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param target {Element} target element from mouse up event
        * @return {Element} Element to activate;
        */
-      __fixFocus__P_65_28: qx.event.GlobalError.observeMethod(qx.core.Environment.select("engine.name", {
+      __fixFocus__P_66_28: qx.event.GlobalError.observeMethod(qx.core.Environment.select("engine.name", {
         "mshtml": function mshtml(target) {
-          return this.__getCorrectFocusTarget__P_65_29(target);
+          return this.__getCorrectFocusTarget__P_66_29(target);
         },
         "webkit": function webkit(target) {
-          return this.__getCorrectFocusTarget__P_65_29(target);
+          return this.__getCorrectFocusTarget__P_66_29(target);
         },
         "default": function _default(target) {
           return target;
@@ -15021,18 +15021,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *@signature function(domEvent)
        * @param domEvent {Event} Native event
        */
-      __onNativeSelectStart__P_65_25: qx.event.GlobalError.observeMethod(qx.core.Environment.select("engine.name", {
+      __onNativeSelectStart__P_66_25: qx.event.GlobalError.observeMethod(qx.core.Environment.select("engine.name", {
         "mshtml": function mshtml(domEvent) {
           var target = qx.bom.Event.getTarget(domEvent);
 
-          if (!this.__isSelectable__P_65_26(target)) {
+          if (!this.__isSelectable__P_66_26(target)) {
             qx.bom.Event.preventDefault(domEvent);
           }
         },
         "webkit": function webkit(domEvent) {
           var target = qx.bom.Event.getTarget(domEvent);
 
-          if (!this.__isSelectable__P_65_26(target)) {
+          if (!this.__isSelectable__P_66_26(target)) {
             qx.bom.Event.preventDefault(domEvent);
           }
         },
@@ -15052,7 +15052,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param el {Element} DOM Element to query
        * @return {Boolean} Whether the element is focusable
        */
-      __isFocusable__P_65_30: function __isFocusable__P_65_30(el) {
+      __isFocusable__P_66_30: function __isFocusable__P_66_30(el) {
         var index = qx.bom.element.Attribute.get(el, "tabIndex");
 
         if (index >= 1) {
@@ -15074,13 +15074,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param el {Element} Element to start lookup with.
        * @return {Element|null} The next focusable element.
        */
-      __findFocusableElement__P_65_27: function __findFocusableElement__P_65_27(el) {
+      __findFocusableElement__P_66_27: function __findFocusableElement__P_66_27(el) {
         while (el && el.nodeType === 1) {
           if (el.getAttribute("qxKeepFocus") == "on") {
             return null;
           }
 
-          if (this.__isFocusable__P_65_30(el)) {
+          if (this.__isFocusable__P_66_30(el)) {
             return el;
           }
 
@@ -15103,7 +15103,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param el {Element} Element to start lookup with.
        * @return {Element} The next activatable element.
        */
-      __findActivatableElement__P_65_14: function __findActivatableElement__P_65_14(el) {
+      __findActivatableElement__P_66_14: function __findActivatableElement__P_66_14(el) {
         var orig = el;
 
         while (el && el.nodeType === 1) {
@@ -15124,7 +15124,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param node {Element} Node to start lookup with
        * @return {Boolean} Whether the content is selectable.
        */
-      __isSelectable__P_65_26: function __isSelectable__P_65_26(node) {
+      __isSelectable__P_66_26: function __isSelectable__P_66_26(node) {
         while (node && node.nodeType === 1) {
           var attr = node.getAttribute("qxSelectable");
 
@@ -15147,15 +15147,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       _applyActive: function _applyActive(value, old) {
         // Fire events
         if (old) {
-          this.__fireEvent__P_65_15(old, value, "deactivate", true);
+          this.__fireEvent__P_66_15(old, value, "deactivate", true);
         }
 
         if (value) {
-          this.__fireEvent__P_65_15(value, old, "activate", true);
+          this.__fireEvent__P_66_15(value, old, "activate", true);
         } // correct scroll position for iOS 7
 
 
-        if (this.__needsScrollFix__P_65_0) {
+        if (this.__needsScrollFix__P_66_0) {
           window.scrollTo(0, 0);
         }
       },
@@ -15163,20 +15163,20 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       _applyFocus: function _applyFocus(value, old) {
         // Fire bubbling events
         if (old) {
-          this.__fireEvent__P_65_15(old, value, "focusout", true);
+          this.__fireEvent__P_66_15(old, value, "focusout", true);
         }
 
         if (value) {
-          this.__fireEvent__P_65_15(value, old, "focusin", true);
+          this.__fireEvent__P_66_15(value, old, "focusin", true);
         } // Fire after events
 
 
         if (old) {
-          this.__fireEvent__P_65_15(old, value, "blur", false);
+          this.__fireEvent__P_66_15(old, value, "blur", false);
         }
 
         if (value) {
-          this.__fireEvent__P_65_15(value, old || this.__relatedTarget__P_65_13, "focus", false);
+          this.__fireEvent__P_66_15(value, old || this.__relatedTarget__P_66_13, "focus", false);
         }
       }
     },
@@ -15189,7 +15189,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     destruct: function destruct() {
       this._stopObserver();
 
-      this._manager = this._window = this._document = this._root = this._body = this.__mouseActive__P_65_31 = this.__relatedTarget__P_65_13 = null;
+      this._manager = this._window = this._document = this._root = this._body = this.__mouseActive__P_66_31 = this.__relatedTarget__P_66_13 = null;
     },
 
     /*
@@ -15304,11 +15304,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      */
     construct: function construct(manager, registration) {
       qx.event.dispatch.AbstractBubbling.constructor.call(this, manager);
-      this.__window__P_79_0 = manager.getWindow();
-      this.__registration__P_79_1 = registration;
-      manager.addListener(this.__window__P_79_0, "blur", this.releaseCapture, this);
-      manager.addListener(this.__window__P_79_0, "focus", this.releaseCapture, this);
-      manager.addListener(this.__window__P_79_0, "scroll", this.releaseCapture, this);
+      this.__window__P_80_0 = manager.getWindow();
+      this.__registration__P_80_1 = registration;
+      manager.addListener(this.__window__P_80_0, "blur", this.releaseCapture, this);
+      manager.addListener(this.__window__P_80_0, "focus", this.releaseCapture, this);
+      manager.addListener(this.__window__P_80_0, "scroll", this.releaseCapture, this);
     },
     statics: {
       /** @type {Integer} Priority of this dispatcher */
@@ -15317,10 +15317,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
     /* eslint-disable @qooxdoo/qx/no-refs-in-members */
     members: {
-      __registration__P_79_1: null,
-      __captureElement__P_79_2: null,
-      __containerCapture__P_79_3: true,
-      __window__P_79_0: null,
+      __registration__P_80_1: null,
+      __captureElement__P_80_2: null,
+      __containerCapture__P_80_3: true,
+      __window__P_80_0: null,
       // overridden
       _getParent: function _getParent(target) {
         return target.parentNode;
@@ -15333,7 +15333,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       */
       // overridden
       canDispatchEvent: function canDispatchEvent(target, event, type) {
-        return !!(this.__captureElement__P_79_2 && this.__captureEvents__P_79_4[type]);
+        return !!(this.__captureElement__P_80_2 && this.__captureEvents__P_80_4[type]);
       },
       // overridden
       dispatchEvent: function dispatchEvent(target, event, type) {
@@ -15343,8 +15343,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           return;
         }
 
-        if (this.__containerCapture__P_79_3 || !qx.dom.Hierarchy.contains(this.__captureElement__P_79_2, target)) {
-          target = this.__captureElement__P_79_2;
+        if (this.__containerCapture__P_80_3 || !qx.dom.Hierarchy.contains(this.__captureElement__P_80_2, target)) {
+          target = this.__captureElement__P_80_2;
         }
 
         return qx.event.dispatch.MouseCapture.prototype.dispatchEvent.base.call(this, target, event, type);
@@ -15359,7 +15359,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * @lint ignoreReferenceField(__captureEvents)
        */
-      __captureEvents__P_79_4: {
+      __captureEvents__P_80_4: {
         "mouseup": 1,
         "mousedown": 1,
         "click": 1,
@@ -15393,11 +15393,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       activateCapture: function activateCapture(element, containerCapture) {
         var containerCapture = containerCapture !== false;
 
-        if (this.__captureElement__P_79_2 === element && this.__containerCapture__P_79_3 == containerCapture) {
+        if (this.__captureElement__P_80_2 === element && this.__containerCapture__P_80_3 == containerCapture) {
           return;
         }
 
-        if (this.__captureElement__P_79_2) {
+        if (this.__captureElement__P_80_2) {
           this.releaseCapture();
         } // turn on native mouse capturing if the browser supports it
 
@@ -15414,10 +15414,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           qx.bom.Event.addNativeListener(element, "losecapture", onNativeListener);
         }
 
-        this.__containerCapture__P_79_3 = containerCapture;
-        this.__captureElement__P_79_2 = element;
+        this.__containerCapture__P_80_3 = containerCapture;
+        this.__captureElement__P_80_2 = element;
 
-        this.__registration__P_79_1.fireEvent(element, "capture", qx.event.type.Event, [true, false]);
+        this.__registration__P_80_1.fireEvent(element, "capture", qx.event.type.Event, [true, false]);
       },
 
       /**
@@ -15427,22 +15427,22 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *    null.
        */
       getCaptureElement: function getCaptureElement() {
-        return this.__captureElement__P_79_2;
+        return this.__captureElement__P_80_2;
       },
 
       /**
        * Stop capturing of mouse events.
        */
       releaseCapture: function releaseCapture() {
-        var element = this.__captureElement__P_79_2;
+        var element = this.__captureElement__P_80_2;
 
         if (!element) {
           return;
         }
 
-        this.__captureElement__P_79_2 = null;
+        this.__captureElement__P_80_2 = null;
 
-        this.__registration__P_79_1.fireEvent(element, "losecapture", qx.event.type.Event, [true, false]); // turn off native mouse capturing if the browser supports it
+        this.__registration__P_80_1.fireEvent(element, "losecapture", qx.event.type.Event, [true, false]); // turn off native mouse capturing if the browser supports it
 
 
         this.nativeReleaseCapture(element);
@@ -15916,7 +15916,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @internal
        */
-      __helperElement__P_61_0: {},
+      __helperElement__P_62_0: {},
 
       /**
        * Creates and returns a DOM helper element.
@@ -15932,8 +15932,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         var key = win.location.href;
 
-        if (!qx.dom.Element.__helperElement__P_61_0[key]) {
-          var helper = qx.dom.Element.__helperElement__P_61_0[key] = win.document.createElement("div"); // innerHTML will only parsed correctly if element is appended to document
+        if (!qx.dom.Element.__helperElement__P_62_0[key]) {
+          var helper = qx.dom.Element.__helperElement__P_62_0[key] = win.document.createElement("div"); // innerHTML will only parsed correctly if element is appended to document
 
           if (qx.core.Environment.get("engine.name") == "webkit") {
             helper.style.display = "none";
@@ -15941,7 +15941,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         }
 
-        return qx.dom.Element.__helperElement__P_61_0[key];
+        return qx.dom.Element.__helperElement__P_62_0[key];
       },
 
       /**
@@ -16102,7 +16102,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     */
     statics: {
       /** Internal map of attribute conversions */
-      __hints__P_90_0: {
+      __hints__P_91_0: {
         // Name translation table (camelcase is important for some attributes)
         names: {
           "class": "className",
@@ -16212,7 +16212,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       compile: function compile(map) {
         var html = [];
-        var runtime = this.__hints__P_90_0.runtime;
+        var runtime = this.__hints__P_91_0.runtime;
 
         for (var key in map) {
           if (!runtime[key]) {
@@ -16231,7 +16231,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {var} The value of the attribute
        */
       get: function get(element, name) {
-        var hints = this.__hints__P_90_0;
+        var hints = this.__hints__P_91_0;
         var value; // normalize name
 
         name = hints.names[name] || name; // respect properties
@@ -16275,7 +16275,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           return;
         }
 
-        var hints = this.__hints__P_90_0; // normalize name
+        var hints = this.__hints__P_91_0; // normalize name
 
         name = hints.names[name] || name; // respect booleans
 
@@ -16327,7 +16327,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           return;
         }
 
-        var hints = this.__hints__P_90_0; // Skip serialization of hidden Qooxdoo state properties
+        var hints = this.__hints__P_91_0; // Skip serialization of hidden Qooxdoo state properties
 
         if (hints.qxProperties[name]) {
           return;
@@ -16427,7 +16427,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       qx.html.Node.constructor.call(this, "#text");
 
       if (text) {
-        this.__text__P_121_0 = text;
+        this.__text__P_122_0 = text;
       }
     },
 
@@ -16437,13 +16437,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      * ****************************************************************************
      */
     members: {
-      __text__P_121_0: null,
+      __text__P_122_0: null,
 
       /*
        * @Override
        */
       _createDomElement: function _createDomElement() {
-        return window.document.createTextNode(this.__text__P_121_0 || "");
+        return window.document.createTextNode(this.__text__P_122_0 || "");
       },
 
       /*
@@ -16460,7 +16460,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         qx.html.Text.prototype._copyData.base.call(this, fromMarkup, propertiesFromDom);
 
         var elem = this._domNode;
-        elem.nodeValue = this.__text__P_121_0 || "";
+        elem.nodeValue = this.__text__P_122_0 || "";
       },
 
       /*
@@ -16484,15 +16484,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         qx.html.Text.prototype._syncData.base.call(this);
 
         var elem = this._domNode;
-        elem.nodeValue = this.__text__P_121_0 || "";
+        elem.nodeValue = this.__text__P_122_0 || "";
       },
 
       /*
        * @Override
        */
       _serializeImpl: function _serializeImpl(writer) {
-        if (this.__text__P_121_0 !== null) {
-          writer(this.__text__P_121_0);
+        if (this.__text__P_122_0 !== null) {
+          writer(this.__text__P_122_0);
         }
       },
 
@@ -16510,7 +16510,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param direct {Boolean?} whether to set the DOM node immediately if there is one 
        */
       setText: function setText(value, direct) {
-        this.__text__P_121_0 = value;
+        this.__text__P_122_0 = value;
 
         if (direct && this._domNode) {
           this._domNode.nodeValue = value;
@@ -16527,7 +16527,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} the text node
        */
       getText: function getText() {
-        return this.__text__P_121_0;
+        return this.__text__P_122_0;
       }
     },
 
@@ -16537,7 +16537,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      * ****************************************************************************
      */
     defer: function defer(statics) {
-      statics.__deferredCall__P_121_1 = new qx.util.DeferredCall(statics.flush, statics);
+      statics.__deferredCall__P_122_1 = new qx.util.DeferredCall(statics.flush, statics);
     },
 
     /*
@@ -16551,7 +16551,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         delete qx.html.Element._scroll[this.toHashCode()];
       }
 
-      this.__attribValues__P_121_2 = this.__styleValues__P_121_3 = this.__eventValues__P_121_4 = this.__attribJobs__P_121_5 = this.__styleJobs__P_121_6 = this.__lazyScrollIntoViewX__P_121_7 = this.__lazyScrollIntoViewY__P_121_8 = null;
+      this.__attribValues__P_122_2 = this.__styleValues__P_122_3 = this.__eventValues__P_122_4 = this.__attribJobs__P_122_5 = this.__styleJobs__P_122_6 = this.__lazyScrollIntoViewX__P_122_7 = this.__lazyScrollIntoViewY__P_122_8 = null;
     }
   });
   qx.html.Text.$$dbClassInfo = $$dbClassInfo;
@@ -16617,7 +16617,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__manager__P_72_0 = qx.event.Registration.getManager(window);
+      this.__manager__P_73_0 = qx.event.Registration.getManager(window);
     },
 
     /*
@@ -16706,14 +16706,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
     /* eslint-disable @qooxdoo/qx/no-refs-in-members */
     members: {
-      __manager__P_72_0: null,
+      __manager__P_73_0: null,
 
       /**
        * @type {Map} Supported focus event types
        *
        * @lint ignoreReferenceField(__focusEvents)
        */
-      __focusEvents__P_72_1: {
+      __focusEvents__P_73_1: {
         focusin: 1,
         focusout: 1,
         focus: 1,
@@ -16725,7 +16725,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @lint ignoreReferenceField(__ignoreDisabled)
        */
-      __ignoreDisabled__P_72_2: {
+      __ignoreDisabled__P_73_2: {
         // mouse events
         mouseover: 1,
         mouseout: 1,
@@ -16760,7 +16760,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // Correcting target for focus events
 
 
-        if (this.__focusEvents__P_72_1[domEvent.getType()]) {
+        if (this.__focusEvents__P_73_1[domEvent.getType()]) {
           widgetTarget = widgetTarget && widgetTarget.getFocusTarget(); // Whether nothing is returned
 
           if (!widgetTarget) {
@@ -16779,7 +16779,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
           if (widgetRelatedTarget) {
             // Correcting target for focus events
-            if (this.__focusEvents__P_72_1[domEvent.getType()]) {
+            if (this.__focusEvents__P_73_1[domEvent.getType()]) {
               widgetRelatedTarget = widgetRelatedTarget.getFocusTarget();
             } // If target and related target are identical ignore the event
 
@@ -16799,14 +16799,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // Correcting target for focus events
 
 
-        if (this.__focusEvents__P_72_1[domEvent.getType()]) {
+        if (this.__focusEvents__P_73_1[domEvent.getType()]) {
           currentWidget = currentWidget.getFocusTarget();
         } // Ignore most events in the disabled state.
 
 
         var type = domEvent.getType();
 
-        if (!currentWidget || !(currentWidget.isEnabled() || this.__ignoreDisabled__P_72_2[type])) {
+        if (!currentWidget || !(currentWidget.isEnabled() || this.__ignoreDisabled__P_73_2[type])) {
           return;
         } // PROCESS LISTENERS
         // Load listeners
@@ -16814,14 +16814,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         var capture = domEvent.getEventPhase() == qx.event.type.Event.CAPTURING_PHASE;
 
-        var listeners = this.__manager__P_72_0.getListeners(currentWidget, type, capture);
+        var listeners = this.__manager__P_73_0.getListeners(currentWidget, type, capture);
 
         if (domEvent.getEventPhase() == qx.event.type.Event.AT_TARGET) {
           if (!listeners) {
             listeners = [];
           }
 
-          var otherListeners = this.__manager__P_72_0.getListeners(currentWidget, type, !capture);
+          var otherListeners = this.__manager__P_73_0.getListeners(currentWidget, type, !capture);
 
           if (otherListeners) {
             listeners = listeners.concat(otherListeners);
@@ -16911,7 +16911,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__manager__P_72_0 = null;
+      this.__manager__P_73_0 = null;
     },
 
     /*
@@ -17014,16 +17014,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     construct: function construct(manager) {
       qx.core.Object.constructor.call(this); // Define shorthands
 
-      this.__manager__P_73_0 = manager;
-      this.__root__P_73_1 = manager.getWindow().document.documentElement; // Initialize listener
+      this.__manager__P_74_0 = manager;
+      this.__root__P_74_1 = manager.getWindow().document.documentElement; // Initialize listener
 
-      this.__manager__P_73_0.addListener(this.__root__P_73_1, "longtap", this._onLongtap, this);
+      this.__manager__P_74_0.addListener(this.__root__P_74_1, "longtap", this._onLongtap, this);
 
-      this.__manager__P_73_0.addListener(this.__root__P_73_1, "pointerdown", this._onPointerdown, this, true);
+      this.__manager__P_74_0.addListener(this.__root__P_74_1, "pointerdown", this._onPointerdown, this, true);
 
       qx.event.Registration.addListener(window, "blur", this._onWindowBlur, this); // Initialize data structures
 
-      this.__rebuildStructures__P_73_2();
+      this.__rebuildStructures__P_74_2();
     },
 
     /*
@@ -17080,21 +17080,21 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __manager__P_73_0: null,
-      __root__P_73_1: null,
-      __dropTarget__P_73_3: null,
-      __dragTarget__P_73_4: null,
-      __types__P_73_5: null,
-      __actions__P_73_6: null,
-      __keys__P_73_7: null,
-      __cache__P_73_8: null,
-      __currentType__P_73_9: null,
-      __currentAction__P_73_10: null,
-      __sessionActive__P_73_11: false,
-      __validDrop__P_73_12: false,
-      __validAction__P_73_13: false,
-      __dragTargetWidget__P_73_14: null,
-      __startConfig__P_73_15: null,
+      __manager__P_74_0: null,
+      __root__P_74_1: null,
+      __dropTarget__P_74_3: null,
+      __dragTarget__P_74_4: null,
+      __types__P_74_5: null,
+      __actions__P_74_6: null,
+      __keys__P_74_7: null,
+      __cache__P_74_8: null,
+      __currentType__P_74_9: null,
+      __currentAction__P_74_10: null,
+      __sessionActive__P_74_11: false,
+      __validDrop__P_74_12: false,
+      __validAction__P_74_13: false,
+      __dragTargetWidget__P_74_14: null,
+      __startConfig__P_74_15: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -17122,7 +17122,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param type {String} The type to add
        */
       addType: function addType(type) {
-        this.__types__P_73_5[type] = true;
+        this.__types__P_74_5[type] = true;
       },
 
       /**
@@ -17132,7 +17132,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param action {String} The action to add
        */
       addAction: function addAction(action) {
-        this.__actions__P_73_6[action] = true;
+        this.__actions__P_74_6[action] = true;
       },
 
       /**
@@ -17142,7 +17142,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} Whether the type is supported
        */
       supportsType: function supportsType(type) {
-        return !!this.__types__P_73_5[type];
+        return !!this.__types__P_74_5[type];
       },
 
       /**
@@ -17152,7 +17152,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} Whether the action is supported
        */
       supportsAction: function supportsAction(type) {
-        return !!this.__actions__P_73_6[type];
+        return !!this.__actions__P_74_6[type];
       },
 
       /**
@@ -17161,9 +17161,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param isAllowed {Boolean} False if a drop should be disallowed
        */
       setDropAllowed: function setDropAllowed(isAllowed) {
-        this.__validDrop__P_73_12 = isAllowed;
+        this.__validDrop__P_74_12 = isAllowed;
 
-        this.__detectAction__P_73_16();
+        this.__detectAction__P_74_16();
       },
 
       /**
@@ -17179,25 +17179,25 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {var} The result data in a promise
        */
       getData: function getData(type) {
-        if (!this.__validDrop__P_73_12 || !this.__dropTarget__P_73_3) {
+        if (!this.__validDrop__P_74_12 || !this.__dropTarget__P_74_3) {
           throw new Error("This method must not be used outside the drop event listener!");
         }
 
-        if (!this.__types__P_73_5[type]) {
+        if (!this.__types__P_74_5[type]) {
           throw new Error("Unsupported data type: " + type + "!");
         }
 
-        if (!this.__cache__P_73_8[type]) {
-          this.__currentType__P_73_9 = type;
+        if (!this.__cache__P_74_8[type]) {
+          this.__currentType__P_74_9 = type;
 
-          this.__fireEvent__P_73_17("droprequest", this.__dragTarget__P_73_4, this.__dropTarget__P_73_3, false, false);
+          this.__fireEvent__P_74_17("droprequest", this.__dragTarget__P_74_4, this.__dropTarget__P_74_3, false, false);
         }
 
-        if (!this.__cache__P_73_8[type]) {
+        if (!this.__cache__P_74_8[type]) {
           throw new Error("Please use a droprequest listener to the drag source to fill the manager with data!");
         }
 
-        return this.__cache__P_73_8[type] || null;
+        return this.__cache__P_74_8[type] || null;
       },
 
       /**
@@ -17209,30 +17209,30 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.Promise} The result data in a promise
        */
       getDataAsync: function getDataAsync(type) {
-        if (!this.__validDrop__P_73_12 || !this.__dropTarget__P_73_3) {
+        if (!this.__validDrop__P_74_12 || !this.__dropTarget__P_74_3) {
           throw new Error("This method must not be used outside the drop event listener!");
         }
 
-        if (!this.__types__P_73_5[type]) {
+        if (!this.__types__P_74_5[type]) {
           throw new Error("Unsupported data type: " + type + "!");
         }
 
         var tracker = {};
         var self = this;
 
-        if (!this.__cache__P_73_8[type]) {
+        if (!this.__cache__P_74_8[type]) {
           qx.event.Utils.then(tracker, function () {
-            self.__currentType__P_73_9 = type;
-            return self.__fireEvent__P_73_17("droprequest", self.__dragTarget__P_73_4, self.__dropTarget__P_73_3, false);
+            self.__currentType__P_74_9 = type;
+            return self.__fireEvent__P_74_17("droprequest", self.__dragTarget__P_74_4, self.__dropTarget__P_74_3, false);
           });
         }
 
         return qx.event.Utils.then(tracker, function () {
-          if (!this.__cache__P_73_8[type]) {
+          if (!this.__cache__P_74_8[type]) {
             throw new Error("Please use a droprequest listener to the drag source to fill the manager with data!");
           }
 
-          return this.__cache__P_73_8[type] || null;
+          return this.__cache__P_74_8[type] || null;
         });
       },
 
@@ -17243,9 +17243,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *    <code>alias</code>
        */
       getCurrentAction: function getCurrentAction() {
-        this.__detectAction__P_73_16();
+        this.__detectAction__P_74_16();
 
-        return this.__currentAction__P_73_10;
+        return this.__currentAction__P_74_10;
       },
 
       /**
@@ -17256,8 +17256,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       getCurrentActionAsync: function getCurrentActionAsync() {
         var self = this;
-        return qx.Promise.resolve(self.__detectAction__P_73_16()).then(function () {
-          return self.__currentAction__P_73_10;
+        return qx.Promise.resolve(self.__detectAction__P_74_16()).then(function () {
+          return self.__currentAction__P_74_10;
         });
       },
 
@@ -17266,7 +17266,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.ui.core.Widget} The widget on which the drag started.
        */
       getDragTarget: function getDragTarget() {
-        return this.__dragTargetWidget__P_73_14;
+        return this.__dragTargetWidget__P_74_14;
       },
 
       /**
@@ -17277,7 +17277,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param data {var} Any data to store
        */
       addData: function addData(type, data) {
-        this.__cache__P_73_8[type] = data;
+        this.__cache__P_74_8[type] = data;
       },
 
       /**
@@ -17286,7 +17286,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} The last requested data type
        */
       getCurrentType: function getCurrentType() {
-        return this.__currentType__P_73_9;
+        return this.__currentType__P_74_9;
       },
 
       /**
@@ -17295,7 +17295,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} active drag session
        */
       isSessionActive: function isSessionActive() {
-        return this.__sessionActive__P_73_11;
+        return this.__sessionActive__P_74_11;
       },
 
       /*
@@ -17307,11 +17307,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * Rebuilds the internal data storage used during a drag&drop session
        */
-      __rebuildStructures__P_73_2: function __rebuildStructures__P_73_2() {
-        this.__types__P_73_5 = {};
-        this.__actions__P_73_6 = {};
-        this.__keys__P_73_7 = {};
-        this.__cache__P_73_8 = {};
+      __rebuildStructures__P_74_2: function __rebuildStructures__P_74_2() {
+        this.__types__P_74_5 = {};
+        this.__actions__P_74_6 = {};
+        this.__keys__P_74_7 = {};
+        this.__cache__P_74_8 = {};
       },
 
       /**
@@ -17321,18 +17321,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {qx.Promise|null}
        */
-      __detectAction__P_73_16: function __detectAction__P_73_16() {
-        if (this.__dragTarget__P_73_4 == null) {
+      __detectAction__P_74_16: function __detectAction__P_74_16() {
+        if (this.__dragTarget__P_74_4 == null) {
           {
             return qx.Promise.reject();
           }
         }
 
-        var actions = this.__actions__P_73_6;
-        var keys = this.__keys__P_73_7;
+        var actions = this.__actions__P_74_6;
+        var keys = this.__keys__P_74_7;
         var current = null;
 
-        if (this.__validDrop__P_73_12) {
+        if (this.__validDrop__P_74_12) {
           if (keys.Shift && keys.Control && actions.alias) {
             current = "alias";
           } else if (keys.Shift && keys.Alt && actions.copy) {
@@ -17354,20 +17354,20 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         var self = this;
         var tracker = {};
-        var old = this.__currentAction__P_73_10;
+        var old = this.__currentAction__P_74_10;
 
         if (current != old) {
-          if (this.__dropTarget__P_73_3) {
+          if (this.__dropTarget__P_74_3) {
             qx.event.Utils["catch"](function () {
-              self.__validAction__P_73_13 = false;
+              self.__validAction__P_74_13 = false;
               current = null;
             });
             qx.event.Utils.then(tracker, function () {
-              self.__currentAction__P_73_10 = current;
-              return self.__fireEvent__P_73_17("dragchange", self.__dropTarget__P_73_3, self.__dragTarget__P_73_4, true);
+              self.__currentAction__P_74_10 = current;
+              return self.__fireEvent__P_74_17("dragchange", self.__dropTarget__P_74_3, self.__dragTarget__P_74_4, true);
             });
             qx.event.Utils.then(tracker, function (validAction) {
-              self.__validAction__P_73_13 = validAction;
+              self.__validAction__P_74_13 = validAction;
 
               if (!validAction) {
                 current = null;
@@ -17378,8 +17378,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         return qx.event.Utils.then(tracker, function () {
           if (current != old) {
-            self.__currentAction__P_73_10 = current;
-            return self.__fireEvent__P_73_17("dragchange", self.__dragTarget__P_73_4, self.__dropTarget__P_73_3, false);
+            self.__currentAction__P_74_10 = current;
+            return self.__fireEvent__P_74_17("dragchange", self.__dragTarget__P_74_4, self.__dropTarget__P_74_3, false);
           }
         });
       },
@@ -17397,7 +17397,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.Promise|Boolean} <code>true</code> if the event's default behavior was
        * not prevented
        */
-      __fireEvent__P_73_17: function __fireEvent__P_73_17(type, target, relatedTarget, cancelable, original, async) {
+      __fireEvent__P_74_17: function __fireEvent__P_74_17(type, target, relatedTarget, cancelable, original, async) {
         var Registration = qx.event.Registration;
         var dragEvent = Registration.createEvent(type, qx.event.type.Drag, [cancelable, original]);
 
@@ -17430,7 +17430,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param elem {Element} The element to query
        * @return {Element} The next parent element which is draggable. May also be <code>null</code>
        */
-      __findDraggable__P_73_18: function __findDraggable__P_73_18(elem) {
+      __findDraggable__P_74_18: function __findDraggable__P_74_18(elem) {
         while (elem && elem.nodeType == 1) {
           if (elem.getAttribute("qxDraggable") == "on") {
             return elem;
@@ -17450,7 +17450,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param elem {Element} The element to query
        * @return {Element} The next parent element which is droppable. May also be <code>null</code>
        */
-      __findDroppable__P_73_19: function __findDroppable__P_73_19(elem) {
+      __findDroppable__P_74_19: function __findDroppable__P_74_19(elem) {
         while (elem && elem.nodeType == 1) {
           if (elem.getAttribute("qxDroppable") == "on") {
             return elem;
@@ -17470,45 +17470,45 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       clearSession: function clearSession() {
         //this.debug("clearSession");
         // Deregister from root events
-        this.__manager__P_73_0.removeListener(this.__root__P_73_1, "pointermove", this._onPointermove, this);
+        this.__manager__P_74_0.removeListener(this.__root__P_74_1, "pointermove", this._onPointermove, this);
 
-        this.__manager__P_73_0.removeListener(this.__root__P_73_1, "pointerup", this._onPointerup, this, true);
+        this.__manager__P_74_0.removeListener(this.__root__P_74_1, "pointerup", this._onPointerup, this, true);
 
-        this.__manager__P_73_0.removeListener(this.__root__P_73_1, "keydown", this._onKeyDown, this, true);
+        this.__manager__P_74_0.removeListener(this.__root__P_74_1, "keydown", this._onKeyDown, this, true);
 
-        this.__manager__P_73_0.removeListener(this.__root__P_73_1, "keyup", this._onKeyUp, this, true);
+        this.__manager__P_74_0.removeListener(this.__root__P_74_1, "keyup", this._onKeyUp, this, true);
 
-        this.__manager__P_73_0.removeListener(this.__root__P_73_1, "keypress", this._onKeyPress, this, true);
+        this.__manager__P_74_0.removeListener(this.__root__P_74_1, "keypress", this._onKeyPress, this, true);
 
-        this.__manager__P_73_0.removeListener(this.__root__P_73_1, "roll", this._onRoll, this, true);
+        this.__manager__P_74_0.removeListener(this.__root__P_74_1, "roll", this._onRoll, this, true);
 
         var tracker = {};
         var self = this; // Fire dragend event
 
-        if (this.__dragTarget__P_73_4) {
+        if (this.__dragTarget__P_74_4) {
           qx.event.Utils.then(tracker, function () {
-            return self.__fireEvent__P_73_17("dragend", self.__dragTarget__P_73_4, self.__dropTarget__P_73_3, false);
+            return self.__fireEvent__P_74_17("dragend", self.__dragTarget__P_74_4, self.__dropTarget__P_74_3, false);
           });
         }
 
         return qx.event.Utils.then(tracker, function () {
           // Cleanup
-          self.__validDrop__P_73_12 = false;
-          self.__dropTarget__P_73_3 = null;
+          self.__validDrop__P_74_12 = false;
+          self.__dropTarget__P_74_3 = null;
 
-          if (self.__dragTargetWidget__P_73_14) {
-            self.__dragTargetWidget__P_73_14.removeState("drag");
+          if (self.__dragTargetWidget__P_74_14) {
+            self.__dragTargetWidget__P_74_14.removeState("drag");
 
-            self.__dragTargetWidget__P_73_14 = null;
+            self.__dragTargetWidget__P_74_14 = null;
           } // Clear init
           //self.debug("Clearing drag target");
 
 
-          self.__dragTarget__P_73_4 = null;
-          self.__sessionActive__P_73_11 = false;
-          self.__startConfig__P_73_15 = null;
+          self.__dragTarget__P_74_4 = null;
+          self.__sessionActive__P_74_11 = false;
+          self.__startConfig__P_74_15 = null;
 
-          self.__rebuildStructures__P_73_2();
+          self.__rebuildStructures__P_74_2();
         });
       },
 
@@ -17530,7 +17530,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // prevent scrolling
 
 
-        this.__manager__P_73_0.addListener(this.__root__P_73_1, "roll", this._onRoll, this, true);
+        this.__manager__P_74_0.addListener(this.__root__P_74_1, "roll", this._onRoll, this, true);
 
         return this._start(e);
       },
@@ -17553,22 +17553,22 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         // be created after the first start event
 
 
-        var target = this.__startConfig__P_73_15 ? this.__startConfig__P_73_15.target : e.getTarget();
+        var target = this.__startConfig__P_74_15 ? this.__startConfig__P_74_15.target : e.getTarget();
 
-        var draggable = this.__findDraggable__P_73_18(target);
+        var draggable = this.__findDraggable__P_74_18(target);
 
         if (draggable) {
           // This is the source target
           //this.debug("Setting dragtarget = " + draggable);
-          this.__dragTarget__P_73_4 = draggable;
-          var widgetOriginalTarget = qx.ui.core.Widget.getWidgetByElement(this.__startConfig__P_73_15.original);
+          this.__dragTarget__P_74_4 = draggable;
+          var widgetOriginalTarget = qx.ui.core.Widget.getWidgetByElement(this.__startConfig__P_74_15.original);
 
           while (widgetOriginalTarget && widgetOriginalTarget.isAnonymous()) {
             widgetOriginalTarget = widgetOriginalTarget.getLayoutParent();
           }
 
           if (widgetOriginalTarget) {
-            this.__dragTargetWidget__P_73_14 = widgetOriginalTarget;
+            this.__dragTargetWidget__P_74_14 = widgetOriginalTarget;
             widgetOriginalTarget.addState("drag");
           } // fire cancelable dragstart
 
@@ -17577,10 +17577,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           var tracker = {};
           qx.event.Utils["catch"](function () {
             //self.debug("dragstart FAILED, setting __sessionActive=false");
-            self.__sessionActive__P_73_11 = false;
+            self.__sessionActive__P_74_11 = false;
           });
           qx.event.Utils.then(tracker, function () {
-            return self.__fireEvent__P_73_17("dragstart", self.__dragTarget__P_73_4, self.__dropTarget__P_73_3, true, e);
+            return self.__fireEvent__P_74_17("dragstart", self.__dragTarget__P_74_4, self.__dropTarget__P_74_3, true, e);
           });
           return qx.event.Utils.then(tracker, function (validAction) {
             if (!validAction) {
@@ -17588,13 +17588,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             } //self.debug("dragstart ok, setting __sessionActive=true")
 
 
-            self.__manager__P_73_0.addListener(self.__root__P_73_1, "keydown", self._onKeyDown, self, true);
+            self.__manager__P_74_0.addListener(self.__root__P_74_1, "keydown", self._onKeyDown, self, true);
 
-            self.__manager__P_73_0.addListener(self.__root__P_73_1, "keyup", self._onKeyUp, self, true);
+            self.__manager__P_74_0.addListener(self.__root__P_74_1, "keyup", self._onKeyUp, self, true);
 
-            self.__manager__P_73_0.addListener(self.__root__P_73_1, "keypress", self._onKeyPress, self, true);
+            self.__manager__P_74_0.addListener(self.__root__P_74_1, "keypress", self._onKeyPress, self, true);
 
-            self.__sessionActive__P_73_11 = true;
+            self.__sessionActive__P_74_11 = true;
           });
         }
       },
@@ -17605,16 +17605,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       _onPointerdown: function _onPointerdown(e) {
         if (e.isPrimary()) {
-          this.__startConfig__P_73_15 = {
+          this.__startConfig__P_74_15 = {
             target: e.getTarget(),
             original: e.getOriginalTarget(),
             left: e.getDocumentLeft(),
             top: e.getDocumentTop()
           };
 
-          this.__manager__P_73_0.addListener(this.__root__P_73_1, "pointermove", this._onPointermove, this);
+          this.__manager__P_74_0.addListener(this.__root__P_74_1, "pointermove", this._onPointermove, this);
 
-          this.__manager__P_73_0.addListener(this.__root__P_73_1, "pointerup", this._onPointerup, this, true);
+          this.__manager__P_74_0.addListener(this.__root__P_74_1, "pointerup", this._onPointerup, this, true);
         }
       },
 
@@ -17636,7 +17636,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           return self.clearSession();
         }); // start the drag session for mouse
 
-        if (!self.__sessionActive__P_73_11 && e.getPointerType() == "mouse") {
+        if (!self.__sessionActive__P_74_11 && e.getPointerType() == "mouse") {
           var delta = self._getDelta(e); // if the mouse moved a bit in any direction
 
 
@@ -17652,7 +17652,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         return qx.event.Utils.then(tracker, function () {
           // check if the session has been activated
-          if (!self.__sessionActive__P_73_11) {
+          if (!self.__sessionActive__P_74_11) {
             //self.debug("not active");
             return;
           }
@@ -17660,7 +17660,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           var tracker = {};
           qx.event.Utils.then(tracker, function () {
             //self.debug("active, firing drag");
-            return self.__fireEvent__P_73_17("drag", self.__dragTarget__P_73_4, self.__dropTarget__P_73_3, true, e);
+            return self.__fireEvent__P_74_17("drag", self.__dragTarget__P_74_4, self.__dropTarget__P_74_3, true, e);
           });
           qx.event.Utils.then(tracker, function (validAction) {
             if (!validAction) {
@@ -17671,7 +17671,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
             var el = e.getTarget();
 
-            if (self.__startConfig__P_73_15.target === el) {
+            if (self.__startConfig__P_74_15.target === el) {
               // on touch devices the native events return wrong elements as target (its always the element where the dragging started)
               el = e.getNativeEvent().view.document.elementFromPoint(e.getDocumentLeft(), e.getDocumentTop());
             }
@@ -17693,53 +17693,53 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             }
 
             if (el !== cursorEl) {
-              var droppable = self.__findDroppable__P_73_19(el); // new drop target detected
+              var droppable = self.__findDroppable__P_74_19(el); // new drop target detected
 
 
-              if (droppable && droppable != self.__dropTarget__P_73_3) {
-                var dropLeaveTarget = self.__dropTarget__P_73_3;
-                self.__validDrop__P_73_12 = true; // initial value should be true
+              if (droppable && droppable != self.__dropTarget__P_74_3) {
+                var dropLeaveTarget = self.__dropTarget__P_74_3;
+                self.__validDrop__P_74_12 = true; // initial value should be true
 
-                self.__dropTarget__P_73_3 = droppable;
+                self.__dropTarget__P_74_3 = droppable;
                 var innerTracker = {};
                 qx.event.Utils["catch"](innerTracker, function () {
-                  self.__dropTarget__P_73_3 = null;
-                  self.__validDrop__P_73_12 = false;
+                  self.__dropTarget__P_74_3 = null;
+                  self.__validDrop__P_74_12 = false;
                 }); // fire dragleave for previous drop target
 
                 if (dropLeaveTarget) {
                   qx.event.Utils.then(innerTracker, function () {
-                    return self.__fireEvent__P_73_17("dragleave", dropLeaveTarget, self.__dragTarget__P_73_4, false, e);
+                    return self.__fireEvent__P_74_17("dragleave", dropLeaveTarget, self.__dragTarget__P_74_4, false, e);
                   });
                 }
 
                 qx.event.Utils.then(innerTracker, function () {
-                  return self.__fireEvent__P_73_17("dragover", droppable, self.__dragTarget__P_73_4, true, e);
+                  return self.__fireEvent__P_74_17("dragover", droppable, self.__dragTarget__P_74_4, true, e);
                 });
                 return qx.event.Utils.then(innerTracker, function (validDrop) {
-                  self.__validDrop__P_73_12 = validDrop;
+                  self.__validDrop__P_74_12 = validDrop;
                 });
               } // only previous drop target
-              else if (!droppable && self.__dropTarget__P_73_3) {
+              else if (!droppable && self.__dropTarget__P_74_3) {
                 var innerTracker = {};
                 qx.event.Utils.then(innerTracker, function () {
-                  return self.__fireEvent__P_73_17("dragleave", self.__dropTarget__P_73_3, self.__dragTarget__P_73_4, false, e);
+                  return self.__fireEvent__P_74_17("dragleave", self.__dropTarget__P_74_3, self.__dragTarget__P_74_4, false, e);
                 });
                 return qx.event.Utils.then(innerTracker, function () {
-                  self.__dropTarget__P_73_3 = null;
-                  self.__validDrop__P_73_12 = false;
-                  return self.__detectAction__P_73_16();
+                  self.__dropTarget__P_74_3 = null;
+                  self.__validDrop__P_74_12 = false;
+                  return self.__detectAction__P_74_16();
                 });
               }
             }
           });
           return qx.event.Utils.then(tracker, function () {
             // Reevaluate current action
-            var keys = self.__keys__P_73_7;
+            var keys = self.__keys__P_74_7;
             keys.Control = e.isCtrlPressed();
             keys.Shift = e.isShiftPressed();
             keys.Alt = e.isAltPressed();
-            return self.__detectAction__P_73_16();
+            return self.__detectAction__P_74_16();
           });
         });
       },
@@ -17753,13 +17753,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Map} containing the deltaX as x, and deltaY as y.
        */
       _getDelta: function _getDelta(e) {
-        if (!this.__startConfig__P_73_15) {
+        if (!this.__startConfig__P_74_15) {
           return null;
         }
 
-        var deltaX = e.getDocumentLeft() - this.__startConfig__P_73_15.left;
+        var deltaX = e.getDocumentLeft() - this.__startConfig__P_74_15.left;
 
-        var deltaY = e.getDocumentTop() - this.__startConfig__P_73_15.top;
+        var deltaY = e.getDocumentTop() - this.__startConfig__P_74_15.top;
 
         return {
           "x": deltaX,
@@ -17779,15 +17779,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var tracker = {};
         var self = this; // Fire drop event in success case
 
-        if (this.__validDrop__P_73_12 && this.__validAction__P_73_13) {
+        if (this.__validDrop__P_74_12 && this.__validAction__P_74_13) {
           qx.event.Utils.then(tracker, function () {
-            return self.__fireEvent__P_73_17("drop", self.__dropTarget__P_73_3, self.__dragTarget__P_73_4, false, e);
+            return self.__fireEvent__P_74_17("drop", self.__dropTarget__P_74_3, self.__dragTarget__P_74_4, false, e);
           });
         }
 
         return qx.event.Utils.then(tracker, function () {
           // Stop event
-          if (e.getTarget() == self.__dragTarget__P_73_4) {
+          if (e.getTarget() == self.__dragTarget__P_74_4) {
             e.stopPropagation();
           } // Clean up
 
@@ -17825,9 +17825,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           case "Alt":
           case "Control":
           case "Shift":
-            if (!this.__keys__P_73_7[iden]) {
-              this.__keys__P_73_7[iden] = true;
-              return this.__detectAction__P_73_16();
+            if (!this.__keys__P_74_7[iden]) {
+              this.__keys__P_74_7[iden] = true;
+              return this.__detectAction__P_74_16();
             }
 
         }
@@ -17845,9 +17845,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           case "Alt":
           case "Control":
           case "Shift":
-            if (this.__keys__P_73_7[iden]) {
-              this.__keys__P_73_7[iden] = false;
-              return this.__detectAction__P_73_16();
+            if (this.__keys__P_74_7[iden]) {
+              this.__keys__P_74_7[iden] = false;
+              return this.__detectAction__P_74_16();
             }
 
         }
@@ -17876,7 +17876,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     destruct: function destruct() {
       qx.event.Registration.removeListener(window, "blur", this._onWindowBlur, this); // Clear fields
 
-      this.__dragTarget__P_73_4 = this.__dropTarget__P_73_3 = this.__manager__P_73_0 = this.__root__P_73_1 = this.__types__P_73_5 = this.__actions__P_73_6 = this.__keys__P_73_7 = this.__cache__P_73_8 = null;
+      this.__dragTarget__P_74_4 = this.__dropTarget__P_74_3 = this.__manager__P_74_0 = this.__root__P_74_1 = this.__types__P_74_5 = this.__actions__P_74_6 = this.__keys__P_74_7 = this.__cache__P_74_8 = null;
     },
 
     /*
@@ -18236,7 +18236,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      * @param source {String?null} The URL of the image to display.
      */
     construct: function construct(source) {
-      this.__contentElements__P_99_0 = {};
+      this.__contentElements__P_98_0 = {};
       qx.ui.core.Widget.constructor.call(this);
 
       if (source) {
@@ -18350,13 +18350,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __width__P_99_1: null,
-      __height__P_99_2: null,
-      __mode__P_99_3: null,
-      __contentElements__P_99_0: null,
-      __currentContentElement__P_99_4: null,
-      __wrapper__P_99_5: null,
-      __requestId__P_99_6: 0,
+      __width__P_98_1: null,
+      __height__P_98_2: null,
+      __mode__P_98_3: null,
+      __contentElements__P_98_0: null,
+      __currentContentElement__P_98_4: null,
+      __wrapper__P_98_5: null,
+      __requestId__P_98_6: 0,
       // overridden
       _onChangeTheme: function _onChangeTheme() {
         qx.ui.basic.Image.prototype._onChangeTheme.base.call(this); // restyle source (theme change might have changed the resolved url)
@@ -18372,17 +18372,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       */
       // overridden
       getContentElement: function getContentElement() {
-        return this.__getSuitableContentElement__P_99_7();
+        return this.__getSuitableContentElement__P_98_7();
       },
       // overridden
       _createContentElement: function _createContentElement() {
-        return this.__getSuitableContentElement__P_99_7();
+        return this.__getSuitableContentElement__P_98_7();
       },
       // overridden
       _getContentHint: function _getContentHint() {
         return {
-          width: this.__width__P_99_1 || 0,
-          height: this.__height__P_99_2 || 0
+          width: this.__width__P_98_1 || 0,
+          height: this.__height__P_98_2 || 0
         };
       },
       // overridden
@@ -18393,18 +18393,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         source = qx.util.AliasManager.getInstance().resolve(source);
         var el = this.getContentElement();
 
-        if (this.__wrapper__P_99_5) {
+        if (this.__wrapper__P_98_5) {
           el = el.getChild(0);
         }
 
-        this.__setSource__P_99_8(el, source);
+        this.__setSource__P_98_8(el, source);
       },
       // overridden
       _applyTextColor: function _applyTextColor(value) {
-        if (this.__getMode__P_99_9() === "font") {
+        if (this.__getMode__P_98_9() === "font") {
           var el = this.getContentElement();
 
-          if (this.__wrapper__P_99_5) {
+          if (this.__wrapper__P_98_5) {
             el = el.getChild(0);
           }
 
@@ -18421,12 +18421,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         var element = this.getContentElement();
 
-        if (this.__wrapper__P_99_5) {
+        if (this.__wrapper__P_98_5) {
           element.getChild(0).setStyles({
             top: this.getPaddingTop() || 0,
             left: this.getPaddingLeft() || 0
           });
-        } else if (this.__getMode__P_99_9() === 'font') {
+        } else if (this.__getMode__P_98_9() === 'font') {
           element.setStyles({
             top: this.getPaddingTop() || 0,
             left: this.getPaddingLeft() || 0
@@ -18439,7 +18439,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         qx.ui.basic.Image.prototype.renderLayout.base.call(this, left, top, width, height);
         var element = this.getContentElement();
 
-        if (this.__wrapper__P_99_5) {
+        if (this.__wrapper__P_98_5) {
           element.getChild(0).setStyles({
             width: width - (this.getPaddingLeft() || 0) - (this.getPaddingRight() || 0),
             height: height - (this.getPaddingTop() || 0) - (this.getPaddingBottom() || 0),
@@ -18482,8 +18482,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Remembers the mode to keep track which contentElement is currently in use.
        * @param mode {String} internal mode (alphaScaled|scaled|nonScaled)
        */
-      __setMode__P_99_10: function __setMode__P_99_10(mode) {
-        this.__mode__P_99_3 = mode;
+      __setMode__P_98_10: function __setMode__P_98_10(mode) {
+        this.__mode__P_98_3 = mode;
       },
 
       /**
@@ -18492,12 +18492,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {String} current internal mode
        */
-      __getMode__P_99_9: function __getMode__P_99_9() {
-        if (this.__mode__P_99_3 == null) {
+      __getMode__P_98_9: function __getMode__P_98_9() {
+        if (this.__mode__P_98_3 == null) {
           var source = this.getSource();
 
           if (source && qx.lang.String.startsWith(source, "@")) {
-            this.__mode__P_99_3 = "font";
+            this.__mode__P_98_3 = "font";
           }
 
           var isPng = false;
@@ -18507,15 +18507,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
 
           if (this.getScale() && isPng && qx.core.Environment.get("css.alphaimageloaderneeded")) {
-            this.__mode__P_99_3 = "alphaScaled";
+            this.__mode__P_98_3 = "alphaScaled";
           } else if (this.getScale()) {
-            this.__mode__P_99_3 = "scaled";
+            this.__mode__P_98_3 = "scaled";
           } else {
-            this.__mode__P_99_3 = "nonScaled";
+            this.__mode__P_98_3 = "nonScaled";
           }
         }
 
-        return this.__mode__P_99_3;
+        return this.__mode__P_98_3;
       },
 
       /**
@@ -18524,7 +18524,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param mode {String} internal mode
        * @return {qx.html.Image} suitable image content element
        */
-      __createSuitableContentElement__P_99_11: function __createSuitableContentElement__P_99_11(mode) {
+      __createSuitableContentElement__P_98_11: function __createSuitableContentElement__P_98_11(mode) {
         var scale;
         var tagName;
         var clazz = qx.html.Image;
@@ -18566,7 +18566,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           element.setScale(scale);
 
           if (qx.core.Environment.get("css.alphaimageloaderneeded")) {
-            var wrapper = this.__wrapper__P_99_5 = new qx.html.Element("div");
+            var wrapper = this.__wrapper__P_98_5 = new qx.html.Element("div");
             element.connectObject(this);
             wrapper.setStyle("position", "absolute");
             wrapper.add(element);
@@ -18582,21 +18582,21 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {qx.html.Image} suitable image contentElement
        */
-      __getSuitableContentElement__P_99_7: function __getSuitableContentElement__P_99_7() {
+      __getSuitableContentElement__P_98_7: function __getSuitableContentElement__P_98_7() {
         if (this.$$disposed) {
           return null;
         }
 
-        var mode = this.__getMode__P_99_9();
+        var mode = this.__getMode__P_98_9();
 
-        if (this.__contentElements__P_99_0[mode] == null) {
-          this.__contentElements__P_99_0[mode] = this.__createSuitableContentElement__P_99_11(mode);
+        if (this.__contentElements__P_98_0[mode] == null) {
+          this.__contentElements__P_98_0[mode] = this.__createSuitableContentElement__P_98_11(mode);
         }
 
-        var element = this.__contentElements__P_99_0[mode];
+        var element = this.__contentElements__P_98_0[mode];
 
-        if (!this.__currentContentElement__P_99_4) {
-          this.__currentContentElement__P_99_4 = element;
+        if (!this.__currentContentElement__P_98_4) {
+          this.__currentContentElement__P_98_4 = element;
         }
 
         return element;
@@ -18613,28 +18613,28 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var source = AliasManager.resolve(this.getSource());
         var element = this.getContentElement();
 
-        if (this.__wrapper__P_99_5) {
+        if (this.__wrapper__P_98_5) {
           element = element.getChild(0);
         }
 
         if (!source) {
-          this.__resetSource__P_99_12(element);
+          this.__resetSource__P_98_12(element);
 
           return;
         }
 
-        this.__checkForContentElementSwitch__P_99_13(source);
+        this.__checkForContentElementSwitch__P_98_13(source);
 
         if (qx.core.Environment.get("engine.name") == "mshtml" && (parseInt(qx.core.Environment.get("engine.version"), 10) < 9 || qx.core.Environment.get("browser.documentmode") < 9)) {
           var repeat = this.getScale() ? "scale" : "no-repeat";
           element.tagNameHint = qx.bom.element.Decoration.getTagName(repeat, source);
         }
 
-        var contentEl = this.__getContentElement__P_99_14(); // Detect if the image registry knows this image
+        var contentEl = this.__getContentElement__P_98_14(); // Detect if the image registry knows this image
 
 
         if (ResourceManager.isFontUri(source)) {
-          this.__setManagedImage__P_99_15(contentEl, source);
+          this.__setManagedImage__P_98_15(contentEl, source);
 
           var color = this.getTextColor();
 
@@ -18652,21 +18652,21 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
             var backgroundSize = imageWidth + "px, " + imageHeight + "px";
 
-            this.__currentContentElement__P_99_4.setStyle("background-size", backgroundSize);
+            this.__currentContentElement__P_98_4.setStyle("background-size", backgroundSize);
 
             this.setSource(highResolutionSource);
             source = highResolutionSource;
           }
 
-          this.__setManagedImage__P_99_15(contentEl, source);
+          this.__setManagedImage__P_98_15(contentEl, source);
 
-          this.__fireLoadEvent__P_99_16();
+          this.__fireLoadEvent__P_98_16();
         } else if (qx.io.ImageLoader.isLoaded(source)) {
-          this.__setUnmanagedImage__P_99_17(contentEl, source);
+          this.__setUnmanagedImage__P_98_17(contentEl, source);
 
-          this.__fireLoadEvent__P_99_16();
+          this.__fireLoadEvent__P_98_16();
         } else {
-          this.__loadUnmanagedImage__P_99_18(contentEl, source);
+          this.__loadUnmanagedImage__P_98_18(contentEl, source);
         }
       },
 
@@ -18676,26 +18676,26 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * helper will be called, if you try to load a managed image or an
        * previously loaded unmanaged image.
        */
-      __fireLoadEvent__P_99_16: function __fireLoadEvent__P_99_16() {
-        this.__requestId__P_99_6++;
+      __fireLoadEvent__P_98_16: function __fireLoadEvent__P_98_16() {
+        this.__requestId__P_98_6++;
         qx.bom.AnimationFrame.request(function (rId) {
           // prevent firing of the event if source changed in the meantime
-          if (rId === this.__requestId__P_99_6) {
+          if (rId === this.__requestId__P_98_6) {
             this.fireEvent("loaded");
           } else {
             this.fireEvent("aborted");
           }
-        }.bind(this, this.__requestId__P_99_6));
+        }.bind(this, this.__requestId__P_98_6));
       },
 
       /**
        * Returns the content element.
        * @return {qx.html.Image} content element
        */
-      __getContentElement__P_99_14: function __getContentElement__P_99_14() {
-        var contentEl = this.__currentContentElement__P_99_4;
+      __getContentElement__P_98_14: function __getContentElement__P_98_14() {
+        var contentEl = this.__currentContentElement__P_98_4;
 
-        if (this.__wrapper__P_99_5) {
+        if (this.__wrapper__P_98_5) {
           contentEl = contentEl.getChild(0);
         }
 
@@ -18708,42 +18708,42 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @param source {String} source of the image
        */
-      __checkForContentElementSwitch__P_99_13: qx.core.Environment.select("engine.name", {
+      __checkForContentElementSwitch__P_98_13: qx.core.Environment.select("engine.name", {
         "mshtml": function mshtml(source) {
           var alphaImageLoader = qx.core.Environment.get("css.alphaimageloaderneeded");
           var isPng = source.endsWith(".png");
           var isFont = source.startsWith("@");
 
           if (isFont) {
-            this.__setMode__P_99_10("font");
+            this.__setMode__P_98_10("font");
           } else if (alphaImageLoader && isPng) {
-            if (this.getScale() && this.__getMode__P_99_9() != "alphaScaled") {
-              this.__setMode__P_99_10("alphaScaled");
-            } else if (!this.getScale() && this.__getMode__P_99_9() != "nonScaled") {
-              this.__setMode__P_99_10("nonScaled");
+            if (this.getScale() && this.__getMode__P_98_9() != "alphaScaled") {
+              this.__setMode__P_98_10("alphaScaled");
+            } else if (!this.getScale() && this.__getMode__P_98_9() != "nonScaled") {
+              this.__setMode__P_98_10("nonScaled");
             }
           } else {
-            if (this.getScale() && this.__getMode__P_99_9() != "scaled") {
-              this.__setMode__P_99_10("scaled");
-            } else if (!this.getScale() && this.__getMode__P_99_9() != "nonScaled") {
-              this.__setMode__P_99_10("nonScaled");
+            if (this.getScale() && this.__getMode__P_98_9() != "scaled") {
+              this.__setMode__P_98_10("scaled");
+            } else if (!this.getScale() && this.__getMode__P_98_9() != "nonScaled") {
+              this.__setMode__P_98_10("nonScaled");
             }
           }
 
-          this.__checkForContentElementReplacement__P_99_19(this.__getSuitableContentElement__P_99_7());
+          this.__checkForContentElementReplacement__P_98_19(this.__getSuitableContentElement__P_98_7());
         },
         "default": function _default(source) {
           var isFont = source && qx.lang.String.startsWith(source, "@");
 
           if (isFont) {
-            this.__setMode__P_99_10("font");
-          } else if (this.getScale() && this.__getMode__P_99_9() != "scaled") {
-            this.__setMode__P_99_10("scaled");
-          } else if (!this.getScale() && this.__getMode__P_99_9() != "nonScaled") {
-            this.__setMode__P_99_10("nonScaled");
+            this.__setMode__P_98_10("font");
+          } else if (this.getScale() && this.__getMode__P_98_9() != "scaled") {
+            this.__setMode__P_98_10("scaled");
+          } else if (!this.getScale() && this.__getMode__P_98_9() != "nonScaled") {
+            this.__setMode__P_98_10("nonScaled");
           }
 
-          this.__checkForContentElementReplacement__P_99_19(this.__getSuitableContentElement__P_99_7());
+          this.__checkForContentElementReplacement__P_98_19(this.__getSuitableContentElement__P_98_7());
         }
       }),
 
@@ -18752,8 +18752,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @param elementToAdd {qx.html.Image} content element to add
        */
-      __checkForContentElementReplacement__P_99_19: function __checkForContentElementReplacement__P_99_19(elementToAdd) {
-        var currentContentElement = this.__currentContentElement__P_99_4;
+      __checkForContentElementReplacement__P_98_19: function __checkForContentElementReplacement__P_98_19(elementToAdd) {
+        var currentContentElement = this.__currentContentElement__P_98_4;
 
         if (currentContentElement != elementToAdd) {
           if (currentContentElement != null) {
@@ -18769,7 +18769,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             } // Don't transfer background image when switching from image to icon font
 
 
-            if (this.__getMode__P_99_9() === "font") {
+            if (this.__getMode__P_98_9() === "font") {
               delete styles.backgroundImage;
             } // Copy dimension and location of the current content element
 
@@ -18785,7 +18785,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             styles.left = parseInt(currentContentElement.getStyle("left") || insets.left) + pixel;
             styles.top = parseInt(currentContentElement.getStyle("top") || insets.top) + pixel;
             styles.zIndex = 10;
-            var newEl = this.__wrapper__P_99_5 ? elementToAdd.getChild(0) : elementToAdd;
+            var newEl = this.__wrapper__P_98_5 ? elementToAdd.getChild(0) : elementToAdd;
             newEl.setStyles(styles, true);
             newEl.setSelectable(this.getSelectable());
 
@@ -18818,7 +18818,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               newEl.setValue("");
             }
 
-            var currentEl = this.__getContentElement__P_99_14();
+            var currentEl = this.__getContentElement__P_98_14();
 
             newEl.tagNameHint = hint;
             newEl.setAttribute("class", currentEl.getAttribute("class")); // Flush elements to make sure the DOM elements are created.
@@ -18840,7 +18840,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               newDomEl.$$hash = currentHash;
             }
 
-            this.__currentContentElement__P_99_4 = elementToAdd;
+            this.__currentContentElement__P_98_4 = elementToAdd;
           }
         }
       },
@@ -18851,7 +18851,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param el {Element} image DOM element
        * @param source {String} source path
        */
-      __setManagedImage__P_99_15: function __setManagedImage__P_99_15(el, source) {
+      __setManagedImage__P_98_15: function __setManagedImage__P_98_15(el, source) {
         var ResourceManager = qx.util.ResourceManager.getInstance();
         var isFont = ResourceManager.isFontUri(source); // Try to find a disabled image in registry
 
@@ -18887,33 +18887,33 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             width = this.getWidth() || hint.width;
             height = this.getHeight() || hint.height;
           } else {
-            var font = this.__getFont__P_99_20(source);
+            var font = this.__getFont__P_98_20(source);
 
             var size = parseInt(source.split("/")[2] || font.getSize(), 10);
             width = ResourceManager.getImageWidth(source) || size;
             height = ResourceManager.getImageHeight(source) || size;
           }
 
-          this.__updateContentHint__P_99_21(width, height);
+          this.__updateContentHint__P_98_21(width, height);
 
-          this.__setSource__P_99_8(el, source); // Apply source
+          this.__setSource__P_98_8(el, source); // Apply source
 
         } else {
           // Apply source
-          this.__setSource__P_99_8(el, source); // Compare with old sizes and relayout if necessary
+          this.__setSource__P_98_8(el, source); // Compare with old sizes and relayout if necessary
 
 
-          this.__updateContentHint__P_99_21(ResourceManager.getImageWidth(source), ResourceManager.getImageHeight(source));
+          this.__updateContentHint__P_98_21(ResourceManager.getImageWidth(source), ResourceManager.getImageHeight(source));
         }
       },
-      __setFontSize__P_99_22: function __setFontSize__P_99_22(el, width, height) {
+      __setFontSize__P_98_22: function __setFontSize__P_98_22(el, width, height) {
         if (this.getScale()) {
           el.setStyle("fontSize", (width > height ? height : width) + "px");
         } else {
           var source = this.getSource();
           var sparts = source.split("/");
 
-          var font = this.__getFont__P_99_20(source);
+          var font = this.__getFont__P_98_20(source);
 
           var size = parseInt(sparts[2] || font.getSize());
           el.setStyle("fontSize", size + "px");
@@ -18932,10 +18932,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             var width = this.getWidth() || hint.width || 40;
             var height = this.getHeight() || hint.height || 40;
 
-            this.__setFontSize__P_99_22(el, width, height);
+            this.__setFontSize__P_98_22(el, width, height);
           }
         } else {
-          this.__updateContentHint__P_99_21();
+          this.__updateContentHint__P_98_21();
         }
       },
 
@@ -18945,16 +18945,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param el {Element} image DOM element
        * @param source {String} source path
        */
-      __setUnmanagedImage__P_99_17: function __setUnmanagedImage__P_99_17(el, source) {
+      __setUnmanagedImage__P_98_17: function __setUnmanagedImage__P_98_17(el, source) {
         var ImageLoader = qx.io.ImageLoader; // Apply source
 
-        this.__setSource__P_99_8(el, source); // Compare with old sizes and relayout if necessary
+        this.__setSource__P_98_8(el, source); // Compare with old sizes and relayout if necessary
 
 
         var width = ImageLoader.getWidth(source);
         var height = ImageLoader.getHeight(source);
 
-        this.__updateContentHint__P_99_21(width, height);
+        this.__updateContentHint__P_98_21(width, height);
       },
 
       /**
@@ -18963,7 +18963,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param el {Element} image DOM element
        * @param source {String} source path
        */
-      __loadUnmanagedImage__P_99_18: function __loadUnmanagedImage__P_99_18(el, source) {
+      __loadUnmanagedImage__P_98_18: function __loadUnmanagedImage__P_98_18(el, source) {
         var ImageLoader = qx.io.ImageLoader;
         {
           // loading external images via HTTP/HTTPS is a common usecase, as is
@@ -18973,21 +18973,21 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           if (!sourceLC.startsWith("http") && !sourceLC.startsWith("data:image/")) {
             var self = qx.ui.basic.Image;
 
-            if (!self.__warned__P_99_23) {
-              self.__warned__P_99_23 = {};
+            if (!self.__warned__P_98_23) {
+              self.__warned__P_98_23 = {};
             }
 
-            if (!self.__warned__P_99_23[source]) {
+            if (!self.__warned__P_98_23[source]) {
               this.debug("try to load an unmanaged relative image: " + source);
-              self.__warned__P_99_23[source] = true;
+              self.__warned__P_98_23[source] = true;
             }
           }
         } // only try to load the image if it not already failed
 
         if (!ImageLoader.isFailed(source)) {
-          ImageLoader.load(source, this.__loaderCallback__P_99_24, this);
+          ImageLoader.load(source, this.__loaderCallback__P_98_24, this);
         } else {
-          this.__resetSource__P_99_12(el);
+          this.__resetSource__P_98_12(el);
         }
       },
 
@@ -18996,7 +18996,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @param el {Element} image DOM element
        */
-      __resetSource__P_99_12: function __resetSource__P_99_12(el) {
+      __resetSource__P_98_12: function __resetSource__P_98_12(el) {
         if (el != null) {
           if (el instanceof qx.html.Image) {
             el.resetSource();
@@ -19005,7 +19005,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         }
       },
-      __getFont__P_99_20: function __getFont__P_99_20(source) {
+      __getFont__P_98_20: function __getFont__P_98_20(source) {
         var font = qx.theme.manager.Font.getInstance().resolve(source.match(/@([^/]+)/)[1]);
 
         if (typeof font == "string") {
@@ -19022,13 +19022,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param el {Element} image DOM element
        * @param source {String} source path
        */
-      __setSource__P_99_8: function __setSource__P_99_8(el, source) {
+      __setSource__P_98_8: function __setSource__P_98_8(el, source) {
         var isFont = source && qx.lang.String.startsWith(source, "@");
 
         if (isFont) {
           var ResourceManager = qx.util.ResourceManager.getInstance();
 
-          var font = this.__getFont__P_99_20(source);
+          var font = this.__getFont__P_98_20(source);
 
           var fontStyles = qx.lang.Object.clone(font.getStyles());
           delete fontStyles.color;
@@ -19038,7 +19038,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           el.setStyle("verticalAlign", "middle");
           el.setStyle("textAlign", "center");
 
-          this.__setFontSize__P_99_22(el, this.__width__P_99_1, this.__height__P_99_2);
+          this.__setFontSize__P_98_22(el, this.__width__P_98_1, this.__height__P_98_2);
 
           var charCode = ResourceManager.fromFontUriToCharCode(source);
           el.setValue(String.fromCharCode(charCode));
@@ -19100,7 +19100,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param source {String} Image source which was loaded
        * @param imageInfo {Map} Dimensions of the loaded image
        */
-      __loaderCallback__P_99_24: function __loaderCallback__P_99_24(source, imageInfo) {
+      __loaderCallback__P_98_24: function __loaderCallback__P_98_24(source, imageInfo) {
         // Ignore the callback on already disposed images
         if (this.$$disposed === true) {
           return;
@@ -19124,7 +19124,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // Update image
 
 
-        this.__setUnmanagedImage__P_99_17(this.__getContentElement__P_99_14(), source);
+        this.__setUnmanagedImage__P_98_17(this.__getContentElement__P_98_14(), source);
       },
 
       /**
@@ -19133,13 +19133,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param width {Integer} width of the image
        * @param height {Integer} height of the image
        */
-      __updateContentHint__P_99_21: function __updateContentHint__P_99_21(width, height) {
+      __updateContentHint__P_98_21: function __updateContentHint__P_98_21(width, height) {
         if (width === undefined) {
-          width = this.__width__P_99_1;
+          width = this.__width__P_98_1;
         }
 
         if (height === undefined) {
-          height = this.__height__P_99_2;
+          height = this.__height__P_98_2;
         }
 
         if (this._recalc(width, height)) {
@@ -19220,9 +19220,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         width = Math.round(width);
         height = Math.round(height);
 
-        if (width != this.__width__P_99_1 || height != this.__height__P_99_2) {
-          this.__width__P_99_1 = width;
-          this.__height__P_99_2 = height;
+        if (width != this.__width__P_98_1 || height != this.__height__P_98_2) {
+          this.__width__P_98_1 = width;
+          this.__height__P_98_2 = height;
           return true;
         }
 
@@ -19236,19 +19236,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     destruct: function destruct() {
-      for (var mode in this.__contentElements__P_99_0) {
-        if (this.__contentElements__P_99_0.hasOwnProperty(mode)) {
-          this.__contentElements__P_99_0[mode].disconnectObject(this);
+      for (var mode in this.__contentElements__P_98_0) {
+        if (this.__contentElements__P_98_0.hasOwnProperty(mode)) {
+          this.__contentElements__P_98_0[mode].disconnectObject(this);
         }
       }
 
-      delete this.__currentContentElement__P_99_4;
+      delete this.__currentContentElement__P_98_4;
 
-      if (this.__wrapper__P_99_5) {
-        delete this.__wrapper__P_99_5;
+      if (this.__wrapper__P_98_5) {
+        delete this.__wrapper__P_98_5;
       }
 
-      this._disposeMap("__contentElements__P_99_0");
+      this._disposeMap("__contentElements__P_98_0");
     }
   });
   qx.ui.basic.Image.$$dbClassInfo = $$dbClassInfo;
@@ -19433,9 +19433,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     construct: function construct(widget) {
       qx.core.Object.constructor.call(this);
       this._widget = widget;
-      widget.addListener("resize", this.__onBoundsChange__P_138_0, this);
-      widget.addListener("move", this.__onBoundsChange__P_138_0, this);
-      widget.addListener("disappear", this.__onWidgetDisappear__P_138_1, this);
+      widget.addListener("resize", this.__onBoundsChange__P_140_0, this);
+      widget.addListener("move", this.__onBoundsChange__P_140_0, this);
+      widget.addListener("disappear", this.__onWidgetDisappear__P_140_1, this);
 
       if (qx.Class.isDefined("qx.ui.root.Abstract") && widget instanceof qx.ui.root.Abstract) {
         this._isRoot = true;
@@ -19446,8 +19446,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       {
         qx.theme.manager.Meta.getInstance().addListener("changeTheme", this._onChangeTheme, this);
       }
-      this.__activeElements__P_138_2 = [];
-      this.__focusElements__P_138_3 = [];
+      this.__activeElements__P_140_2 = [];
+      this.__focusElements__P_140_3 = [];
     },
 
     /*
@@ -19504,21 +19504,21 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __blocker__P_138_4: null,
-      __blockerCount__P_138_5: 0,
-      __activeElements__P_138_2: null,
-      __focusElements__P_138_3: null,
-      __timer__P_138_6: null,
+      __blocker__P_140_4: null,
+      __blockerCount__P_140_5: 0,
+      __activeElements__P_140_2: null,
+      __focusElements__P_140_3: null,
+      __timer__P_140_6: null,
       _widget: null,
       _isRoot: false,
-      __appearListener__P_138_7: null,
+      __appearListener__P_140_7: null,
 
       /**
        * Adjust html element size on layout resizes.
        *
        * @param e {qx.event.type.Data} event object
        */
-      __onBoundsChange__P_138_0: function __onBoundsChange__P_138_0(e) {
+      __onBoundsChange__P_140_0: function __onBoundsChange__P_140_0(e) {
         var data = e.getData();
 
         if (this.isBlocked()) {
@@ -19529,7 +19529,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * Widget re-appears: Update blocker size/position and attach to (new) parent
        */
-      __onWidgetAppear__P_138_8: function __onWidgetAppear__P_138_8() {
+      __onWidgetAppear__P_140_8: function __onWidgetAppear__P_140_8() {
         this._updateBlockerBounds(this._widget.getBounds());
 
         if (this._widget.isRootWidget()) {
@@ -19542,11 +19542,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * Remove the blocker if the widget disappears
        */
-      __onWidgetDisappear__P_138_1: function __onWidgetDisappear__P_138_1() {
+      __onWidgetDisappear__P_140_1: function __onWidgetDisappear__P_140_1() {
         if (this.isBlocked()) {
           this.getBlockerElement().getParent().remove(this.getBlockerElement());
 
-          this._widget.addListenerOnce("appear", this.__onWidgetAppear__P_138_8, this);
+          this._widget.addListenerOnce("appear", this.__onWidgetAppear__P_140_8, this);
         }
       },
 
@@ -19566,11 +19566,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       _applyColor: function _applyColor(value, old) {
         var color = qx.theme.manager.Color.getInstance().resolve(value);
 
-        this.__setBlockersStyle__P_138_9("backgroundColor", color);
+        this.__setBlockersStyle__P_140_9("backgroundColor", color);
       },
       // property apply
       _applyOpacity: function _applyOpacity(value, old) {
-        this.__setBlockersStyle__P_138_9("opacity", value);
+        this.__setBlockersStyle__P_140_9("opacity", value);
       },
 
       /**
@@ -19587,9 +19587,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param key {String} The name of the style attribute.
        * @param value {String} The value.
        */
-      __setBlockersStyle__P_138_9: function __setBlockersStyle__P_138_9(key, value) {
+      __setBlockersStyle__P_140_9: function __setBlockersStyle__P_140_9(key, value) {
         var blockers = [];
-        this.__blocker__P_138_4 && blockers.push(this.__blocker__P_138_4);
+        this.__blocker__P_140_4 && blockers.push(this.__blocker__P_140_4);
 
         for (var i = 0; i < blockers.length; i++) {
           blockers[i].setStyle(key, value);
@@ -19604,9 +19604,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var activeWidget = qx.ui.core.Widget.getWidgetByElement(focusHandler.getActive());
         var focusedWidget = qx.ui.core.Widget.getWidgetByElement(focusHandler.getFocus());
 
-        this.__activeElements__P_138_2.push(activeWidget);
+        this.__activeElements__P_140_2.push(activeWidget);
 
-        this.__focusElements__P_138_3.push(focusedWidget);
+        this.__focusElements__P_140_3.push(focusedWidget);
 
         if (activeWidget) {
           activeWidget.deactivate();
@@ -19622,20 +19622,20 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       _restoreActiveWidget: function _restoreActiveWidget() {
         var widget;
-        var focusElementsLength = this.__focusElements__P_138_3.length;
+        var focusElementsLength = this.__focusElements__P_140_3.length;
 
         if (focusElementsLength > 0) {
-          widget = this.__focusElements__P_138_3.pop();
+          widget = this.__focusElements__P_140_3.pop();
 
           if (widget && !widget.isDisposed() && widget.isFocusable()) {
             widget.focus();
           }
         }
 
-        var activeElementsLength = this.__activeElements__P_138_2.length;
+        var activeElementsLength = this.__activeElements__P_140_2.length;
 
         if (activeElementsLength > 0) {
-          widget = this.__activeElements__P_138_2.pop();
+          widget = this.__activeElements__P_140_2.pop();
 
           if (widget && !widget.isDisposed()) {
             widget.activate();
@@ -19648,7 +19648,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {qx.html.Element} The blocker element
        */
-      __createBlockerElement__P_138_10: function __createBlockerElement__P_138_10() {
+      __createBlockerElement__P_140_10: function __createBlockerElement__P_140_10() {
         return new qx.html.Blocker(this.getColor(), this.getOpacity());
       },
 
@@ -19660,10 +19660,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.html.Element} The blocker element
        */
       getBlockerElement: function getBlockerElement(widget) {
-        if (!this.__blocker__P_138_4) {
-          this.__blocker__P_138_4 = this.__createBlockerElement__P_138_10();
+        if (!this.__blocker__P_140_4) {
+          this.__blocker__P_140_4 = this.__createBlockerElement__P_140_10();
 
-          this.__blocker__P_138_4.setStyle("zIndex", 15);
+          this.__blocker__P_140_4.setStyle("zIndex", 15);
 
           if (!widget) {
             if (this._isRoot) {
@@ -19673,12 +19673,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             }
           }
 
-          widget.getContentElement().add(this.__blocker__P_138_4);
+          widget.getContentElement().add(this.__blocker__P_140_4);
 
-          this.__blocker__P_138_4.exclude();
+          this.__blocker__P_140_4.exclude();
         }
 
-        return this.__blocker__P_138_4;
+        return this.__blocker__P_140_4;
       },
 
       /**
@@ -19697,8 +19697,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       _block: function _block(zIndex, blockContent) {
         if (!this._isRoot && !this._widget.getLayoutParent()) {
-          if (!this.__appearListener__P_138_7) {
-            this.__appearListener__P_138_7 = this._widget.addListenerOnce("appear", this._block.bind(this, zIndex));
+          if (!this.__appearListener__P_140_7) {
+            this.__appearListener__P_140_7 = this._widget.addListenerOnce("appear", this._block.bind(this, zIndex));
           }
 
           return;
@@ -19718,9 +19718,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           blocker.setStyle("zIndex", zIndex);
         }
 
-        this.__blockerCount__P_138_5++;
+        this.__blockerCount__P_140_5++;
 
-        if (this.__blockerCount__P_138_5 < 2) {
+        if (this.__blockerCount__P_140_5 < 2) {
           this._backupActiveWidget();
 
           var bounds = this._widget.getBounds(); // no bounds -> widget not yet rendered -> bounds will be set on resize
@@ -19736,10 +19736,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             blocker.activate();
           }
 
-          blocker.addListener("deactivate", this.__activateBlockerElement__P_138_11, this);
-          blocker.addListener("keypress", this.__stopTabEvent__P_138_12, this);
-          blocker.addListener("keydown", this.__stopTabEvent__P_138_12, this);
-          blocker.addListener("keyup", this.__stopTabEvent__P_138_12, this);
+          blocker.addListener("deactivate", this.__activateBlockerElement__P_140_11, this);
+          blocker.addListener("keypress", this.__stopTabEvent__P_140_12, this);
+          blocker.addListener("keydown", this.__stopTabEvent__P_140_12, this);
+          blocker.addListener("keyup", this.__stopTabEvent__P_140_12, this);
           this.fireEvent("blocked", qx.event.type.Event);
         }
       },
@@ -19750,7 +19750,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} Whether the widget is blocked.
        */
       isBlocked: function isBlocked() {
-        return this.__blockerCount__P_138_5 > 0;
+        return this.__blockerCount__P_140_5 > 0;
       },
 
       /**
@@ -19759,22 +19759,22 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * the number of {@link #unblock} calls is identical to {@link #block} calls.
        */
       unblock: function unblock() {
-        if (this.__appearListener__P_138_7) {
-          this._widget.removeListenerById(this.__appearListener__P_138_7);
+        if (this.__appearListener__P_140_7) {
+          this._widget.removeListenerById(this.__appearListener__P_140_7);
 
-          this.__appearListener__P_138_7 = null;
+          this.__appearListener__P_140_7 = null;
         }
 
         if (!this.isBlocked()) {
           return;
         }
 
-        this.__blockerCount__P_138_5--;
+        this.__blockerCount__P_140_5--;
 
-        if (this.__blockerCount__P_138_5 < 1) {
-          this.__unblock__P_138_13();
+        if (this.__blockerCount__P_140_5 < 1) {
+          this.__unblock__P_140_13();
 
-          this.__blockerCount__P_138_5 = 0;
+          this.__blockerCount__P_140_5 = 0;
         }
       },
 
@@ -19783,32 +19783,32 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * the amount of {@link #block} calls. The blocker is directly removed.
        */
       forceUnblock: function forceUnblock() {
-        if (this.__appearListener__P_138_7) {
-          this._widget.removeListenerById(this.__appearListener__P_138_7);
+        if (this.__appearListener__P_140_7) {
+          this._widget.removeListenerById(this.__appearListener__P_140_7);
 
-          this.__appearListener__P_138_7 = null;
+          this.__appearListener__P_140_7 = null;
         }
 
         if (!this.isBlocked()) {
           return;
         }
 
-        this.__blockerCount__P_138_5 = 0;
+        this.__blockerCount__P_140_5 = 0;
 
-        this.__unblock__P_138_13();
+        this.__unblock__P_140_13();
       },
 
       /**
        * Unblock the widget blocked by {@link #block}.
        */
-      __unblock__P_138_13: function __unblock__P_138_13() {
+      __unblock__P_140_13: function __unblock__P_140_13() {
         this._restoreActiveWidget();
 
         var blocker = this.getBlockerElement();
-        blocker.removeListener("deactivate", this.__activateBlockerElement__P_138_11, this);
-        blocker.removeListener("keypress", this.__stopTabEvent__P_138_12, this);
-        blocker.removeListener("keydown", this.__stopTabEvent__P_138_12, this);
-        blocker.removeListener("keyup", this.__stopTabEvent__P_138_12, this);
+        blocker.removeListener("deactivate", this.__activateBlockerElement__P_140_11, this);
+        blocker.removeListener("keypress", this.__stopTabEvent__P_140_12, this);
+        blocker.removeListener("keydown", this.__stopTabEvent__P_140_12, this);
+        blocker.removeListener("keyup", this.__stopTabEvent__P_140_12, this);
         blocker.exclude();
         this.fireEvent("unblocked", qx.event.type.Event);
       },
@@ -19828,7 +19828,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @param e {qx.event.type.KeySequence} event to stop.
        */
-      __stopTabEvent__P_138_12: function __stopTabEvent__P_138_12(e) {
+      __stopTabEvent__P_140_12: function __stopTabEvent__P_140_12(e) {
         if (e.getKeyIdentifier() == "Tab") {
           e.stop();
         }
@@ -19837,7 +19837,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * Sets the blocker element to active.
        */
-      __activateBlockerElement__P_138_11: function __activateBlockerElement__P_138_11() {
+      __activateBlockerElement__P_140_11: function __activateBlockerElement__P_140_11() {
         //
         // If this._widget is attached to the focus handler as a focus root,
         // activating the blocker after this widget was deactivated,
@@ -19867,21 +19867,21 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         qx.theme.manager.Meta.getInstance().removeListener("changeTheme", this._onChangeTheme, this);
       }
 
-      this._widget.removeListener("resize", this.__onBoundsChange__P_138_0, this);
+      this._widget.removeListener("resize", this.__onBoundsChange__P_140_0, this);
 
-      this._widget.removeListener("move", this.__onBoundsChange__P_138_0, this);
+      this._widget.removeListener("move", this.__onBoundsChange__P_140_0, this);
 
-      this._widget.removeListener("appear", this.__onWidgetAppear__P_138_8, this);
+      this._widget.removeListener("appear", this.__onWidgetAppear__P_140_8, this);
 
-      this._widget.removeListener("disappear", this.__onWidgetDisappear__P_138_1, this);
+      this._widget.removeListener("disappear", this.__onWidgetDisappear__P_140_1, this);
 
-      if (this.__appearListener__P_138_7) {
-        this._widget.removeListenerById(this.__appearListener__P_138_7);
+      if (this.__appearListener__P_140_7) {
+        this._widget.removeListenerById(this.__appearListener__P_140_7);
       }
 
-      this._disposeObjects("__blocker__P_138_4", "__timer__P_138_6");
+      this._disposeObjects("__blocker__P_140_4", "__timer__P_140_6");
 
-      this.__activeElements__P_138_2 = this.__focusElements__P_138_3 = this._widget = null;
+      this.__activeElements__P_140_2 = this.__focusElements__P_140_3 = this._widget = null;
     }
   });
   qx.ui.core.Blocker.$$dbClassInfo = $$dbClassInfo;
@@ -20530,20 +20530,20 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      */
     construct: function construct(format, locale) {
       qx.core.Object.constructor.call(this);
-      this.__initialLocale__P_62_0 = this.__locale__P_62_1 = locale;
+      this.__initialLocale__P_63_0 = this.__locale__P_63_1 = locale;
 
       if (format != null) {
-        this.__format__P_62_2 = format.toString();
+        this.__format__P_63_2 = format.toString();
 
-        if (this.__format__P_62_2 in qx.util.format.DateFormat.ISO_MASKS) {
-          if (this.__format__P_62_2 === 'isoUtcDateTime') {
-            this.__UTC__P_62_3 = true;
+        if (this.__format__P_63_2 in qx.util.format.DateFormat.ISO_MASKS) {
+          if (this.__format__P_63_2 === 'isoUtcDateTime') {
+            this.__UTC__P_63_3 = true;
           }
 
-          this.__format__P_62_2 = qx.util.format.DateFormat.ISO_MASKS[this.__format__P_62_2];
+          this.__format__P_63_2 = qx.util.format.DateFormat.ISO_MASKS[this.__format__P_63_2];
         }
       } else {
-        this.__format__P_62_2 = qx.locale.Date.getDateFormat("long", this.getLocale()) + " " + qx.locale.Date.getDateTimeFormat("HHmmss", "HH:mm:ss", this.getLocale());
+        this.__format__P_63_2 = qx.locale.Date.getDateFormat("long", this.getLocale()) + " " + qx.locale.Date.getDateTimeFormat("HHmmss", "HH:mm:ss", this.getLocale());
       }
     },
 
@@ -20567,7 +20567,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var DateFormat = qx.util.format.DateFormat;
         var format = qx.locale.Date.getDateFormat("short") + ""; // Memoizing the instance, so caller doesn't have to dispose it.
 
-        if (DateFormat._dateInstance == null || DateFormat._dateInstance.__format__P_62_2 != format) {
+        if (DateFormat._dateInstance == null || DateFormat._dateInstance.__format__P_63_2 != format) {
           DateFormat._dateInstance = new DateFormat(format);
         }
 
@@ -20588,7 +20588,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var DateFormat = qx.util.format.DateFormat;
         var format = qx.locale.Date.getDateFormat("long") + " " + qx.locale.Date.getDateTimeFormat("HHmmss", "HH:mm:ss"); // Memoizing the instance, so caller doesn't have to dispose it.
 
-        if (DateFormat._dateTimeInstance == null || DateFormat._dateTimeInstance.__format__P_62_2 != format) {
+        if (DateFormat._dateTimeInstance == null || DateFormat._dateTimeInstance.__format__P_63_2 != format) {
           DateFormat._dateTimeInstance = new DateFormat(format);
         }
 
@@ -20624,13 +20624,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __locale__P_62_1: null,
-      __initialLocale__P_62_0: null,
-      __format__P_62_2: null,
-      __parseFeed__P_62_4: null,
-      __parseRules__P_62_5: null,
-      __formatTree__P_62_6: null,
-      __UTC__P_62_3: null,
+      __locale__P_63_1: null,
+      __initialLocale__P_63_0: null,
+      __format__P_63_2: null,
+      __parseFeed__P_63_4: null,
+      __parseRules__P_63_5: null,
+      __formatTree__P_63_6: null,
+      __UTC__P_63_3: null,
 
       /**
        * Fills a number with leading zeros ("25" -> "0025").
@@ -20639,7 +20639,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param minSize {Integer} the minimum size the returned string should have.
        * @return {String} the filled number as string.
        */
-      __fillNumber__P_62_7: function __fillNumber__P_62_7(number, minSize) {
+      __fillNumber__P_63_7: function __fillNumber__P_63_7(number, minSize) {
         var str = "" + (number < 0 ? -1 * number : number);
 
         while (str.length < minSize) {
@@ -20655,7 +20655,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param date {Date} the date.
        * @return {Integer} the day in year.
        */
-      __getDayInYear__P_62_8: function __getDayInYear__P_62_8(date) {
+      __getDayInYear__P_63_8: function __getDayInYear__P_63_8(date) {
         var helpDate = new Date(date.getTime());
         var day = helpDate.getDate();
 
@@ -20674,7 +20674,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param date {Date} the date to get the thursday of.
        * @return {Date} the thursday in the same week as the date.
        */
-      __thursdayOfSameWeek__P_62_9: function __thursdayOfSameWeek__P_62_9(date) {
+      __thursdayOfSameWeek__P_63_9: function __thursdayOfSameWeek__P_63_9(date) {
         return new Date(date.getTime() + (3 - (date.getDay() + 6) % 7) * 86400000);
       },
 
@@ -20684,16 +20684,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param date {Date} the date to get the week in year of.
        * @return {Integer} the week in year.
        */
-      __getWeekInYear__P_62_10: function __getWeekInYear__P_62_10(date) {
+      __getWeekInYear__P_63_10: function __getWeekInYear__P_63_10(date) {
         // The following algorithm comes from http://www.salesianer.de/util/kalwoch.html
         // Get the thursday of the week the date belongs to
-        var thursdayDate = this.__thursdayOfSameWeek__P_62_9(date); // Get the year the thursday (and therefore the week) belongs to
+        var thursdayDate = this.__thursdayOfSameWeek__P_63_9(date); // Get the year the thursday (and therefore the week) belongs to
 
 
         var weekYear = thursdayDate.getFullYear(); // Get the thursday of the week january 4th belongs to
         // (which defines week 1 of a year)
 
-        var thursdayWeek1 = this.__thursdayOfSameWeek__P_62_9(new Date(weekYear, 0, 4)); // Calculate the calendar week
+        var thursdayWeek1 = this.__thursdayOfSameWeek__P_63_9(new Date(weekYear, 0, 4)); // Calculate the calendar week
 
 
         return Math.floor(1.5 + (thursdayDate.getTime() - thursdayWeek1.getTime()) / 86400000 / 7);
@@ -20705,10 +20705,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param date {Date} the date to get the week in year of.
        * @return {Integer} the week in month.
        */
-      __getWeekInMonth__P_62_11: function __getWeekInMonth__P_62_11(date) {
-        var thursdayDate = this.__thursdayOfSameWeek__P_62_9(date);
+      __getWeekInMonth__P_63_11: function __getWeekInMonth__P_63_11(date) {
+        var thursdayDate = this.__thursdayOfSameWeek__P_63_9(date);
 
-        var thursdayWeek1 = this.__thursdayOfSameWeek__P_62_9(new Date(date.getFullYear(), date.getMonth(), 4));
+        var thursdayWeek1 = this.__thursdayOfSameWeek__P_63_9(new Date(date.getFullYear(), date.getMonth(), 4));
 
         return Math.floor(1.5 + (thursdayDate.getTime() - thursdayWeek1.getTime()) / 86400000 / 7);
       },
@@ -20722,8 +20722,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param date {Date} the date to get the week in year of.
        * @return {Integer} the week year.
        */
-      __getWeekYear__P_62_12: function __getWeekYear__P_62_12(date) {
-        var thursdayDate = this.__thursdayOfSameWeek__P_62_9(date);
+      __getWeekYear__P_63_12: function __getWeekYear__P_63_12(date) {
+        var thursdayDate = this.__thursdayOfSameWeek__P_63_9(date);
 
         return thursdayDate.getFullYear();
       },
@@ -20734,7 +20734,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param year {Integer} the year to check.
        * @return {Boolean} true if it is a leap year.
        */
-      __isLeapYear__P_62_13: function __isLeapYear__P_62_13(year) {
+      __isLeapYear__P_63_13: function __isLeapYear__P_63_13(year) {
         var februaryDate = new Date(year, 2, 1);
         februaryDate.setDate(-1);
         return februaryDate.getDate() + 1 === 29;
@@ -20747,7 +20747,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param year {Integer} the year to check.
        * @return {Object} a json object {month: M, day: D}.
        */
-      __getMonthAndDayFromDayOfYear__P_62_14: function __getMonthAndDayFromDayOfYear__P_62_14(dayOfYear, year) {
+      __getMonthAndDayFromDayOfYear__P_63_14: function __getMonthAndDayFromDayOfYear__P_63_14(dayOfYear, year) {
         var month = 0;
         var day = 0; // if we don't know the year, we take a non-leap year'
 
@@ -20786,14 +20786,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param dayOfMonth {Integer} the day in month
        * @return {Integer} the year.
        */
-      __getYearFromWeekYearAndMonth__P_62_15: function __getYearFromWeekYearAndMonth__P_62_15(weekYear, month, dayOfMonth) {
+      __getYearFromWeekYearAndMonth__P_63_15: function __getYearFromWeekYearAndMonth__P_63_15(weekYear, month, dayOfMonth) {
         var year;
 
         switch (month) {
           case 11:
             year = weekYear - 1;
 
-            if (weekYear != this.__getWeekYear__P_62_12(new Date(year, month, dayOfMonth))) {
+            if (weekYear != this.__getWeekYear__P_63_12(new Date(year, month, dayOfMonth))) {
               year = weekYear;
             }
 
@@ -20802,7 +20802,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           case 0:
             year = weekYear + 1;
 
-            if (weekYear != this.__getWeekYear__P_62_12(new Date(year, month, dayOfMonth))) {
+            if (weekYear != this.__getWeekYear__P_63_12(new Date(year, month, dayOfMonth))) {
               year = weekYear;
             }
 
@@ -20825,7 +20825,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           throw new Error("Cannot set locale to " + value + " - please provide a string");
         }
 
-        this.__locale__P_62_1 = value === null ? this.__initialLocale__P_62_0 : value;
+        this.__locale__P_63_1 = value === null ? this.__initialLocale__P_63_0 : value;
       },
 
       /**
@@ -20839,7 +20839,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Returns the locale
        */
       getLocale: function getLocale() {
-        var locale = this.__locale__P_62_1;
+        var locale = this.__locale__P_63_1;
 
         if (locale === undefined) {
           locale = qx.locale.Manager.getInstance().getLocale();
@@ -20854,7 +20854,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String}
        */
       getFormatString: function getFormatString() {
-        return this.__format__P_62_2;
+        return this.__format__P_63_2;
       },
 
       /**
@@ -20876,7 +20876,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           return null;
         }
 
-        if (this.__UTC__P_62_3) {
+        if (this.__UTC__P_63_3) {
           date = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds(), date.getUTCMilliseconds());
         }
 
@@ -20894,12 +20894,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var timezoneHours = Math.floor(Math.abs(timezoneOffset) / 60);
         var timezoneMinutes = Math.abs(timezoneOffset) % 60; // Create the output
 
-        this.__initFormatTree__P_62_16();
+        this.__initFormatTree__P_63_16();
 
         var output = "";
 
-        for (var i = 0; i < this.__formatTree__P_62_6.length; i++) {
-          var currAtom = this.__formatTree__P_62_6[i];
+        for (var i = 0; i < this.__formatTree__P_63_6.length; i++) {
+          var currAtom = this.__formatTree__P_63_6[i];
 
           if (currAtom.type == "literal") {
             output += currAtom.text;
@@ -20914,7 +20914,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               case 'y':
                 // Year
                 if (wildcardSize == 2) {
-                  replacement = this.__fillNumber__P_62_7(fullYear % 100, 2);
+                  replacement = this.__fillNumber__P_63_7(fullYear % 100, 2);
                 } else {
                   var year = Math.abs(fullYear);
                   replacement = year + "";
@@ -20934,7 +20934,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
               case 'Y':
                 // Year
-                replacement = this.__getWeekYear__P_62_12(date) + "";
+                replacement = this.__getWeekYear__P_63_12(date) + "";
                 var year = replacement.replace('-', '');
 
                 if (wildcardSize > replacement.length) {
@@ -20961,7 +20961,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               case 'Q':
                 // quarter
                 if (wildcardSize == 1 || wildcardSize == 2) {
-                  replacement = this.__fillNumber__P_62_7(parseInt(month / 4) + 1, wildcardSize);
+                  replacement = this.__fillNumber__P_63_7(parseInt(month / 4) + 1, wildcardSize);
                 }
 
                 if (wildcardSize == 3) {
@@ -20973,7 +20973,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               case 'q':
                 // quarter stand alone
                 if (wildcardSize == 1 || wildcardSize == 2) {
-                  replacement = this.__fillNumber__P_62_7(parseInt(month / 4) + 1, wildcardSize);
+                  replacement = this.__fillNumber__P_63_7(parseInt(month / 4) + 1, wildcardSize);
                 }
 
                 if (wildcardSize == 3) {
@@ -20984,22 +20984,22 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
               case 'D':
                 // Day in year (e.g. 189)
-                replacement = this.__fillNumber__P_62_7(this.__getDayInYear__P_62_8(date), wildcardSize);
+                replacement = this.__fillNumber__P_63_7(this.__getDayInYear__P_63_8(date), wildcardSize);
                 break;
 
               case 'd':
                 // Day in month
-                replacement = this.__fillNumber__P_62_7(dayOfMonth, wildcardSize);
+                replacement = this.__fillNumber__P_63_7(dayOfMonth, wildcardSize);
                 break;
 
               case 'w':
                 // Week in year (e.g. 27)
-                replacement = this.__fillNumber__P_62_7(this.__getWeekInYear__P_62_10(date), wildcardSize);
+                replacement = this.__fillNumber__P_63_7(this.__getWeekInYear__P_63_10(date), wildcardSize);
                 break;
 
               case 'W':
                 // Week in year (e.g. 27)
-                replacement = this.__getWeekInMonth__P_62_11(date);
+                replacement = this.__getWeekInMonth__P_63_11(date);
                 break;
 
               case 'E':
@@ -21021,7 +21021,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                 var localeDayOfWeek = 1 + (dayOfWeek - startOfWeek >= 0 ? dayOfWeek - startOfWeek : 7 + (dayOfWeek - startOfWeek));
 
                 if (wildcardSize >= 1 && wildcardSize <= 2) {
-                  replacement = this.__fillNumber__P_62_7(localeDayOfWeek, wildcardSize);
+                  replacement = this.__fillNumber__P_63_7(localeDayOfWeek, wildcardSize);
                 } else if (wildcardSize == 3) {
                   replacement = qx.locale.Date.getDayName("abbreviated", dayOfWeek, locale, "format", true);
                 } else if (wildcardSize == 4) {
@@ -21053,7 +21053,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               case 'M':
                 // Month
                 if (wildcardSize == 1 || wildcardSize == 2) {
-                  replacement = this.__fillNumber__P_62_7(month + 1, wildcardSize);
+                  replacement = this.__fillNumber__P_63_7(month + 1, wildcardSize);
                 } else if (wildcardSize == 3) {
                   replacement = qx.locale.Date.getMonthName("abbreviated", month, locale, "format", true);
                 } else if (wildcardSize == 4) {
@@ -21067,7 +21067,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               case 'L':
                 // Stand-alone month
                 if (wildcardSize == 1 || wildcardSize == 2) {
-                  replacement = this.__fillNumber__P_62_7(month + 1, wildcardSize);
+                  replacement = this.__fillNumber__P_63_7(month + 1, wildcardSize);
                 } else if (wildcardSize == 3) {
                   replacement = qx.locale.Date.getMonthName("abbreviated", month, locale, "stand-alone", true);
                 } else if (wildcardSize == 4) {
@@ -21086,37 +21086,37 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
               case 'H':
                 // Hour in day (0-23)
-                replacement = this.__fillNumber__P_62_7(hours, wildcardSize);
+                replacement = this.__fillNumber__P_63_7(hours, wildcardSize);
                 break;
 
               case 'k':
                 // Hour in day (1-24)
-                replacement = this.__fillNumber__P_62_7(hours == 0 ? 24 : hours, wildcardSize);
+                replacement = this.__fillNumber__P_63_7(hours == 0 ? 24 : hours, wildcardSize);
                 break;
 
               case 'K':
                 // Hour in am/pm (0-11)
-                replacement = this.__fillNumber__P_62_7(hours % 12, wildcardSize);
+                replacement = this.__fillNumber__P_63_7(hours % 12, wildcardSize);
                 break;
 
               case 'h':
                 // Hour in am/pm (1-12)
-                replacement = this.__fillNumber__P_62_7(hours % 12 == 0 ? 12 : hours % 12, wildcardSize);
+                replacement = this.__fillNumber__P_63_7(hours % 12 == 0 ? 12 : hours % 12, wildcardSize);
                 break;
 
               case 'm':
                 // Minute in hour
-                replacement = this.__fillNumber__P_62_7(minutes, wildcardSize);
+                replacement = this.__fillNumber__P_63_7(minutes, wildcardSize);
                 break;
 
               case 's':
                 // Second in minute
-                replacement = this.__fillNumber__P_62_7(seconds, wildcardSize);
+                replacement = this.__fillNumber__P_63_7(seconds, wildcardSize);
                 break;
 
               case 'S':
                 // Fractional second
-                replacement = this.__fillNumber__P_62_7(ms, 3);
+                replacement = this.__fillNumber__P_63_7(ms, 3);
 
                 if (wildcardSize < replacement.length) {
                   replacement = replacement.substr(0, wildcardSize);
@@ -21132,7 +21132,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               case 'z':
                 // Time zone
                 if (wildcardSize >= 1 && wildcardSize <= 4) {
-                  replacement = "GMT" + (timezoneSign > 0 ? "-" : "+") + this.__fillNumber__P_62_7(Math.abs(timezoneHours), 2) + ":" + this.__fillNumber__P_62_7(timezoneMinutes, 2);
+                  replacement = "GMT" + (timezoneSign > 0 ? "-" : "+") + this.__fillNumber__P_63_7(Math.abs(timezoneHours), 2) + ":" + this.__fillNumber__P_63_7(timezoneMinutes, 2);
                 }
 
                 break;
@@ -21140,9 +21140,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               case 'Z':
                 // RFC 822 time zone
                 if (wildcardSize >= 1 && wildcardSize <= 3) {
-                  replacement = (timezoneSign > 0 ? "-" : "+") + this.__fillNumber__P_62_7(Math.abs(timezoneHours), 2) + this.__fillNumber__P_62_7(timezoneMinutes, 2);
+                  replacement = (timezoneSign > 0 ? "-" : "+") + this.__fillNumber__P_63_7(Math.abs(timezoneHours), 2) + this.__fillNumber__P_63_7(timezoneMinutes, 2);
                 } else {
-                  replacement = "GMT" + (timezoneSign > 0 ? "-" : "+") + this.__fillNumber__P_62_7(Math.abs(timezoneHours), 2) + ":" + this.__fillNumber__P_62_7(timezoneMinutes, 2);
+                  replacement = "GMT" + (timezoneSign > 0 ? "-" : "+") + this.__fillNumber__P_63_7(Math.abs(timezoneHours), 2) + ":" + this.__fillNumber__P_63_7(timezoneMinutes, 2);
                 }
 
                 break;
@@ -21164,13 +21164,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *       match to the format.
        */
       parse: function parse(dateStr) {
-        this.__initParseFeed__P_62_17(); // Apply the regex
+        this.__initParseFeed__P_63_17(); // Apply the regex
 
 
-        var hit = this.__parseFeed__P_62_4.regex.exec(dateStr);
+        var hit = this.__parseFeed__P_63_4.regex.exec(dateStr);
 
         if (hit == null) {
-          throw new Error("Date string '" + dateStr + "' does not match the date format: " + this.__format__P_62_2);
+          throw new Error("Date string '" + dateStr + "' does not match the date format: " + this.__format__P_63_2);
         } // Apply the rules
 
 
@@ -21195,8 +21195,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var applyWeekYearAfterRule = false;
         var applyDayOfYearAfterRule = false;
 
-        for (var i = 0; i < this.__parseFeed__P_62_4.usedRules.length; i++) {
-          var rule = this.__parseFeed__P_62_4.usedRules[i];
+        for (var i = 0; i < this.__parseFeed__P_63_4.usedRules.length; i++) {
+          var rule = this.__parseFeed__P_63_4.usedRules[i];
           var value = hit[currGroup];
 
           if (rule.field != null) {
@@ -21208,8 +21208,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           if (rule.pattern == "Y+") {
             var yearRuleApplied = false;
 
-            for (var k = 0; k < this.__parseFeed__P_62_4.usedRules.length; k++) {
-              if (this.__parseFeed__P_62_4.usedRules[k].pattern == 'y+') {
+            for (var k = 0; k < this.__parseFeed__P_63_4.usedRules.length; k++) {
+              if (this.__parseFeed__P_63_4.usedRules[k].pattern == 'y+') {
                 yearRuleApplied = true;
                 break;
               }
@@ -21223,8 +21223,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           if (rule.pattern.indexOf("D") != -1) {
             var dayRuleApplied = false;
 
-            for (var k = 0; k < this.__parseFeed__P_62_4.usedRules.length; k++) {
-              if (this.__parseFeed__P_62_4.usedRules[k].pattern.indexOf("d") != -1) {
+            for (var k = 0; k < this.__parseFeed__P_63_4.usedRules.length; k++) {
+              if (this.__parseFeed__P_63_4.usedRules[k].pattern.indexOf("d") != -1) {
                 dayRuleApplied = true;
                 break;
               }
@@ -21239,11 +21239,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
 
         if (applyWeekYearAfterRule) {
-          dateValues.year = this.__getYearFromWeekYearAndMonth__P_62_15(dateValues.weekYear, dateValues.month, dateValues.day);
+          dateValues.year = this.__getYearFromWeekYearAndMonth__P_63_15(dateValues.weekYear, dateValues.month, dateValues.day);
         }
 
         if (applyDayOfYearAfterRule) {
-          var dayAndMonth = this.__getMonthAndDayFromDayOfYear__P_62_14(dateValues.dayOfYear, dateValues.year);
+          var dayAndMonth = this.__getMonthAndDayFromDayOfYear__P_63_14(dateValues.dayOfYear, dateValues.year);
 
           dateValues.month = dayAndMonth.month;
           dateValues.day = dayAndMonth.day;
@@ -21255,7 +21255,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         var date = new Date(dateValues.year, dateValues.month, dateValues.day, dateValues.ispm ? dateValues.hour + 12 : dateValues.hour, dateValues.min, dateValues.sec, dateValues.ms);
 
-        if (this.__UTC__P_62_3) {
+        if (this.__UTC__P_63_3) {
           date = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds(), date.getUTCMilliseconds());
         }
 
@@ -21271,16 +21271,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Parses the date format.
        *
        */
-      __initFormatTree__P_62_16: function __initFormatTree__P_62_16() {
-        if (this.__formatTree__P_62_6 != null) {
+      __initFormatTree__P_63_16: function __initFormatTree__P_63_16() {
+        if (this.__formatTree__P_63_6 != null) {
           return;
         }
 
-        this.__formatTree__P_62_6 = [];
+        this.__formatTree__P_63_6 = [];
         var currWildcardChar;
         var currWildcardSize = 0;
         var currLiteral = "";
-        var format = this.__format__P_62_2;
+        var format = this.__format__P_63_2;
         var state = "default";
         var i = 0;
 
@@ -21323,7 +21323,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                 i++;
               } else {
                 // It does not -> The current wildcard is done
-                this.__formatTree__P_62_6.push({
+                this.__formatTree__P_63_6.push({
                   type: "wildcard",
                   character: currWildcardChar,
                   size: currWildcardSize
@@ -21367,7 +21367,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               if (state != "default") {
                 // Add the literal
                 if (currLiteral.length > 0) {
-                  this.__formatTree__P_62_6.push({
+                  this.__formatTree__P_63_6.push({
                     type: "literal",
                     text: currLiteral
                   });
@@ -21386,13 +21386,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
         if (currWildcardChar != null) {
-          this.__formatTree__P_62_6.push({
+          this.__formatTree__P_63_6.push({
             type: "wildcard",
             character: currWildcardChar,
             size: currWildcardSize
           });
         } else if (currLiteral.length > 0) {
-          this.__formatTree__P_62_6.push({
+          this.__formatTree__P_63_6.push({
             type: "literal",
             text: currLiteral
           });
@@ -21407,24 +21407,24 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @throws {Error} If the date format is malformed.
        */
-      __initParseFeed__P_62_17: function __initParseFeed__P_62_17() {
-        if (this.__parseFeed__P_62_4 != null) {
+      __initParseFeed__P_63_17: function __initParseFeed__P_63_17() {
+        if (this.__parseFeed__P_63_4 != null) {
           // We already have the parse feed
           return;
         }
 
-        var format = this.__format__P_62_2; // Initialize the rules
+        var format = this.__format__P_63_2; // Initialize the rules
 
-        this.__initParseRules__P_62_18();
+        this.__initParseRules__P_63_18();
 
-        this.__initFormatTree__P_62_16(); // Get the used rules and construct the regex pattern
+        this.__initFormatTree__P_63_16(); // Get the used rules and construct the regex pattern
 
 
         var usedRules = [];
         var pattern = "^";
 
-        for (var atomIdx = 0; atomIdx < this.__formatTree__P_62_6.length; atomIdx++) {
-          var currAtom = this.__formatTree__P_62_6[atomIdx];
+        for (var atomIdx = 0; atomIdx < this.__formatTree__P_63_6.length; atomIdx++) {
+          var currAtom = this.__formatTree__P_63_6[atomIdx];
 
           if (currAtom.type == "literal") {
             pattern += qx.lang.String.escapeRegexpChars(currAtom.text);
@@ -21435,10 +21435,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
             var wildcardRule;
 
-            for (var ruleIdx = 0; ruleIdx < this.__parseRules__P_62_5.length; ruleIdx++) {
-              var rule = this.__parseRules__P_62_5[ruleIdx];
+            for (var ruleIdx = 0; ruleIdx < this.__parseRules__P_63_5.length; ruleIdx++) {
+              var rule = this.__parseRules__P_63_5[ruleIdx];
 
-              if (this.__isRuleForWildcard__P_62_19(rule, wildcardChar, wildcardSize)) {
+              if (this.__isRuleForWildcard__P_63_19(rule, wildcardChar, wildcardSize)) {
                 // We found the right rule for the wildcard
                 wildcardRule = rule;
                 break;
@@ -21474,7 +21474,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // Create the this.__parseFeed
 
 
-        this.__parseFeed__P_62_4 = {
+        this.__parseFeed__P_63_4 = {
           regex: regex,
           "usedRules": usedRules,
           pattern: pattern
@@ -21488,7 +21488,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param wildcardSize {Integer} the number of  wildcardChar characters in the wildcard
        * @return {Boolean} if the rule matches or not
        */
-      __isRuleForWildcard__P_62_19: function __isRuleForWildcard__P_62_19(rule, wildcardChar, wildcardSize) {
+      __isRuleForWildcard__P_63_19: function __isRuleForWildcard__P_63_19(rule, wildcardChar, wildcardSize) {
         if (wildcardChar === 'y' && rule.pattern === 'y+') {
           rule.regex = rule.regexFunc(wildcardSize);
           return true;
@@ -21504,16 +21504,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Initializes the static parse rules.
        *
        */
-      __initParseRules__P_62_18: function __initParseRules__P_62_18() {
+      __initParseRules__P_63_18: function __initParseRules__P_63_18() {
         var DateFormat = qx.util.format.DateFormat;
         var LString = qx.lang.String;
 
-        if (this.__parseRules__P_62_5 != null) {
+        if (this.__parseRules__P_63_5 != null) {
           // The parse rules are already initialized
           return;
         }
 
-        var rules = this.__parseRules__P_62_5 = [];
+        var rules = this.__parseRules__P_63_5 = [];
         var amMarker = qx.locale.Date.getAmMarker(this.getLocale()).toString() || DateFormat.AM_MARKER;
         var pmMarker = qx.locale.Date.getPmMarker(this.getLocale()).toString() || DateFormat.PM_MARKER;
         var locale = this.getLocale();
@@ -22675,7 +22675,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             delta = domEvent.deltaY;
           }
 
-          return this.__normalize__P_115_0(delta);
+          return this.__normalize__P_116_0(delta);
         } // get the x scroll delta
 
 
@@ -22684,13 +22684,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
           if (domEvent.wheelDelta !== undefined) {
             if (domEvent.wheelDeltaX !== undefined) {
-              x = domEvent.wheelDeltaX ? this.__normalize__P_115_0(-domEvent.wheelDeltaX) : 0;
+              x = domEvent.wheelDeltaX ? this.__normalize__P_116_0(-domEvent.wheelDeltaX) : 0;
             }
           } else {
             if (domEvent.axis && domEvent.axis == domEvent.HORIZONTAL_AXIS && domEvent.detail !== undefined && domEvent.detail > 0) {
-              x = this.__normalize__P_115_0(domEvent.detail);
+              x = this.__normalize__P_116_0(domEvent.detail);
             } else if (domEvent.deltaX !== undefined) {
-              x = this.__normalize__P_115_0(domEvent.deltaX);
+              x = this.__normalize__P_116_0(domEvent.deltaX);
             }
           }
 
@@ -22703,15 +22703,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
           if (domEvent.wheelDelta !== undefined) {
             if (domEvent.wheelDeltaY !== undefined) {
-              y = domEvent.wheelDeltaY ? this.__normalize__P_115_0(-domEvent.wheelDeltaY) : 0;
+              y = domEvent.wheelDeltaY ? this.__normalize__P_116_0(-domEvent.wheelDeltaY) : 0;
             } else {
-              y = this.__normalize__P_115_0(-domEvent.wheelDelta);
+              y = this.__normalize__P_116_0(-domEvent.wheelDelta);
             }
           } else {
             if (!(domEvent.axis && domEvent.axis == domEvent.HORIZONTAL_AXIS) && domEvent.detail !== undefined && domEvent.detail > 0) {
-              y = this.__normalize__P_115_0(domEvent.detail);
+              y = this.__normalize__P_116_0(domEvent.detail);
             } else if (domEvent.deltaY !== undefined) {
-              y = this.__normalize__P_115_0(domEvent.deltaY);
+              y = this.__normalize__P_116_0(domEvent.deltaY);
             }
           }
 
@@ -22728,7 +22728,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param delta {Number} The mouse delta.
        * @return {Number} The normalized delta value
        */
-      __normalize__P_115_0: function __normalize__P_115_0(delta) {
+      __normalize__P_116_0: function __normalize__P_116_0(delta) {
         if (qx.util.Wheel.IS_TOUCHPAD) {
           // Reset normalization values that may be re-computed once a real mouse is plugged.
           qx.util.Wheel.MINSCROLL = null;
@@ -22747,14 +22747,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         if (qx.util.Wheel.MINSCROLL == null || qx.util.Wheel.MINSCROLL > absDelta) {
           qx.util.Wheel.MINSCROLL = absDelta;
 
-          this.__recalculateMultiplicator__P_115_1();
+          this.__recalculateMultiplicator__P_116_1();
         } // store the max value
 
 
         if (qx.util.Wheel.MAXSCROLL == null || qx.util.Wheel.MAXSCROLL < absDelta) {
           qx.util.Wheel.MAXSCROLL = absDelta;
 
-          this.__recalculateMultiplicator__P_115_1();
+          this.__recalculateMultiplicator__P_116_1();
         } // special case for systems not speeding up
 
 
@@ -22771,7 +22771,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * Recalculates the factor with which the calculated delta is normalized.
        */
-      __recalculateMultiplicator__P_115_1: function __recalculateMultiplicator__P_115_1() {
+      __recalculateMultiplicator__P_116_1: function __recalculateMultiplicator__P_116_1() {
         var max = qx.util.Wheel.MAXSCROLL || 0;
         var min = qx.util.Wheel.MINSCROLL || max;
 
@@ -23672,7 +23672,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     */
     members: {
       /** @type {qx.ui.core.SingleSelectionManager} the single selection manager */
-      __manager__P_167_0: null,
+      __manager__P_154_0: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -23693,7 +23693,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
 
         if (item instanceof qx.ui.core.Widget) {
-          this.__getManager__P_167_1().setSelected(item);
+          this.__getManager__P_154_1().setSelected(item);
 
           return null;
         } else {
@@ -23707,14 +23707,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @returns {null|qx.ui.core.Widget} The currently selected widget or null if there is none.
        */
       getValue: function getValue() {
-        return this.__getManager__P_167_1().getSelected() || null;
+        return this.__getManager__P_154_1().getSelected() || null;
       },
 
       /**
        * resetValue implements part of the {@link qx.ui.form.IField} interface.
        */
       resetValue: function resetValue() {
-        this.__getManager__P_167_1().resetSelected();
+        this.__getManager__P_154_1().resetSelected();
       },
 
       /**
@@ -23726,7 +23726,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.ui.core.Widget[]} List of items.
        */
       getSelection: function getSelection() {
-        var selected = this.__getManager__P_167_1().getSelected();
+        var selected = this.__getManager__P_154_1().getSelected();
 
         if (selected) {
           return [selected];
@@ -23749,7 +23749,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             break;
 
           case 1:
-            this.__getManager__P_167_1().setSelected(items[0]);
+            this.__getManager__P_154_1().setSelected(items[0]);
 
             break;
 
@@ -23762,7 +23762,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Clears the whole selection at once.
        */
       resetSelection: function resetSelection() {
-        this.__getManager__P_167_1().resetSelected();
+        this.__getManager__P_154_1().resetSelected();
       },
 
       /**
@@ -23773,7 +23773,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @throws {Error} if one of the items is not a child element.
        */
       isSelected: function isSelected(item) {
-        return this.__getManager__P_167_1().isSelected(item);
+        return this.__getManager__P_154_1().isSelected(item);
       },
 
       /**
@@ -23782,7 +23782,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} Whether the selection is empty.
        */
       isSelectionEmpty: function isSelectionEmpty() {
-        return this.__getManager__P_167_1().isSelectionEmpty();
+        return this.__getManager__P_154_1().isSelectionEmpty();
       },
 
       /**
@@ -23793,7 +23793,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.ui.core.Widget[]} The contained items.
        */
       getSelectables: function getSelectables(all) {
-        return this.__getManager__P_167_1().getSelectables(all);
+        return this.__getManager__P_154_1().getSelectables(all);
       },
 
       /*
@@ -23823,10 +23823,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {qx.ui.core.SingleSelectionManager} Single selection manager.
        */
-      __getManager__P_167_1: function __getManager__P_167_1() {
-        if (this.__manager__P_167_0 == null) {
+      __getManager__P_154_1: function __getManager__P_154_1() {
+        if (this.__manager__P_154_0 == null) {
           var that = this;
-          this.__manager__P_167_0 = new qx.ui.core.SingleSelectionManager({
+          this.__manager__P_154_0 = new qx.ui.core.SingleSelectionManager({
             getItems: function getItems() {
               return that._getItems();
             },
@@ -23839,12 +23839,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             }
           });
 
-          this.__manager__P_167_0.addListener("changeSelected", this._onChangeSelected, this);
+          this.__manager__P_154_0.addListener("changeSelected", this._onChangeSelected, this);
         }
 
-        this.__manager__P_167_0.setAllowEmptySelection(this._isAllowEmptySelection());
+        this.__manager__P_154_0.setAllowEmptySelection(this._isAllowEmptySelection());
 
-        return this.__manager__P_167_0;
+        return this.__manager__P_154_0;
       }
     },
 
@@ -23854,7 +23854,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__manager__P_167_0");
+      this._disposeObjects("__manager__P_154_0");
     }
   });
   qx.ui.core.MSingleSelectionHandling.$$dbClassInfo = $$dbClassInfo;
@@ -23902,11 +23902,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.Mixin.define("qx.ui.form.MModelSelection", {
     construct: function construct() {
       // create the selection array
-      this.__modelSelection__P_168_0 = new qx.data.Array(); // listen to the changes
+      this.__modelSelection__P_155_0 = new qx.data.Array(); // listen to the changes
 
-      this.__modelSelection__P_168_0.addListener("change", this.__onModelSelectionArrayChange__P_168_1, this);
+      this.__modelSelection__P_155_0.addListener("change", this.__onModelSelectionArrayChange__P_155_1, this);
 
-      this.addListener("changeSelection", this.__onModelSelectionChange__P_168_2, this);
+      this.addListener("changeSelection", this.__onModelSelectionChange__P_155_2, this);
     },
     events: {
       /**
@@ -23916,16 +23916,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       changeModelSelection: "qx.event.type.Data"
     },
     members: {
-      __modelSelection__P_168_0: null,
-      __inSelectionChange__P_168_3: false,
+      __modelSelection__P_155_0: null,
+      __inSelectionChange__P_155_3: false,
 
       /**
        * Handler for the selection change of the including class e.g. SelectBox,
        * List, ...
        * It sets the new modelSelection via {@link #setModelSelection}.
        */
-      __onModelSelectionChange__P_168_2: function __onModelSelectionChange__P_168_2() {
-        if (this.__inSelectionChange__P_168_3) {
+      __onModelSelectionChange__P_155_2: function __onModelSelectionChange__P_155_2() {
+        if (this.__inSelectionChange__P_155_3) {
           return;
         }
 
@@ -23953,12 +23953,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * Listener for the change of the internal model selection data array.
        */
-      __onModelSelectionArrayChange__P_168_1: function __onModelSelectionArrayChange__P_168_1() {
-        this.__inSelectionChange__P_168_3 = true;
+      __onModelSelectionArrayChange__P_155_1: function __onModelSelectionArrayChange__P_155_1() {
+        this.__inSelectionChange__P_155_3 = true;
         var selectables = this.getSelectables(true);
         var itemSelection = [];
 
-        var modelSelection = this.__modelSelection__P_168_0.toArray();
+        var modelSelection = this.__modelSelection__P_155_0.toArray();
 
         for (var i = 0; i < modelSelection.length; i++) {
           var model = modelSelection[i];
@@ -23976,13 +23976,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
 
         this.setSelection(itemSelection);
-        this.__inSelectionChange__P_168_3 = false; // check if the setting has worked
+        this.__inSelectionChange__P_155_3 = false; // check if the setting has worked
 
         var currentSelection = this.getSelection();
 
         if (!qx.lang.Array.equals(currentSelection, itemSelection)) {
           // if not, set the actual selection
-          this.__onModelSelectionChange__P_168_2();
+          this.__onModelSelectionChange__P_155_2();
         }
       },
 
@@ -23996,7 +23996,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.data.Array} An array of the models of the selected items.
        */
       getModelSelection: function getModelSelection() {
-        return this.__modelSelection__P_168_0;
+        return this.__modelSelection__P_155_0;
       },
 
       /**
@@ -24015,7 +24015,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       setModelSelection: function setModelSelection(modelSelection) {
         // check for null values
         if (!modelSelection) {
-          this.__modelSelection__P_168_0.removeAll();
+          this.__modelSelection__P_155_0.removeAll();
 
           return;
         }
@@ -24024,17 +24024,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           this.assertArray(modelSelection, "Please use an array as parameter.");
         } // add the first two parameter
 
-        modelSelection.unshift(this.__modelSelection__P_168_0.getLength()); // remove index
+        modelSelection.unshift(this.__modelSelection__P_155_0.getLength()); // remove index
 
         modelSelection.unshift(0); // start index
 
-        var returnArray = this.__modelSelection__P_168_0.splice.apply(this.__modelSelection__P_168_0, modelSelection);
+        var returnArray = this.__modelSelection__P_155_0.splice.apply(this.__modelSelection__P_155_0, modelSelection);
 
         returnArray.dispose();
       }
     },
     destruct: function destruct() {
-      this._disposeObjects("__modelSelection__P_168_0");
+      this._disposeObjects("__modelSelection__P_155_0");
     }
   });
   qx.ui.form.MModelSelection.$$dbClassInfo = $$dbClassInfo;
@@ -24126,9 +24126,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     construct: function construct(varargs) {
       qx.core.Object.constructor.call(this); // create item array
 
-      this.__items__P_166_0 = []; // add listener before call add!!!
+      this.__items__P_128_0 = []; // add listener before call add!!!
 
-      this.addListener("changeSelection", this.__onChangeSelection__P_166_1, this);
+      this.addListener("changeSelection", this.__onChangeSelection__P_128_1, this);
 
       if (varargs != null) {
         this.add.apply(this, arguments);
@@ -24238,7 +24238,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     */
     members: {
       /** @type {qx.ui.form.IRadioItem[]} The items of the radio group */
-      __items__P_166_0: null,
+      __items__P_128_0: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -24252,7 +24252,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.ui.form.IRadioItem[]} All managed items.
        */
       getItems: function getItems() {
-        return this.__items__P_166_0;
+        return this.__items__P_128_0;
       },
 
       /*
@@ -24267,7 +24267,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param varargs {qx.ui.form.IRadioItem} A variable number of items to add.
        */
       add: function add(varargs) {
-        var items = this.__items__P_166_0;
+        var items = this.__items__P_128_0;
         var item;
         var groupedProperty = this.getGroupedProperty();
         var groupedPropertyUp = qx.lang.String.firstUp(groupedProperty);
@@ -24303,7 +24303,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param item {qx.ui.form.IRadioItem} The item to remove.
        */
       remove: function remove(item) {
-        var items = this.__items__P_166_0;
+        var items = this.__items__P_128_0;
         var groupedProperty = this.getGroupedProperty();
         var groupedPropertyUp = qx.lang.String.firstUp(groupedProperty);
 
@@ -24330,7 +24330,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.ui.form.IRadioItem[]} The item array
        */
       getChildren: function getChildren() {
-        return this.__items__P_166_0;
+        return this.__items__P_128_0;
       },
 
       /*
@@ -24366,8 +24366,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var oldFirstUp = qx.lang.String.firstUp(old);
         var newFirstUp = qx.lang.String.firstUp(value);
 
-        for (var i = 0; i < this.__items__P_166_0.length; i++) {
-          item = this.__items__P_166_0[i]; // remove the listener for the old change event
+        for (var i = 0; i < this.__items__P_128_0.length; i++) {
+          item = this.__items__P_128_0[i]; // remove the listener for the old change event
 
           item.removeListener("change" + oldFirstUp, this._onItemChangeChecked, this); // add the listener for the new change event
 
@@ -24376,19 +24376,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       },
       // property apply
       _applyInvalidMessage: function _applyInvalidMessage(value, old) {
-        for (var i = 0; i < this.__items__P_166_0.length; i++) {
-          this.__items__P_166_0[i].setInvalidMessage(value);
+        for (var i = 0; i < this.__items__P_128_0.length; i++) {
+          this.__items__P_128_0[i].setInvalidMessage(value);
         }
       },
       // property apply
       _applyValid: function _applyValid(value, old) {
-        for (var i = 0; i < this.__items__P_166_0.length; i++) {
-          this.__items__P_166_0[i].setValid(value);
+        for (var i = 0; i < this.__items__P_128_0.length; i++) {
+          this.__items__P_128_0[i].setValid(value);
         }
       },
       // property apply
       _applyEnabled: function _applyEnabled(value, old) {
-        var items = this.__items__P_166_0;
+        var items = this.__items__P_128_0;
 
         if (value == null) {
           for (var i = 0, l = items.length; i < l; i++) {
@@ -24418,7 +24418,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       selectNext: function selectNext() {
         var item = this.getSelection()[0];
-        var items = this.__items__P_166_0;
+        var items = this.__items__P_128_0;
         var index = items.indexOf(item);
 
         if (index == -1) {
@@ -24447,7 +24447,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       selectPrevious: function selectPrevious() {
         var item = this.getSelection()[0];
-        var items = this.__items__P_166_0;
+        var items = this.__items__P_128_0;
         var index = items.indexOf(item);
 
         if (index == -1) {
@@ -24506,7 +24506,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *    <code>false</code> otherwise.
        */
       _isItemSelectable: function _isItemSelectable(item) {
-        return this.__items__P_166_0.indexOf(item) != -1;
+        return this.__items__P_128_0.indexOf(item) != -1;
       },
 
       /**
@@ -24514,7 +24514,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @param e {qx.event.type.Data} Data event.
        */
-      __onChangeSelection__P_166_1: function __onChangeSelection__P_166_1(e) {
+      __onChangeSelection__P_128_1: function __onChangeSelection__P_128_1(e) {
         var value = e.getData()[0];
         var old = e.getOldData()[0];
         var groupedProperty = this.getGroupedProperty();
@@ -24535,7 +24535,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     destruct: function destruct() {
-      this._disposeArray("__items__P_166_0");
+      this._disposeArray("__items__P_128_0");
     }
   });
   qx.ui.form.RadioGroup.$$dbClassInfo = $$dbClassInfo;
@@ -25119,8 +25119,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      */
     construct: function construct(spacingX, spacingY) {
       qx.ui.layout.Abstract.constructor.call(this);
-      this.__rowData__P_45_0 = [];
-      this.__colData__P_45_1 = [];
+      this.__rowData__P_39_0 = [];
+      this.__colData__P_39_1 = [];
 
       if (spacingX) {
         this.setSpacingX(spacingX);
@@ -25176,19 +25176,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     */
     members: {
       /** @type {Array} 2D array of grid cell data */
-      __grid__P_45_2: null,
-      __rowData__P_45_0: null,
-      __colData__P_45_1: null,
-      __colSpans__P_45_3: null,
-      __rowSpans__P_45_4: null,
-      __maxRowIndex__P_45_5: null,
-      __maxColIndex__P_45_6: null,
+      __grid__P_39_2: null,
+      __rowData__P_39_0: null,
+      __colData__P_39_1: null,
+      __colSpans__P_39_3: null,
+      __rowSpans__P_39_4: null,
+      __maxRowIndex__P_39_5: null,
+      __maxColIndex__P_39_6: null,
 
       /** @type {Array} cached row heights */
-      __rowHeights__P_45_7: null,
+      __rowHeights__P_39_7: null,
 
       /** @type {Array} cached column widths */
-      __colWidths__P_45_8: null,
+      __colWidths__P_39_8: null,
       // overridden
       verifyLayoutProperty: function verifyLayoutProperty(item, name, value) {
         var layoutProperties = {
@@ -25205,7 +25205,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * Rebuild the internal representation of the grid
        */
-      __buildGrid__P_45_9: function __buildGrid__P_45_9() {
+      __buildGrid__P_39_9: function __buildGrid__P_39_9() {
         var grid = [];
         var colSpans = [];
         var rowSpans = [];
@@ -25259,13 +25259,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         }
 
-        this.__grid__P_45_2 = grid;
-        this.__colSpans__P_45_3 = colSpans;
-        this.__rowSpans__P_45_4 = rowSpans;
-        this.__maxRowIndex__P_45_5 = maxRowIndex;
-        this.__maxColIndex__P_45_6 = maxColIndex;
-        this.__rowHeights__P_45_7 = null;
-        this.__colWidths__P_45_8 = null; // Clear invalidation marker
+        this.__grid__P_39_2 = grid;
+        this.__colSpans__P_39_3 = colSpans;
+        this.__rowSpans__P_39_4 = rowSpans;
+        this.__maxRowIndex__P_39_5 = maxRowIndex;
+        this.__maxColIndex__P_39_6 = maxColIndex;
+        this.__rowHeights__P_39_7 = null;
+        this.__colWidths__P_39_8 = null; // Clear invalidation marker
 
         delete this._invalidChildrenCache;
       },
@@ -25278,11 +25278,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param value {var} data to store
        */
       _setRowData: function _setRowData(row, key, value) {
-        var rowData = this.__rowData__P_45_0[row];
+        var rowData = this.__rowData__P_39_0[row];
 
         if (!rowData) {
-          this.__rowData__P_45_0[row] = {};
-          this.__rowData__P_45_0[row][key] = value;
+          this.__rowData__P_39_0[row] = {};
+          this.__rowData__P_39_0[row][key] = value;
         } else {
           rowData[key] = value;
         }
@@ -25296,11 +25296,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param value {var} data to store
        */
       _setColumnData: function _setColumnData(column, key, value) {
-        var colData = this.__colData__P_45_1[column];
+        var colData = this.__colData__P_39_1[column];
 
         if (!colData) {
-          this.__colData__P_45_1[column] = {};
-          this.__colData__P_45_1[column][key] = value;
+          this.__colData__P_39_1[column] = {};
+          this.__colData__P_39_1[column][key] = value;
         } else {
           colData[key] = value;
         }
@@ -25359,7 +25359,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *     containing the vertical and horizontal column alignment.
        */
       getColumnAlign: function getColumnAlign(column) {
-        var colData = this.__colData__P_45_1[column] || {};
+        var colData = this.__colData__P_39_1[column] || {};
         return {
           vAlign: colData.vAlign || "top",
           hAlign: colData.hAlign || "left"
@@ -25406,7 +25406,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *     containing the vertical and horizontal row alignment.
        */
       getRowAlign: function getRowAlign(row) {
-        var rowData = this.__rowData__P_45_0[row] || {};
+        var rowData = this.__rowData__P_39_0[row] || {};
         return {
           vAlign: rowData.vAlign || "top",
           hAlign: rowData.hAlign || "left"
@@ -25424,10 +25424,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       getCellWidget: function getCellWidget(row, column) {
         if (this._invalidChildrenCache) {
-          this.__buildGrid__P_45_9();
+          this.__buildGrid__P_39_9();
         }
 
-        var row = this.__grid__P_45_2[row] || {};
+        var row = this.__grid__P_39_2[row] || {};
         return row[column] || null;
       },
 
@@ -25438,10 +25438,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       getRowCount: function getRowCount() {
         if (this._invalidChildrenCache) {
-          this.__buildGrid__P_45_9();
+          this.__buildGrid__P_39_9();
         }
 
-        return this.__maxRowIndex__P_45_5 + 1;
+        return this.__maxRowIndex__P_39_5 + 1;
       },
 
       /**
@@ -25451,10 +25451,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       getColumnCount: function getColumnCount() {
         if (this._invalidChildrenCache) {
-          this.__buildGrid__P_45_9();
+          this.__buildGrid__P_39_9();
         }
 
-        return this.__maxColIndex__P_45_6 + 1;
+        return this.__maxColIndex__P_39_6 + 1;
       },
 
       /**
@@ -25472,9 +25472,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       getCellAlign: function getCellAlign(row, column) {
         var vAlign = "top";
         var hAlign = "left";
-        var rowData = this.__rowData__P_45_0[row];
-        var colData = this.__colData__P_45_1[column];
-        var widget = this.__grid__P_45_2[row][column];
+        var rowData = this.__rowData__P_39_0[row];
+        var colData = this.__colData__P_39_1[column];
+        var widget = this.__grid__P_39_2[row][column];
 
         if (widget) {
           var widgetProps = {
@@ -25534,7 +25534,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Integer} The column's flex value
        */
       getColumnFlex: function getColumnFlex(column) {
-        var colData = this.__colData__P_45_1[column] || {};
+        var colData = this.__colData__P_39_1[column] || {};
         return colData.flex !== undefined ? colData.flex : 0;
       },
 
@@ -25561,7 +25561,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Integer} The row's flex value
        */
       getRowFlex: function getRowFlex(row) {
-        var rowData = this.__rowData__P_45_0[row] || {};
+        var rowData = this.__rowData__P_39_0[row] || {};
         var rowFlex = rowData.flex !== undefined ? rowData.flex : 0;
         return rowFlex;
       },
@@ -25589,7 +25589,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Integer} The column's maximum width
        */
       getColumnMaxWidth: function getColumnMaxWidth(column) {
-        var colData = this.__colData__P_45_1[column] || {};
+        var colData = this.__colData__P_39_1[column] || {};
         return colData.maxWidth !== undefined ? colData.maxWidth : Infinity;
       },
 
@@ -25616,7 +25616,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Integer} The column's width
        */
       getColumnWidth: function getColumnWidth(column) {
-        var colData = this.__colData__P_45_1[column] || {};
+        var colData = this.__colData__P_39_1[column] || {};
         return colData.width !== undefined ? colData.width : null;
       },
 
@@ -25643,7 +25643,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Integer} The column's minimum width
        */
       getColumnMinWidth: function getColumnMinWidth(column) {
-        var colData = this.__colData__P_45_1[column] || {};
+        var colData = this.__colData__P_39_1[column] || {};
         return colData.minWidth || 0;
       },
 
@@ -25670,7 +25670,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Integer} The row's maximum width
        */
       getRowMaxHeight: function getRowMaxHeight(row) {
-        var rowData = this.__rowData__P_45_0[row] || {};
+        var rowData = this.__rowData__P_39_0[row] || {};
         return rowData.maxHeight || Infinity;
       },
 
@@ -25697,7 +25697,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Integer} The row's width
        */
       getRowHeight: function getRowHeight(row) {
-        var rowData = this.__rowData__P_45_0[row] || {};
+        var rowData = this.__rowData__P_39_0[row] || {};
         return rowData.height !== undefined ? rowData.height : null;
       },
 
@@ -25724,7 +25724,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Integer} The row's minimum width
        */
       getRowMinHeight: function getRowMinHeight(row) {
-        var rowData = this.__rowData__P_45_0[row] || {};
+        var rowData = this.__rowData__P_39_0[row] || {};
         return rowData.minHeight || 0;
       },
 
@@ -25765,8 +25765,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       _fixHeightsRowSpan: function _fixHeightsRowSpan(rowHeights) {
         var vSpacing = this.getSpacingY();
 
-        for (var i = 0, l = this.__rowSpans__P_45_4.length; i < l; i++) {
-          var widget = this.__rowSpans__P_45_4[i];
+        for (var i = 0, l = this.__rowSpans__P_39_4.length; i < l; i++) {
+          var widget = this.__rowSpans__P_39_4[i];
 
           var hint = this._getOuterSize(widget);
 
@@ -25967,13 +25967,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *     <code>height</code>.
        */
       _getRowHeights: function _getRowHeights() {
-        if (this.__rowHeights__P_45_7 != null) {
-          return this.__rowHeights__P_45_7;
+        if (this.__rowHeights__P_39_7 != null) {
+          return this.__rowHeights__P_39_7;
         }
 
         var rowHeights = [];
-        var maxRowIndex = this.__maxRowIndex__P_45_5;
-        var maxColIndex = this.__maxColIndex__P_45_6;
+        var maxRowIndex = this.__maxRowIndex__P_39_5;
+        var maxColIndex = this.__maxColIndex__P_39_6;
 
         for (var row = 0; row <= maxRowIndex; row++) {
           var minHeight = 0;
@@ -25981,7 +25981,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           var maxHeight = 0;
 
           for (var col = 0; col <= maxColIndex; col++) {
-            var widget = this.__grid__P_45_2[row][col];
+            var widget = this.__grid__P_39_2[row][col];
 
             if (!widget) {
               continue;
@@ -26022,11 +26022,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           };
         }
 
-        if (this.__rowSpans__P_45_4.length > 0) {
+        if (this.__rowSpans__P_39_4.length > 0) {
           this._fixHeightsRowSpan(rowHeights);
         }
 
-        this.__rowHeights__P_45_7 = rowHeights;
+        this.__rowHeights__P_39_7 = rowHeights;
         return rowHeights;
       },
 
@@ -26038,13 +26038,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *     <code>width</code>.
        */
       _getColWidths: function _getColWidths() {
-        if (this.__colWidths__P_45_8 != null) {
-          return this.__colWidths__P_45_8;
+        if (this.__colWidths__P_39_8 != null) {
+          return this.__colWidths__P_39_8;
         }
 
         var colWidths = [];
-        var maxColIndex = this.__maxColIndex__P_45_6;
-        var maxRowIndex = this.__maxRowIndex__P_45_5;
+        var maxColIndex = this.__maxColIndex__P_39_6;
+        var maxRowIndex = this.__maxRowIndex__P_39_5;
 
         for (var col = 0; col <= maxColIndex; col++) {
           var width = 0;
@@ -26052,7 +26052,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           var maxWidth = Infinity;
 
           for (var row = 0; row <= maxRowIndex; row++) {
-            var widget = this.__grid__P_45_2[row][col];
+            var widget = this.__grid__P_39_2[row][col];
 
             if (!widget) {
               continue;
@@ -26092,7 +26092,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           this._fixWidthsColSpan(colWidths);
         }
 
-        this.__colWidths__P_45_8 = colWidths;
+        this.__colWidths__P_39_8 = colWidths;
         return colWidths;
       },
 
@@ -26184,12 +26184,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Array} the __colSpans array
        */
       _getColSpans: function _getColSpans() {
-        return this.__colSpans__P_45_3;
+        return this.__colSpans__P_39_3;
       },
       // overridden
       renderLayout: function renderLayout(availWidth, availHeight, padding) {
         if (this._invalidChildrenCache) {
-          this.__buildGrid__P_45_9();
+          this.__buildGrid__P_39_9();
         }
 
         var Util = qx.ui.layout.Util;
@@ -26201,8 +26201,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var colStretchOffsets = this._getColumnFlexOffsets(availWidth);
 
         var colWidths = [];
-        var maxColIndex = this.__maxColIndex__P_45_6;
-        var maxRowIndex = this.__maxRowIndex__P_45_5;
+        var maxColIndex = this.__maxColIndex__P_39_6;
+        var maxRowIndex = this.__maxRowIndex__P_39_5;
         var offset;
 
         for (var col = 0; col <= maxColIndex; col++) {
@@ -26229,7 +26229,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           var top = 0;
 
           for (var row = 0; row <= maxRowIndex; row++) {
-            var widget = this.__grid__P_45_2[row][col]; // ignore empty cells
+            var widget = this.__grid__P_39_2[row][col]; // ignore empty cells
 
             if (!widget) {
               top += rowHeights[row] + vSpacing;
@@ -26277,13 +26277,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       // overridden
       invalidateLayoutCache: function invalidateLayoutCache() {
         qx.ui.layout.Grid.prototype.invalidateLayoutCache.base.call(this);
-        this.__colWidths__P_45_8 = null;
-        this.__rowHeights__P_45_7 = null;
+        this.__colWidths__P_39_8 = null;
+        this.__rowHeights__P_39_7 = null;
       },
       // overridden
       _computeSizeHint: function _computeSizeHint() {
         if (this._invalidChildrenCache) {
-          this.__buildGrid__P_45_9();
+          this.__buildGrid__P_39_9();
         } // calculate col widths
 
 
@@ -26340,7 +26340,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__grid__P_45_2 = this.__rowData__P_45_0 = this.__colData__P_45_1 = this.__colSpans__P_45_3 = this.__rowSpans__P_45_4 = this.__colWidths__P_45_8 = this.__rowHeights__P_45_7 = null;
+      this.__grid__P_39_2 = this.__rowData__P_39_0 = this.__colData__P_39_1 = this.__colSpans__P_39_3 = this.__rowSpans__P_39_4 = this.__colWidths__P_39_8 = this.__rowHeights__P_39_7 = null;
     }
   });
   qx.ui.layout.Grid.$$dbClassInfo = $$dbClassInfo;
@@ -26742,7 +26742,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       qx.html.Element.constructor.call(this, "iframe", styles, attributes);
       this.registerProperty("source", null, this._setSourceProperty);
       this.setSource(url);
-      this.addListener("navigate", this.__onNavigate__P_42_0, this); // add yourself to the element queue to enforce the creation of DOM element
+      this.addListener("navigate", this.__onNavigate__P_45_0, this); // add yourself to the element queue to enforce the creation of DOM element
 
       qx.html.Element._modified[this.toHashCode()] = this;
 
@@ -26924,7 +26924,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       *
       * @param e {qx.event.type.Data} navigate event
       */
-      __onNavigate__P_42_0: function __onNavigate__P_42_0(e) {
+      __onNavigate__P_45_0: function __onNavigate__P_45_0(e) {
         var actualUrl = e.getData();
 
         if (actualUrl) {
@@ -27040,8 +27040,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       this.addListener("dbltap", this._stopPropagation, this);
       this.addListener("swipe", this._stopPropagation, this);
       this.addListener("longtap", this._stopPropagation, this);
-      this.addListener("appear", this.__refreshCursor__P_43_0, this);
-      this.addListener("disappear", this.__refreshCursor__P_43_0, this);
+      this.addListener("appear", this.__refreshCursor__P_46_0, this);
+      this.addListener("disappear", this.__refreshCursor__P_46_0, this);
     },
     members: {
       /**
@@ -27057,7 +27057,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Refreshes the cursor by setting it to <code>null</code> and then to the
        * old value.
        */
-      __refreshCursor__P_43_0: function __refreshCursor__P_43_0() {
+      __refreshCursor__P_46_0: function __refreshCursor__P_46_0() {
         var currentCursor = this.getStyle("cursor");
         this.setStyle("cursor", null, true);
         this.setStyle("cursor", currentCursor, true);
@@ -27410,7 +27410,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           // if the end-user navigates in the Iframe.
 
 
-          this.__rememberUrl__P_44_0(iframe);
+          this.__rememberUrl__P_47_0(iframe);
         } catch (ex) {
           qx.log.Logger.warn("Iframe source could not be set!");
         }
@@ -27440,7 +27440,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       *
       * @param iframe {Element} DOM element of the iframe.
       */
-      __rememberUrl__P_44_0: function __rememberUrl__P_44_0(iframe) {
+      __rememberUrl__P_47_0: function __rememberUrl__P_47_0(iframe) {
         // URL can only be detected after load. Retrieve and store URL once.
         var callback = function callback() {
           qx.bom.Event.removeNativeListener(iframe, "load", callback);
@@ -27655,13 +27655,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } else if (this.isSystemColor(str)) {
           throw new Error("Could not convert system colors to RGB: " + str);
         } else if (this.isRgbaString(str)) {
-          color = this.__rgbaStringToRgb__P_88_0(str);
+          color = this.__rgbaStringToRgb__P_89_0(str);
         } else if (this.isRgbString(str)) {
-          color = this.__rgbStringToRgb__P_88_1();
+          color = this.__rgbStringToRgb__P_89_1();
         } else if (this.ishexShortString(str)) {
-          color = this.__hexShortStringToRgb__P_88_2();
+          color = this.__hexShortStringToRgb__P_89_2();
         } else if (this.ishexLongString(str)) {
-          color = this.__hexLongStringToRgb__P_88_3();
+          color = this.__hexLongStringToRgb__P_89_3();
         }
 
         if (color) {
@@ -27798,7 +27798,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {Array} an array with red, green, blue
        */
-      __rgbStringToRgb__P_88_1: function __rgbStringToRgb__P_88_1() {
+      __rgbStringToRgb__P_89_1: function __rgbStringToRgb__P_89_1() {
         var red = parseInt(RegExp.$1, 10);
         var green = parseInt(RegExp.$2, 10);
         var blue = parseInt(RegExp.$3, 10);
@@ -27810,7 +27810,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       *
       * @return {Array} an array with red, green, blue
       */
-      __rgbaStringToRgb__P_88_0: function __rgbaStringToRgb__P_88_0() {
+      __rgbaStringToRgb__P_89_0: function __rgbaStringToRgb__P_89_0() {
         var red = parseInt(RegExp.$1, 10);
         var green = parseInt(RegExp.$2, 10);
         var blue = parseInt(RegExp.$3, 10);
@@ -27830,7 +27830,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {Array} an array with red, green, blue
        */
-      __hexShortStringToRgb__P_88_2: function __hexShortStringToRgb__P_88_2() {
+      __hexShortStringToRgb__P_89_2: function __hexShortStringToRgb__P_89_2() {
         var red = parseInt(RegExp.$1, 16) * 17;
         var green = parseInt(RegExp.$2, 16) * 17;
         var blue = parseInt(RegExp.$3, 16) * 17;
@@ -27843,7 +27843,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {Array} an array with red, green, blue
        */
-      __hex3StringToRgb__P_88_4: function __hex3StringToRgb__P_88_4() {
+      __hex3StringToRgb__P_89_4: function __hex3StringToRgb__P_89_4() {
         var red = parseInt(RegExp.$1, 16) * 17;
         var green = parseInt(RegExp.$2, 16) * 17;
         var blue = parseInt(RegExp.$3, 16) * 17;
@@ -27855,7 +27855,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {Array} an array with red, green, blue
        */
-      __hex6StringToRgb__P_88_5: function __hex6StringToRgb__P_88_5() {
+      __hex6StringToRgb__P_89_5: function __hex6StringToRgb__P_89_5() {
         var red = parseInt(RegExp.$1, 16) * 16 + parseInt(RegExp.$2, 16);
         var green = parseInt(RegExp.$3, 16) * 16 + parseInt(RegExp.$4, 16);
         var blue = parseInt(RegExp.$5, 16) * 16 + parseInt(RegExp.$6, 16);
@@ -27867,7 +27867,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {Array} an array with red, green, blue
        */
-      __hexLongStringToRgb__P_88_3: function __hexLongStringToRgb__P_88_3() {
+      __hexLongStringToRgb__P_89_3: function __hexLongStringToRgb__P_89_3() {
         var red = parseInt(RegExp.$1, 16);
         var green = parseInt(RegExp.$2, 16);
         var blue = parseInt(RegExp.$3, 16);
@@ -27883,7 +27883,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       hex3StringToRgb: function hex3StringToRgb(value) {
         if (this.isHex3String(value)) {
-          return this.__hex3StringToRgb__P_88_4(value);
+          return this.__hex3StringToRgb__P_89_4(value);
         }
 
         throw new Error("Invalid hex3 value: " + value);
@@ -27912,7 +27912,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       hex6StringToRgb: function hex6StringToRgb(value) {
         if (this.isHex6String(value)) {
-          return this.__hex6StringToRgb__P_88_5(value);
+          return this.__hex6StringToRgb__P_89_5(value);
         }
 
         throw new Error("Invalid hex6 value: " + value);
@@ -27926,11 +27926,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       hexStringToRgb: function hexStringToRgb(value) {
         if (this.ishexShortString(value)) {
-          return this.__hexShortStringToRgb__P_88_2(value);
+          return this.__hexShortStringToRgb__P_89_2(value);
         }
 
         if (this.ishexLongString(value)) {
-          return this.__hexLongStringToRgb__P_88_3(value);
+          return this.__hexLongStringToRgb__P_89_3(value);
         }
 
         throw new Error("Invalid hex value: " + value);
@@ -28135,7 +28135,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param hue_tuner {Function}  function
        * @return {String} a valid CSS rgb color string.*
        */
-      __tuner__P_88_6: function __tuner__P_88_6(color, tuneMap, tuner, hue_tuner) {
+      __tuner__P_89_6: function __tuner__P_89_6(color, tuneMap, tuner, hue_tuner) {
         var rgba = this.stringToRgb(color);
 
         for (var key in tuneMap) {
@@ -28245,7 +28245,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} a valid CSS rgb color string.
        */
       scale: function scale(color, scaleMap) {
-        return this.__tuner__P_88_6(color, scaleMap, function (value, scale, max) {
+        return this.__tuner__P_89_6(color, scaleMap, function (value, scale, max) {
           if (value > max) {
             value = max;
           }
@@ -28285,7 +28285,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} a valid CSS rgb color string.
        */
       adjust: function adjust(color, adjustMap) {
-        return this.__tuner__P_88_6(color, adjustMap, function (value, offset, max) {
+        return this.__tuner__P_89_6(color, adjustMap, function (value, offset, max) {
           value += offset;
 
           if (value > max) {
@@ -28486,7 +28486,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     implement: [qx.ui.decoration.IDecorator],
     type: "abstract",
     members: {
-      __insets__P_127_0: null,
+      __insets__P_132_0: null,
 
       /**
        * Abstract method. Should return a map containing the default insets of
@@ -28518,15 +28518,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Resets the insets.
        */
       _resetInsets: function _resetInsets() {
-        this.__insets__P_127_0 = null;
+        this.__insets__P_132_0 = null;
       },
       // interface implementation
       getInsets: function getInsets() {
-        if (!this.__insets__P_127_0) {
-          this.__insets__P_127_0 = this._getDefaultInsets();
+        if (!this.__insets__P_132_0) {
+          this.__insets__P_132_0 = this._getDefaultInsets();
         }
 
-        return this.__insets__P_127_0;
+        return this.__insets__P_132_0;
       }
     },
 
@@ -28536,7 +28536,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      *****************************************************************************
      */
     destruct: function destruct() {
-      this.__insets__P_127_0 = null;
+      this.__insets__P_132_0 = null;
     }
   });
   qx.ui.decoration.Abstract.$$dbClassInfo = $$dbClassInfo;
@@ -29592,8 +29592,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     include: [qx.ui.decoration.MSingleBorder, qx.ui.decoration.MBackgroundImage],
     construct: function construct() {
       // override the methods of single border and background image
-      this._getDefaultInsetsForBorder = this.__getDefaultInsetsForDoubleBorder__P_128_0;
-      this._styleBorder = this.__styleDoubleBorder__P_128_1;
+      this._getDefaultInsetsForBorder = this.__getDefaultInsetsForDoubleBorder__P_133_0;
+      this._styleBorder = this.__styleDoubleBorder__P_133_1;
     },
 
     /*
@@ -29701,7 +29701,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @param styles {Map} A map to add the styles.
        */
-      __styleDoubleBorder__P_128_1: function __styleDoubleBorder__P_128_1(styles) {
+      __styleDoubleBorder__P_133_1: function __styleDoubleBorder__P_133_1(styles) {
         var propName = qx.core.Environment.get("css.boxshadow");
         var color, innerColor, innerWidth;
 
@@ -29768,7 +29768,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var innerOpacity = this.getInnerOpacity();
 
         if (innerOpacity < 1) {
-          this.__processInnerOpacity__P_128_2(innerColor, innerOpacity);
+          this.__processInnerOpacity__P_133_2(innerColor, innerOpacity);
         } // inner border
 
 
@@ -29845,7 +29845,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param innerColor {Map} map of top, right, bottom and left colors
        * @param innerOpacity {Number} alpha value
        */
-      __processInnerOpacity__P_128_2: function __processInnerOpacity__P_128_2(innerColor, innerOpacity) {
+      __processInnerOpacity__P_133_2: function __processInnerOpacity__P_133_2(innerColor, innerOpacity) {
         if (!qx.core.Environment.get("css.rgba")) {
           {
             qx.log.Logger.warn("innerOpacity is configured but the browser doesn't support RGBA colors.");
@@ -29874,7 +29874,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Map} A map containing the default insets.
        *   (top, right, bottom, left)
        */
-      __getDefaultInsetsForDoubleBorder__P_128_0: function __getDefaultInsetsForDoubleBorder__P_128_0() {
+      __getDefaultInsetsForDoubleBorder__P_133_0: function __getDefaultInsetsForDoubleBorder__P_133_0() {
         return {
           top: this.getWidthTop() + this.getInnerWidthTop(),
           right: this.getWidthRight() + this.getInnerWidthRight(),
@@ -30061,22 +30061,22 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           return;
         }
 
-        var styleImpl = this.__styleLinearBackgroundGradientAccordingToSpec__P_129_0;
+        var styleImpl = this.__styleLinearBackgroundGradientAccordingToSpec__P_134_0;
 
         if (qx.core.Environment.get("css.gradient.legacywebkit")) {
-          styleImpl = this.__styleLinearBackgroundGradientForLegacyWebkit__P_129_1;
+          styleImpl = this.__styleLinearBackgroundGradientForLegacyWebkit__P_134_1;
         } else if (!qx.core.Environment.get("css.gradient.linear") && qx.core.Environment.get("css.borderradius")) {
-          styleImpl = this.__styleLinearBackgroundGradientWithCanvas__P_129_2;
+          styleImpl = this.__styleLinearBackgroundGradientWithCanvas__P_134_2;
         } else if (!qx.core.Environment.get("css.gradient.linear")) {
-          styleImpl = this.__styleLinearBackgroundGradientWithMSFilter__P_129_3;
+          styleImpl = this.__styleLinearBackgroundGradientWithMSFilter__P_134_3;
         }
 
         var gradientProperties = ["startColor", "endColor", "colorPositionUnit", "orientation", "startColorPosition", "endColorPosition"];
         (function (startColors, endColors, units, orientations, startColorPositions, endColorPositions) {
           for (var i = 0; i < startColors.length; i++) {
-            var startColor = this.__getColor__P_129_4(startColors[i]);
+            var startColor = this.__getColor__P_134_4(startColors[i]);
 
-            var endColor = this.__getColor__P_129_4(endColors[i]);
+            var endColor = this.__getColor__P_134_4(endColors[i]);
 
             var unit = units[i];
             var orientation = orientations[i];
@@ -30118,7 +30118,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {Boolean} Whether this implementation supports multiple gradients atop each other (true).
        */
-      __styleLinearBackgroundGradientForLegacyWebkit__P_129_1: function __styleLinearBackgroundGradientForLegacyWebkit__P_129_1(startColor, endColor, unit, orientation, startColorPosition, endColorPosition, styles, backgroundStyle) {
+      __styleLinearBackgroundGradientForLegacyWebkit__P_134_1: function __styleLinearBackgroundGradientForLegacyWebkit__P_134_1(startColor, endColor, unit, orientation, startColorPosition, endColorPosition, styles, backgroundStyle) {
         // webkit uses px values if non are given
         unit = unit === "px" ? "" : unit;
 
@@ -30151,9 +30151,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {Boolean} Whether this implementation supports multiple gradients atop each other (true).
        */
-      __styleLinearBackgroundGradientWithCanvas__P_129_2: function me(startColor, endColor, unit, orientation, startColorPosition, endColorPosition, styles, backgroundStyle) {
-        if (!me.__canvas__P_129_5) {
-          me.__canvas__P_129_5 = document.createElement("canvas");
+      __styleLinearBackgroundGradientWithCanvas__P_134_2: function me(startColor, endColor, unit, orientation, startColorPosition, endColorPosition, styles, backgroundStyle) {
+        if (!me.__canvas__P_134_5) {
+          me.__canvas__P_134_5 = document.createElement("canvas");
         }
 
         var isVertical = orientation == "vertical";
@@ -30175,10 +30175,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         }
 
-        me.__canvas__P_129_5.width = width;
-        me.__canvas__P_129_5.height = height;
+        me.__canvas__P_134_5.width = width;
+        me.__canvas__P_134_5.height = height;
 
-        var ctx = me.__canvas__P_129_5.getContext('2d');
+        var ctx = me.__canvas__P_134_5.getContext('2d');
 
         if (isVertical) {
           var lingrad = ctx.createLinearGradient(0, 0, 0, height);
@@ -30208,7 +30208,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           size = isVertical ? height + "px 100%" : "100% " + width + "px";
         }
 
-        backgroundStyle.push("url(" + me.__canvas__P_129_5.toDataURL() + ") " + size);
+        backgroundStyle.push("url(" + me.__canvas__P_134_5.toDataURL() + ") " + size);
         return true;
       },
 
@@ -30228,7 +30228,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {Boolean} Whether this implementation supports multiple gradients atop each other (false).
        */
-      __styleLinearBackgroundGradientWithMSFilter__P_129_3: function __styleLinearBackgroundGradientWithMSFilter__P_129_3(startColor, endColor, unit, orientation, startColorPosition, endColorPosition, styles, backgroundStyle) {
+      __styleLinearBackgroundGradientWithMSFilter__P_134_3: function __styleLinearBackgroundGradientWithMSFilter__P_134_3(startColor, endColor, unit, orientation, startColorPosition, endColorPosition, styles, backgroundStyle) {
         var type = orientation == "horizontal" ? 1 : 0; // convert rgb, hex3 and named colors to hex6
 
         if (!qx.util.ColorUtil.isHex6String(startColor)) {
@@ -30279,7 +30279,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {Boolean} Whether this implementation supports multiple gradients atop each other (true).
        */
-      __styleLinearBackgroundGradientAccordingToSpec__P_129_0: function __styleLinearBackgroundGradientAccordingToSpec__P_129_0(startColor, endColor, unit, orientation, startColorPosition, endColorPosition, styles, backgroundStyle) {
+      __styleLinearBackgroundGradientAccordingToSpec__P_134_0: function __styleLinearBackgroundGradientAccordingToSpec__P_134_0(startColor, endColor, unit, orientation, startColorPosition, endColorPosition, styles, backgroundStyle) {
         // WebKit, Opera and Gecko interpret 0deg as "to right"
         var deg = orientation == "horizontal" ? 0 : 270;
         var start = startColor + " " + startColorPosition + unit;
@@ -30300,7 +30300,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param color {String} The color name
        * @return {Map} The resolved color
        */
-      __getColor__P_129_4: function __getColor__P_129_4(color) {
+      __getColor__P_134_4: function __getColor__P_134_4(color) {
         return qx.core.Environment.get("qx.theme") ? qx.theme.manager.Color.getInstance().resolve(color) : color;
       },
       // property apply
@@ -30556,7 +30556,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         var resolvedImage = qx.util.AliasManager.getInstance().resolve(this.getBorderImage());
 
-        var computedSlices = this.__getSlices__P_130_0(resolvedImage);
+        var computedSlices = this.__getSlices__P_135_0(resolvedImage);
 
         return {
           top: this.getSliceTop() || computedSlices[0],
@@ -30579,7 +30579,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param baseImage {String} Resource Id of the base border image
        * @return {Integer[]} Array with the top, right, bottom and left slice widths
        */
-      __getSlices__P_130_0: function __getSlices__P_130_0(baseImage) {
+      __getSlices__P_135_0: function __getSlices__P_135_0(baseImage) {
         var mode = this.getBorderImageMode();
         var topSlice = 0;
         var rightSlice = 0;
@@ -30838,7 +30838,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     implement: [qx.ui.decoration.IDecorator],
     include: [qx.ui.decoration.MBackgroundColor, qx.ui.decoration.MBorderRadius, qx.ui.decoration.MBoxShadow, qx.ui.decoration.MDoubleBorder, qx.ui.decoration.MLinearBackgroundGradient, qx.ui.decoration.MBorderImage, qx.ui.decoration.MTransition],
     members: {
-      __initialized__P_96_0: false,
+      __initialized__P_99_0: false,
 
       /**
        * Returns the configured padding minus the border width.
@@ -30904,7 +30904,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         }
 
-        this.__initialized__P_96_0 = true;
+        this.__initialized__P_99_0 = true;
         return styles;
       },
       // overridden
@@ -30946,7 +30946,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       },
       // overridden
       _isInitialized: function _isInitialized() {
-        return this.__initialized__P_96_0;
+        return this.__initialized__P_99_0;
       },
 
       /**
@@ -30975,7 +30975,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }));
 
         for (var i = 0; i < propertyValues.length; i++) {
-          this.__extendArray__P_96_1(propertyValues[i], items);
+          this.__extendArray__P_99_1(propertyValues[i], items);
         }
 
         return propertyValues;
@@ -30986,7 +30986,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       * @param array {Array} Incoming array. Has to contain at least one element.
       * @param to {Integer} Desired length. Must be greater than or equal to the the length of arr.
       */
-      __extendArray__P_96_1: function __extendArray__P_96_1(array, to) {
+      __extendArray__P_99_1: function __extendArray__P_99_1(array, to) {
         var initial = array.length;
 
         while (array.length < to) {
@@ -31069,7 +31069,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     construct: function construct() {
       qx.util.ValueManager.constructor.call(this); // Contains defined aliases (like icons/, widgets/, application/, ...)
 
-      this.__aliases__P_97_0 = {}; // Define static alias from setting
+      this.__aliases__P_100_0 = {}; // Define static alias from setting
 
       this.add("static", "qx/static");
     },
@@ -31080,7 +31080,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __aliases__P_97_0: null,
+      __aliases__P_100_0: null,
 
       /**
        * pre-process incoming dynamic value
@@ -31099,12 +31099,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             return value;
           }
 
-          if (this.__aliases__P_97_0[value]) {
-            return this.__aliases__P_97_0[value];
+          if (this.__aliases__P_100_0[value]) {
+            return this.__aliases__P_100_0[value];
           }
 
           var alias = value.substring(0, value.indexOf("/"));
-          var resolved = this.__aliases__P_97_0[alias];
+          var resolved = this.__aliases__P_100_0[alias];
 
           if (resolved !== undefined) {
             dynamics[value] = resolved + value.substring(alias.length);
@@ -31122,7 +31122,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       add: function add(alias, base) {
         // Store new alias value
-        this.__aliases__P_97_0[alias] = base; // Localify stores
+        this.__aliases__P_100_0[alias] = base; // Localify stores
 
         var dynamics = this._getDynamic(); // Update old entries which use this alias
 
@@ -31140,7 +31140,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param alias {String} alias name for the resource path/url
        */
       remove: function remove(alias) {
-        delete this.__aliases__P_97_0[alias]; // No signal for depending objects here. These
+        delete this.__aliases__P_100_0[alias]; // No signal for depending objects here. These
         // will informed with the new value using add().
       },
 
@@ -31168,8 +31168,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       getAliases: function getAliases() {
         var res = {};
 
-        for (var key in this.__aliases__P_97_0) {
-          res[key] = this.__aliases__P_97_0[key];
+        for (var key in this.__aliases__P_100_0) {
+          res[key] = this.__aliases__P_100_0[key];
         }
 
         return res;
@@ -31259,11 +31259,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       }
     },
     members: {
-      __timer__P_150_0: null,
+      __timer__P_152_0: null,
       // property apply
       _applyTimeoutInterval: function _applyTimeoutInterval(value) {
-        if (this.__timer__P_150_0) {
-          this.__timer__P_150_0.setInterval(value);
+        if (this.__timer__P_152_0) {
+          this.__timer__P_152_0.setInterval(value);
         }
       },
 
@@ -31277,25 +31277,25 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * Starts the timer but only if there are listeners for the "interval" event
        */
-      __startTimer__P_150_1: function __startTimer__P_150_1() {
-        if (!this.__timer__P_150_0 && this.hasListener("interval")) {
+      __startTimer__P_152_1: function __startTimer__P_152_1() {
+        if (!this.__timer__P_152_0 && this.hasListener("interval")) {
           var timer = new qx.event.Timer(this.getTimeoutInterval());
           timer.addListener("interval", this._onInterval, this);
           timer.start();
-          this.__timer__P_150_0 = timer;
+          this.__timer__P_152_0 = timer;
         }
       },
 
       /**
        * Stops the timer but only if there are no listeners for the interval event
        */
-      __stopTimer__P_150_2: function __stopTimer__P_150_2() {
-        if (this.__timer__P_150_0 && !this.hasListener("interval")) {
-          this.__timer__P_150_0.stop();
+      __stopTimer__P_152_2: function __stopTimer__P_152_2() {
+        if (this.__timer__P_152_0 && !this.hasListener("interval")) {
+          this.__timer__P_152_0.stop();
 
-          this.__timer__P_150_0.dispose();
+          this.__timer__P_152_0.dispose();
 
-          this.__timer__P_150_0 = null;
+          this.__timer__P_152_0 = null;
         }
       },
 
@@ -31305,7 +31305,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       addListener: function addListener(type, listener, self, capture) {
         var result = qx.event.Idle.prototype.addListener.base.call(this, type, listener, self, capture);
 
-        this.__startTimer__P_150_1();
+        this.__startTimer__P_152_1();
 
         return result;
       },
@@ -31316,7 +31316,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       addListenerOnce: function addListenerOnce(type, listener, self, capture) {
         var result = qx.event.Idle.prototype.addListenerOnce.base.call(this, type, listener, self, capture);
 
-        this.__startTimer__P_150_1();
+        this.__startTimer__P_152_1();
 
         return result;
       },
@@ -31327,7 +31327,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       removeListener: function removeListener(type, listener, self, capture) {
         var result = qx.event.Idle.prototype.removeListener.base.call(this, type, listener, self, capture);
 
-        this.__stopTimer__P_150_2();
+        this.__stopTimer__P_152_2();
 
         return result;
       },
@@ -31338,7 +31338,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       removeListenerById: function removeListenerById(id) {
         var result = qx.event.Idle.prototype.removeListenerById.base.call(this, id);
 
-        this.__stopTimer__P_150_2();
+        this.__stopTimer__P_152_2();
 
         return result;
       }
@@ -31350,11 +31350,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     destruct: function destruct() {
-      if (this.__timer__P_150_0) {
-        this.__timer__P_150_0.stop();
+      if (this.__timer__P_152_0) {
+        this.__timer__P_152_0.stop();
       }
 
-      this.__timer__P_150_0 = null;
+      this.__timer__P_152_0 = null;
     }
   });
   qx.event.Idle.$$dbClassInfo = $$dbClassInfo;
@@ -31409,7 +31409,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     extend: qx.core.Object,
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__defaultAxis__P_151_0 = qx.util.placement.DirectAxis;
+      this.__defaultAxis__P_153_0 = qx.util.placement.DirectAxis;
     },
     properties: {
       /**
@@ -31443,7 +31443,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       }
     },
     statics: {
-      __instance__P_151_1: null,
+      __instance__P_153_1: null,
 
       /**
        * DOM and widget independent method to compute the location
@@ -31481,7 +31481,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   <code>left</code> and <code>top</code>.
        */
       compute: function compute(size, area, target, offsets, position, modeX, modeY) {
-        this.__instance__P_151_1 = this.__instance__P_151_1 || new qx.util.placement.Placement();
+        this.__instance__P_153_1 = this.__instance__P_153_1 || new qx.util.placement.Placement();
         var splitted = position.split("-");
         var edge = splitted[0];
         var align = splitted[1];
@@ -31497,18 +31497,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         }
 
-        this.__instance__P_151_1.set({
-          axisX: this.__getAxis__P_151_2(modeX),
-          axisY: this.__getAxis__P_151_2(modeY),
+        this.__instance__P_153_1.set({
+          axisX: this.__getAxis__P_153_2(modeX),
+          axisY: this.__getAxis__P_153_2(modeY),
           edge: edge,
           align: align
         });
 
-        return this.__instance__P_151_1.compute(size, area, target, offsets);
+        return this.__instance__P_153_1.compute(size, area, target, offsets);
       },
-      __direct__P_151_3: null,
-      __keepAlign__P_151_4: null,
-      __bestFit__P_151_5: null,
+      __direct__P_153_3: null,
+      __keepAlign__P_153_4: null,
+      __bestFit__P_153_5: null,
 
       /**
        * Get the axis implementation for the given mode
@@ -31517,19 +31517,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   <code>best-fit</code>
        * @return {qx.util.placement.AbstractAxis}
        */
-      __getAxis__P_151_2: function __getAxis__P_151_2(mode) {
+      __getAxis__P_153_2: function __getAxis__P_153_2(mode) {
         switch (mode) {
           case "direct":
-            this.__direct__P_151_3 = this.__direct__P_151_3 || qx.util.placement.DirectAxis;
-            return this.__direct__P_151_3;
+            this.__direct__P_153_3 = this.__direct__P_153_3 || qx.util.placement.DirectAxis;
+            return this.__direct__P_153_3;
 
           case "keep-align":
-            this.__keepAlign__P_151_4 = this.__keepAlign__P_151_4 || qx.util.placement.KeepAlignAxis;
-            return this.__keepAlign__P_151_4;
+            this.__keepAlign__P_153_4 = this.__keepAlign__P_153_4 || qx.util.placement.KeepAlignAxis;
+            return this.__keepAlign__P_153_4;
 
           case "best-fit":
-            this.__bestFit__P_151_5 = this.__bestFit__P_151_5 || qx.util.placement.BestFitAxis;
-            return this.__bestFit__P_151_5;
+            this.__bestFit__P_153_5 = this.__bestFit__P_153_5 || qx.util.placement.BestFitAxis;
+            return this.__bestFit__P_153_5;
 
           default:
             throw new Error("Invalid 'mode' argument!'");
@@ -31537,7 +31537,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       }
     },
     members: {
-      __defaultAxis__P_151_0: null,
+      __defaultAxis__P_153_0: null,
 
       /**
        * DOM and widget independent method to compute the location
@@ -31577,7 +31577,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           this.assertNumber(offsets.left, "offsets.left");
         }
 
-        var axisX = this.getAxisX() || this.__defaultAxis__P_151_0;
+        var axisX = this.getAxisX() || this.__defaultAxis__P_153_0;
 
         var left = axisX.computeStart(size.width, {
           start: target.left,
@@ -31585,9 +31585,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }, {
           start: offsets.left,
           end: offsets.right
-        }, area.width, this.__getPositionX__P_151_6());
+        }, area.width, this.__getPositionX__P_153_6());
 
-        var axisY = this.getAxisY() || this.__defaultAxis__P_151_0;
+        var axisY = this.getAxisY() || this.__defaultAxis__P_153_0;
 
         var top = axisY.computeStart(size.height, {
           start: target.top,
@@ -31595,7 +31595,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }, {
           start: offsets.top,
           end: offsets.bottom
-        }, area.height, this.__getPositionY__P_151_7());
+        }, area.height, this.__getPositionY__P_153_7());
         return {
           left: left,
           top: top
@@ -31607,7 +31607,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {String} the position
        */
-      __getPositionX__P_151_6: function __getPositionX__P_151_6() {
+      __getPositionX__P_153_6: function __getPositionX__P_153_6() {
         var edge = this.getEdge();
         var align = this.getAlign();
 
@@ -31629,7 +31629,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {String} the position
        */
-      __getPositionY__P_151_7: function __getPositionY__P_151_7() {
+      __getPositionY__P_153_7: function __getPositionY__P_153_7() {
         var edge = this.getEdge();
         var align = this.getAlign();
 
@@ -31647,7 +31647,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       }
     },
     destruct: function destruct() {
-      this._disposeObjects("__defaultAxis__P_151_0");
+      this._disposeObjects("__defaultAxis__P_153_0");
     }
   });
   qx.util.placement.Placement.$$dbClassInfo = $$dbClassInfo;
@@ -31714,9 +31714,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     construct: function construct() {
       qx.core.Object.constructor.call(this); // Create data structure, use an array because order matters [BUG #4323]
 
-      this.__objects__P_153_0 = []; // Register pointerdown handler
+      this.__objects__P_157_0 = []; // Register pointerdown handler
 
-      qx.event.Registration.addListener(document.documentElement, "pointerdown", this.__onPointerDown__P_153_1, this, true); // Hide all popups on window blur
+      qx.event.Registration.addListener(document.documentElement, "pointerdown", this.__onPointerDown__P_157_1, this, true); // Hide all popups on window blur
 
       qx.bom.Element.addListener(window, "blur", this.hideAll, this);
     },
@@ -31736,7 +31736,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __objects__P_153_0: null,
+      __objects__P_157_0: null,
 
       /**
        * Registers a visible popup.
@@ -31750,9 +31750,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         }
 
-        this.__objects__P_153_0.push(obj);
+        this.__objects__P_157_0.push(obj);
 
-        this.__updateIndexes__P_153_2();
+        this.__updateIndexes__P_157_2();
       },
 
       /**
@@ -31766,9 +31766,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             throw new Error("Object is no popup: " + obj);
           }
         }
-        qx.lang.Array.remove(this.__objects__P_153_0, obj);
+        qx.lang.Array.remove(this.__objects__P_157_0, obj);
 
-        this.__updateIndexes__P_153_2();
+        this.__updateIndexes__P_157_2();
       },
 
       /**
@@ -31776,11 +31776,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * except those with {@link qx.ui.popup.Popup#autoHide} set to false.
        */
       hideAll: function hideAll() {
-        var l = this.__objects__P_153_0.length,
+        var l = this.__objects__P_157_0.length,
             current = {};
 
         while (l--) {
-          current = this.__objects__P_153_0[l];
+          current = this.__objects__P_157_0[l];
 
           if (current.getAutoHide()) {
             current.exclude();
@@ -31799,11 +31799,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * newly added ones on top of existing ones
        *
        */
-      __updateIndexes__P_153_2: function __updateIndexes__P_153_2() {
+      __updateIndexes__P_157_2: function __updateIndexes__P_157_2() {
         var min = 1e7;
 
-        for (var i = 0; i < this.__objects__P_153_0.length; i++) {
-          this.__objects__P_153_0[i].setZIndex(min++);
+        for (var i = 0; i < this.__objects__P_157_0.length; i++) {
+          this.__objects__P_157_0[i].setZIndex(min++);
         }
       },
 
@@ -31818,14 +31818,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @param e {qx.event.type.Pointer} Pointer event object
        */
-      __onPointerDown__P_153_1: function __onPointerDown__P_153_1(e) {
+      __onPointerDown__P_157_1: function __onPointerDown__P_157_1(e) {
         // Get the corresponding widget of the target since we are dealing with
         // DOM elements here. This is necessary because we have to be aware of
         // Inline applications which are not covering the whole document and
         // therefore are not able to get all pointer events when only the
         // application root is monitored.
         var target = qx.ui.core.Widget.getWidgetByElement(e.getTarget());
-        var reg = this.__objects__P_153_0;
+        var reg = this.__objects__P_157_0;
 
         for (var i = 0; i < reg.length; i++) {
           var obj = reg[i];
@@ -31845,9 +31845,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     destruct: function destruct() {
-      qx.event.Registration.removeListener(document.documentElement, "pointerdown", this.__onPointerDown__P_153_1, this, true);
+      qx.event.Registration.removeListener(document.documentElement, "pointerdown", this.__onPointerDown__P_157_1, this, true);
 
-      this._disposeArray("__objects__P_153_0");
+      this._disposeArray("__objects__P_157_0");
     }
   });
   qx.ui.popup.Manager.$$dbClassInfo = $$dbClassInfo;
@@ -31986,10 +31986,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
             if (value instanceof Array) {
               for (var i = 0; i < value.length; i++) {
-                this.__toParameterPair__P_69_0(key, value[i], parts, post);
+                this.__toParameterPair__P_70_0(key, value[i], parts, post);
               }
             } else {
-              this.__toParameterPair__P_69_0(key, value, parts, post);
+              this.__toParameterPair__P_70_0(key, value, parts, post);
             }
           }
         }
@@ -32005,7 +32005,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param parts {Array} Array to push to.
        * @param post {Boolean} Whether spaces should be encoded with "+".
        */
-      __toParameterPair__P_69_0: function __toParameterPair__P_69_0(key, value, parts, post) {
+      __toParameterPair__P_70_0: function __toParameterPair__P_70_0(key, value, parts, post) {
         var encode = window.encodeURIComponent;
 
         if (post) {
@@ -32117,15 +32117,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.Bootstrap.define("qx.bom.element.AnimationCss", {
     statics: {
       // initialization
-      __sheet__P_155_0: null,
-      __rulePrefix__P_155_1: "Anni",
-      __id__P_155_2: 0,
+      __sheet__P_159_0: null,
+      __rulePrefix__P_159_1: "Anni",
+      __id__P_159_2: 0,
 
       /** Static map of rules */
-      __rules__P_155_3: {},
+      __rules__P_159_3: {},
 
       /** The used keys for transforms. */
-      __transitionKeys__P_155_4: {
+      __transitionKeys__P_159_4: {
         "scale": true,
         "rotate": true,
         "skew": true,
@@ -32133,7 +32133,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       },
 
       /** Map of cross browser CSS keys. */
-      __cssAnimationKeys__P_155_5: qx.core.Environment.get("css.animation"),
+      __cssAnimationKeys__P_159_5: qx.core.Environment.get("css.animation"),
 
       /**
        * This is the main function to start the animation in reverse mode.
@@ -32175,11 +32175,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.bom.element.AnimationHandle} The handle.
        */
       _animate: function _animate(el, desc, duration, reverse) {
-        this.__normalizeDesc__P_155_6(desc); // debug validation
+        this.__normalizeDesc__P_159_6(desc); // debug validation
 
 
         {
-          this.__validateDesc__P_155_7(desc);
+          this.__validateDesc__P_159_7(desc);
         } // reverse the keep property if the animation is reverse as well
 
         var keep = desc.keep;
@@ -32188,8 +32188,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           keep = 100 - keep;
         }
 
-        if (!this.__sheet__P_155_0) {
-          this.__sheet__P_155_0 = qx.bom.Stylesheet.createElement();
+        if (!this.__sheet__P_159_0) {
+          this.__sheet__P_159_0 = qx.bom.Stylesheet.createElement();
         }
 
         var keyFrames = desc.keyFrames;
@@ -32199,22 +32199,22 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // if animations are supported
 
 
-        if (this.__cssAnimationKeys__P_155_5 != null) {
-          var name = this.__addKeyFrames__P_155_8(keyFrames, reverse);
+        if (this.__cssAnimationKeys__P_159_5 != null) {
+          var name = this.__addKeyFrames__P_159_8(keyFrames, reverse);
 
           var style = name + " " + duration + "ms " + desc.timing + " " + (desc.delay ? desc.delay + "ms " : "") + desc.repeat + " " + (desc.alternate ? "alternate" : "");
-          qx.bom.Event.addNativeListener(el, this.__cssAnimationKeys__P_155_5["start-event"], this.__onAnimationStart__P_155_9);
-          qx.bom.Event.addNativeListener(el, this.__cssAnimationKeys__P_155_5["iteration-event"], this.__onAnimationIteration__P_155_10);
-          qx.bom.Event.addNativeListener(el, this.__cssAnimationKeys__P_155_5["end-event"], this.__onAnimationEnd__P_155_11);
+          qx.bom.Event.addNativeListener(el, this.__cssAnimationKeys__P_159_5["start-event"], this.__onAnimationStart__P_159_9);
+          qx.bom.Event.addNativeListener(el, this.__cssAnimationKeys__P_159_5["iteration-event"], this.__onAnimationIteration__P_159_10);
+          qx.bom.Event.addNativeListener(el, this.__cssAnimationKeys__P_159_5["end-event"], this.__onAnimationEnd__P_159_11);
           {
             if (qx.bom.element.Style.get(el, "display") == "none") {
               qx.log.Logger.warn(el, "Some browsers will not animate elements with display==none");
             }
           }
-          el.style[qx.lang.String.camelCase(this.__cssAnimationKeys__P_155_5["name"])] = style; // use the fill mode property if available and suitable
+          el.style[qx.lang.String.camelCase(this.__cssAnimationKeys__P_159_5["name"])] = style; // use the fill mode property if available and suitable
 
-          if (keep && keep == 100 && this.__cssAnimationKeys__P_155_5["fill-mode"]) {
-            el.style[this.__cssAnimationKeys__P_155_5["fill-mode"]] = "forwards";
+          if (keep && keep == 100 && this.__cssAnimationKeys__P_159_5["fill-mode"]) {
+            el.style[this.__cssAnimationKeys__P_159_5["fill-mode"]] = "forwards";
           }
         }
 
@@ -32229,9 +32229,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // fallback for browsers not supporting animations
 
 
-        if (this.__cssAnimationKeys__P_155_5 == null) {
+        if (this.__cssAnimationKeys__P_159_5 == null) {
           window.setTimeout(function () {
-            qx.bom.element.AnimationCss.__onAnimationEnd__P_155_11({
+            qx.bom.element.AnimationCss.__onAnimationEnd__P_159_11({
               target: el
             });
           }, 0);
@@ -32244,7 +32244,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Handler for the animation start.
        * @param e {Event} The native event from the browser.
        */
-      __onAnimationStart__P_155_9: function __onAnimationStart__P_155_9(e) {
+      __onAnimationStart__P_159_9: function __onAnimationStart__P_159_9(e) {
         if (e.target.$$animation) {
           e.target.$$animation.emit("start", e.target);
         }
@@ -32254,7 +32254,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Handler for the animation iteration.
        * @param e {Event} The native event from the browser.
        */
-      __onAnimationIteration__P_155_10: function __onAnimationIteration__P_155_10(e) {
+      __onAnimationIteration__P_159_10: function __onAnimationIteration__P_159_10(e) {
         // It could happen that an animation end event is fired before an
         // animation iteration appears [BUG #6928]
         if (e.target != null && e.target.$$animation != null) {
@@ -32266,7 +32266,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Handler for the animation end.
        * @param e {Event} The native event from the browser.
        */
-      __onAnimationEnd__P_155_11: function __onAnimationEnd__P_155_11(e) {
+      __onAnimationEnd__P_159_11: function __onAnimationEnd__P_159_11(e) {
         var el = e.target;
         var animation = el.$$animation; // ignore events when already cleaned up
 
@@ -32276,18 +32276,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         var desc = animation.desc;
 
-        if (qx.bom.element.AnimationCss.__cssAnimationKeys__P_155_5 != null) {
+        if (qx.bom.element.AnimationCss.__cssAnimationKeys__P_159_5 != null) {
           // reset the styling
-          var key = qx.lang.String.camelCase(qx.bom.element.AnimationCss.__cssAnimationKeys__P_155_5["name"]);
+          var key = qx.lang.String.camelCase(qx.bom.element.AnimationCss.__cssAnimationKeys__P_159_5["name"]);
           el.style[key] = "";
-          qx.bom.Event.removeNativeListener(el, qx.bom.element.AnimationCss.__cssAnimationKeys__P_155_5["name"], qx.bom.element.AnimationCss.__onAnimationEnd__P_155_11);
+          qx.bom.Event.removeNativeListener(el, qx.bom.element.AnimationCss.__cssAnimationKeys__P_159_5["name"], qx.bom.element.AnimationCss.__onAnimationEnd__P_159_11);
         }
 
         if (desc.origin != null) {
           qx.bom.element.Transform.setOrigin(el, "");
         }
 
-        qx.bom.element.AnimationCss.__keepFrame__P_155_12(el, desc.keyFrames[animation.keep]);
+        qx.bom.element.AnimationCss.__keepFrame__P_159_12(el, desc.keyFrames[animation.keep]);
 
         el.$$animation = null;
         animation.el = null;
@@ -32303,12 +32303,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param endFrame {Map} The description of the end frame, which is basically
        *   a map containing CSS properties and values including transforms.
        */
-      __keepFrame__P_155_12: function __keepFrame__P_155_12(el, endFrame) {
+      __keepFrame__P_159_12: function __keepFrame__P_159_12(el, endFrame) {
         // keep the element at this animation step
         var transforms;
 
         for (var style in endFrame) {
-          if (style in qx.bom.element.AnimationCss.__transitionKeys__P_155_4) {
+          if (style in qx.bom.element.AnimationCss.__transitionKeys__P_159_4) {
             if (!transforms) {
               transforms = {};
             }
@@ -32330,7 +32330,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * set to its default.
        * @param desc {Map} The description of the animation.
        */
-      __normalizeDesc__P_155_6: function __normalizeDesc__P_155_6(desc) {
+      __normalizeDesc__P_159_6: function __normalizeDesc__P_159_6(desc) {
         if (!desc.hasOwnProperty("alternate")) {
           desc.alternate = false;
         }
@@ -32357,7 +32357,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @signature function(desc)
        * @param desc {Map} The description of the animation.
        */
-      __validateDesc__P_155_7: function __validateDesc__P_155_7(desc) {
+      __validateDesc__P_159_7: function __validateDesc__P_159_7(desc) {
         var possibleKeys = ["origin", "duration", "keep", "keyFrames", "delay", "repeat", "timing", "alternate"]; // check for unknown keys
 
         for (var name in desc) {
@@ -32386,7 +32386,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   be added in reverse order.
        * @return {String} The generated name of the keyframes rule.
        */
-      __addKeyFrames__P_155_8: function __addKeyFrames__P_155_8(frames, reverse) {
+      __addKeyFrames__P_159_8: function __addKeyFrames__P_159_8(frames, reverse) {
         var rule = ""; // for each key frame
 
         for (var position in frames) {
@@ -32395,7 +32395,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           var transforms; // each style
 
           for (var style in frame) {
-            if (style in this.__transitionKeys__P_155_4) {
+            if (style in this.__transitionKeys__P_159_4) {
               if (!transforms) {
                 transforms = {};
               }
@@ -32417,28 +32417,28 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // cached shorthand
 
 
-        if (this.__rules__P_155_3[rule]) {
-          return this.__rules__P_155_3[rule];
+        if (this.__rules__P_159_3[rule]) {
+          return this.__rules__P_159_3[rule];
         }
 
-        var name = this.__rulePrefix__P_155_1 + this.__id__P_155_2++;
-        var selector = this.__cssAnimationKeys__P_155_5["keyframes"] + " " + name;
-        qx.bom.Stylesheet.addRule(this.__sheet__P_155_0, selector, rule);
-        this.__rules__P_155_3[rule] = name;
+        var name = this.__rulePrefix__P_159_1 + this.__id__P_159_2++;
+        var selector = this.__cssAnimationKeys__P_159_5["keyframes"] + " " + name;
+        qx.bom.Stylesheet.addRule(this.__sheet__P_159_0, selector, rule);
+        this.__rules__P_159_3[rule] = name;
         return name;
       },
 
       /**
        * Internal helper to reset the cache.
        */
-      __clearCache__P_155_13: function __clearCache__P_155_13() {
-        this.__id__P_155_2 = 0;
+      __clearCache__P_159_13: function __clearCache__P_159_13() {
+        this.__id__P_159_2 = 0;
 
-        if (this.__sheet__P_155_0) {
-          this.__sheet__P_155_0.ownerNode.remove();
+        if (this.__sheet__P_159_0) {
+          this.__sheet__P_159_0.ownerNode.remove();
 
-          this.__sheet__P_155_0 = null;
-          this.__rules__P_155_3 = {};
+          this.__sheet__P_159_0 = null;
+          this.__rules__P_159_3 = {};
         }
       }
     },
@@ -32448,7 +32448,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       if (qx.core.Environment.get("os.name") === "ios" && parseInt(qx.core.Environment.get("os.version")) >= 8) {
         document.addEventListener("visibilitychange", function () {
           if (!document.hidden) {
-            statics.__clearCache__P_155_13();
+            statics.__clearCache__P_159_13();
           }
         }, false);
       }
@@ -32510,15 +32510,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * The maximal time a frame should take.
        */
-      __maxStepTime__P_156_0: 30,
+      __maxStepTime__P_160_0: 30,
 
       /**
        * The supported CSS units.
        */
-      __units__P_156_1: ["%", "in", "cm", "mm", "em", "ex", "pt", "pc", "px"],
+      __units__P_160_1: ["%", "in", "cm", "mm", "em", "ex", "pt", "pc", "px"],
 
       /** The used keys for transforms. */
-      __transitionKeys__P_156_2: {
+      __transitionKeys__P_160_2: {
         "scale": true,
         "rotate": true,
         "skew": true,
@@ -32578,15 +32578,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         var keyFrames = desc.keyFrames;
 
-        var keys = this.__getOrderedKeys__P_156_3(keyFrames);
+        var keys = this.__getOrderedKeys__P_160_3(keyFrames);
 
-        var stepTime = this.__getStepTime__P_156_4(duration, keys);
+        var stepTime = this.__getStepTime__P_160_4(duration, keys);
 
         var steps = parseInt(duration / stepTime, 10);
 
-        this.__normalizeKeyFrames__P_156_5(keyFrames, el);
+        this.__normalizeKeyFrames__P_160_5(keyFrames, el);
 
-        var delta = this.__calculateDelta__P_156_6(steps, stepTime, keys, keyFrames, duration, desc.timing);
+        var delta = this.__calculateDelta__P_160_6(steps, stepTime, keys, keyFrames, duration, desc.timing);
 
         var handle = new qx.bom.element.AnimationHandle();
         handle.jsAnimation = true;
@@ -32604,7 +32604,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         el.$$animation = handle;
         handle.i = 0;
         handle.initValues = {};
-        handle.repeatSteps = this.__applyRepeat__P_156_7(steps, desc.repeat);
+        handle.repeatSteps = this.__applyRepeat__P_160_7(steps, desc.repeat);
         var delay = desc.delay || 0;
         var self = this;
         handle.delayId = window.setTimeout(function () {
@@ -32620,7 +32620,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param keyFrames {Map} The map of key frames.
        * @param el {Element} The element to animate.
        */
-      __normalizeKeyFrames__P_156_5: function __normalizeKeyFrames__P_156_5(keyFrames, el) {
+      __normalizeKeyFrames__P_160_5: function __normalizeKeyFrames__P_160_5(keyFrames, el) {
         // collect all possible keys and its units
         var units = {};
 
@@ -32641,7 +32641,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               var item = keyFrames[percent][name];
 
               if (typeof item == "string") {
-                units[name] = this.__getUnit__P_156_8(item);
+                units[name] = this.__getUnit__P_160_8(item);
               } else {
                 units[name] = "";
               }
@@ -32669,7 +32669,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               } // if its a unit we know, set 0 as fallback
 
 
-              if (frame[name] === "" && this.__units__P_156_1.indexOf(units[name]) != -1) {
+              if (frame[name] === "" && this.__units__P_160_1.indexOf(units[name]) != -1) {
                 frame[name] = "0" + units[name];
               }
             }
@@ -32687,12 +32687,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param frame {Map} A single key frame of the description.
        * @return {Map} A modified clone of the given frame.
        */
-      __normalizeKeyFrameTransforms__P_156_9: function __normalizeKeyFrameTransforms__P_156_9(frame) {
+      __normalizeKeyFrameTransforms__P_160_9: function __normalizeKeyFrameTransforms__P_160_9(frame) {
         frame = qx.lang.Object.clone(frame);
         var transforms;
 
         for (var name in frame) {
-          if (name in this.__transitionKeys__P_156_2) {
+          if (name in this.__transitionKeys__P_160_2) {
             if (!transforms) {
               transforms = {};
             }
@@ -32729,10 +32729,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param timing {String} The given timing function.
        * @return {Array} An array containing the animation deltas.
        */
-      __calculateDelta__P_156_6: function __calculateDelta__P_156_6(steps, stepTime, keys, keyFrames, duration, timing) {
+      __calculateDelta__P_160_6: function __calculateDelta__P_160_6(steps, stepTime, keys, keyFrames, duration, timing) {
         var delta = new Array(steps);
         var keyIndex = 1;
-        delta[0] = this.__normalizeKeyFrameTransforms__P_156_9(keyFrames[0]);
+        delta[0] = this.__normalizeKeyFrameTransforms__P_160_9(keyFrames[0]);
         var last = keyFrames[0];
         var next = keyFrames[keys[keyIndex]];
         var stepsToNext = Math.floor(keys[keyIndex] / (stepTime / duration * 100));
@@ -32755,7 +32755,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           for (var name in next) {
             var nItem = next[name] + ""; // transform values
 
-            if (name in this.__transitionKeys__P_156_2) {
+            if (name in this.__transitionKeys__P_160_2) {
               if (!transforms) {
                 transforms = {};
               }
@@ -32770,11 +32770,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                 for (var j = 0; j < next[name].length; j++) {
                   var item = next[name][j] + "";
                   var x = calculationIndex / stepsToNext;
-                  transforms[name][j] = this.__getNextValue__P_156_10(item, last[name], timing, x);
+                  transforms[name][j] = this.__getNextValue__P_160_10(item, last[name], timing, x);
                 }
               } else {
                 var x = calculationIndex / stepsToNext;
-                transforms[name] = this.__getNextValue__P_156_10(nItem, last[name], timing, x);
+                transforms[name] = this.__getNextValue__P_160_10(nItem, last[name], timing, x);
               } // color values
 
             } else if (nItem.charAt(0) == "#") {
@@ -32793,7 +32793,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               delta[i][name] = qx.util.ColorUtil.rgbToHexString(stepValue);
             } else if (!isNaN(parseFloat(nItem))) {
               var x = calculationIndex / stepsToNext;
-              delta[i][name] = this.__getNextValue__P_156_10(nItem, last[name], timing, x);
+              delta[i][name] = this.__getNextValue__P_160_10(nItem, last[name], timing, x);
             } else {
               delta[i][name] = last[name] + "";
             }
@@ -32812,7 +32812,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // make sure the last key frame is right
 
 
-        delta[delta.length - 1] = this.__normalizeKeyFrameTransforms__P_156_9(keyFrames[100]);
+        delta[delta.length - 1] = this.__normalizeKeyFrameTransforms__P_160_9(keyFrames[100]);
         return delta;
       },
 
@@ -32822,7 +32822,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param item {String} A CSS value including its unit.
        * @return {String} The unit of the given value.
        */
-      __getUnit__P_156_8: function __getUnit__P_156_8(item) {
+      __getUnit__P_160_8: function __getUnit__P_160_8(item) {
         return item.substring((parseFloat(item) + "").length, item.length);
       },
 
@@ -32835,9 +32835,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param x {Number} The x position of the animation on the time axis
        * @return {String} The calculated value including its unit.
        */
-      __getNextValue__P_156_10: function __getNextValue__P_156_10(nextItem, lastItem, timing, x) {
+      __getNextValue__P_160_10: function __getNextValue__P_160_10(nextItem, lastItem, timing, x) {
         var range = parseFloat(nextItem) - parseFloat(lastItem);
-        return parseFloat(lastItem) + range * qx.bom.AnimationFrame.calculateTiming(timing, x) + this.__getUnit__P_156_8(nextItem);
+        return parseFloat(lastItem) + range * qx.bom.AnimationFrame.calculateTiming(timing, x) + this.__getUnit__P_160_8(nextItem);
       },
 
       /**
@@ -32870,7 +32870,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             }
           }
 
-          qx.bom.element.AnimationJs.__applyStyles__P_156_11(handle.el, values);
+          qx.bom.element.AnimationJs.__applyStyles__P_160_11(handle.el, values);
 
           handle.i++; // iteration condition
 
@@ -32941,9 +32941,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             keep = 100 - keep;
           }
 
-          this.__applyStyles__P_156_11(el, this.__normalizeKeyFrameTransforms__P_156_9(desc.keyFrames[keep]));
+          this.__applyStyles__P_160_11(el, this.__normalizeKeyFrameTransforms__P_160_9(desc.keyFrames[keep]));
         } else {
-          this.__applyStyles__P_156_11(el, initValues);
+          this.__applyStyles__P_160_11(el, initValues);
         }
 
         el.$$animation = null;
@@ -32961,7 +32961,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * animation should be repeated or the string 'infinite'.
        * @return {Integer} The number of steps to animate.
        */
-      __applyRepeat__P_156_7: function __applyRepeat__P_156_7(steps, repeat) {
+      __applyRepeat__P_160_7: function __applyRepeat__P_160_7(steps, repeat) {
         if (repeat == undefined) {
           return steps;
         }
@@ -32978,7 +32978,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param el {Element} The DOM element to apply the styles.
        * @param styles {Map} A map containing styles and values.
        */
-      __applyStyles__P_156_11: function __applyStyles__P_156_11(el, styles) {
+      __applyStyles__P_160_11: function __applyStyles__P_160_11(el, styles) {
         for (var key in styles) {
           // ignore undefined values (might be a bad detection)
           if (styles[key] === undefined) {
@@ -33008,7 +33008,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param keys {Array} An array containing the ordered set of key frame keys.
        * @return {Integer} The best suited step time.
        */
-      __getStepTime__P_156_4: function __getStepTime__P_156_4(duration, keys) {
+      __getStepTime__P_160_4: function __getStepTime__P_160_4(duration, keys) {
         // get min difference
         var minDiff = 100;
 
@@ -33019,7 +33019,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         ;
         var stepTime = duration * minDiff / 100;
 
-        while (stepTime > this.__maxStepTime__P_156_0) {
+        while (stepTime > this.__maxStepTime__P_160_0) {
           stepTime = stepTime / 2;
         }
 
@@ -33031,7 +33031,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param keyFrames {Map} The map of key frames.
        * @return {Array} An ordered list of keys.
        */
-      __getOrderedKeys__P_156_3: function __getOrderedKeys__P_156_3(keyFrames) {
+      __getOrderedKeys__P_160_3: function __getOrderedKeys__P_160_3(keyFrames) {
         var keys = Object.keys(keyFrames);
 
         for (var i = 0; i < keys.length; i++) {
@@ -33124,8 +33124,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __paddingTop__P_133_0: null,
-      __paddingLeft__P_133_1: null,
+      __paddingTop__P_130_0: null,
+      __paddingLeft__P_130_1: null,
       // this member variable is only used for IE browsers to be able
       // to the tag name which will be set. This is heavily connected to the runtime
       // change of decorators and the use of external (=unmanaged images). It is
@@ -33141,8 +33141,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param paddingTop {Integer} top padding value
        */
       setPadding: function setPadding(paddingLeft, paddingTop) {
-        this.__paddingLeft__P_133_1 = paddingLeft;
-        this.__paddingTop__P_133_0 = paddingTop;
+        this.__paddingLeft__P_130_1 = paddingLeft;
+        this.__paddingTop__P_130_0 = paddingTop;
 
         if (this.getNodeName() == "div") {
           this.setStyle("backgroundPosition", paddingLeft + "px " + paddingTop + "px");
@@ -33182,8 +33182,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         if (source != null) {
           // Normalize "" to null
           source = source || null;
-          styles.paddingTop = this.__paddingTop__P_133_0;
-          styles.paddingLeft = this.__paddingLeft__P_133_1;
+          styles.paddingTop = this.__paddingTop__P_130_0;
+          styles.paddingLeft = this.__paddingLeft__P_130_1;
           qx.bom.element.Decoration.update(elem, source, repeat, styles);
         }
       },
@@ -33380,7 +33380,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       }
 
       qx.html.Element.constructor.call(this, nodeName, styles, attributes);
-      this.__type__P_157_0 = type;
+      this.__type__P_161_0 = type;
       this.registerProperty("value", this._getValueProperty, this._setValueProperty);
       this.registerProperty("wrap", null, this._setWrapProperty);
     },
@@ -33391,10 +33391,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __type__P_157_0: null,
+      __type__P_161_0: null,
       // used for webkit only
-      __selectable__P_157_1: null,
-      __enabled__P_157_2: null,
+      __selectable__P_161_1: null,
+      __enabled__P_161_2: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -33406,7 +33406,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       },
       //overridden
       _createDomElement: function _createDomElement() {
-        return qx.bom.Input.create(this.__type__P_157_0);
+        return qx.bom.Input.create(this.__type__P_161_0);
       },
 
       /**
@@ -33459,7 +33459,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param value {Boolean} true, if the input element should be enabled.
        */
       setEnabled: function setEnabled(value) {
-        this.__enabled__P_157_2 = value;
+        this.__enabled__P_161_2 = value;
         this.setAttribute("disabled", value === false);
 
         if (qx.core.Environment.get("engine.name") == "webkit") {
@@ -33471,7 +33471,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           } else {
             this.setStyles({
               "userModify": null,
-              "userSelect": this.__selectable__P_157_1 ? null : "none"
+              "userSelect": this.__selectable__P_161_1 ? null : "none"
             });
           }
         }
@@ -33487,9 +33487,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       setSelectable: qx.core.Environment.select("engine.name", {
         "webkit": function webkit(value) {
-          this.__selectable__P_157_1 = value; // Only apply the value when it is enabled
+          this.__selectable__P_161_1 = value; // Only apply the value when it is enabled
 
-          qx.html.Input.prototype.setSelectable.base.call(this, this.__enabled__P_157_2 && value);
+          qx.html.Input.prototype.setSelectable.base.call(this, this.__enabled__P_161_2 && value);
         },
         "default": function _default(value) {
           qx.html.Input.prototype.setSelectable.base.call(this, value);
@@ -33550,7 +33550,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.html.Input} This instance for for chaining support.
        */
       setWrap: function setWrap(wrap, direct) {
-        if (this.__type__P_157_0 === "textarea") {
+        if (this.__type__P_161_0 === "textarea") {
           this._setProperty("wrap", wrap, direct);
         } else {
           throw new Error("Text wrapping is only support by textareas!");
@@ -33567,7 +33567,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} Whether wrapping is enabled or disabled.
        */
       getWrap: function getWrap() {
-        if (this.__type__P_157_0 === "textarea") {
+        if (this.__type__P_161_0 === "textarea") {
           return this._getProperty("wrap");
         } else {
           throw new Error("Text wrapping is only support by textareas!");
@@ -33699,8 +33699,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __orientation__P_165_0: null,
-      __mode__P_165_1: null,
+      __orientation__P_170_0: null,
+      __mode__P_170_1: null,
 
       /**
        * Initialize the fields of the event. The event must be initialized before
@@ -33712,8 +33712,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       init: function init(orientation, mode) {
         qx.event.type.Orientation.prototype.init.base.call(this, false, false);
-        this.__orientation__P_165_0 = orientation;
-        this.__mode__P_165_1 = mode;
+        this.__orientation__P_170_0 = orientation;
+        this.__mode__P_170_1 = mode;
         return this;
       },
 
@@ -33729,8 +33729,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       clone: function clone(embryo) {
         var clone = qx.event.type.Orientation.prototype.clone.base.call(this, embryo);
-        clone.__orientation__P_165_0 = this.__orientation__P_165_0;
-        clone.__mode__P_165_1 = this.__mode__P_165_1;
+        clone.__orientation__P_170_0 = this.__orientation__P_170_0;
+        clone.__mode__P_170_1 = this.__mode__P_170_1;
         return clone;
       },
 
@@ -33747,7 +33747,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Integer} The current orientation in degree
        */
       getOrientation: function getOrientation() {
-        return this.__orientation__P_165_0;
+        return this.__orientation__P_170_0;
       },
 
       /**
@@ -33757,7 +33757,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *     is currently in landscape mode.
        */
       isLandscape: function isLandscape() {
-        return this.__mode__P_165_1 == "landscape";
+        return this.__mode__P_170_1 == "landscape";
       },
 
       /**
@@ -33767,7 +33767,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *     is currently in portrait mode.
        */
       isPortrait: function isPortrait() {
-        return this.__mode__P_165_1 == "portrait";
+        return this.__mode__P_170_1 == "portrait";
       }
     }
   });
@@ -33912,7 +33912,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} Is multi-touch
        */
       isMultiTouch: function isMultiTouch() {
-        return this.__getEventSpecificTouches__P_160_0().length > 1;
+        return this.__getEventSpecificTouches__P_164_0().length > 1;
       },
 
       /**
@@ -33965,7 +33965,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Integer} The horizontal position of the touch in the document.
        */
       getDocumentLeft: function getDocumentLeft(touchIndex) {
-        return this.__getEventSpecificTouch__P_160_1(touchIndex).pageX;
+        return this.__getEventSpecificTouch__P_164_1(touchIndex).pageX;
       },
 
       /**
@@ -33977,7 +33977,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Integer} The vertical position of the touch in the document.
        */
       getDocumentTop: function getDocumentTop(touchIndex) {
-        return this.__getEventSpecificTouch__P_160_1(touchIndex).pageY;
+        return this.__getEventSpecificTouch__P_164_1(touchIndex).pageY;
       },
 
       /**
@@ -33988,7 +33988,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Integer} The horizontal position of the touch
        */
       getScreenLeft: function getScreenLeft(touchIndex) {
-        return this.__getEventSpecificTouch__P_160_1(touchIndex).screenX;
+        return this.__getEventSpecificTouch__P_164_1(touchIndex).screenX;
       },
 
       /**
@@ -33999,7 +33999,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Integer} The vertical position of the touch
        */
       getScreenTop: function getScreenTop(touchIndex) {
-        return this.__getEventSpecificTouch__P_160_1(touchIndex).screenY;
+        return this.__getEventSpecificTouch__P_164_1(touchIndex).screenY;
       },
 
       /**
@@ -34010,7 +34010,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Integer} The horizontal position of the touch
        */
       getViewportLeft: function getViewportLeft(touchIndex) {
-        return this.__getEventSpecificTouch__P_160_1(touchIndex).clientX;
+        return this.__getEventSpecificTouch__P_164_1(touchIndex).clientX;
       },
 
       /**
@@ -34021,7 +34021,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Integer} The vertical position of the touch
        */
       getViewportTop: function getViewportTop(touchIndex) {
-        return this.__getEventSpecificTouch__P_160_1(touchIndex).clientY;
+        return this.__getEventSpecificTouch__P_164_1(touchIndex).clientY;
       },
 
       /**
@@ -34031,7 +34031,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Integer} Unique identifier of the touch object
        */
       getIdentifier: function getIdentifier(touchIndex) {
-        return this.__getEventSpecificTouch__P_160_1(touchIndex).identifier;
+        return this.__getEventSpecificTouch__P_164_1(touchIndex).identifier;
       },
 
       /**
@@ -34043,9 +34043,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *     retrieve
        * @return {Object} A native Touch object
        */
-      __getEventSpecificTouch__P_160_1: function __getEventSpecificTouch__P_160_1(touchIndex) {
+      __getEventSpecificTouch__P_164_1: function __getEventSpecificTouch__P_164_1(touchIndex) {
         touchIndex = touchIndex == null ? 0 : touchIndex;
-        return this.__getEventSpecificTouches__P_160_0()[touchIndex];
+        return this.__getEventSpecificTouches__P_164_0()[touchIndex];
       },
 
       /**
@@ -34055,7 +34055,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {Object[]} Array of native Touch objects
        */
-      __getEventSpecificTouches__P_160_0: function __getEventSpecificTouches__P_160_0() {
+      __getEventSpecificTouches__P_164_0: function __getEventSpecificTouches__P_164_0() {
         var touches = this._isTouchEnd() ? this.getChangedTargetTouches() : this.getTargetTouches();
         return touches;
       },
@@ -34200,7 +34200,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Database of supported features.
        * Filled with additional data at initialization
        */
-      __db__P_161_0: {
+      __db__P_165_0: {
         quicktime: {
           plugin: ["QuickTime"],
           control: "QuickTimeCheckObject.QuickTimeCheck.1" // call returns boolean: instance.IsQuickTimeAvailable(0)
@@ -34236,8 +34236,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @internal
        */
       getQuicktimeVersion: function getQuicktimeVersion() {
-        var entry = qx.bom.client.Plugin.__db__P_161_0["quicktime"];
-        return qx.bom.client.Plugin.__getVersion__P_161_1(entry.control, entry.plugin);
+        var entry = qx.bom.client.Plugin.__db__P_165_0["quicktime"];
+        return qx.bom.client.Plugin.__getVersion__P_165_1(entry.control, entry.plugin);
       },
 
       /**
@@ -34247,8 +34247,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @internal
        */
       getWindowsMediaVersion: function getWindowsMediaVersion() {
-        var entry = qx.bom.client.Plugin.__db__P_161_0["wmv"];
-        return qx.bom.client.Plugin.__getVersion__P_161_1(entry.control, entry.plugin, true);
+        var entry = qx.bom.client.Plugin.__db__P_165_0["wmv"];
+        return qx.bom.client.Plugin.__getVersion__P_165_1(entry.control, entry.plugin, true);
       },
 
       /**
@@ -34258,8 +34258,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @internal
        */
       getDivXVersion: function getDivXVersion() {
-        var entry = qx.bom.client.Plugin.__db__P_161_0["divx"];
-        return qx.bom.client.Plugin.__getVersion__P_161_1(entry.control, entry.plugin);
+        var entry = qx.bom.client.Plugin.__db__P_165_0["divx"];
+        return qx.bom.client.Plugin.__getVersion__P_165_1(entry.control, entry.plugin);
       },
 
       /**
@@ -34269,8 +34269,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @internal
        */
       getSilverlightVersion: function getSilverlightVersion() {
-        var entry = qx.bom.client.Plugin.__db__P_161_0["silverlight"];
-        return qx.bom.client.Plugin.__getVersion__P_161_1(entry.control, entry.plugin);
+        var entry = qx.bom.client.Plugin.__db__P_165_0["silverlight"];
+        return qx.bom.client.Plugin.__getVersion__P_165_1(entry.control, entry.plugin);
       },
 
       /**
@@ -34294,8 +34294,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @internal
        */
       getPdfVersion: function getPdfVersion() {
-        var entry = qx.bom.client.Plugin.__db__P_161_0["pdf"];
-        return qx.bom.client.Plugin.__getVersion__P_161_1(entry.control, entry.plugin);
+        var entry = qx.bom.client.Plugin.__db__P_165_0["pdf"];
+        return qx.bom.client.Plugin.__getVersion__P_165_1(entry.control, entry.plugin);
       },
 
       /**
@@ -34304,8 +34304,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @internal
        */
       getQuicktime: function getQuicktime() {
-        var entry = qx.bom.client.Plugin.__db__P_161_0["quicktime"];
-        return qx.bom.client.Plugin.__isAvailable__P_161_2(entry.control, entry.plugin);
+        var entry = qx.bom.client.Plugin.__db__P_165_0["quicktime"];
+        return qx.bom.client.Plugin.__isAvailable__P_165_2(entry.control, entry.plugin);
       },
 
       /**
@@ -34314,8 +34314,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @internal
        */
       getWindowsMedia: function getWindowsMedia() {
-        var entry = qx.bom.client.Plugin.__db__P_161_0["wmv"];
-        return qx.bom.client.Plugin.__isAvailable__P_161_2(entry.control, entry.plugin, true);
+        var entry = qx.bom.client.Plugin.__db__P_165_0["wmv"];
+        return qx.bom.client.Plugin.__isAvailable__P_165_2(entry.control, entry.plugin, true);
       },
 
       /**
@@ -34324,8 +34324,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @internal
        */
       getDivX: function getDivX() {
-        var entry = qx.bom.client.Plugin.__db__P_161_0["divx"];
-        return qx.bom.client.Plugin.__isAvailable__P_161_2(entry.control, entry.plugin);
+        var entry = qx.bom.client.Plugin.__db__P_165_0["divx"];
+        return qx.bom.client.Plugin.__isAvailable__P_165_2(entry.control, entry.plugin);
       },
 
       /**
@@ -34334,8 +34334,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @internal
        */
       getSilverlight: function getSilverlight() {
-        var entry = qx.bom.client.Plugin.__db__P_161_0["silverlight"];
-        return qx.bom.client.Plugin.__isAvailable__P_161_2(entry.control, entry.plugin);
+        var entry = qx.bom.client.Plugin.__db__P_165_0["silverlight"];
+        return qx.bom.client.Plugin.__isAvailable__P_165_2(entry.control, entry.plugin);
       },
 
       /**
@@ -34358,8 +34358,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @internal
        */
       getPdf: function getPdf() {
-        var entry = qx.bom.client.Plugin.__db__P_161_0["pdf"];
-        return qx.bom.client.Plugin.__isAvailable__P_161_2(entry.control, entry.plugin);
+        var entry = qx.bom.client.Plugin.__db__P_165_0["pdf"];
+        return qx.bom.client.Plugin.__isAvailable__P_165_2(entry.control, entry.plugin);
       },
 
       /**
@@ -34373,8 +34373,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   for IE11 plugins that aren't listed in navigator.plugins
        * @return {String} The version of the plugin as string.
        */
-      __getVersion__P_161_1: function __getVersion__P_161_1(activeXName, pluginNames, forceActiveX) {
-        var available = qx.bom.client.Plugin.__isAvailable__P_161_2(activeXName, pluginNames, forceActiveX); // don't check if the plugin is not available
+      __getVersion__P_165_1: function __getVersion__P_165_1(activeXName, pluginNames, forceActiveX) {
+        var available = qx.bom.client.Plugin.__isAvailable__P_165_2(activeXName, pluginNames, forceActiveX); // don't check if the plugin is not available
 
 
         if (!available) {
@@ -34452,7 +34452,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   for IE11 plugins that aren't listed in navigator.plugins
        * @return {Boolean} <code>true</code>, if the plugin available
        */
-      __isAvailable__P_161_2: function __isAvailable__P_161_2(activeXName, pluginNames, forceActiveX) {
+      __isAvailable__P_165_2: function __isAvailable__P_165_2(activeXName, pluginNames, forceActiveX) {
         // IE checks
         if (qx.bom.client.Engine.getName() == "mshtml" && (qx.bom.client.Browser.getDocumentMode() < 11 || forceActiveX)) {
           if (!this.getActiveX()) {
@@ -35593,19 +35593,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.Bootstrap.define("qx.io.ImageLoader", {
     statics: {
       /** @type {Map} Internal data structure to cache image sizes */
-      __data__P_132_0: {},
+      __data__P_129_0: {},
 
       /** @type {Map} Default image size */
-      __defaultSize__P_132_1: {
+      __defaultSize__P_129_1: {
         width: null,
         height: null
       },
 
       /** @type {RegExp} Known image types */
-      __knownImageTypesRegExp__P_132_2: /\.(png|gif|jpg|jpeg|bmp)\b/i,
+      __knownImageTypesRegExp__P_129_2: /\.(png|gif|jpg|jpeg|bmp)\b/i,
 
       /** @type {RegExp} Image types of a data URL */
-      __dataUrlRegExp__P_132_3: /^data:image\/(png|gif|jpg|jpeg|bmp)\b/i,
+      __dataUrlRegExp__P_129_3: /^data:image\/(png|gif|jpg|jpeg|bmp)\b/i,
 
       /**
        * Whether the given image has previously been loaded using the
@@ -35615,7 +35615,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code> when the image is loaded
        */
       isLoaded: function isLoaded(source) {
-        var entry = this.__data__P_132_0[source];
+        var entry = this.__data__P_129_0[source];
         return !!(entry && entry.loaded);
       },
 
@@ -35627,7 +35627,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code> when the image loading failed
        */
       isFailed: function isFailed(source) {
-        var entry = this.__data__P_132_0[source];
+        var entry = this.__data__P_129_0[source];
         return !!(entry && entry.failed);
       },
 
@@ -35638,7 +35638,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code> when the image is loading in the moment.
        */
       isLoading: function isLoading(source) {
-        var entry = this.__data__P_132_0[source];
+        var entry = this.__data__P_129_0[source];
         return !!(entry && entry.loading);
       },
 
@@ -35649,15 +35649,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String ? null} The format of the image or <code>null</code>
        */
       getFormat: function getFormat(source) {
-        var entry = this.__data__P_132_0[source];
+        var entry = this.__data__P_129_0[source];
 
         if (!entry || !entry.format) {
-          var result = this.__dataUrlRegExp__P_132_3.exec(source);
+          var result = this.__dataUrlRegExp__P_129_3.exec(source);
 
           if (result != null) {
             // If width and height aren't defined, provide some defaults
-            var width = entry && qx.lang.Type.isNumber(entry.width) ? entry.width : this.__defaultSize__P_132_1.width;
-            var height = entry && qx.lang.Type.isNumber(entry.height) ? entry.height : this.__defaultSize__P_132_1.height;
+            var width = entry && qx.lang.Type.isNumber(entry.width) ? entry.width : this.__defaultSize__P_129_1.width;
+            var height = entry && qx.lang.Type.isNumber(entry.height) ? entry.height : this.__defaultSize__P_129_1.height;
             entry = {
               loaded: true,
               format: result[1],
@@ -35679,11 +35679,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *    dimensions are given as <code>null</code> for width and height.
        */
       getSize: function getSize(source) {
-        var entry = this.__data__P_132_0[source];
+        var entry = this.__data__P_129_0[source];
         return entry ? {
           width: entry.width,
           height: entry.height
-        } : this.__defaultSize__P_132_1;
+        } : this.__defaultSize__P_129_1;
       },
 
       /**
@@ -35693,7 +35693,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Integer} The width or <code>null</code> when the image is not loaded
        */
       getWidth: function getWidth(source) {
-        var entry = this.__data__P_132_0[source];
+        var entry = this.__data__P_129_0[source];
         return entry ? entry.width : null;
       },
 
@@ -35704,7 +35704,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Integer} The height or <code>null</code> when the image is not loaded
        */
       getHeight: function getHeight(source) {
-        var entry = this.__data__P_132_0[source];
+        var entry = this.__data__P_129_0[source];
         return entry ? entry.height : null;
       },
 
@@ -35723,10 +35723,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       load: function load(source, callback, context) {
         // Shorthand
-        var entry = this.__data__P_132_0[source];
+        var entry = this.__data__P_129_0[source];
 
         if (!entry) {
-          entry = this.__data__P_132_0[source] = {};
+          entry = this.__data__P_129_0[source] = {};
         } // Normalize context
 
 
@@ -35765,7 +35765,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
           var el = document.createElement('img'); // Create common callback routine
 
-          var boundCallback = qx.lang.Function.listener(this.__onload__P_132_4, this, el, source); // Assign callback to element
+          var boundCallback = qx.lang.Function.listener(this.__onload__P_129_4, this, el, source); // Assign callback to element
 
           el.onload = boundCallback;
           el.onerror = boundCallback; // Start loading of image
@@ -35782,7 +35782,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param source {String} URL of the image to abort its loading.
        */
       abort: function abort(source) {
-        var entry = this.__data__P_132_0[source];
+        var entry = this.__data__P_129_0[source];
 
         if (entry && !entry.loaded) {
           entry.aborted = true;
@@ -35802,16 +35802,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         }
 
-        this.__data__P_132_0[source] = null;
+        this.__data__P_129_0[source] = null;
       },
 
       /**
        * Calls a method based on qx.globalErrorHandling
        */
-      __onload__P_132_4: function __onload__P_132_4() {
+      __onload__P_129_4: function __onload__P_129_4() {
         var callback = qx.core.Environment.select("qx.globalErrorHandling", {
-          "true": qx.event.GlobalError.observeMethod(this.__onLoadHandler__P_132_5),
-          "false": this.__onLoadHandler__P_132_5
+          "true": qx.event.GlobalError.observeMethod(this.__onLoadHandler__P_129_5),
+          "false": this.__onLoadHandler__P_129_5
         });
         callback.apply(this, arguments);
       },
@@ -35825,9 +35825,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param element {Element} DOM element which represents the image
        * @param source {String} The image source loaded
        */
-      __onLoadHandler__P_132_5: function __onLoadHandler__P_132_5(event, element, source) {
+      __onLoadHandler__P_129_5: function __onLoadHandler__P_129_5(event, element, source) {
         // Shorthand
-        var entry = this.__data__P_132_0[source]; // [BUG #9149]: When loading a SVG IE11 won't have
+        var entry = this.__data__P_129_0[source]; // [BUG #9149]: When loading a SVG IE11 won't have
         // the width/height of the element set, unless
         // it is inserted into the DOM.
 
@@ -35847,7 +35847,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           entry.width = element.width;
           entry.height = element.height; // try to determine the image format
 
-          var result = this.__knownImageTypesRegExp__P_132_2.exec(source);
+          var result = this.__knownImageTypesRegExp__P_129_2.exec(source);
 
           if (result != null) {
             entry.format = result[1];
@@ -35878,7 +35878,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Dispose stored images.
        */
       dispose: function dispose() {
-        this.__data__P_132_0 = {};
+        this.__data__P_129_0 = {};
       }
     }
   });
@@ -36148,10 +36148,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     */
     statics: {
       /** @type {Map} the shared image registry */
-      __registry__P_98_0: qx.$$resources || {},
+      __registry__P_101_0: qx.$$resources || {},
 
       /** @type {Map} prefix per library used in HTTPS mode for IE */
-      __urlPrefix__P_98_1: {}
+      __urlPrefix__P_101_1: {}
     },
 
     /*
@@ -36238,7 +36238,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Array|null} an array containing the IDs or null if the registry is not initialized
        */
       getIds: function getIds(pathfragment) {
-        var registry = qx.util.ResourceManager.__registry__P_98_0;
+        var registry = qx.util.ResourceManager.__registry__P_101_0;
 
         if (!registry) {
           return null;
@@ -36256,7 +36256,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code> when the resource is known.
        */
       has: function has(id) {
-        return !!qx.util.ResourceManager.__registry__P_98_0[id];
+        return !!qx.util.ResourceManager.__registry__P_101_0[id];
       },
 
       /**
@@ -36266,7 +36266,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Array} Registered data or <code>null</code>
        */
       getData: function getData(id) {
-        return qx.util.ResourceManager.__registry__P_98_0[id] || null;
+        return qx.util.ResourceManager.__registry__P_101_0[id] || null;
       },
 
       /**
@@ -36289,7 +36289,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         }
 
-        var entry = qx.util.ResourceManager.__registry__P_98_0[id]; // [ width, height, codepoint ]
+        var entry = qx.util.ResourceManager.__registry__P_101_0[id]; // [ width, height, codepoint ]
 
         if (size && entry) {
           var width = Math.ceil(size / entry[1] * entry[0]);
@@ -36317,7 +36317,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         }
 
-        var entry = qx.util.ResourceManager.__registry__P_98_0[id];
+        var entry = qx.util.ResourceManager.__registry__P_101_0[id];
         return entry ? entry[1] : null;
       },
 
@@ -36334,7 +36334,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           return "font";
         }
 
-        var entry = qx.util.ResourceManager.__registry__P_98_0[id];
+        var entry = qx.util.ResourceManager.__registry__P_101_0[id];
         return entry ? entry[2] : null;
       },
 
@@ -36348,12 +36348,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       getCombinedFormat: function getCombinedFormat(id) {
         var clippedtype = "";
-        var entry = qx.util.ResourceManager.__registry__P_98_0[id];
-        var isclipped = entry && entry.length > 4 && typeof entry[4] == "string" && this.constructor.__registry__P_98_0[entry[4]];
+        var entry = qx.util.ResourceManager.__registry__P_101_0[id];
+        var isclipped = entry && entry.length > 4 && typeof entry[4] == "string" && this.constructor.__registry__P_101_0[entry[4]];
 
         if (isclipped) {
           var combId = entry[4];
-          var combImg = this.constructor.__registry__P_98_0[combId];
+          var combImg = this.constructor.__registry__P_101_0[combId];
           clippedtype = combImg[2];
         }
 
@@ -36371,7 +36371,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           return id;
         }
 
-        var entry = qx.util.ResourceManager.__registry__P_98_0[id];
+        var entry = qx.util.ResourceManager.__registry__P_101_0[id];
 
         if (!entry) {
           return id;
@@ -36391,7 +36391,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var urlPrefix = "";
 
         if (qx.core.Environment.get("engine.name") == "mshtml" && qx.core.Environment.get("io.ssl")) {
-          urlPrefix = qx.util.ResourceManager.__urlPrefix__P_98_1[lib];
+          urlPrefix = qx.util.ResourceManager.__urlPrefix__P_101_1[lib];
         }
 
         return urlPrefix + qx.util.LibraryManager.getInstance().get(lib, "resourceUri") + "/" + id;
@@ -36409,8 +36409,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} "data:" or "http:" URI
        */
       toDataUri: function toDataUri(resid) {
-        var resentry = this.constructor.__registry__P_98_0[resid];
-        var combined = resentry ? this.constructor.__registry__P_98_0[resentry[4]] : null;
+        var resentry = this.constructor.__registry__P_101_0[resid];
+        var combined = resentry ? this.constructor.__registry__P_101_0[resentry[4]] : null;
         var uri;
 
         if (combined) {
@@ -36490,7 +36490,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               resourceUri = qx.util.LibraryManager.getInstance().get(lib, "resourceUri");
             } else {
               // default for libraries without a resourceUri set
-              statics.__urlPrefix__P_98_1[lib] = "";
+              statics.__urlPrefix__P_101_1[lib] = "";
               continue;
             }
 
@@ -36506,24 +36506,24 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
             if (resourceUri.match(/^\/\//) != null) {
-              statics.__urlPrefix__P_98_1[lib] = window.location.protocol;
+              statics.__urlPrefix__P_101_1[lib] = window.location.protocol;
             } // If the resourceUri begins with a single slash, include the current
             // hostname
             else if (resourceUri.match(/^\//) != null) {
               if (href) {
-                statics.__urlPrefix__P_98_1[lib] = href;
+                statics.__urlPrefix__P_101_1[lib] = href;
               } else {
-                statics.__urlPrefix__P_98_1[lib] = window.location.protocol + "//" + window.location.host;
+                statics.__urlPrefix__P_101_1[lib] = window.location.protocol + "//" + window.location.host;
               }
             } // If the resolved URL begins with "./" the final URL has to be
             // put together using the document.URL property.
             // IMPORTANT: this is only applicable for the source version
             else if (resourceUri.match(/^\.\//) != null) {
               var url = document.URL;
-              statics.__urlPrefix__P_98_1[lib] = url.substring(0, url.lastIndexOf("/") + 1);
+              statics.__urlPrefix__P_101_1[lib] = url.substring(0, url.lastIndexOf("/") + 1);
             } else if (resourceUri.match(/^http/) != null) {
               // Let absolute URLs pass through
-              statics.__urlPrefix__P_98_1[lib] = "";
+              statics.__urlPrefix__P_101_1[lib] = "";
             } else {
               if (!href) {
                 // check for parameters with URLs as value
@@ -36536,7 +36536,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                 }
               }
 
-              statics.__urlPrefix__P_98_1[lib] = href.substring(0, href.lastIndexOf("/") + 1);
+              statics.__urlPrefix__P_101_1[lib] = href.substring(0, href.lastIndexOf("/") + 1);
             }
           }
         }
@@ -36587,7 +36587,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     type: "singleton",
     statics: {
       /** @type {Map} The libraries used by this application */
-      __libs__P_131_0: qx.$$libraries || {}
+      __libs__P_136_0: qx.$$libraries || {}
     },
     members: {
       /**
@@ -36597,7 +36597,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code> if the given library is known
        */
       has: function has(namespace) {
-        return !!qx.util.LibraryManager.__libs__P_131_0[namespace];
+        return !!qx.util.LibraryManager.__libs__P_136_0[namespace];
       },
 
       /**
@@ -36607,7 +36607,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {var|null} The attribute's value or <code>null</code> if it's not defined
        */
       get: function get(namespace, key) {
-        return qx.util.LibraryManager.__libs__P_131_0[namespace][key] ? qx.util.LibraryManager.__libs__P_131_0[namespace][key] : null;
+        return qx.util.LibraryManager.__libs__P_136_0[namespace][key] ? qx.util.LibraryManager.__libs__P_136_0[namespace][key] : null;
       },
 
       /**
@@ -36618,7 +36618,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param value {var} Value of the attribute
        */
       set: function set(namespace, key, value) {
-        qx.util.LibraryManager.__libs__P_131_0[namespace][key] = value;
+        qx.util.LibraryManager.__libs__P_136_0[namespace][key] = value;
       }
     }
   });
@@ -36704,10 +36704,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       DEBUG: false,
 
       /** @type {Map} Collect warnings for potential clipped images */
-      __warnings__P_134_0: {},
+      __warnings__P_131_0: {},
 
       /** @type {Map} List of repeat modes which supports the IE AlphaImageLoader */
-      __alphaFixRepeats__P_134_1: qx.core.Environment.select("engine.name", {
+      __alphaFixRepeats__P_131_1: qx.core.Environment.select("engine.name", {
         "mshtml": {
           "scale-x": true,
           "scale-y": true,
@@ -36718,7 +36718,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       }),
 
       /** @type {Map} Mapping between background repeat and the tag to create */
-      __repeatToTagname__P_134_2: {
+      __repeatToTagname__P_131_2: {
         "scale-x": "img",
         "scale-y": "img",
         "scale": "img",
@@ -36835,11 +36835,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} The tag name: <code>div</code> or <code>img</code>
        */
       getTagName: function getTagName(repeat, source) {
-        if (source && qx.core.Environment.get("css.alphaimageloaderneeded") && this.__alphaFixRepeats__P_134_1[repeat] && source.endsWith(".png")) {
+        if (source && qx.core.Environment.get("css.alphaimageloaderneeded") && this.__alphaFixRepeats__P_131_1[repeat] && source.endsWith(".png")) {
           return "div";
         }
 
-        return this.__repeatToTagname__P_134_2[repeat];
+        return this.__repeatToTagname__P_131_2[repeat];
       },
 
       /**
@@ -36874,22 +36874,22 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
         var result; // Enable AlphaImageLoader in IE6/IE7/IE8
 
-        if (qx.core.Environment.get("css.alphaimageloaderneeded") && this.__alphaFixRepeats__P_134_1[repeat] && format === "png") {
-          var dimension = this.__getDimension__P_134_3(source);
+        if (qx.core.Environment.get("css.alphaimageloaderneeded") && this.__alphaFixRepeats__P_131_1[repeat] && format === "png") {
+          var dimension = this.__getDimension__P_131_3(source);
 
-          this.__normalizeWidthHeight__P_134_4(style, dimension.width, dimension.height);
+          this.__normalizeWidthHeight__P_131_4(style, dimension.width, dimension.height);
 
           result = this.processAlphaFix(style, repeat, source);
         } else {
           delete style.clip;
 
           if (repeat === "scale") {
-            result = this.__processScale__P_134_5(style, repeat, source);
+            result = this.__processScale__P_131_5(style, repeat, source);
           } else if (repeat === "scale-x" || repeat === "scale-y") {
-            result = this.__processScaleXScaleY__P_134_6(style, repeat, source);
+            result = this.__processScaleXScaleY__P_131_6(style, repeat, source);
           } else {
             // Native repeats or "no-repeat"
-            result = this.__processRepeats__P_134_7(style, repeat, source);
+            result = this.__processRepeats__P_131_7(style, repeat, source);
           }
         }
 
@@ -36903,7 +36903,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param width {Integer?null} width as number or null
        * @param height {Integer?null} height as number or null
        */
-      __normalizeWidthHeight__P_134_4: function __normalizeWidthHeight__P_134_4(style, width, height) {
+      __normalizeWidthHeight__P_131_4: function __normalizeWidthHeight__P_131_4(style, width, height) {
         if (style.width == null && width != null) {
           style.width = width + "px";
         }
@@ -36921,7 +36921,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param source {String} image source
        * @return {Map} dimension of image
        */
-      __getDimension__P_134_3: function __getDimension__P_134_3(source) {
+      __getDimension__P_131_3: function __getDimension__P_131_3(source) {
         var width = qx.util.ResourceManager.getInstance().getImageWidth(source) || qx.io.ImageLoader.getWidth(source);
         var height = qx.util.ResourceManager.getInstance().getImageHeight(source) || qx.io.ImageLoader.getHeight(source);
         return {
@@ -36965,12 +36965,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {Map} image URI and style infos
        */
-      __processScale__P_134_5: function __processScale__P_134_5(style, repeat, source) {
+      __processScale__P_131_5: function __processScale__P_131_5(style, repeat, source) {
         var uri = qx.util.ResourceManager.getInstance().toUri(source);
 
-        var dimension = this.__getDimension__P_134_3(source);
+        var dimension = this.__getDimension__P_131_3(source);
 
-        this.__normalizeWidthHeight__P_134_4(style, dimension.width, dimension.height);
+        this.__normalizeWidthHeight__P_131_4(style, dimension.width, dimension.height);
 
         return {
           src: uri,
@@ -36988,11 +36988,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {Map} image URI and style infos
        */
-      __processScaleXScaleY__P_134_6: function __processScaleXScaleY__P_134_6(style, repeat, sourceid) {
+      __processScaleXScaleY__P_131_6: function __processScaleXScaleY__P_131_6(style, repeat, sourceid) {
         var ResourceManager = qx.util.ResourceManager.getInstance();
         var clipped = ResourceManager.getCombinedFormat(sourceid);
 
-        var dimension = this.__getDimension__P_134_3(sourceid);
+        var dimension = this.__getDimension__P_131_3(sourceid);
 
         var uri;
 
@@ -37007,9 +37007,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
 
           if (repeat === "scale-x") {
-            style = this.__getStylesForClippedScaleX__P_134_8(style, data, dimension.height);
+            style = this.__getStylesForClippedScaleX__P_131_8(style, data, dimension.height);
           } else {
-            style = this.__getStylesForClippedScaleY__P_134_9(style, data, dimension.width);
+            style = this.__getStylesForClippedScaleY__P_131_9(style, data, dimension.width);
           }
 
           return {
@@ -37019,7 +37019,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // No clipped image available
         else {
           {
-            this.__checkForPotentialClippedImage__P_134_10(sourceid);
+            this.__checkForPotentialClippedImage__P_131_10(sourceid);
           }
 
           if (repeat == "scale-x") {
@@ -37045,7 +37045,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {Map} style infos and image URI
        */
-      __getStylesForClippedScaleX__P_134_8: function __getStylesForClippedScaleX__P_134_8(style, data, height) {
+      __getStylesForClippedScaleX__P_131_8: function __getStylesForClippedScaleX__P_131_8(style, data, height) {
         // Use clipped image (multi-images on x-axis)
         var imageHeight = qx.util.ResourceManager.getInstance().getImageHeight(data[4]); // Add size and clipping
 
@@ -37074,7 +37074,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {Map} style infos and image URI
        */
-      __getStylesForClippedScaleY__P_134_9: function __getStylesForClippedScaleY__P_134_9(style, data, width) {
+      __getStylesForClippedScaleY__P_131_9: function __getStylesForClippedScaleY__P_131_9(style, data, width) {
         // Use clipped image (multi-images on x-axis)
         var imageWidth = qx.util.ResourceManager.getInstance().getImageWidth(data[4]); // Add size and clipping
 
@@ -37103,11 +37103,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {Map} image URI and style infos
        */
-      __processRepeats__P_134_7: function __processRepeats__P_134_7(style, repeat, sourceid) {
+      __processRepeats__P_131_7: function __processRepeats__P_131_7(style, repeat, sourceid) {
         var ResourceManager = qx.util.ResourceManager.getInstance();
         var clipped = ResourceManager.getCombinedFormat(sourceid);
 
-        var dimension = this.__getDimension__P_134_3(sourceid); // Double axis repeats cannot be clipped
+        var dimension = this.__getDimension__P_131_3(sourceid); // Double axis repeats cannot be clipped
 
 
         if (clipped && repeat !== "repeat") {
@@ -37162,13 +37162,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           style.backgroundPosition = left + "px " + top + "px";
           {
             if (repeat !== "repeat") {
-              this.__checkForPotentialClippedImage__P_134_10(sourceid);
+              this.__checkForPotentialClippedImage__P_131_10(sourceid);
             }
           }
 
-          this.__normalizeWidthHeight__P_134_4(style, dimension.width, dimension.height);
+          this.__normalizeWidthHeight__P_131_4(style, dimension.width, dimension.height);
 
-          this.__getStylesForSingleRepeat__P_134_11(style, sourceid, repeat);
+          this.__getStylesForSingleRepeat__P_131_11(style, sourceid, repeat);
 
           return {
             style: style
@@ -37183,7 +37183,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param repeat {String} repeat mode
        * @param source {String} image source
        */
-      __getStylesForSingleRepeat__P_134_11: function __getStylesForSingleRepeat__P_134_11(style, source, repeat) {
+      __getStylesForSingleRepeat__P_131_11: function __getStylesForSingleRepeat__P_131_11(style, source, repeat) {
         // retrieve the "backgroundPosition" style if available to prevent
         // overwriting with default values
         var top = null;
@@ -37224,11 +37224,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @param source {String} image source
        */
-      __checkForPotentialClippedImage__P_134_10: function __checkForPotentialClippedImage__P_134_10(source) {
+      __checkForPotentialClippedImage__P_131_10: function __checkForPotentialClippedImage__P_131_10(source) {
         if (this.DEBUG && qx.util.ResourceManager.getInstance().has(source) && source.indexOf("qx/icon") == -1) {
-          if (!this.__warnings__P_134_0[source]) {
+          if (!this.__warnings__P_131_0[source]) {
             qx.log.Logger.debug("Potential clipped image candidate: " + source);
-            this.__warnings__P_134_0[source] = true;
+            this.__warnings__P_131_0[source] = true;
           }
         }
       }
@@ -37286,7 +37286,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @internal
        */
-      __mgr__P_110_0: qx.locale.Manager.getInstance(),
+      __mgr__P_111_0: qx.locale.Manager.getInstance(),
 
       /**
        * Get AM marker for time definitions
@@ -37295,7 +37295,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} translated AM marker.
        */
       getAmMarker: function getAmMarker(locale) {
-        return this.__mgr__P_110_0.localize("cldr_am", [], locale);
+        return this.__mgr__P_111_0.localize("cldr_am", [], locale);
       },
 
       /**
@@ -37305,7 +37305,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} translated PM marker.
        */
       getPmMarker: function getPmMarker(locale) {
-        return this.__mgr__P_110_0.localize("cldr_pm", [], locale);
+        return this.__mgr__P_111_0.localize("cldr_pm", [], locale);
       },
 
       /**
@@ -37331,7 +37331,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         for (var i = 0; i < days.length; i++) {
           var key = "cldr_day_" + context + "_" + length + "_" + days[i];
-          names.push(withFallback ? this.__localizeWithFallback__P_110_1(context, context === 'format' ? 'stand-alone' : 'format', key, locale) : this.__mgr__P_110_0.localize(key, [], locale));
+          names.push(withFallback ? this.__localizeWithFallback__P_111_1(context, context === 'format' ? 'stand-alone' : 'format', key, locale) : this.__mgr__P_111_0.localize(key, [], locale));
         }
 
         return names;
@@ -37360,7 +37360,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
         var days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
         var key = "cldr_day_" + context + "_" + length + "_" + days[day];
-        return withFallback ? this.__localizeWithFallback__P_110_1(context, context === 'format' ? 'stand-alone' : 'format', key, locale) : this.__mgr__P_110_0.localize(key, [], locale);
+        return withFallback ? this.__localizeWithFallback__P_111_1(context, context === 'format' ? 'stand-alone' : 'format', key, locale) : this.__mgr__P_111_0.localize(key, [], locale);
       },
 
       /**
@@ -37385,7 +37385,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         for (var i = 0; i < 12; i++) {
           var key = "cldr_month_" + context + "_" + length + "_" + (i + 1);
-          names.push(withFallback ? this.__localizeWithFallback__P_110_1(context, context === 'format' ? 'stand-alone' : 'format', key, locale) : this.__mgr__P_110_0.localize(key, [], locale));
+          names.push(withFallback ? this.__localizeWithFallback__P_111_1(context, context === 'format' ? 'stand-alone' : 'format', key, locale) : this.__mgr__P_111_0.localize(key, [], locale));
         }
 
         return names;
@@ -37411,7 +37411,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           qx.core.Assert.assertInArray(context, ["format", "stand-alone"]);
         }
         var key = "cldr_month_" + context + "_" + length + "_" + (month + 1);
-        return withFallback ? this.__localizeWithFallback__P_110_1(context, context === 'format' ? 'stand-alone' : 'format', key, locale) : this.__mgr__P_110_0.localize(key, [], locale);
+        return withFallback ? this.__localizeWithFallback__P_111_1(context, context === 'format' ? 'stand-alone' : 'format', key, locale) : this.__mgr__P_111_0.localize(key, [], locale);
       },
 
       /**
@@ -37427,7 +37427,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           qx.core.Assert.assertInArray(size, ["short", "medium", "long", "full"]);
         }
         var key = "cldr_date_format_" + size;
-        return this.__mgr__P_110_0.localize(key, [], locale);
+        return this.__mgr__P_111_0.localize(key, [], locale);
       },
 
       /**
@@ -37446,7 +37446,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       getDateTimeFormat: function getDateTimeFormat(canonical, fallback, locale) {
         var key = "cldr_date_time_format_" + canonical;
 
-        var localizedFormat = this.__mgr__P_110_0.localize(key, [], locale);
+        var localizedFormat = this.__mgr__P_111_0.localize(key, [], locale);
 
         if (localizedFormat == key) {
           localizedFormat = fallback;
@@ -37469,7 +37469,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
         var key = "cldr_time_format_" + size;
 
-        var localizedFormat = this.__mgr__P_110_0.localize(key, [], locale);
+        var localizedFormat = this.__mgr__P_111_0.localize(key, [], locale);
 
         if (localizedFormat != key) {
           return localizedFormat;
@@ -37687,7 +37687,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         if (locale) {
           var territory = locale.split("_")[1] || locale;
         } else {
-          territory = this.__mgr__P_110_0.getTerritory() || this.__mgr__P_110_0.getLanguage();
+          territory = this.__mgr__P_111_0.getTerritory() || this.__mgr__P_111_0.getLanguage();
         }
 
         return territory.toUpperCase();
@@ -37705,12 +37705,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} localized name for the key
        *
        */
-      __localizeWithFallback__P_110_1: function __localizeWithFallback__P_110_1(context, fallbackContext, key, locale) {
-        var localizedString = this.__mgr__P_110_0.localize(key, [], locale);
+      __localizeWithFallback__P_111_1: function __localizeWithFallback__P_111_1(context, fallbackContext, key, locale) {
+        var localizedString = this.__mgr__P_111_0.localize(key, [], locale);
 
         if (localizedString == key) {
           var newKey = key.replace('_' + context + '_', '_' + fallbackContext + '_');
-          return this.__mgr__P_110_0.localize(newKey, [], locale);
+          return this.__mgr__P_111_0.localize(newKey, [], locale);
         } else {
           return localizedString;
         }
@@ -37847,10 +37847,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__createdStyles__P_89_0 = [];
-      this.__validators__P_89_1 = {};
-      this.__queue__P_89_2 = [];
-      this.__preferredFormats__P_89_3 = this.getPreferredFormats();
+      this.__createdStyles__P_90_0 = [];
+      this.__validators__P_90_1 = {};
+      this.__queue__P_90_2 = [];
+      this.__preferredFormats__P_90_3 = this.getPreferredFormats();
     },
 
     /*
@@ -37877,12 +37877,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __createdStyles__P_89_0: null,
-      __styleSheet__P_89_4: null,
-      __validators__P_89_1: null,
-      __preferredFormats__P_89_3: null,
-      __queue__P_89_2: null,
-      __queueInterval__P_89_5: null,
+      __createdStyles__P_90_0: null,
+      __styleSheet__P_90_4: null,
+      __validators__P_90_1: null,
+      __preferredFormats__P_90_3: null,
+      __queue__P_90_2: null,
+      __queueInterval__P_90_5: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -37927,19 +37927,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
         if (qx.core.Environment.get("engine.name") == "mshtml" && (parseInt(qx.core.Environment.get("engine.version")) < 9 || qx.core.Environment.get("browser.documentmode") < 9)) {
-          if (!this.__queueInterval__P_89_5) {
-            this.__queueInterval__P_89_5 = new qx.event.Timer(100);
+          if (!this.__queueInterval__P_90_5) {
+            this.__queueInterval__P_90_5 = new qx.event.Timer(100);
 
-            this.__queueInterval__P_89_5.addListener("interval", this.__flushQueue__P_89_6, this);
+            this.__queueInterval__P_90_5.addListener("interval", this.__flushQueue__P_90_6, this);
           }
 
-          if (!this.__queueInterval__P_89_5.isEnabled()) {
-            this.__queueInterval__P_89_5.start();
+          if (!this.__queueInterval__P_90_5.isEnabled()) {
+            this.__queueInterval__P_90_5.start();
           }
 
-          this.__queue__P_89_2.push([familyName, sources, fontWeight, fontStyle, comparisonString, version, callback, context]);
+          this.__queue__P_90_2.push([familyName, sources, fontWeight, fontStyle, comparisonString, version, callback, context]);
         } else {
-          this.__require__P_89_7(familyName, sources, fontWeight, fontStyle, comparisonString, version, callback, context);
+          this.__require__P_90_7(familyName, sources, fontWeight, fontStyle, comparisonString, version, callback, context);
         }
       },
 
@@ -37953,28 +37953,28 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param fontStyle {String} the font-style.
        */
       remove: function remove(familyName, fontWeight, fontStyle) {
-        var fontLookupKey = this.__createFontLookupKey__P_89_8(familyName, fontWeight, fontStyle);
+        var fontLookupKey = this.__createFontLookupKey__P_90_8(familyName, fontWeight, fontStyle);
 
         var index = null;
 
-        for (var i = 0, l = this.__createdStyles__P_89_0.length; i < l; i++) {
-          if (this.__createdStyles__P_89_0[i] == fontLookupKey) {
+        for (var i = 0, l = this.__createdStyles__P_90_0.length; i < l; i++) {
+          if (this.__createdStyles__P_90_0[i] == fontLookupKey) {
             index = i;
 
-            this.__removeRule__P_89_9(familyName, fontWeight, fontStyle);
+            this.__removeRule__P_90_9(familyName, fontWeight, fontStyle);
 
             break;
           }
         }
 
         if (index !== null) {
-          qx.lang.Array.removeAt(this.__createdStyles__P_89_0, index);
+          qx.lang.Array.removeAt(this.__createdStyles__P_90_0, index);
         }
 
-        if (fontLookupKey in this.__validators__P_89_1) {
-          this.__validators__P_89_1[fontLookupKey].dispose();
+        if (fontLookupKey in this.__validators__P_90_1) {
+          this.__validators__P_90_1[fontLookupKey].dispose();
 
-          delete this.__validators__P_89_1[fontLookupKey];
+          delete this.__validators__P_90_1[fontLookupKey];
         }
       },
 
@@ -38023,13 +38023,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * font-families
        */
       removeStyleSheet: function removeStyleSheet() {
-        this.__createdStyles__P_89_0 = [];
+        this.__createdStyles__P_90_0 = [];
 
-        if (this.__styleSheet__P_89_4) {
-          qx.bom.Stylesheet.removeSheet(this.__styleSheet__P_89_4);
+        if (this.__styleSheet__P_90_4) {
+          qx.bom.Stylesheet.removeSheet(this.__styleSheet__P_90_4);
         }
 
-        this.__styleSheet__P_89_4 = null;
+        this.__styleSheet__P_90_4 = null;
       },
 
       /*
@@ -38045,7 +38045,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param fontStyle {String} the font-style.
        * @return {string} the font lookup key
        */
-      __createFontLookupKey__P_89_8: function __createFontLookupKey__P_89_8(familyName, fontWeight, fontStyle) {
+      __createFontLookupKey__P_90_8: function __createFontLookupKey__P_90_8(familyName, fontWeight, fontStyle) {
         var lookupKey = familyName + "_" + (fontWeight ? fontWeight : "normal") + "_" + (fontStyle ? fontStyle : "normal");
         return lookupKey;
       },
@@ -38068,24 +38068,24 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * applied correctly.
        * @param context {Object?} Optional context for the callback function
        */
-      __require__P_89_7: function __require__P_89_7(familyName, sources, fontWeight, fontStyle, comparisonString, version, callback, context) {
-        var fontLookupKey = this.__createFontLookupKey__P_89_8(familyName, fontWeight, fontStyle);
+      __require__P_90_7: function __require__P_90_7(familyName, sources, fontWeight, fontStyle, comparisonString, version, callback, context) {
+        var fontLookupKey = this.__createFontLookupKey__P_90_8(familyName, fontWeight, fontStyle);
 
-        if (!this.__createdStyles__P_89_0.includes(fontLookupKey)) {
-          var sourcesMap = this.__getSourcesMap__P_89_10(sources);
+        if (!this.__createdStyles__P_90_0.includes(fontLookupKey)) {
+          var sourcesMap = this.__getSourcesMap__P_90_10(sources);
 
-          var rule = this.__getRule__P_89_11(familyName, fontWeight, fontStyle, sourcesMap, version);
+          var rule = this.__getRule__P_90_11(familyName, fontWeight, fontStyle, sourcesMap, version);
 
           if (!rule) {
             throw new Error("Couldn't create @font-face rule for WebFont " + familyName + "!");
           }
 
-          if (!this.__styleSheet__P_89_4) {
-            this.__styleSheet__P_89_4 = qx.bom.Stylesheet.createElement();
+          if (!this.__styleSheet__P_90_4) {
+            this.__styleSheet__P_90_4 = qx.bom.Stylesheet.createElement();
           }
 
           try {
-            this.__addRule__P_89_12(rule);
+            this.__addRule__P_90_12(rule);
           } catch (ex) {
             {
               this.warn("Error while adding @font-face rule:", ex.message);
@@ -38093,39 +38093,39 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             }
           }
 
-          this.__createdStyles__P_89_0.push(fontLookupKey);
+          this.__createdStyles__P_90_0.push(fontLookupKey);
         }
 
-        if (!this.__validators__P_89_1[fontLookupKey]) {
-          this.__validators__P_89_1[fontLookupKey] = new qx.bom.webfonts.Validator(familyName, comparisonString, fontWeight, fontStyle);
+        if (!this.__validators__P_90_1[fontLookupKey]) {
+          this.__validators__P_90_1[fontLookupKey] = new qx.bom.webfonts.Validator(familyName, comparisonString, fontWeight, fontStyle);
 
-          this.__validators__P_89_1[fontLookupKey].setTimeout(qx.bom.webfonts.Manager.VALIDATION_TIMEOUT);
+          this.__validators__P_90_1[fontLookupKey].setTimeout(qx.bom.webfonts.Manager.VALIDATION_TIMEOUT);
 
-          this.__validators__P_89_1[fontLookupKey].addListenerOnce("changeStatus", this.__onFontChangeStatus__P_89_13, this);
+          this.__validators__P_90_1[fontLookupKey].addListenerOnce("changeStatus", this.__onFontChangeStatus__P_90_13, this);
         }
 
         if (callback) {
           var cbContext = context || window;
 
-          this.__validators__P_89_1[fontLookupKey].addListenerOnce("changeStatus", callback, cbContext);
+          this.__validators__P_90_1[fontLookupKey].addListenerOnce("changeStatus", callback, cbContext);
         }
 
-        this.__validators__P_89_1[fontLookupKey].validate();
+        this.__validators__P_90_1[fontLookupKey].validate();
       },
 
       /**
        * Processes the next item in the queue
        */
-      __flushQueue__P_89_6: function __flushQueue__P_89_6() {
-        if (this.__queue__P_89_2.length == 0) {
-          this.__queueInterval__P_89_5.stop();
+      __flushQueue__P_90_6: function __flushQueue__P_90_6() {
+        if (this.__queue__P_90_2.length == 0) {
+          this.__queueInterval__P_90_5.stop();
 
           return;
         }
 
-        var next = this.__queue__P_89_2.shift();
+        var next = this.__queue__P_90_2.shift();
 
-        this.__require__P_89_7.apply(this, next);
+        this.__require__P_90_7.apply(this, next);
       },
 
       /**
@@ -38133,7 +38133,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @param ev {qx.event.type.Data} qx.bom.webfonts.Validator#changeStatus
        */
-      __onFontChangeStatus__P_89_13: function __onFontChangeStatus__P_89_13(ev) {
+      __onFontChangeStatus__P_90_13: function __onFontChangeStatus__P_90_13(ev) {
         var result = ev.getData();
 
         if (result.valid === false) {
@@ -38151,7 +38151,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param sources {String[]} Array of source URLs
        * @return {Map} Map of formats and URLs
        */
-      __getSourcesMap__P_89_10: function __getSourcesMap__P_89_10(sources) {
+      __getSourcesMap__P_90_10: function __getSourcesMap__P_90_10(sources) {
         var formats = qx.bom.webfonts.Manager.FONT_FORMATS;
         var sourcesMap = {};
         var reg = new RegExp("\.(" + formats.join("|") + ")");
@@ -38180,15 +38180,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param version {String?} Optional version to be appended to the URL
        * @return {String} The computed CSS rule
        */
-      __getRule__P_89_11: function __getRule__P_89_11(familyName, fontWeight, fontStyle, sourcesMap, version) {
+      __getRule__P_90_11: function __getRule__P_90_11(familyName, fontWeight, fontStyle, sourcesMap, version) {
         var rules = [];
-        var formatList = this.__preferredFormats__P_89_3.length > 0 ? this.__preferredFormats__P_89_3 : qx.bom.webfonts.Manager.FONT_FORMATS;
+        var formatList = this.__preferredFormats__P_90_3.length > 0 ? this.__preferredFormats__P_90_3 : qx.bom.webfonts.Manager.FONT_FORMATS;
 
         for (var i = 0, l = formatList.length; i < l; i++) {
           var format = formatList[i];
 
           if (sourcesMap[format]) {
-            rules.push(this.__getSourceForFormat__P_89_14(format, sourcesMap[format], version));
+            rules.push(this.__getSourceForFormat__P_90_14(format, sourcesMap[format], version));
           }
         }
 
@@ -38206,7 +38206,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param version {String?} Optional version to be appended to the URL
        * @return {String} The src directive
        */
-      __getSourceForFormat__P_89_14: function __getSourceForFormat__P_89_14(format, url, version) {
+      __getSourceForFormat__P_90_14: function __getSourceForFormat__P_90_14(format, url, version) {
         if (version) {
           url += "?" + version;
         }
@@ -38237,16 +38237,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @param rule {String} The body of the CSS rule
        */
-      __addRule__P_89_12: function __addRule__P_89_12(rule) {
+      __addRule__P_90_12: function __addRule__P_90_12(rule) {
         var completeRule = "@font-face {" + rule + "}\n";
 
         if (qx.core.Environment.get("browser.name") == "ie" && qx.core.Environment.get("browser.documentmode") < 9) {
-          var cssText = this.__fixCssText__P_89_15(this.__styleSheet__P_89_4.cssText);
+          var cssText = this.__fixCssText__P_90_15(this.__styleSheet__P_90_4.cssText);
 
           cssText += completeRule;
-          this.__styleSheet__P_89_4.cssText = cssText;
+          this.__styleSheet__P_90_4.cssText = cssText;
         } else {
-          this.__styleSheet__P_89_4.insertRule(completeRule, this.__styleSheet__P_89_4.cssRules.length);
+          this.__styleSheet__P_90_4.insertRule(completeRule, this.__styleSheet__P_90_4.cssRules.length);
         }
       },
 
@@ -38258,7 +38258,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param fontWeight {String} fontWeight font-weight.
        * @param fontStyle {String} fontStyle font-style.
        */
-      __removeRule__P_89_9: function __removeRule__P_89_9(familyName, fontWeight, fontStyle) {
+      __removeRule__P_90_9: function __removeRule__P_90_9(familyName, fontWeight, fontStyle) {
         // In IE and edge even if the rule was added with font-style first
         // and font-weight second, it is not guaranteed that the attributes
         // remain in that order. Therefore we check for both version,
@@ -38272,7 +38272,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
           if (sheet.cssText) {
             var cssText = sheet.cssText.replace(/\n/g, "").replace(/\r/g, "");
-            cssText = this.__fixCssText__P_89_15(cssText);
+            cssText = this.__fixCssText__P_90_15(cssText);
 
             if (reg.exec(cssText)) {
               cssText = cssText.replace(reg, "");
@@ -38284,7 +38284,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               var cssText = sheet.cssRules[j].cssText.replace(/\n/g, "").replace(/\r/g, "");
 
               if (reg.exec(cssText)) {
-                this.__styleSheet__P_89_4.deleteRule(j);
+                this.__styleSheet__P_90_4.deleteRule(j);
 
                 return;
               }
@@ -38301,7 +38301,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param cssText {String} CSS text
        * @return {String} Fixed CSS text
        */
-      __fixCssText__P_89_15: function __fixCssText__P_89_15(cssText) {
+      __fixCssText__P_90_15: function __fixCssText__P_90_15(cssText) {
         return cssText.replace("'eot)", "'eot')").replace("('embedded-opentype)", "('embedded-opentype')");
       }
     },
@@ -38312,17 +38312,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     destruct: function destruct() {
-      if (this.__queueInterval__P_89_5) {
-        this.__queueInterval__P_89_5.stop();
+      if (this.__queueInterval__P_90_5) {
+        this.__queueInterval__P_90_5.stop();
 
-        this.__queueInterval__P_89_5.dispose();
+        this.__queueInterval__P_90_5.dispose();
       }
 
-      delete this.__createdStyles__P_89_0;
+      delete this.__createdStyles__P_90_0;
       this.removeStyleSheet();
 
-      for (var prop in this.__validators__P_89_1) {
-        this.__validators__P_89_1[prop].dispose();
+      for (var prop in this.__validators__P_90_1) {
+        this.__validators__P_90_1[prop].dispose();
       }
 
       qx.bom.webfonts.Validator.removeDefaultHelperElements();
@@ -38398,7 +38398,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       {
         qx.core.Assert.assertInterface(selectionProvider, qx.ui.core.ISingleSelectionProvider, "Invalid selectionProvider!");
       }
-      this.__selectionProvider__P_169_0 = selectionProvider;
+      this.__selectionProvider__P_166_0 = selectionProvider;
     },
 
     /*
@@ -38425,7 +38425,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       allowEmptySelection: {
         check: "Boolean",
         init: true,
-        apply: "__applyAllowEmptySelection__P_169_1"
+        apply: "__applyAllowEmptySelection__P_166_1"
       }
     },
 
@@ -38436,10 +38436,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     */
     members: {
       /** @type {qx.ui.core.Widget} The selected widget. */
-      __selected__P_169_2: null,
+      __selected__P_166_2: null,
 
       /** @type {qx.ui.core.ISingleSelectionProvider} The provider for selection management */
-      __selectionProvider__P_169_0: null,
+      __selectionProvider__P_166_0: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -38454,7 +38454,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *    <code>null</code> if the selection is empty.
        */
       getSelected: function getSelected() {
-        return this.__selected__P_169_2;
+        return this.__selected__P_166_2;
       },
 
       /**
@@ -38464,11 +38464,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @throws {Error} if the element is not a child element.
        */
       setSelected: function setSelected(item) {
-        if (!this.__isChildElement__P_169_3(item)) {
+        if (!this.__isChildElement__P_166_3(item)) {
           throw new Error("Could not select " + item + ", because it is not a child element!");
         }
 
-        this.__setSelected__P_169_4(item);
+        this.__setSelected__P_166_4(item);
       },
 
       /**
@@ -38476,7 +38476,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * <code>true</code> the first element will be selected.
        */
       resetSelected: function resetSelected() {
-        this.__setSelected__P_169_4(null);
+        this.__setSelected__P_166_4(null);
       },
 
       /**
@@ -38488,11 +38488,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @throws {Error} if the element is not a child element.
        */
       isSelected: function isSelected(item) {
-        if (!this.__isChildElement__P_169_3(item)) {
+        if (!this.__isChildElement__P_166_3(item)) {
           throw new Error("Could not check if " + item + " is selected," + " because it is not a child element!");
         }
 
-        return this.__selected__P_169_2 === item;
+        return this.__selected__P_166_2 === item;
       },
 
       /**
@@ -38502,7 +38502,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *    <code>false</code> otherwise.
        */
       isSelectionEmpty: function isSelectionEmpty() {
-        return this.__selected__P_169_2 == null;
+        return this.__selected__P_166_2 == null;
       },
 
       /**
@@ -38513,12 +38513,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.ui.core.Widget[]} The contained items.
        */
       getSelectables: function getSelectables(all) {
-        var items = this.__selectionProvider__P_169_0.getItems();
+        var items = this.__selectionProvider__P_166_0.getItems();
 
         var result = [];
 
         for (var i = 0; i < items.length; i++) {
-          if (this.__selectionProvider__P_169_0.isItemSelectable(items[i])) {
+          if (this.__selectionProvider__P_166_0.isItemSelectable(items[i])) {
             result.push(items[i]);
           }
         } // in case of an user selectable list, remove the enabled items
@@ -38541,9 +38541,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       ---------------------------------------------------------------------------
       */
       // apply method
-      __applyAllowEmptySelection__P_169_1: function __applyAllowEmptySelection__P_169_1(value, old) {
+      __applyAllowEmptySelection__P_166_1: function __applyAllowEmptySelection__P_166_1(value, old) {
         if (!value) {
-          this.__setSelected__P_169_4(this.__selected__P_169_2);
+          this.__setSelected__P_166_4(this.__selected__P_166_2);
         }
       },
 
@@ -38561,8 +38561,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param item {qx.ui.core.Widget | null} element to select, or
        *    <code>null</code> to reset selection.
        */
-      __setSelected__P_169_4: function __setSelected__P_169_4(item) {
-        var oldSelected = this.__selected__P_169_2;
+      __setSelected__P_166_4: function __setSelected__P_166_4(item) {
+        var oldSelected = this.__selected__P_166_2;
         var newSelected = item;
 
         if (newSelected != null && oldSelected === newSelected) {
@@ -38577,7 +38577,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         }
 
-        this.__selected__P_169_2 = newSelected;
+        this.__selected__P_166_2 = newSelected;
         this.fireDataEvent("changeSelected", newSelected, oldSelected);
       },
 
@@ -38588,8 +38588,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code> if element is child element,
        *    <code>false</code> otherwise.
        */
-      __isChildElement__P_169_3: function __isChildElement__P_169_3(item) {
-        var items = this.__selectionProvider__P_169_0.getItems();
+      __isChildElement__P_166_3: function __isChildElement__P_166_3(item) {
+        var items = this.__selectionProvider__P_166_0.getItems();
 
         for (var i = 0; i < items.length; i++) {
           if (items[i] === item) {
@@ -38607,13 +38607,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      *****************************************************************************
      */
     destruct: function destruct() {
-      if (this.__selectionProvider__P_169_0.toHashCode) {
-        this._disposeObjects("__selectionProvider__P_169_0");
+      if (this.__selectionProvider__P_166_0.toHashCode) {
+        this._disposeObjects("__selectionProvider__P_166_0");
       } else {
-        this.__selectionProvider__P_169_0 = null;
+        this.__selectionProvider__P_166_0 = null;
       }
 
-      this._disposeObjects("__selected__P_169_2");
+      this._disposeObjects("__selected__P_166_2");
     }
   });
   qx.ui.core.SingleSelectionManager.$$dbClassInfo = $$dbClassInfo;
@@ -39092,9 +39092,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     extend: qx.event.Emitter,
     construct: function construct() {
       var css = qx.core.Environment.get("css.animation");
-      this.__playState__P_162_0 = css && css["play-state"];
-      this.__playing__P_162_1 = true;
-      this.addListenerOnce("end", this.__setEnded__P_162_2, this);
+      this.__playState__P_167_0 = css && css["play-state"];
+      this.__playing__P_167_1 = true;
+      this.addListenerOnce("end", this.__setEnded__P_167_2, this);
     },
     events: {
       /** Fired when the animation started via {@link qx.bom.element.Animation}. */
@@ -39110,16 +39110,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       "iteration": "Element"
     },
     members: {
-      __playState__P_162_0: null,
-      __playing__P_162_1: false,
-      __ended__P_162_3: false,
+      __playState__P_167_0: null,
+      __playing__P_167_1: false,
+      __ended__P_167_3: false,
 
       /**
        * Accessor of the playing state.
        * @return {Boolean} <code>true</code>, if the animations is playing.
        */
       isPlaying: function isPlaying() {
-        return this.__playing__P_162_1;
+        return this.__playing__P_167_1;
       },
 
       /**
@@ -39127,7 +39127,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code>, if the animations has ended.
        */
       isEnded: function isEnded() {
-        return this.__ended__P_162_3;
+        return this.__ended__P_167_3;
       },
 
       /**
@@ -39135,7 +39135,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code>, if the animations is paused.
        */
       isPaused: function isPaused() {
-        return this.el.style[this.__playState__P_162_0] == "paused";
+        return this.el.style[this.__playState__P_167_0] == "paused";
       },
 
       /**
@@ -39143,8 +39143,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       pause: function pause() {
         if (this.el) {
-          this.el.style[this.__playState__P_162_0] = "paused";
-          this.el.$$animation.__playing__P_162_1 = false; // in case the animation is based on JS
+          this.el.style[this.__playState__P_167_0] = "paused";
+          this.el.$$animation.__playing__P_167_1 = false; // in case the animation is based on JS
 
           if (this.animationId && qx.bom.element.AnimationJs) {
             qx.bom.element.AnimationJs.pause(this);
@@ -39158,8 +39158,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       play: function play() {
         if (this.el) {
-          this.el.style[this.__playState__P_162_0] = "running";
-          this.el.$$animation.__playing__P_162_1 = true; // in case the animation is based on JS
+          this.el.style[this.__playState__P_167_0] = "running";
+          this.el.$$animation.__playing__P_167_1 = true; // in case the animation is based on JS
 
           if (this.i != undefined && qx.bom.element.AnimationJs) {
             qx.bom.element.AnimationJs.play(this);
@@ -39172,10 +39172,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       stop: function stop() {
         if (this.el && qx.core.Environment.get("css.animation") && !this.jsAnimation) {
-          this.el.style[this.__playState__P_162_0] = "";
+          this.el.style[this.__playState__P_167_0] = "";
           this.el.style[qx.core.Environment.get("css.animation").name] = "";
-          this.el.$$animation.__playing__P_162_1 = false;
-          this.el.$$animation.__ended__P_162_3 = true;
+          this.el.$$animation.__playing__P_167_1 = false;
+          this.el.$$animation.__ended__P_167_3 = true;
         } // in case the animation is based on JS
         else if (this.jsAnimation) {
           this.stopped = true;
@@ -39186,9 +39186,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * Set the animation state to ended
        */
-      __setEnded__P_162_2: function __setEnded__P_162_2() {
-        this.__playing__P_162_1 = false;
-        this.__ended__P_162_3 = true;
+      __setEnded__P_167_2: function __setEnded__P_167_2() {
+        this.__playing__P_167_1 = false;
+        this.__ended__P_167_3 = true;
       }
     }
   });
@@ -39417,7 +39417,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.Bootstrap.define("qx.bom.element.Transform", {
     statics: {
       /** Internal storage of the CSS names */
-      __cssKeys__P_163_0: qx.core.Environment.get("css.transform"),
+      __cssKeys__P_168_0: qx.core.Environment.get("css.transform"),
 
       /**
        * Method to apply multiple transforms at once to the given element. It
@@ -39441,8 +39441,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       transform: function transform(el, transforms) {
         var transformCss = this.getTransformValue(transforms);
 
-        if (this.__cssKeys__P_163_0 != null) {
-          var style = this.__cssKeys__P_163_0["name"];
+        if (this.__cssKeys__P_168_0 != null) {
+          var style = this.__cssKeys__P_168_0["name"];
           el.style[style] = transformCss;
         }
       },
@@ -39505,8 +39505,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       getCss: function getCss(transforms) {
         var transformCss = this.getTransformValue(transforms);
 
-        if (this.__cssKeys__P_163_0 != null) {
-          var style = this.__cssKeys__P_163_0["name"];
+        if (this.__cssKeys__P_168_0 != null) {
+          var style = this.__cssKeys__P_168_0["name"];
           return qx.bom.Style.getCssName(style) + ":" + transformCss + ";";
         }
 
@@ -39522,8 +39522,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   <code>left top</code>.
        */
       setOrigin: function setOrigin(el, value) {
-        if (this.__cssKeys__P_163_0 != null) {
-          el.style[this.__cssKeys__P_163_0["origin"]] = value;
+        if (this.__cssKeys__P_168_0 != null) {
+          el.style[this.__cssKeys__P_168_0["origin"]] = value;
         }
       },
 
@@ -39535,8 +39535,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} The set property, e.g. <code>50% 50%</code>
        */
       getOrigin: function getOrigin(el) {
-        if (this.__cssKeys__P_163_0 != null) {
-          return el.style[this.__cssKeys__P_163_0["origin"]];
+        if (this.__cssKeys__P_168_0 != null) {
+          return el.style[this.__cssKeys__P_168_0["origin"]];
         }
 
         return "";
@@ -39550,8 +39550,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param value {String} Either <code>flat</code> or <code>preserve-3d</code>.
        */
       setStyle: function setStyle(el, value) {
-        if (this.__cssKeys__P_163_0 != null) {
-          el.style[this.__cssKeys__P_163_0["style"]] = value;
+        if (this.__cssKeys__P_168_0 != null) {
+          el.style[this.__cssKeys__P_168_0["style"]] = value;
         }
       },
 
@@ -39564,8 +39564,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   <code>preserve-3d</code>.
        */
       getStyle: function getStyle(el) {
-        if (this.__cssKeys__P_163_0 != null) {
-          return el.style[this.__cssKeys__P_163_0["style"]];
+        if (this.__cssKeys__P_168_0 != null) {
+          return el.style[this.__cssKeys__P_168_0["style"]];
         }
 
         return "";
@@ -39580,8 +39580,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   and 5000 give the best results.
        */
       setPerspective: function setPerspective(el, value) {
-        if (this.__cssKeys__P_163_0 != null) {
-          el.style[this.__cssKeys__P_163_0["perspective"]] = value + "px";
+        if (this.__cssKeys__P_168_0 != null) {
+          el.style[this.__cssKeys__P_168_0["perspective"]] = value + "px";
         }
       },
 
@@ -39593,8 +39593,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} The set property, e.g. <code>500</code>
        */
       getPerspective: function getPerspective(el) {
-        if (this.__cssKeys__P_163_0 != null) {
-          return el.style[this.__cssKeys__P_163_0["perspective"]];
+        if (this.__cssKeys__P_168_0 != null) {
+          return el.style[this.__cssKeys__P_168_0["perspective"]];
         }
 
         return "";
@@ -39609,8 +39609,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   <code>left top</code>.
        */
       setPerspectiveOrigin: function setPerspectiveOrigin(el, value) {
-        if (this.__cssKeys__P_163_0 != null) {
-          el.style[this.__cssKeys__P_163_0["perspective-origin"]] = value;
+        if (this.__cssKeys__P_168_0 != null) {
+          el.style[this.__cssKeys__P_168_0["perspective-origin"]] = value;
         }
       },
 
@@ -39622,14 +39622,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} The set property, e.g. <code>50% 50%</code>
        */
       getPerspectiveOrigin: function getPerspectiveOrigin(el) {
-        if (this.__cssKeys__P_163_0 != null) {
-          var value = el.style[this.__cssKeys__P_163_0["perspective-origin"]];
+        if (this.__cssKeys__P_168_0 != null) {
+          var value = el.style[this.__cssKeys__P_168_0["perspective-origin"]];
 
           if (value != "") {
             return value;
           } else {
-            var valueX = el.style[this.__cssKeys__P_163_0["perspective-origin"] + "X"];
-            var valueY = el.style[this.__cssKeys__P_163_0["perspective-origin"] + "Y"];
+            var valueX = el.style[this.__cssKeys__P_168_0["perspective-origin"] + "X"];
+            var valueY = el.style[this.__cssKeys__P_168_0["perspective-origin"] + "Y"];
 
             if (valueX != "") {
               return valueX + " " + valueY;
@@ -39648,8 +39648,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param value {Boolean} <code>true</code> if the backface should be visible.
        */
       setBackfaceVisibility: function setBackfaceVisibility(el, value) {
-        if (this.__cssKeys__P_163_0 != null) {
-          el.style[this.__cssKeys__P_163_0["backface-visibility"]] = value ? "visible" : "hidden";
+        if (this.__cssKeys__P_168_0 != null) {
+          el.style[this.__cssKeys__P_168_0["backface-visibility"]] = value ? "visible" : "hidden";
         }
       },
 
@@ -39661,8 +39661,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code>, if the backface is visible.
        */
       getBackfaceVisibility: function getBackfaceVisibility(el) {
-        if (this.__cssKeys__P_163_0 != null) {
-          return el.style[this.__cssKeys__P_163_0["backface-visibility"]] == "visible";
+        if (this.__cssKeys__P_168_0 != null) {
+          return el.style[this.__cssKeys__P_168_0["backface-visibility"]] == "visible";
         }
 
         return true;
@@ -39826,7 +39826,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     */
     statics: {
       /** @type {Map} Internal data structures with all supported input types */
-      __types__P_164_0: {
+      __types__P_169_0: {
         text: 1,
         textarea: 1,
         select: 1,
@@ -39859,7 +39859,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       create: function create(type, attributes, win) {
         {
-          qx.core.Assert.assertKeyInMap(type, this.__types__P_164_0, "Unsupported input type.");
+          qx.core.Assert.assertKeyInMap(type, this.__types__P_169_0, "Unsupported input type.");
         } // Work on a copy to not modify given attributes map
 
         var attributes = attributes ? qx.lang.Object.clone(attributes) : {};
@@ -40088,10 +40088,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.Class.define("qx.bom.element.Background", {
     statics: {
       /** @type {Array} Internal helper to improve compile performance */
-      __tmpl__P_152_0: ["background-image:url(", null, ");", "background-position:", null, ";", "background-repeat:", null, ";"],
+      __tmpl__P_156_0: ["background-image:url(", null, ");", "background-position:", null, ";", "background-repeat:", null, ";"],
 
       /** @type {Map} Empty styles when no image is given */
-      __emptyStyles__P_152_1: {
+      __emptyStyles__P_156_1: {
         backgroundImage: null,
         backgroundPosition: null,
         backgroundRepeat: null
@@ -40106,7 +40106,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *    string value
        * @return {String} The background position CSS value
        */
-      __computePosition__P_152_2: function __computePosition__P_152_2(left, top) {
+      __computePosition__P_156_2: function __computePosition__P_156_2(left, top) {
         // Correcting buggy Firefox background-position implementation
         // Have problems with identical values
         var engine = qx.core.Environment.get("engine.name");
@@ -40149,11 +40149,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} CSS string
        */
       compile: function compile(source, repeat, left, top) {
-        var position = this.__computePosition__P_152_2(left, top);
+        var position = this.__computePosition__P_156_2(left, top);
 
         var backgroundImageUrl = qx.util.ResourceManager.getInstance().toUri(source); // Updating template
 
-        var tmpl = this.__tmpl__P_152_0;
+        var tmpl = this.__tmpl__P_156_0;
         tmpl[1] = "'" + backgroundImageUrl + "'"; // Put in quotes so spaces work
 
         tmpl[4] = position;
@@ -40180,10 +40180,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       getStyles: function getStyles(source, repeat, left, top) {
         if (!source) {
-          return this.__emptyStyles__P_152_1;
+          return this.__emptyStyles__P_156_1;
         }
 
-        var position = this.__computePosition__P_152_2(left, top);
+        var position = this.__computePosition__P_156_2(left, top);
 
         var backgroundImageUrl = qx.util.ResourceManager.getInstance().toUri(source);
         var backgroundImageCssString = "url('" + backgroundImageUrl + "')"; // Put in quotes so spaces work
@@ -40299,7 +40299,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
       if (fontFamily) {
         this.setFontFamily(fontFamily);
-        this.__requestedHelpers__P_125_0 = this._getRequestedHelpers();
+        this.__requestedHelpers__P_126_0 = this._getRequestedHelpers();
       }
     },
 
@@ -40342,15 +40342,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * property.
        */
       COMPARISON_STRING: "WEei",
-      __defaultSizes__P_125_1: null,
-      __defaultHelpers__P_125_2: null,
+      __defaultSizes__P_126_1: null,
+      __defaultHelpers__P_126_2: null,
 
       /**
        * Removes the two common helper elements used for all size comparisons from
        * the DOM
        */
       removeDefaultHelperElements: function removeDefaultHelperElements() {
-        var defaultHelpers = qx.bom.webfonts.Validator.__defaultHelpers__P_125_2;
+        var defaultHelpers = qx.bom.webfonts.Validator.__defaultHelpers__P_126_2;
 
         if (defaultHelpers) {
           for (var prop in defaultHelpers) {
@@ -40358,7 +40358,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         }
 
-        delete qx.bom.webfonts.Validator.__defaultHelpers__P_125_2;
+        delete qx.bom.webfonts.Validator.__defaultHelpers__P_126_2;
       }
     },
 
@@ -40429,9 +40429,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __requestedHelpers__P_125_0: null,
-      __checkTimer__P_125_3: null,
-      __checkStarted__P_125_4: null,
+      __requestedHelpers__P_126_0: null,
+      __checkTimer__P_126_3: null,
+      __checkStarted__P_126_4: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -40443,18 +40443,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Validates the font
        */
       validate: function validate() {
-        this.__checkStarted__P_125_4 = new Date().getTime();
+        this.__checkStarted__P_126_4 = new Date().getTime();
 
-        if (this.__checkTimer__P_125_3) {
-          this.__checkTimer__P_125_3.restart();
+        if (this.__checkTimer__P_126_3) {
+          this.__checkTimer__P_126_3.restart();
         } else {
-          this.__checkTimer__P_125_3 = new qx.event.Timer(100);
+          this.__checkTimer__P_126_3 = new qx.event.Timer(100);
 
-          this.__checkTimer__P_125_3.addListener("interval", this.__onTimerInterval__P_125_5, this); // Give the browser a chance to render the new elements
+          this.__checkTimer__P_126_3.addListener("interval", this.__onTimerInterval__P_126_5, this); // Give the browser a chance to render the new elements
 
 
           qx.event.Timer.once(function () {
-            this.__checkTimer__P_125_3.start();
+            this.__checkTimer__P_126_3.start();
           }, this, 0);
         }
       },
@@ -40469,13 +40469,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Removes the helper elements from the DOM
        */
       _reset: function _reset() {
-        if (this.__requestedHelpers__P_125_0) {
-          for (var prop in this.__requestedHelpers__P_125_0) {
-            var elem = this.__requestedHelpers__P_125_0[prop];
+        if (this.__requestedHelpers__P_126_0) {
+          for (var prop in this.__requestedHelpers__P_126_0) {
+            var elem = this.__requestedHelpers__P_126_0[prop];
             document.body.removeChild(elem);
           }
 
-          this.__requestedHelpers__P_125_0 = null;
+          this.__requestedHelpers__P_126_0 = null;
         }
       },
 
@@ -40488,24 +40488,24 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * in size
        */
       _isFontValid: function _isFontValid() {
-        if (!qx.bom.webfonts.Validator.__defaultSizes__P_125_1) {
-          this.__init__P_125_6();
+        if (!qx.bom.webfonts.Validator.__defaultSizes__P_126_1) {
+          this.__init__P_126_6();
         }
 
-        if (!this.__requestedHelpers__P_125_0) {
-          this.__requestedHelpers__P_125_0 = this._getRequestedHelpers();
+        if (!this.__requestedHelpers__P_126_0) {
+          this.__requestedHelpers__P_126_0 = this._getRequestedHelpers();
         } // force rerendering for chrome
 
 
-        this.__requestedHelpers__P_125_0.sans.style.visibility = "visible";
-        this.__requestedHelpers__P_125_0.sans.style.visibility = "hidden";
-        this.__requestedHelpers__P_125_0.serif.style.visibility = "visible";
-        this.__requestedHelpers__P_125_0.serif.style.visibility = "hidden";
-        var requestedSans = qx.bom.element.Dimension.getWidth(this.__requestedHelpers__P_125_0.sans);
-        var requestedSerif = qx.bom.element.Dimension.getWidth(this.__requestedHelpers__P_125_0.serif);
+        this.__requestedHelpers__P_126_0.sans.style.visibility = "visible";
+        this.__requestedHelpers__P_126_0.sans.style.visibility = "hidden";
+        this.__requestedHelpers__P_126_0.serif.style.visibility = "visible";
+        this.__requestedHelpers__P_126_0.serif.style.visibility = "hidden";
+        var requestedSans = qx.bom.element.Dimension.getWidth(this.__requestedHelpers__P_126_0.sans);
+        var requestedSerif = qx.bom.element.Dimension.getWidth(this.__requestedHelpers__P_126_0.serif);
         var cls = qx.bom.webfonts.Validator;
 
-        if (requestedSans !== cls.__defaultSizes__P_125_1.sans || requestedSerif !== cls.__defaultSizes__P_125_1.serif) {
+        if (requestedSans !== cls.__defaultSizes__P_126_1.sans || requestedSerif !== cls.__defaultSizes__P_126_1.serif) {
           return true;
         }
 
@@ -40589,19 +40589,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * Creates the default helper elements and gets their widths
        */
-      __init__P_125_6: function __init__P_125_6() {
+      __init__P_126_6: function __init__P_126_6() {
         var cls = qx.bom.webfonts.Validator;
 
-        if (!cls.__defaultHelpers__P_125_2) {
-          cls.__defaultHelpers__P_125_2 = {
+        if (!cls.__defaultHelpers__P_126_2) {
+          cls.__defaultHelpers__P_126_2 = {
             sans: this._getHelperElement(cls.COMPARISON_FONTS.sans),
             serif: this._getHelperElement(cls.COMPARISON_FONTS.serif)
           };
         }
 
-        cls.__defaultSizes__P_125_1 = {
-          sans: qx.bom.element.Dimension.getWidth(cls.__defaultHelpers__P_125_2.sans),
-          serif: qx.bom.element.Dimension.getWidth(cls.__defaultHelpers__P_125_2.serif)
+        cls.__defaultSizes__P_126_1 = {
+          sans: qx.bom.element.Dimension.getWidth(cls.__defaultHelpers__P_126_2.sans),
+          serif: qx.bom.element.Dimension.getWidth(cls.__defaultHelpers__P_126_2.serif)
         };
       },
 
@@ -40609,9 +40609,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Triggers helper element size comparison and fires a ({@link #changeStatus})
        * event with the result.
        */
-      __onTimerInterval__P_125_5: function __onTimerInterval__P_125_5() {
+      __onTimerInterval__P_126_5: function __onTimerInterval__P_126_5() {
         if (this._isFontValid()) {
-          this.__checkTimer__P_125_3.stop();
+          this.__checkTimer__P_126_3.stop();
 
           this._reset();
 
@@ -40622,8 +40622,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } else {
           var now = new Date().getTime();
 
-          if (now - this.__checkStarted__P_125_4 >= this.getTimeout()) {
-            this.__checkTimer__P_125_3.stop();
+          if (now - this.__checkStarted__P_126_4 >= this.getTimeout()) {
+            this.__checkTimer__P_126_3.stop();
 
             this._reset();
 
@@ -40644,11 +40644,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     destruct: function destruct() {
       this._reset();
 
-      this.__checkTimer__P_125_3.stop();
+      this.__checkTimer__P_126_3.stop();
 
-      this.__checkTimer__P_125_3.removeListener("interval", this.__onTimerInterval__P_125_5, this);
+      this.__checkTimer__P_126_3.removeListener("interval", this.__onTimerInterval__P_126_5, this);
 
-      this._disposeObjects("__checkTimer__P_125_3");
+      this._disposeObjects("__checkTimer__P_126_3");
     }
   });
   qx.bom.webfonts.Validator.$$dbClassInfo = $$dbClassInfo;
@@ -40849,7 +40849,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   });
   qx.theme.indigo.Color.$$dbClassInfo = $$dbClassInfo;
 })();
-//# sourceMappingURL=package-7.js.map?dt=1635701584286
+//# sourceMappingURL=package-7.js.map?dt=1635861023562
 qx.$$packageData['7'] = {
   "locales": {},
   "resources": {},

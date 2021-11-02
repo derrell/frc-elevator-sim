@@ -187,7 +187,7 @@
       _properties: null,
 
       /** @type {Map} map of event handlers */
-      __eventValues__P_117_0: null,
+      __eventValues__P_118_0: null,
 
       /**
        * Connects a widget to this element, and to the DOM element in this Element.  They
@@ -816,7 +816,7 @@
       _copyData: function _copyData(fromMarkup, propertiesFromDom) {
         var elem = this._domNode; // Attach events
 
-        var data = this.__eventValues__P_117_0;
+        var data = this.__eventValues__P_118_0;
 
         if (data) {
           // Import listeners
@@ -835,7 +835,7 @@
           // handling of styles and attributes where queuing happens
           // through the complete runtime of the application.
 
-          delete this.__eventValues__P_117_0;
+          delete this.__eventValues__P_118_0;
         } // Copy properties
 
 
@@ -895,7 +895,7 @@
           throw new Error("Child is already in: " + child);
         }
 
-        if (child.__root__P_117_1) {
+        if (child.__root__P_118_1) {
           throw new Error("Root elements could not be inserted into other ones.");
         } // Remove from previous parent
 
@@ -1583,8 +1583,8 @@
             return qx.event.Registration.addListener(_this._domNode, type, listener, self, capture);
           }
 
-          if (!_this.__eventValues__P_117_0) {
-            _this.__eventValues__P_117_0 = {};
+          if (!_this.__eventValues__P_118_0) {
+            _this.__eventValues__P_118_0 = {};
           }
 
           if (capture == null) {
@@ -1593,7 +1593,7 @@
 
           var unique = qx.event.Manager.getNextUniqueId();
           var id = type + (capture ? "|capture|" : "|bubble|") + unique;
-          _this.__eventValues__P_117_0[id] = {
+          _this.__eventValues__P_118_0[id] = {
             type: type,
             listener: listener,
             self: self,
@@ -1653,7 +1653,7 @@
 
           qx.event.Registration.removeListener(this._domNode, type, listener, self, capture);
         } else {
-          var values = this.__eventValues__P_117_0;
+          var values = this.__eventValues__P_118_0;
           var entry;
 
           if (capture == null) {
@@ -1696,7 +1696,7 @@
           if (this._domNode) {
             qx.event.Registration.removeListenerById(this._domNode, id);
           } else {
-            delete this.__eventValues__P_117_0[id];
+            delete this.__eventValues__P_118_0[id];
           }
         }
 
@@ -1729,7 +1729,7 @@
             return true;
           }
         } else {
-          var values = this.__eventValues__P_117_0;
+          var values = this.__eventValues__P_118_0;
           var entry;
 
           if (capture == null) {
@@ -1772,8 +1772,8 @@
           qx.lang.Array.append(listeners, qx.event.Registration.serializeListeners(this._domNode) || []);
         }
 
-        for (var id in this.__eventValues__P_117_0) {
-          var listenerData = this.__eventValues__P_117_0[id];
+        for (var id in this.__eventValues__P_118_0) {
+          var listenerData = this.__eventValues__P_118_0[id];
           listeners.push({
             type: listenerData.type,
             handler: listenerData.listener,
@@ -1812,10 +1812,10 @@
 
       this._disposeArray("_children");
 
-      this._properties = this._propertyJobs = this._domNode = this._parent = this.__eventValues__P_117_0 = null;
+      this._properties = this._propertyJobs = this._domNode = this._parent = this.__eventValues__P_118_0 = null;
     }
   });
   qx.html.Node.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Node.js.map?dt=1635364925191
+//# sourceMappingURL=Node.js.map?dt=1635778907947

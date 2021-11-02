@@ -72,7 +72,7 @@
 
       if (fontFamily) {
         this.setFontFamily(fontFamily);
-        this.__requestedHelpers__P_125_0 = this._getRequestedHelpers();
+        this.__requestedHelpers__P_126_0 = this._getRequestedHelpers();
       }
     },
 
@@ -115,15 +115,15 @@
        * property.
        */
       COMPARISON_STRING: "WEei",
-      __defaultSizes__P_125_1: null,
-      __defaultHelpers__P_125_2: null,
+      __defaultSizes__P_126_1: null,
+      __defaultHelpers__P_126_2: null,
 
       /**
        * Removes the two common helper elements used for all size comparisons from
        * the DOM
        */
       removeDefaultHelperElements: function removeDefaultHelperElements() {
-        var defaultHelpers = qx.bom.webfonts.Validator.__defaultHelpers__P_125_2;
+        var defaultHelpers = qx.bom.webfonts.Validator.__defaultHelpers__P_126_2;
 
         if (defaultHelpers) {
           for (var prop in defaultHelpers) {
@@ -131,7 +131,7 @@
           }
         }
 
-        delete qx.bom.webfonts.Validator.__defaultHelpers__P_125_2;
+        delete qx.bom.webfonts.Validator.__defaultHelpers__P_126_2;
       }
     },
 
@@ -202,9 +202,9 @@
     *****************************************************************************
     */
     members: {
-      __requestedHelpers__P_125_0: null,
-      __checkTimer__P_125_3: null,
-      __checkStarted__P_125_4: null,
+      __requestedHelpers__P_126_0: null,
+      __checkTimer__P_126_3: null,
+      __checkStarted__P_126_4: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -216,18 +216,18 @@
        * Validates the font
        */
       validate: function validate() {
-        this.__checkStarted__P_125_4 = new Date().getTime();
+        this.__checkStarted__P_126_4 = new Date().getTime();
 
-        if (this.__checkTimer__P_125_3) {
-          this.__checkTimer__P_125_3.restart();
+        if (this.__checkTimer__P_126_3) {
+          this.__checkTimer__P_126_3.restart();
         } else {
-          this.__checkTimer__P_125_3 = new qx.event.Timer(100);
+          this.__checkTimer__P_126_3 = new qx.event.Timer(100);
 
-          this.__checkTimer__P_125_3.addListener("interval", this.__onTimerInterval__P_125_5, this); // Give the browser a chance to render the new elements
+          this.__checkTimer__P_126_3.addListener("interval", this.__onTimerInterval__P_126_5, this); // Give the browser a chance to render the new elements
 
 
           qx.event.Timer.once(function () {
-            this.__checkTimer__P_125_3.start();
+            this.__checkTimer__P_126_3.start();
           }, this, 0);
         }
       },
@@ -242,13 +242,13 @@
        * Removes the helper elements from the DOM
        */
       _reset: function _reset() {
-        if (this.__requestedHelpers__P_125_0) {
-          for (var prop in this.__requestedHelpers__P_125_0) {
-            var elem = this.__requestedHelpers__P_125_0[prop];
+        if (this.__requestedHelpers__P_126_0) {
+          for (var prop in this.__requestedHelpers__P_126_0) {
+            var elem = this.__requestedHelpers__P_126_0[prop];
             document.body.removeChild(elem);
           }
 
-          this.__requestedHelpers__P_125_0 = null;
+          this.__requestedHelpers__P_126_0 = null;
         }
       },
 
@@ -261,24 +261,24 @@
        * in size
        */
       _isFontValid: function _isFontValid() {
-        if (!qx.bom.webfonts.Validator.__defaultSizes__P_125_1) {
-          this.__init__P_125_6();
+        if (!qx.bom.webfonts.Validator.__defaultSizes__P_126_1) {
+          this.__init__P_126_6();
         }
 
-        if (!this.__requestedHelpers__P_125_0) {
-          this.__requestedHelpers__P_125_0 = this._getRequestedHelpers();
+        if (!this.__requestedHelpers__P_126_0) {
+          this.__requestedHelpers__P_126_0 = this._getRequestedHelpers();
         } // force rerendering for chrome
 
 
-        this.__requestedHelpers__P_125_0.sans.style.visibility = "visible";
-        this.__requestedHelpers__P_125_0.sans.style.visibility = "hidden";
-        this.__requestedHelpers__P_125_0.serif.style.visibility = "visible";
-        this.__requestedHelpers__P_125_0.serif.style.visibility = "hidden";
-        var requestedSans = qx.bom.element.Dimension.getWidth(this.__requestedHelpers__P_125_0.sans);
-        var requestedSerif = qx.bom.element.Dimension.getWidth(this.__requestedHelpers__P_125_0.serif);
+        this.__requestedHelpers__P_126_0.sans.style.visibility = "visible";
+        this.__requestedHelpers__P_126_0.sans.style.visibility = "hidden";
+        this.__requestedHelpers__P_126_0.serif.style.visibility = "visible";
+        this.__requestedHelpers__P_126_0.serif.style.visibility = "hidden";
+        var requestedSans = qx.bom.element.Dimension.getWidth(this.__requestedHelpers__P_126_0.sans);
+        var requestedSerif = qx.bom.element.Dimension.getWidth(this.__requestedHelpers__P_126_0.serif);
         var cls = qx.bom.webfonts.Validator;
 
-        if (requestedSans !== cls.__defaultSizes__P_125_1.sans || requestedSerif !== cls.__defaultSizes__P_125_1.serif) {
+        if (requestedSans !== cls.__defaultSizes__P_126_1.sans || requestedSerif !== cls.__defaultSizes__P_126_1.serif) {
           return true;
         }
 
@@ -362,19 +362,19 @@
       /**
        * Creates the default helper elements and gets their widths
        */
-      __init__P_125_6: function __init__P_125_6() {
+      __init__P_126_6: function __init__P_126_6() {
         var cls = qx.bom.webfonts.Validator;
 
-        if (!cls.__defaultHelpers__P_125_2) {
-          cls.__defaultHelpers__P_125_2 = {
+        if (!cls.__defaultHelpers__P_126_2) {
+          cls.__defaultHelpers__P_126_2 = {
             sans: this._getHelperElement(cls.COMPARISON_FONTS.sans),
             serif: this._getHelperElement(cls.COMPARISON_FONTS.serif)
           };
         }
 
-        cls.__defaultSizes__P_125_1 = {
-          sans: qx.bom.element.Dimension.getWidth(cls.__defaultHelpers__P_125_2.sans),
-          serif: qx.bom.element.Dimension.getWidth(cls.__defaultHelpers__P_125_2.serif)
+        cls.__defaultSizes__P_126_1 = {
+          sans: qx.bom.element.Dimension.getWidth(cls.__defaultHelpers__P_126_2.sans),
+          serif: qx.bom.element.Dimension.getWidth(cls.__defaultHelpers__P_126_2.serif)
         };
       },
 
@@ -382,9 +382,9 @@
        * Triggers helper element size comparison and fires a ({@link #changeStatus})
        * event with the result.
        */
-      __onTimerInterval__P_125_5: function __onTimerInterval__P_125_5() {
+      __onTimerInterval__P_126_5: function __onTimerInterval__P_126_5() {
         if (this._isFontValid()) {
-          this.__checkTimer__P_125_3.stop();
+          this.__checkTimer__P_126_3.stop();
 
           this._reset();
 
@@ -395,8 +395,8 @@
         } else {
           var now = new Date().getTime();
 
-          if (now - this.__checkStarted__P_125_4 >= this.getTimeout()) {
-            this.__checkTimer__P_125_3.stop();
+          if (now - this.__checkStarted__P_126_4 >= this.getTimeout()) {
+            this.__checkTimer__P_126_3.stop();
 
             this._reset();
 
@@ -417,14 +417,14 @@
     destruct: function destruct() {
       this._reset();
 
-      this.__checkTimer__P_125_3.stop();
+      this.__checkTimer__P_126_3.stop();
 
-      this.__checkTimer__P_125_3.removeListener("interval", this.__onTimerInterval__P_125_5, this);
+      this.__checkTimer__P_126_3.removeListener("interval", this.__onTimerInterval__P_126_5, this);
 
-      this._disposeObjects("__checkTimer__P_125_3");
+      this._disposeObjects("__checkTimer__P_126_3");
     }
   });
   qx.bom.webfonts.Validator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Validator.js.map?dt=1635364925449
+//# sourceMappingURL=Validator.js.map?dt=1635778908261

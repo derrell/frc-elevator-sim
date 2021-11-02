@@ -74,7 +74,7 @@
     */
     statics: {
       /** @type {Map} Internal data structures with all supported input types */
-      __types__P_164_0: {
+      __types__P_169_0: {
         text: 1,
         textarea: 1,
         select: 1,
@@ -107,7 +107,7 @@
        */
       create: function create(type, attributes, win) {
         {
-          qx.core.Assert.assertKeyInMap(type, this.__types__P_164_0, "Unsupported input type.");
+          qx.core.Assert.assertKeyInMap(type, this.__types__P_169_0, "Unsupported input type.");
         } // Work on a copy to not modify given attributes map
 
         var attributes = attributes ? qx.lang.Object.clone(attributes) : {};
@@ -278,4 +278,4 @@
   qx.bom.Input.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Input.js.map?dt=1635364927518
+//# sourceMappingURL=Input.js.map?dt=1635778911381

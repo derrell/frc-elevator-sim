@@ -3933,9 +3933,9 @@
     "qx.event.handler.Window",
     "qx.event.handler.Keyboard",
     "qx.locale.Manager",
+    "qx.event.Timer",
     "qx.ui.layout.Abstract",
     "qx.theme.manager.Decoration",
-    "qx.event.Timer",
     "qx.event.dispatch.Direct",
     "qx.Promise",
     "qx.event.handler.Application",
@@ -3969,6 +3969,7 @@
     "qx.event.dispatch.AbstractBubbling",
     "qx.bom.webfonts.Validator",
     "qx.event.handler.Object",
+    "qx.ui.form.RadioGroup",
     "qx.ui.decoration.Abstract",
     "qx.util.LibraryManager",
     "qx.ui.core.Blocker",
@@ -3983,7 +3984,6 @@
     "qx.util.placement.Placement",
     "qx.ui.popup.Manager",
     "qx.event.handler.Orientation",
-    "qx.ui.form.RadioGroup",
     "qx.ui.core.SingleSelectionManager"
   ]
 }

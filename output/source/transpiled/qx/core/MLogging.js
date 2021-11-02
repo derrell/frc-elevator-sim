@@ -37,7 +37,7 @@
   qx.Mixin.define("qx.core.MLogging", {
     members: {
       /** @type {Class} Pointer to the regular logger class */
-      __Logger__P_92_0: qx.log.Logger,
+      __Logger__P_93_0: qx.log.Logger,
 
       /**
        * Logs a debug message.
@@ -47,7 +47,7 @@
        * logged.
        */
       debug: function debug(varargs) {
-        this.__logMessage__P_92_1("debug", arguments);
+        this.__logMessage__P_93_1("debug", arguments);
       },
 
       /**
@@ -58,7 +58,7 @@
        * logged.
        */
       info: function info(varargs) {
-        this.__logMessage__P_92_1("info", arguments);
+        this.__logMessage__P_93_1("info", arguments);
       },
 
       /**
@@ -69,7 +69,7 @@
        * logged.
        */
       warn: function warn(varargs) {
-        this.__logMessage__P_92_1("warn", arguments);
+        this.__logMessage__P_93_1("warn", arguments);
       },
 
       /**
@@ -80,7 +80,7 @@
        * logged.
        */
       error: function error(varargs) {
-        this.__logMessage__P_92_1("error", arguments);
+        this.__logMessage__P_93_1("error", arguments);
       },
 
       /**
@@ -91,7 +91,7 @@
        * logged.
        */
       trace: function trace(varargs) {
-        this.__logMessage__P_92_1("trace", arguments);
+        this.__logMessage__P_93_1("trace", arguments);
       },
 
       /**
@@ -101,15 +101,15 @@
        * @param level {String} The log level of the message
        * @param varargs {arguments} Arguments list to be logged
        */
-      __logMessage__P_92_1: function __logMessage__P_92_1(level, varargs) {
+      __logMessage__P_93_1: function __logMessage__P_93_1(level, varargs) {
         var argumentsArray = qx.lang.Array.fromArguments(varargs);
         argumentsArray.unshift(this);
 
-        this.__Logger__P_92_0[level].apply(this.__Logger__P_92_0, argumentsArray);
+        this.__Logger__P_93_0[level].apply(this.__Logger__P_93_0, argumentsArray);
       }
     }
   });
   qx.core.MLogging.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MLogging.js.map?dt=1635364923489
+//# sourceMappingURL=MLogging.js.map?dt=1635778905816

@@ -124,8 +124,8 @@
      */
     construct: function construct(tagName, styles, attributes) {
       qx.html.Node.constructor.call(this, tagName || "div");
-      this.__styleValues__P_78_0 = styles || null;
-      this.__attribValues__P_78_1 = attributes || null;
+      this.__styleValues__P_79_0 = styles || null;
+      this.__attribValues__P_79_1 = attributes || null;
 
       if (attributes) {
         for (var key in attributes) {
@@ -181,10 +181,10 @@
       _actions: [],
 
       /**  @type {Map} List of all selections. */
-      __selection__P_78_2: {},
-      __focusHandler__P_78_3: null,
-      __mouseCapture__P_78_4: null,
-      __SELF_CLOSING_TAGS__P_78_5: null,
+      __selection__P_79_2: {},
+      __focusHandler__P_79_3: null,
+      __mouseCapture__P_79_4: null,
+      __SELF_CLOSING_TAGS__P_79_5: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -199,7 +199,7 @@
        * @param job {String} The job descriptor. Should always be <code>"element"</code>.
        */
       _scheduleFlush: function _scheduleFlush(job) {
-        qx.html.Element.__deferredCall__P_78_6.schedule();
+        qx.html.Element.__deferredCall__P_79_6.schedule();
       },
 
       /**
@@ -214,25 +214,25 @@
         }
         {
           // blur elements, which will be removed
-          var focusHandler = this.__getFocusHandler__P_78_7();
+          var focusHandler = this.__getFocusHandler__P_79_7();
 
           var focusedDomElement = focusHandler.getFocus();
 
-          if (focusedDomElement && this.__willBecomeInvisible__P_78_8(focusedDomElement)) {
+          if (focusedDomElement && this.__willBecomeInvisible__P_79_8(focusedDomElement)) {
             focusHandler.blur(focusedDomElement);
           } // deactivate elements, which will be removed
 
 
           var activeDomElement = focusHandler.getActive();
 
-          if (activeDomElement && this.__willBecomeInvisible__P_78_8(activeDomElement)) {
+          if (activeDomElement && this.__willBecomeInvisible__P_79_8(activeDomElement)) {
             qx.bom.Element.deactivate(activeDomElement);
           } // release capture for elements, which will be removed
 
 
-          var captureDomElement = this.__getCaptureElement__P_78_9();
+          var captureDomElement = this.__getCaptureElement__P_79_9();
 
-          if (captureDomElement && this.__willBecomeInvisible__P_78_8(captureDomElement)) {
+          if (captureDomElement && this.__willBecomeInvisible__P_79_8(captureDomElement)) {
             qx.bom.Element.releaseCapture(captureDomElement);
           }
         }
@@ -315,40 +315,40 @@
             if (elem && elem.offsetWidth) {
               var done = true; // ScrollToX
 
-              if (obj.__lazyScrollX__P_78_10 != null) {
-                obj._domNode.scrollLeft = obj.__lazyScrollX__P_78_10;
-                delete obj.__lazyScrollX__P_78_10;
+              if (obj.__lazyScrollX__P_79_10 != null) {
+                obj._domNode.scrollLeft = obj.__lazyScrollX__P_79_10;
+                delete obj.__lazyScrollX__P_79_10;
               } // ScrollToY
 
 
-              if (obj.__lazyScrollY__P_78_11 != null) {
-                obj._domNode.scrollTop = obj.__lazyScrollY__P_78_11;
-                delete obj.__lazyScrollY__P_78_11;
+              if (obj.__lazyScrollY__P_79_11 != null) {
+                obj._domNode.scrollTop = obj.__lazyScrollY__P_79_11;
+                delete obj.__lazyScrollY__P_79_11;
               } // ScrollIntoViewX
 
 
-              var intoViewX = obj.__lazyScrollIntoViewX__P_78_12;
+              var intoViewX = obj.__lazyScrollIntoViewX__P_79_12;
 
               if (intoViewX != null) {
                 var child = intoViewX.element.getDomElement();
 
                 if (child && child.offsetWidth) {
                   qx.bom.element.Scroll.intoViewX(child, elem, intoViewX.align);
-                  delete obj.__lazyScrollIntoViewX__P_78_12;
+                  delete obj.__lazyScrollIntoViewX__P_79_12;
                 } else {
                   done = false;
                 }
               } // ScrollIntoViewY
 
 
-              var intoViewY = obj.__lazyScrollIntoViewY__P_78_13;
+              var intoViewY = obj.__lazyScrollIntoViewY__P_79_13;
 
               if (intoViewY != null) {
                 var child = intoViewY.element.getDomElement();
 
                 if (child && child.offsetWidth) {
                   qx.bom.element.Scroll.intoViewY(child, elem, intoViewY.align);
-                  delete obj.__lazyScrollIntoViewY__P_78_13;
+                  delete obj.__lazyScrollIntoViewY__P_79_13;
                 } else {
                   done = false;
                 }
@@ -384,13 +384,13 @@
           this._actions = [];
         } // Process selection
 
-        for (var hc in this.__selection__P_78_2) {
-          var selection = this.__selection__P_78_2[hc];
+        for (var hc in this.__selection__P_79_2) {
+          var selection = this.__selection__P_79_2[hc];
           var elem = selection.element._domNode;
 
           if (elem) {
             qx.bom.Selection.set(elem, selection.start, selection.end);
-            delete this.__selection__P_78_2[hc];
+            delete this.__selection__P_79_2[hc];
           }
         } // Fire appear/disappear events
 
@@ -403,14 +403,14 @@
        *
        * @return {qx.event.handler.Focus} The focus handler
        */
-      __getFocusHandler__P_78_7: function __getFocusHandler__P_78_7() {
+      __getFocusHandler__P_79_7: function __getFocusHandler__P_79_7() {
         {
-          if (!this.__focusHandler__P_78_3) {
+          if (!this.__focusHandler__P_79_3) {
             var eventManager = qx.event.Registration.getManager(window);
-            this.__focusHandler__P_78_3 = eventManager.getHandler(qx.event.handler.Focus);
+            this.__focusHandler__P_79_3 = eventManager.getHandler(qx.event.handler.Focus);
           }
 
-          return this.__focusHandler__P_78_3;
+          return this.__focusHandler__P_79_3;
         }
       },
 
@@ -419,14 +419,14 @@
        *
        * @return {Element} The mouse capture DOM element
        */
-      __getCaptureElement__P_78_9: function __getCaptureElement__P_78_9() {
+      __getCaptureElement__P_79_9: function __getCaptureElement__P_79_9() {
         {
-          if (!this.__mouseCapture__P_78_4) {
+          if (!this.__mouseCapture__P_79_4) {
             var eventManager = qx.event.Registration.getManager(window);
-            this.__mouseCapture__P_78_4 = eventManager.getDispatcher(qx.event.dispatch.MouseCapture);
+            this.__mouseCapture__P_79_4 = eventManager.getDispatcher(qx.event.dispatch.MouseCapture);
           }
 
-          return this.__mouseCapture__P_78_4.getCaptureElement();
+          return this.__mouseCapture__P_79_4.getCaptureElement();
         }
       },
 
@@ -436,7 +436,7 @@
        * @param domElement {Element} The DOM element to check
        * @return {Boolean} Whether the element will become invisible
        */
-      __willBecomeInvisible__P_78_8: function __willBecomeInvisible__P_78_8(domElement) {
+      __willBecomeInvisible__P_79_8: function __willBecomeInvisible__P_79_8(domElement) {
         var element = this.fromDomElement(domElement);
         return element && !element._willBeSeeable();
       },
@@ -515,15 +515,15 @@
       */
 
       /** @type {Boolean} Marker for always visible root nodes (often the body node) */
-      __root__P_78_14: false,
-      __lazyScrollIntoViewX__P_78_12: null,
-      __lazyScrollIntoViewY__P_78_13: null,
-      __lazyScrollX__P_78_10: null,
-      __lazyScrollY__P_78_11: null,
-      __styleJobs__P_78_15: null,
-      __attribJobs__P_78_16: null,
-      __styleValues__P_78_0: null,
-      __attribValues__P_78_1: null,
+      __root__P_79_14: false,
+      __lazyScrollIntoViewX__P_79_12: null,
+      __lazyScrollIntoViewY__P_79_13: null,
+      __lazyScrollX__P_79_10: null,
+      __lazyScrollY__P_79_11: null,
+      __styleJobs__P_79_15: null,
+      __attribJobs__P_79_16: null,
+      __styleValues__P_79_0: null,
+      __attribValues__P_79_1: null,
 
       /*
        * @Override
@@ -536,9 +536,9 @@
        * @Override
        */
       serialize: function serialize(writer) {
-        if (this.__childrenHaveChanged__P_78_17) {
+        if (this.__childrenHaveChanged__P_79_17) {
           this.importQxObjectIds();
-          this.__childrenHaveChanged__P_78_17 = false;
+          this.__childrenHaveChanged__P_79_17 = false;
         }
 
         return qx.html.Element.prototype.serialize.base.call(this, writer);
@@ -550,7 +550,7 @@
       _serializeImpl: function _serializeImpl(writer) {
         writer("<", this._nodeName); // Copy attributes
 
-        var data = this.__attribValues__P_78_1;
+        var data = this.__attribValues__P_79_1;
 
         if (data) {
           var Attribute = qx.bom.element.Attribute;
@@ -562,7 +562,7 @@
         } // Copy styles
 
 
-        var data = this.__styleValues__P_78_0 || {};
+        var data = this.__styleValues__P_79_0 || {};
 
         if (!this.isVisible()) {
           data = qx.lang.Object.clone(data);
@@ -598,7 +598,7 @@
 
 
         if (!this._children || !this._children.length) {
-          if (qx.html.Element.__SELF_CLOSING_TAGS__P_78_5[this._nodeName]) {
+          if (qx.html.Element.__SELF_CLOSING_TAGS__P_79_5[this._nodeName]) {
             writer(">");
           } else {
             writer("></", this._nodeName, ">");
@@ -642,7 +642,7 @@
       _addChildImpl: function _addChildImpl(child) {
         qx.html.Element.prototype._addChildImpl.base.call(this, child);
 
-        this.__childrenHaveChanged__P_78_17 = true;
+        this.__childrenHaveChanged__P_79_17 = true;
       },
 
       /*
@@ -651,16 +651,16 @@
       _removeChildImpl: function _removeChildImpl(child) {
         qx.html.Element.prototype._removeChildImpl.base.call(this, child);
 
-        this.__childrenHaveChanged__P_78_17 = true;
+        this.__childrenHaveChanged__P_79_17 = true;
       },
 
       /*
        * @Override
        */
       getQxObject: function getQxObject(id) {
-        if (this.__childrenHaveChanged__P_78_17) {
+        if (this.__childrenHaveChanged__P_79_17) {
           this.importQxObjectIds();
-          this.__childrenHaveChanged__P_78_17 = false;
+          this.__childrenHaveChanged__P_79_17 = false;
         }
 
         return qx.html.Element.prototype.getQxObject.base.call(this, id);
@@ -775,7 +775,7 @@
 
         var elem = this._domNode; // Copy attributes
 
-        var data = this.__attribValues__P_78_1;
+        var data = this.__attribValues__P_79_1;
 
         if (data) {
           var Attribute = qx.bom.element.Attribute;
@@ -816,7 +816,7 @@
         } // Copy styles
 
 
-        var data = this.__styleValues__P_78_0;
+        var data = this.__styleValues__P_79_0;
 
         if (data) {
           var Style = qx.bom.element.Style;
@@ -858,10 +858,10 @@
         var Attribute = qx.bom.element.Attribute;
         var Style = qx.bom.element.Style; // Sync attributes
 
-        var jobs = this.__attribJobs__P_78_16;
+        var jobs = this.__attribJobs__P_79_16;
 
         if (jobs) {
-          var data = this.__attribValues__P_78_1;
+          var data = this.__attribValues__P_79_1;
 
           if (data) {
             var value;
@@ -877,14 +877,14 @@
             }
           }
 
-          this.__attribJobs__P_78_16 = null;
+          this.__attribJobs__P_79_16 = null;
         } // Sync styles
 
 
-        var jobs = this.__styleJobs__P_78_15;
+        var jobs = this.__styleJobs__P_79_15;
 
         if (jobs) {
-          var data = this.__styleValues__P_78_0;
+          var data = this.__styleValues__P_79_0;
 
           if (data) {
             var styles = {};
@@ -896,7 +896,7 @@
             Style.setStyles(elem, styles);
           }
 
-          this.__styleJobs__P_78_15 = null;
+          this.__styleJobs__P_79_15 = null;
         }
       },
 
@@ -912,20 +912,20 @@
        * @param root {Boolean} The root flag.
        */
       setRoot: function setRoot(root) {
-        if (root && !this.__root__P_78_14) {
+        if (root && !this.__root__P_79_14) {
           qx.html.Element._hasRoots++;
-        } else if (!root && this.__root__P_78_14) {
+        } else if (!root && this.__root__P_79_14) {
           qx.html.Element._hasRoots--;
         }
 
-        this.__root__P_78_14 = root;
+        this.__root__P_79_14 = root;
       },
 
       /*
        * @Override
        */
       isRoot: function isRoot() {
-        return this.__root__P_78_14;
+        return this.__root__P_79_14;
       },
 
       /**
@@ -1154,7 +1154,7 @@
         if (direct !== false && thisEl && thisEl.offsetWidth && childEl && childEl.offsetWidth) {
           qx.bom.element.Scroll.intoViewX(childEl, thisEl, align);
         } else {
-          this.__lazyScrollIntoViewX__P_78_12 = {
+          this.__lazyScrollIntoViewX__P_79_12 = {
             element: elem,
             align: align
           };
@@ -1163,7 +1163,7 @@
           qx.html.Element._scheduleFlush("element");
         }
 
-        delete this.__lazyScrollX__P_78_10;
+        delete this.__lazyScrollX__P_79_10;
       },
 
       /**
@@ -1188,7 +1188,7 @@
         if (direct !== false && thisEl && thisEl.offsetWidth && childEl && childEl.offsetWidth) {
           qx.bom.element.Scroll.intoViewY(childEl, thisEl, align);
         } else {
-          this.__lazyScrollIntoViewY__P_78_13 = {
+          this.__lazyScrollIntoViewY__P_79_13 = {
             element: elem,
             align: align
           };
@@ -1197,7 +1197,7 @@
           qx.html.Element._scheduleFlush("element");
         }
 
-        delete this.__lazyScrollY__P_78_11;
+        delete this.__lazyScrollY__P_79_11;
       },
 
       /**
@@ -1212,15 +1212,15 @@
 
         if (lazy !== true && thisEl && thisEl.offsetWidth) {
           thisEl.scrollLeft = x;
-          delete this.__lazyScrollX__P_78_10;
+          delete this.__lazyScrollX__P_79_10;
         } else {
-          this.__lazyScrollX__P_78_10 = x;
+          this.__lazyScrollX__P_79_10 = x;
           qx.html.Element._scroll[this.toHashCode()] = this;
 
           qx.html.Element._scheduleFlush("element");
         }
 
-        delete this.__lazyScrollIntoViewX__P_78_12;
+        delete this.__lazyScrollIntoViewX__P_79_12;
       },
 
       /**
@@ -1235,7 +1235,7 @@
           return thisEl.scrollLeft;
         }
 
-        return this.__lazyScrollX__P_78_10 || 0;
+        return this.__lazyScrollX__P_79_10 || 0;
       },
 
       /**
@@ -1250,15 +1250,15 @@
 
         if (lazy !== true && thisEl && thisEl.offsetWidth) {
           thisEl.scrollTop = y;
-          delete this.__lazyScrollY__P_78_11;
+          delete this.__lazyScrollY__P_79_11;
         } else {
-          this.__lazyScrollY__P_78_11 = y;
+          this.__lazyScrollY__P_79_11 = y;
           qx.html.Element._scroll[this.toHashCode()] = this;
 
           qx.html.Element._scheduleFlush("element");
         }
 
-        delete this.__lazyScrollIntoViewY__P_78_13;
+        delete this.__lazyScrollIntoViewY__P_79_13;
       },
 
       /**
@@ -1273,7 +1273,7 @@
           return thisEl.scrollTop;
         }
 
-        return this.__lazyScrollY__P_78_11 || 0;
+        return this.__lazyScrollY__P_79_11 || 0;
       },
 
       /**
@@ -1283,28 +1283,28 @@
         this.enableScrolling();
         this.scrollToX(0);
         this.scrollToY(0);
-        this.addListener("scroll", this.__onScroll__P_78_18, this);
+        this.addListener("scroll", this.__onScroll__P_79_18, this);
       },
 
       /**
        * Re-enables browser-native scrolling
        */
       enableScrolling: function enableScrolling() {
-        this.removeListener("scroll", this.__onScroll__P_78_18, this);
+        this.removeListener("scroll", this.__onScroll__P_79_18, this);
       },
-      __inScroll__P_78_19: null,
+      __inScroll__P_79_19: null,
 
       /**
        * Handler for the scroll-event
        *
        * @param e {qx.event.type.Native} scroll-event
        */
-      __onScroll__P_78_18: function __onScroll__P_78_18(e) {
-        if (!this.__inScroll__P_78_19) {
-          this.__inScroll__P_78_19 = true;
+      __onScroll__P_79_18: function __onScroll__P_79_18(e) {
+        if (!this.__inScroll__P_79_19) {
+          this.__inScroll__P_79_19 = true;
           this._domNode.scrollTop = 0;
           this._domNode.scrollLeft = 0;
-          delete this.__inScroll__P_78_19;
+          delete this.__inScroll__P_79_19;
         }
       },
 
@@ -1445,7 +1445,7 @@
         } // if element not created, save the selection for flushing
 
 
-        qx.html.Element.__selection__P_78_2[this.toHashCode()] = {
+        qx.html.Element.__selection__P_79_2[this.toHashCode()] = {
           element: this,
           start: start,
           end: end
@@ -1467,7 +1467,7 @@
           qx.bom.Selection.clear(el);
         }
 
-        delete qx.html.Element.__selection__P_78_2[this.toHashCode()];
+        delete qx.html.Element.__selection__P_79_2[this.toHashCode()];
       },
 
       /*
@@ -1487,7 +1487,7 @@
        * @param action {String} action to queue
        * @param args {Array} optional list of arguments for the action
        */
-      __performAction__P_78_20: function __performAction__P_78_20(action, args) {
+      __performAction__P_79_20: function __performAction__P_79_20(action, args) {
         {
           var actions = qx.html.Element._actions;
           actions.push({
@@ -1510,7 +1510,7 @@
        */
       focus: function focus() {
         {
-          this.__performAction__P_78_20("focus");
+          this.__performAction__P_79_20("focus");
         }
       },
 
@@ -1522,7 +1522,7 @@
        */
       blur: function blur() {
         {
-          this.__performAction__P_78_20("blur");
+          this.__performAction__P_79_20("blur");
         }
       },
 
@@ -1534,7 +1534,7 @@
        */
       activate: function activate() {
         {
-          this.__performAction__P_78_20("activate");
+          this.__performAction__P_79_20("activate");
         }
       },
 
@@ -1546,7 +1546,7 @@
        */
       deactivate: function deactivate() {
         {
-          this.__performAction__P_78_20("deactivate");
+          this.__performAction__P_79_20("deactivate");
         }
       },
 
@@ -1561,7 +1561,7 @@
        */
       capture: function capture(containerCapture) {
         {
-          this.__performAction__P_78_20("capture", [containerCapture !== false]);
+          this.__performAction__P_79_20("capture", [containerCapture !== false]);
         }
       },
 
@@ -1572,7 +1572,7 @@
        */
       releaseCapture: function releaseCapture() {
         {
-          this.__performAction__P_78_20("releaseCapture");
+          this.__performAction__P_79_20("releaseCapture");
         }
       },
 
@@ -1592,20 +1592,20 @@
        * @return {qx.html.Element} this object (for chaining support)
        */
       setStyle: function setStyle(key, value, direct) {
-        if (!this.__styleValues__P_78_0) {
-          this.__styleValues__P_78_0 = {};
+        if (!this.__styleValues__P_79_0) {
+          this.__styleValues__P_79_0 = {};
         }
 
-        if (this.__styleValues__P_78_0[key] == value) {
+        if (this.__styleValues__P_79_0[key] == value) {
           return this;
         }
 
-        this._applyStyle(key, value, this.__styleValues__P_78_0[key]);
+        this._applyStyle(key, value, this.__styleValues__P_79_0[key]);
 
         if (value == null) {
-          delete this.__styleValues__P_78_0[key];
+          delete this.__styleValues__P_79_0[key];
         } else {
-          this.__styleValues__P_78_0[key] = value;
+          this.__styleValues__P_79_0[key] = value;
         } // Uncreated elements simply copy all data
         // on creation. We don't need to remember any
         // jobs. It is a simple full list copy.
@@ -1619,12 +1619,12 @@
           } // Dynamically create if needed
 
 
-          if (!this.__styleJobs__P_78_15) {
-            this.__styleJobs__P_78_15 = {};
+          if (!this.__styleJobs__P_79_15) {
+            this.__styleJobs__P_79_15 = {};
           } // Store job info
 
 
-          this.__styleJobs__P_78_15[key] = true; // Register modification
+          this.__styleJobs__P_79_15[key] = true; // Register modification
 
           qx.html.Element._modified[this.toHashCode()] = this;
 
@@ -1660,29 +1660,29 @@
         // performance critical!
         var Style = qx.bom.element.Style;
 
-        if (!this.__styleValues__P_78_0) {
-          this.__styleValues__P_78_0 = {};
+        if (!this.__styleValues__P_79_0) {
+          this.__styleValues__P_79_0 = {};
         }
 
         if (this._domNode) {
           // Dynamically create if needed
-          if (!this.__styleJobs__P_78_15) {
-            this.__styleJobs__P_78_15 = {};
+          if (!this.__styleJobs__P_79_15) {
+            this.__styleJobs__P_79_15 = {};
           }
 
           for (var key in map) {
             var value = map[key];
 
-            if (this.__styleValues__P_78_0[key] == value) {
+            if (this.__styleValues__P_79_0[key] == value) {
               continue;
             }
 
-            this._applyStyle(key, value, this.__styleValues__P_78_0[key]);
+            this._applyStyle(key, value, this.__styleValues__P_79_0[key]);
 
             if (value == null) {
-              delete this.__styleValues__P_78_0[key];
+              delete this.__styleValues__P_79_0[key];
             } else {
-              this.__styleValues__P_78_0[key] = value;
+              this.__styleValues__P_79_0[key] = value;
             } // Omit queuing in direct mode
 
 
@@ -1692,7 +1692,7 @@
             } // Store job info
 
 
-            this.__styleJobs__P_78_15[key] = true;
+            this.__styleJobs__P_79_15[key] = true;
           } // Register modification
 
 
@@ -1703,16 +1703,16 @@
           for (var key in map) {
             var value = map[key];
 
-            if (this.__styleValues__P_78_0[key] == value) {
+            if (this.__styleValues__P_79_0[key] == value) {
               continue;
             }
 
-            this._applyStyle(key, value, this.__styleValues__P_78_0[key]);
+            this._applyStyle(key, value, this.__styleValues__P_79_0[key]);
 
             if (value == null) {
-              delete this.__styleValues__P_78_0[key];
+              delete this.__styleValues__P_79_0[key];
             } else {
-              this.__styleValues__P_78_0[key] = value;
+              this.__styleValues__P_79_0[key] = value;
             }
           }
         }
@@ -1740,7 +1740,7 @@
        * @return {var} the value of the style attribute
        */
       getStyle: function getStyle(key) {
-        return this.__styleValues__P_78_0 ? this.__styleValues__P_78_0[key] : null;
+        return this.__styleValues__P_79_0 ? this.__styleValues__P_79_0[key] : null;
       },
 
       /**
@@ -1749,7 +1749,7 @@
        * @return {Map} All styles or <code>null</code> when none are configured.
        */
       getAllStyles: function getAllStyles() {
-        return this.__styleValues__P_78_0 || null;
+        return this.__styleValues__P_79_0 || null;
       },
 
       /*
@@ -1757,7 +1757,7 @@
         CSS CLASS SUPPORT
       ---------------------------------------------------------------------------
       */
-      __breakClasses__P_78_21: function __breakClasses__P_78_21() {
+      __breakClasses__P_79_21: function __breakClasses__P_79_21() {
         var map = {};
         (this.getAttribute("class") || "").split(" ").forEach(function (name) {
           if (name) {
@@ -1766,7 +1766,7 @@
         });
         return map;
       },
-      __combineClasses__P_78_22: function __combineClasses__P_78_22(map) {
+      __combineClasses__P_79_22: function __combineClasses__P_79_22(map) {
         var primaryClass = this.getCssClass();
         var arr = [];
 
@@ -1788,7 +1788,7 @@
       addClass: function addClass(name) {
         var _this2 = this;
 
-        var classes = this.__breakClasses__P_78_21();
+        var classes = this.__breakClasses__P_79_21();
 
         var primaryClass = (this.getCssClass() || "").toLowerCase();
         name.split(" ").forEach(function (name) {
@@ -1800,7 +1800,7 @@
 
           classes[nameLower] = name;
         });
-        this.setAttribute("class", this.__combineClasses__P_78_22(classes));
+        this.setAttribute("class", this.__combineClasses__P_79_22(classes));
         return this;
       },
 
@@ -1813,7 +1813,7 @@
       removeClass: function removeClass(name) {
         var _this3 = this;
 
-        var classes = this.__breakClasses__P_78_21();
+        var classes = this.__breakClasses__P_79_21();
 
         var primaryClass = (this.getCssClass() || "").toLowerCase();
         name.split(" ").forEach(function (name) {
@@ -1825,7 +1825,7 @@
 
           delete classes[nameLower];
         });
-        this.setAttribute("class", this.__combineClasses__P_78_22(classes));
+        this.setAttribute("class", this.__combineClasses__P_79_22(classes));
         return this;
       },
 
@@ -1841,7 +1841,7 @@
        * Apply method for cssClass
        */
       _applyCssClass: function _applyCssClass(value, oldValue) {
-        var classes = this.__breakClasses__P_78_21();
+        var classes = this.__breakClasses__P_79_21();
 
         if (oldValue) {
           oldValue.split(" ").forEach(function (name) {
@@ -1855,7 +1855,7 @@
           });
         }
 
-        this.setAttribute("class", this.__combineClasses__P_78_22(classes));
+        this.setAttribute("class", this.__combineClasses__P_79_22(classes));
       },
 
       /*
@@ -1936,18 +1936,18 @@
        * @return {qx.html.Element} this object (for chaining support)
        */
       setAttribute: function setAttribute(key, value, direct) {
-        if (!this.__attribValues__P_78_1) {
-          this.__attribValues__P_78_1 = {};
+        if (!this.__attribValues__P_79_1) {
+          this.__attribValues__P_79_1 = {};
         }
 
-        if (this.__attribValues__P_78_1[key] == value) {
+        if (this.__attribValues__P_79_1[key] == value) {
           return this;
         }
 
         if (value == null) {
-          delete this.__attribValues__P_78_1[key];
+          delete this.__attribValues__P_79_1[key];
         } else {
-          this.__attribValues__P_78_1[key] = value;
+          this.__attribValues__P_79_1[key] = value;
         }
 
         if (key == "data-qx-object-id") {
@@ -1965,12 +1965,12 @@
           } // Dynamically create if needed
 
 
-          if (!this.__attribJobs__P_78_16) {
-            this.__attribJobs__P_78_16 = {};
+          if (!this.__attribJobs__P_79_16) {
+            this.__attribJobs__P_79_16 = {};
           } // Store job info
 
 
-          this.__attribJobs__P_78_16[key] = true; // Register modification
+          this.__attribJobs__P_79_16[key] = true; // Register modification
 
           qx.html.Element._modified[this.toHashCode()] = this;
 
@@ -2016,7 +2016,7 @@
        * @return {var} the value of the attribute
        */
       getAttribute: function getAttribute(key) {
-        return this.__attribValues__P_78_1 ? this.__attribValues__P_78_1[key] : null;
+        return this.__attribValues__P_79_1 ? this.__attribValues__P_79_1[key] : null;
       }
     },
 
@@ -2026,10 +2026,10 @@
      *****************************************************************************
      */
     defer: function defer(statics) {
-      statics.__deferredCall__P_78_6 = new qx.util.DeferredCall(statics.flush, statics);
-      statics.__SELF_CLOSING_TAGS__P_78_5 = {};
+      statics.__deferredCall__P_79_6 = new qx.util.DeferredCall(statics.flush, statics);
+      statics.__SELF_CLOSING_TAGS__P_79_5 = {};
       ["area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"].forEach(function (tagName) {
-        statics.__SELF_CLOSING_TAGS__P_78_5[tagName] = true;
+        statics.__SELF_CLOSING_TAGS__P_79_5[tagName] = true;
       });
     },
 
@@ -2047,10 +2047,10 @@
       }
 
       this.setRoot(false);
-      this.__attribValues__P_78_1 = this.__styleValues__P_78_0 = this.__attribJobs__P_78_16 = this.__styleJobs__P_78_15 = this.__lazyScrollIntoViewX__P_78_12 = this.__lazyScrollIntoViewY__P_78_13 = null;
+      this.__attribValues__P_79_1 = this.__styleValues__P_79_0 = this.__attribJobs__P_79_16 = this.__styleJobs__P_79_15 = this.__lazyScrollIntoViewX__P_79_12 = this.__lazyScrollIntoViewY__P_79_13 = null;
     }
   });
   qx.html.Element.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Element.js.map?dt=1635364923030
+//# sourceMappingURL=Element.js.map?dt=1635778905221

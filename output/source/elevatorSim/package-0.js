@@ -1,6 +1,6 @@
 qx.$$packageData['0'] = {
   "locales": {
-    "C": {
+    "en": {
       "alternateQuotationEnd": "’",
       "alternateQuotationStart": "‘",
       "quotationEnd": "”",
@@ -128,7 +128,7 @@ qx.$$packageData['0'] = {
         "time zone"
       ]
     },
-    "en": {
+    "C": {
       "alternateQuotationEnd": "’",
       "alternateQuotationStart": "‘",
       "quotationEnd": "”",
@@ -372,30 +372,6 @@ qx.$$packageData['0'] = {
       "gif",
       "qx"
     ],
-    "qx/decoration/Simple/colorselector/brightness-field.png": [
-      19,
-      256,
-      "png",
-      "qx"
-    ],
-    "qx/decoration/Simple/colorselector/brightness-handle.gif": [
-      35,
-      11,
-      "gif",
-      "qx"
-    ],
-    "qx/decoration/Simple/colorselector/huesaturation-field.jpg": [
-      256,
-      256,
-      "jpg",
-      "qx"
-    ],
-    "qx/decoration/Simple/colorselector/huesaturation-handle.gif": [
-      11,
-      11,
-      "gif",
-      "qx"
-    ],
     "qx/decoration/Simple/checkbox/checked-disabled.png": [
       6,
       6,
@@ -444,6 +420,30 @@ qx.$$packageData['0'] = {
       "gif",
       "qx"
     ],
+    "qx/decoration/Simple/colorselector/brightness-field.png": [
+      19,
+      256,
+      "png",
+      "qx"
+    ],
+    "qx/decoration/Simple/colorselector/brightness-handle.gif": [
+      35,
+      11,
+      "gif",
+      "qx"
+    ],
+    "qx/decoration/Simple/colorselector/huesaturation-field.jpg": [
+      256,
+      256,
+      "jpg",
+      "qx"
+    ],
+    "qx/decoration/Simple/colorselector/huesaturation-handle.gif": [
+      11,
+      11,
+      "gif",
+      "qx"
+    ],
     "qx/decoration/Simple/menu/checkbox-invert.gif": [
       16,
       7,
@@ -456,13 +456,13 @@ qx.$$packageData['0'] = {
       "gif",
       "qx"
     ],
-    "qx/decoration/Simple/menu/radiobutton-invert.gif": [
+    "qx/decoration/Simple/menu/radiobutton.gif": [
       16,
       5,
       "gif",
       "qx"
     ],
-    "qx/decoration/Simple/menu/radiobutton.gif": [
+    "qx/decoration/Simple/menu/radiobutton-invert.gif": [
       16,
       5,
       "gif",
@@ -480,9 +480,9 @@ qx.$$packageData['0'] = {
       "png",
       "qx"
     ],
-    "qx/decoration/Simple/table/ascending-invert.png": [
-      10,
-      10,
+    "qx/decoration/Simple/table/boolean-false.png": [
+      11,
+      11,
       "png",
       "qx"
     ],
@@ -492,9 +492,9 @@ qx.$$packageData['0'] = {
       "png",
       "qx"
     ],
-    "qx/decoration/Simple/table/boolean-false.png": [
-      11,
-      11,
+    "qx/decoration/Simple/table/ascending-invert.png": [
+      10,
+      10,
       "png",
       "qx"
     ],
@@ -535,78 +535,6 @@ qx.$$packageData['0'] = {
       "qx"
     ],
     "qx/decoration/Simple/tree/plus.gif": [
-      19,
-      16,
-      "gif",
-      "qx"
-    ],
-    "qx/decoration/Simple/treevirtual/cross.gif": [
-      19,
-      16,
-      "gif",
-      "qx"
-    ],
-    "qx/decoration/Simple/treevirtual/cross_minus.gif": [
-      19,
-      16,
-      "gif",
-      "qx"
-    ],
-    "qx/decoration/Simple/treevirtual/cross_plus.gif": [
-      19,
-      16,
-      "gif",
-      "qx"
-    ],
-    "qx/decoration/Simple/treevirtual/end.gif": [
-      19,
-      16,
-      "gif",
-      "qx"
-    ],
-    "qx/decoration/Simple/treevirtual/end_minus.gif": [
-      19,
-      16,
-      "gif",
-      "qx"
-    ],
-    "qx/decoration/Simple/treevirtual/end_plus.gif": [
-      19,
-      16,
-      "gif",
-      "qx"
-    ],
-    "qx/decoration/Simple/treevirtual/line.gif": [
-      19,
-      16,
-      "gif",
-      "qx"
-    ],
-    "qx/decoration/Simple/treevirtual/only_minus.gif": [
-      19,
-      16,
-      "gif",
-      "qx"
-    ],
-    "qx/decoration/Simple/treevirtual/only_plus.gif": [
-      19,
-      16,
-      "gif",
-      "qx"
-    ],
-    "qx/decoration/Simple/treevirtual/start.gif": [
-      19,
-      16,
-      "gif",
-      "qx"
-    ],
-    "qx/decoration/Simple/treevirtual/start_minus.gif": [
-      19,
-      16,
-      "gif",
-      "qx"
-    ],
-    "qx/decoration/Simple/treevirtual/start_plus.gif": [
       19,
       16,
       "gif",
@@ -657,6 +585,78 @@ qx.$$packageData['0'] = {
     "qx/decoration/Simple/window/restore.gif": [
       8,
       9,
+      "gif",
+      "qx"
+    ],
+    "qx/decoration/Simple/treevirtual/cross.gif": [
+      19,
+      16,
+      "gif",
+      "qx"
+    ],
+    "qx/decoration/Simple/treevirtual/cross_minus.gif": [
+      19,
+      16,
+      "gif",
+      "qx"
+    ],
+    "qx/decoration/Simple/treevirtual/end.gif": [
+      19,
+      16,
+      "gif",
+      "qx"
+    ],
+    "qx/decoration/Simple/treevirtual/end_minus.gif": [
+      19,
+      16,
+      "gif",
+      "qx"
+    ],
+    "qx/decoration/Simple/treevirtual/cross_plus.gif": [
+      19,
+      16,
+      "gif",
+      "qx"
+    ],
+    "qx/decoration/Simple/treevirtual/end_plus.gif": [
+      19,
+      16,
+      "gif",
+      "qx"
+    ],
+    "qx/decoration/Simple/treevirtual/line.gif": [
+      19,
+      16,
+      "gif",
+      "qx"
+    ],
+    "qx/decoration/Simple/treevirtual/only_minus.gif": [
+      19,
+      16,
+      "gif",
+      "qx"
+    ],
+    "qx/decoration/Simple/treevirtual/only_plus.gif": [
+      19,
+      16,
+      "gif",
+      "qx"
+    ],
+    "qx/decoration/Simple/treevirtual/start.gif": [
+      19,
+      16,
+      "gif",
+      "qx"
+    ],
+    "qx/decoration/Simple/treevirtual/start_minus.gif": [
+      19,
+      16,
+      "gif",
+      "qx"
+    ],
+    "qx/decoration/Simple/treevirtual/start_plus.gif": [
+      19,
+      16,
       "gif",
       "qx"
     ],

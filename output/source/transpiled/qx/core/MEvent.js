@@ -44,7 +44,7 @@
   qx.Mixin.define("qx.core.MEvent", {
     members: {
       /** @type {Class} Pointer to the regular event registration class */
-      __Registration__P_93_0: qx.event.Registration,
+      __Registration__P_94_0: qx.event.Registration,
 
       /**
        * Add event listener to this object.
@@ -64,7 +64,7 @@
        */
       addListener: function addListener(type, listener, self, capture) {
         if (!this.$$disposed) {
-          return this.__Registration__P_93_0.addListener(this, type, listener, self, capture);
+          return this.__Registration__P_94_0.addListener(this, type, listener, self, capture);
         }
 
         return null;
@@ -128,7 +128,7 @@
             listener = callback;
           }
 
-          return this.__Registration__P_93_0.removeListener(this, type, listener, self, capture);
+          return this.__Registration__P_94_0.removeListener(this, type, listener, self, capture);
         }
 
         return false;
@@ -143,7 +143,7 @@
        */
       removeListenerById: function removeListenerById(id) {
         if (!this.$$disposed) {
-          return this.__Registration__P_93_0.removeListenerById(this, id);
+          return this.__Registration__P_94_0.removeListenerById(this, id);
         }
 
         return false;
@@ -158,7 +158,7 @@
        * @return {Boolean} Whether the object has a listener of the given type.
        */
       hasListener: function hasListener(type, capture) {
-        return this.__Registration__P_93_0.hasListener(this, type, capture);
+        return this.__Registration__P_94_0.hasListener(this, type, capture);
       },
 
       /**
@@ -170,7 +170,7 @@
        */
       dispatchEvent: function dispatchEvent(evt) {
         if (!this.$$disposed) {
-          return this.__Registration__P_93_0.dispatchEvent(this, evt);
+          return this.__Registration__P_94_0.dispatchEvent(this, evt);
         }
 
         return true;
@@ -188,7 +188,7 @@
        */
       fireEvent: function fireEvent(type, clazz, args) {
         if (!this.$$disposed) {
-          return this.__Registration__P_93_0.fireEvent(this, type, clazz, args);
+          return this.__Registration__P_94_0.fireEvent(this, type, clazz, args);
         }
 
         return true;
@@ -207,7 +207,7 @@
        */
       fireEventAsync: function fireEventAsync(type, clazz, args) {
         if (!this.$$disposed) {
-          return this.__Registration__P_93_0.fireEventAsync(this, type, clazz, args);
+          return this.__Registration__P_94_0.fireEventAsync(this, type, clazz, args);
         }
 
         return qx.Promise.resolve(true);
@@ -227,7 +227,7 @@
        */
       fireNonBubblingEvent: function fireNonBubblingEvent(type, clazz, args) {
         if (!this.$$disposed) {
-          return this.__Registration__P_93_0.fireNonBubblingEvent(this, type, clazz, args);
+          return this.__Registration__P_94_0.fireNonBubblingEvent(this, type, clazz, args);
         }
 
         return true;
@@ -249,7 +249,7 @@
        */
       fireNonBubblingEventAsync: function fireNonBubblingEventAsync(type, clazz, args) {
         if (!this.$$disposed) {
-          return this.__Registration__P_93_0.fireNonBubblingEventAsync(this, type, clazz, args);
+          return this.__Registration__P_94_0.fireNonBubblingEventAsync(this, type, clazz, args);
         }
 
         return qx.Promise.resolve(true);
@@ -276,7 +276,7 @@
             oldData = null;
           }
 
-          return this.__Registration__P_93_0.fireEvent(this, type, qx.event.type.Data, [data, oldData, !!cancelable]);
+          return this.__Registration__P_94_0.fireEvent(this, type, qx.event.type.Data, [data, oldData, !!cancelable]);
         }
 
         return true;
@@ -304,7 +304,7 @@
             oldData = null;
           }
 
-          return this.__Registration__P_93_0.fireEventAsync(this, type, qx.event.type.Data, [data, oldData, !!cancelable]);
+          return this.__Registration__P_94_0.fireEventAsync(this, type, qx.event.type.Data, [data, oldData, !!cancelable]);
         }
 
         return qx.Promise.resolve(true);
@@ -314,4 +314,4 @@
   qx.core.MEvent.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MEvent.js.map?dt=1635364923518
+//# sourceMappingURL=MEvent.js.map?dt=1635778905846

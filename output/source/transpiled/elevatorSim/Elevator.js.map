@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [
-    "/home/derrell/ME/FRC/training/elevatorSim/source/class/elevatorSim/Elevator.js"
+    "/home/derrell/ME/FRC/frc-elevator-sim.git/source/class/elevatorSim/Elevator.js"
   ],
   "names": [
     "qx",
