@@ -7,7 +7,7 @@
   "compilerVersion": "7.0.0-beta.1",
   "classInfo": {
     "elevatorSim.Application": {
-      "mtime": "2021-11-01T14:59:39.101Z",
+      "mtime": "2021-11-02T17:07:02.954Z",
       "libraryName": "elevatorSim",
       "dependsOn": {
         "qx.Class": {
@@ -21,11 +21,16 @@
         "qx.log.appender.Console": {},
         "qx.ui.basic.Label": {},
         "qx.bom.Font": {},
-        "qx.ui.form.CheckBox": {},
-        "elevatorSim.Elevator": {},
         "qx.ui.container.Composite": {},
         "qx.ui.layout.HBox": {},
-        "qx.ui.embed.Iframe": {}
+        "qx.ui.form.Button": {},
+        "qx.ui.form.CheckBox": {},
+        "elevatorSim.Elevator": {},
+        "qx.ui.embed.Iframe": {},
+        "qx.ui.window.Window": {},
+        "qx.ui.layout.VBox": {},
+        "qx.ui.form.TextArea": {},
+        "qx.ui.core.Spacer": {}
       },
       "extends": "qx.application.Standalone",
       "include": [],
@@ -377,6 +382,9 @@
         },
         "qx.ui.core.LayoutItem": {
           "load": true
+        },
+        "qx.theme.manager.Meta": {
+          "load": true
         }
       },
       "extends": "qx.ui.form.ToggleButton",
@@ -392,7 +400,7 @@
       "hasDefer": null
     },
     "elevatorSim.Elevator": {
-      "mtime": "2021-11-01T14:59:39.101Z",
+      "mtime": "2021-11-02T16:04:26.497Z",
       "libraryName": "elevatorSim",
       "dependsOn": {
         "qx.Class": {
@@ -5885,6 +5893,12 @@
         },
         "qx.ui.core.LayoutItem": {
           "load": true
+        },
+        "qx.core.Object": {
+          "load": true
+        },
+        "qx.theme.manager.Meta": {
+          "load": true
         }
       },
       "extends": "qx.ui.popup.Popup",
@@ -9337,10 +9351,449 @@
         "required": {}
       },
       "hasDefer": true
+    },
+    "qx.ui.window.Window": {
+      "mtime": "1985-10-26T08:15:00.000Z",
+      "libraryName": "qx",
+      "dependsOn": {
+        "qx.core.Environment": {
+          "load": true,
+          "defer": "load"
+        },
+        "qx.Class": {
+          "load": true,
+          "usage": "dynamic"
+        },
+        "qx.ui.core.Widget": {
+          "load": true,
+          "construct": true
+        },
+        "qx.ui.core.MRemoteChildrenHandling": {
+          "load": true
+        },
+        "qx.ui.core.MRemoteLayoutHandling": {
+          "load": true
+        },
+        "qx.ui.core.MResizable": {
+          "load": true
+        },
+        "qx.ui.core.MMovable": {
+          "load": true
+        },
+        "qx.ui.core.MContentPadding": {
+          "load": true
+        },
+        "qx.ui.layout.VBox": {
+          "construct": true
+        },
+        "qx.core.Init": {
+          "construct": true
+        },
+        "qx.ui.core.FocusHandler": {
+          "construct": true
+        },
+        "qx.ui.window.Manager": {
+          "load": true
+        },
+        "qx.ui.window.IDesktop": {},
+        "qx.ui.container.Composite": {},
+        "qx.ui.layout.HBox": {},
+        "qx.ui.basic.Label": {},
+        "qx.ui.layout.Grid": {},
+        "qx.ui.basic.Image": {},
+        "qx.ui.form.Button": {},
+        "qx.event.type.Event": {},
+        "qx.bom.client.Engine": {
+          "load": true
+        },
+        "qx.ui.core.LayoutItem": {
+          "load": true
+        },
+        "qx.event.Registration": {
+          "load": true
+        },
+        "qx.event.handler.DragDrop": {
+          "load": true
+        },
+        "qx.core.Object": {
+          "load": true
+        },
+        "qx.theme.manager.Meta": {
+          "load": true
+        }
+      },
+      "extends": "qx.ui.core.Widget",
+      "include": [
+        "qx.ui.core.MRemoteChildrenHandling",
+        "qx.ui.core.MRemoteLayoutHandling",
+        "qx.ui.core.MResizable",
+        "qx.ui.core.MMovable",
+        "qx.ui.core.MContentPadding"
+      ],
+      "implement": [],
+      "environment": {
+        "provided": [],
+        "required": {
+          "engine.name": {
+            "className": "qx.bom.client.Engine"
+          }
+        }
+      },
+      "hasDefer": null
+    },
+    "qx.ui.layout.VBox": {
+      "mtime": "1985-10-26T08:15:00.000Z",
+      "libraryName": "qx",
+      "dependsOn": {
+        "qx.Class": {
+          "load": true,
+          "usage": "dynamic"
+        },
+        "qx.ui.layout.Abstract": {
+          "load": true,
+          "construct": true
+        },
+        "qx.ui.layout.Util": {},
+        "qx.theme.manager.Decoration": {}
+      },
+      "extends": "qx.ui.layout.Abstract",
+      "include": [],
+      "implement": [],
+      "hasDefer": null
+    },
+    "qx.ui.core.MRemoteChildrenHandling": {
+      "mtime": "1985-10-26T08:15:00.000Z",
+      "libraryName": "qx",
+      "dependsOn": {
+        "qx.Mixin": {
+          "load": true,
+          "usage": "dynamic"
+        }
+      },
+      "extends": null,
+      "include": [],
+      "implement": [],
+      "hasDefer": null
+    },
+    "qx.ui.core.MRemoteLayoutHandling": {
+      "mtime": "1985-10-26T08:15:00.000Z",
+      "libraryName": "qx",
+      "dependsOn": {
+        "qx.Mixin": {
+          "load": true,
+          "usage": "dynamic"
+        }
+      },
+      "extends": null,
+      "include": [],
+      "implement": [],
+      "hasDefer": null
+    },
+    "qx.ui.core.MResizable": {
+      "mtime": "1985-10-26T08:15:00.000Z",
+      "libraryName": "qx",
+      "dependsOn": {
+        "qx.Mixin": {
+          "load": true,
+          "usage": "dynamic"
+        },
+        "qx.event.Registration": {
+          "construct": true
+        },
+        "qx.event.handler.DragDrop": {
+          "construct": true
+        },
+        "qx.ui.core.Widget": {},
+        "qx.core.Init": {},
+        "qx.lang.Object": {},
+        "qx.core.ObjectRegistry": {}
+      },
+      "extends": null,
+      "include": [],
+      "implement": [],
+      "hasDefer": null
+    },
+    "qx.ui.core.MMovable": {
+      "mtime": "1985-10-26T08:15:00.000Z",
+      "libraryName": "qx",
+      "dependsOn": {
+        "qx.Mixin": {
+          "load": true,
+          "usage": "dynamic"
+        },
+        "qx.ui.core.Widget": {},
+        "qx.core.Init": {},
+        "qx.Class": {},
+        "qx.ui.window.IDesktop": {}
+      },
+      "extends": null,
+      "include": [],
+      "implement": [],
+      "hasDefer": null
+    },
+    "qx.ui.core.MContentPadding": {
+      "mtime": "1985-10-26T08:15:00.000Z",
+      "libraryName": "qx",
+      "dependsOn": {
+        "qx.Mixin": {
+          "load": true,
+          "usage": "dynamic"
+        }
+      },
+      "extends": null,
+      "include": [],
+      "implement": [],
+      "hasDefer": null
+    },
+    "qx.ui.window.Manager": {
+      "mtime": "1985-10-26T08:15:00.000Z",
+      "libraryName": "qx",
+      "dependsOn": {
+        "qx.Class": {
+          "load": true,
+          "usage": "dynamic"
+        },
+        "qx.core.Object": {
+          "load": true
+        },
+        "qx.ui.window.IWindowManager": {
+          "load": true
+        },
+        "qx.ui.core.queue.Widget": {},
+        "qx.lang.Array": {}
+      },
+      "extends": "qx.core.Object",
+      "include": [],
+      "implement": [
+        "qx.ui.window.IWindowManager"
+      ],
+      "hasDefer": null
+    },
+    "qx.ui.window.IDesktop": {
+      "mtime": "1985-10-26T08:15:00.000Z",
+      "libraryName": "qx",
+      "dependsOn": {
+        "qx.Interface": {
+          "load": true,
+          "usage": "dynamic"
+        },
+        "qx.ui.window.IWindowManager": {}
+      },
+      "extends": null,
+      "include": [],
+      "implement": [],
+      "hasDefer": null
+    },
+    "qx.ui.window.IWindowManager": {
+      "mtime": "1985-10-26T08:15:00.000Z",
+      "libraryName": "qx",
+      "dependsOn": {
+        "qx.Interface": {
+          "load": true,
+          "usage": "dynamic"
+        },
+        "qx.ui.window.IDesktop": {},
+        "qx.ui.window.Window": {}
+      },
+      "extends": null,
+      "include": [],
+      "implement": [],
+      "hasDefer": null
+    },
+    "qx.ui.form.TextArea": {
+      "mtime": "1985-10-26T08:15:00.000Z",
+      "libraryName": "qx",
+      "dependsOn": {
+        "qx.core.Environment": {
+          "load": true,
+          "defer": "load"
+        },
+        "qx.Class": {
+          "load": true,
+          "usage": "dynamic"
+        },
+        "qx.ui.form.AbstractField": {
+          "load": true,
+          "construct": true
+        },
+        "qx.ui.core.queue.Layout": {},
+        "qx.ui.core.queue.Manager": {},
+        "qx.html.Element": {},
+        "qx.bom.client.Engine": {
+          "load": true
+        },
+        "qx.bom.client.Browser": {
+          "load": true
+        },
+        "qx.bom.Element": {},
+        "qx.html.Input": {},
+        "qx.bom.element.Dimension": {},
+        "qx.ui.core.Widget": {
+          "load": true
+        },
+        "qx.bom.client.Css": {
+          "load": true
+        },
+        "qx.locale.Manager": {
+          "load": true
+        },
+        "qx.ui.core.LayoutItem": {
+          "load": true
+        },
+        "qx.core.Object": {
+          "load": true
+        },
+        "qx.theme.manager.Meta": {
+          "load": true
+        }
+      },
+      "extends": "qx.ui.form.AbstractField",
+      "include": [],
+      "implement": [],
+      "environment": {
+        "provided": [],
+        "required": {
+          "engine.name": {
+            "className": "qx.bom.client.Engine"
+          },
+          "browser.documentmode": {
+            "className": "qx.bom.client.Browser"
+          }
+        }
+      },
+      "hasDefer": null
+    },
+    "qx.ui.form.AbstractField": {
+      "mtime": "1985-10-26T08:15:00.000Z",
+      "libraryName": "qx",
+      "dependsOn": {
+        "qx.core.Environment": {
+          "load": true,
+          "defer": "load",
+          "construct": true
+        },
+        "qx.Class": {
+          "load": true,
+          "usage": "dynamic"
+        },
+        "qx.ui.core.Widget": {
+          "load": true,
+          "construct": true
+        },
+        "qx.ui.form.IStringForm": {
+          "load": true
+        },
+        "qx.ui.form.IForm": {
+          "load": true
+        },
+        "qx.ui.form.MForm": {
+          "load": true
+        },
+        "qx.bom.client.Engine": {
+          "load": true
+        },
+        "qx.bom.client.Browser": {
+          "load": true
+        },
+        "qx.theme.manager.Color": {},
+        "qx.theme.manager.Appearance": {},
+        "qx.theme.manager.Font": {},
+        "qx.lang.Object": {},
+        "qx.ui.style.Stylesheet": {
+          "defer": "runtime"
+        },
+        "qx.bom.client.Css": {
+          "load": true,
+          "construct": true
+        },
+        "qx.locale.Manager": {
+          "construct": true,
+          "defer": "runtime",
+          "load": true
+        },
+        "qx.html.Input": {},
+        "qx.util.ResourceManager": {},
+        "qx.bom.webfonts.WebFont": {},
+        "qx.bom.Font": {},
+        "qx.html.Element": {},
+        "qx.bom.Label": {},
+        "qx.ui.core.queue.Layout": {},
+        "qx.lang.Type": {},
+        "qx.event.type.Data": {},
+        "qx.html.Label": {},
+        "qx.bom.Stylesheet": {},
+        "qx.ui.core.LayoutItem": {
+          "load": true
+        },
+        "qx.core.Object": {
+          "load": true
+        },
+        "qx.theme.manager.Meta": {
+          "load": true
+        }
+      },
+      "extends": "qx.ui.core.Widget",
+      "include": [
+        "qx.ui.form.MForm"
+      ],
+      "implement": [
+        "qx.ui.form.IStringForm",
+        "qx.ui.form.IForm"
+      ],
+      "environment": {
+        "provided": [],
+        "required": {
+          "engine.name": {
+            "className": "qx.bom.client.Engine"
+          },
+          "browser.name": {
+            "className": "qx.bom.client.Browser"
+          },
+          "engine.version": {
+            "className": "qx.bom.client.Engine"
+          },
+          "css.placeholder": {
+            "construct": true,
+            "className": "qx.bom.client.Css"
+          },
+          "browser.documentmode": {
+            "className": "qx.bom.client.Browser"
+          },
+          "browser.version": {
+            "className": "qx.bom.client.Browser"
+          }
+        }
+      },
+      "hasDefer": true
+    },
+    "qx.ui.core.Spacer": {
+      "mtime": "1985-10-26T08:15:00.000Z",
+      "libraryName": "qx",
+      "dependsOn": {
+        "qx.Class": {
+          "load": true,
+          "usage": "dynamic"
+        },
+        "qx.ui.core.LayoutItem": {
+          "load": true,
+          "construct": true
+        },
+        "qx.ui.core.queue.Dispose": {},
+        "qx.core.Object": {
+          "load": true
+        },
+        "qx.theme.manager.Meta": {
+          "load": true
+        }
+      },
+      "extends": "qx.ui.core.LayoutItem",
+      "include": [],
+      "implement": [],
+      "hasDefer": null
     }
   },
   "manglePrefixes": {
-    "nextPrefix": 170,
+    "nextPrefix": 179,
     "classPrefixes": {
       "qx.Class": "__P_2_",
       "qx.log.appender.Console": "__P_3_",
@@ -9510,7 +9963,16 @@
       "qx.bom.element.AnimationHandle": "__P_167_",
       "qx.bom.element.Transform": "__P_168_",
       "qx.bom.Input": "__P_169_",
-      "qx.event.type.Orientation": "__P_170_"
+      "qx.event.type.Orientation": "__P_170_",
+      "qx.ui.window.Window": "__P_171_",
+      "qx.ui.layout.VBox": "__P_172_",
+      "qx.ui.core.MRemoteChildrenHandling": "__P_173_",
+      "qx.ui.core.MResizable": "__P_174_",
+      "qx.ui.core.MMovable": "__P_175_",
+      "qx.ui.core.MContentPadding": "__P_176_",
+      "qx.ui.window.Manager": "__P_177_",
+      "qx.ui.form.TextArea": "__P_178_",
+      "qx.ui.form.AbstractField": "__P_179_"
     }
   }
 }

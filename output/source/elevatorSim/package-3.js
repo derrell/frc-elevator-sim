@@ -2340,7 +2340,7 @@
 
   qx.type.BaseArray.$$dbClassInfo = $$dbClassInfo;
 })();
-//# sourceMappingURL=package-3.js.map?dt=1635861023333
+//# sourceMappingURL=package-3.js.map?dt=1635872824530
 qx.$$packageData['3'] = {
   "locales": {},
   "resources": {},

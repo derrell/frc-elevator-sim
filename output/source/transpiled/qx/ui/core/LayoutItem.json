@@ -3195,6 +3195,7 @@
     "jsdoc": {}
   },
   "descendants": [
-    "qx.ui.core.Widget"
+    "qx.ui.core.Widget",
+    "qx.ui.core.Spacer"
   ]
 }

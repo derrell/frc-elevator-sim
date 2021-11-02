@@ -3984,6 +3984,7 @@
     "qx.util.placement.Placement",
     "qx.ui.popup.Manager",
     "qx.event.handler.Orientation",
-    "qx.ui.core.SingleSelectionManager"
+    "qx.ui.core.SingleSelectionManager",
+    "qx.ui.window.Manager"
   ]
 }

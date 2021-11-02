@@ -21719,6 +21719,989 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
+      "qx.Mixin": {
+        "usage": "dynamic",
+        "require": true
+      }
+    }
+  };
+  qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
+  /* ************************************************************************
+  
+     qooxdoo - the new era of web development
+  
+     http://qooxdoo.org
+  
+     Copyright:
+       2004-2008 1&1 Internet AG, Germany, http://www.1und1.de
+  
+     License:
+       MIT: https://opensource.org/licenses/MIT
+       See the LICENSE file in the project's top-level directory for details.
+  
+     Authors:
+       * Sebastian Werner (wpbasti)
+       * Fabian Jakobs (fjakobs)
+  
+  ************************************************************************ */
+
+  /**
+   * This mixin exposes all methods to manage the layout manager of a widget.
+   * It can only be included into instances of {@link qx.ui.core.Widget}.
+   *
+   * To optimize the method calls the including widget should call the method
+   * {@link #remap} in its defer function. This will map the protected
+   * methods to the public ones and save one method call for each function.
+   */
+  qx.Mixin.define("qx.ui.core.MLayoutHandling", {
+    /*
+    *****************************************************************************
+       MEMBERS
+    *****************************************************************************
+    */
+    members: {
+      /**
+       * Set a layout manager for the widget. A a layout manager can only be connected
+       * with one widget. Reset the connection with a previous widget first, if you
+       * like to use it in another widget instead.
+       *
+       * @param layout {qx.ui.layout.Abstract} The new layout or
+       *     <code>null</code> to reset the layout.
+       */
+      setLayout: function setLayout(layout) {
+        this._setLayout(layout);
+      },
+
+      /**
+       * Get the widget's layout manager.
+       *
+       * @return {qx.ui.layout.Abstract} The widget's layout manager
+       */
+      getLayout: function getLayout() {
+        return this._getLayout();
+      }
+    },
+
+    /*
+    *****************************************************************************
+       STATICS
+    *****************************************************************************
+    */
+    statics: {
+      /**
+       * Mapping of protected methods to public.
+       * This omits an additional function call when using these methods. Call
+       * this methods in the defer block of the including class.
+       *
+       * @param members {Map} The including classes members map
+       */
+      remap: function remap(members) {
+        members.getLayout = members._getLayout;
+        members.setLayout = members._setLayout;
+      }
+    }
+  });
+  qx.ui.core.MLayoutHandling.$$dbClassInfo = $$dbClassInfo;
+})();
+
+(function () {
+  var $$dbClassInfo = {
+    "dependsOn": {
+      "qx.Class": {
+        "usage": "dynamic",
+        "require": true
+      },
+      "qx.ui.core.Widget": {
+        "construct": true,
+        "require": true
+      },
+      "qx.ui.core.MChildrenHandling": {
+        "defer": "runtime",
+        "require": true
+      },
+      "qx.ui.core.MLayoutHandling": {
+        "defer": "runtime",
+        "require": true
+      },
+      "qx.event.type.Data": {}
+    }
+  };
+  qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
+  /* ************************************************************************
+  
+     qooxdoo - the new era of web development
+  
+     http://qooxdoo.org
+  
+     Copyright:
+       2004-2008 1&1 Internet AG, Germany, http://www.1und1.de
+  
+     License:
+       MIT: https://opensource.org/licenses/MIT
+       See the LICENSE file in the project's top-level directory for details.
+  
+     Authors:
+       * Sebastian Werner (wpbasti)
+       * Fabian Jakobs (fjakobs)
+  
+  ************************************************************************ */
+
+  /**
+   * The Composite is a generic container widget.
+   *
+   * It exposes all methods to set layouts and to manage child widgets
+   * as public methods. You must configure this widget with a layout manager to
+   * define the way the widget's children are positioned.
+   *
+   * *Example*
+   *
+   * Here is a little example of how to use the widget.
+   *
+   * <pre class='javascript'>
+   *   // create the composite
+   *   var composite = new qx.ui.container.Composite()
+   *
+   *   // configure it with a horizontal box layout with a spacing of '5'
+   *   composite.setLayout(new qx.ui.layout.HBox(5));
+   *
+   *   // add some children
+   *   composite.add(new qx.ui.basic.Label("Name: "));
+   *   composite.add(new qx.ui.form.TextField());
+   *
+   *   this.getRoot().add(composite);
+   * </pre>
+   *
+   * This example horizontally groups a label and text field by using a
+   * Composite configured with a horizontal box layout as a container.
+   *
+   * *External Documentation*
+   *
+   * <a href='http://qooxdoo.org/docs/#desktop/widget/composite.md' target='_blank'>
+   * Documentation of this widget in the qooxdoo manual.</a>
+   */
+  qx.Class.define("qx.ui.container.Composite", {
+    extend: qx.ui.core.Widget,
+    include: [qx.ui.core.MChildrenHandling, qx.ui.core.MLayoutHandling],
+
+    /*
+    *****************************************************************************
+       CONSTRUCTOR
+    *****************************************************************************
+    */
+
+    /**
+     * @param layout {qx.ui.layout.Abstract} A layout instance to use to
+     *   place widgets on the screen.
+     */
+    construct: function construct(layout) {
+      qx.ui.core.Widget.constructor.call(this);
+
+      if (layout != null) {
+        this._setLayout(layout);
+      }
+    },
+
+    /*
+    *****************************************************************************
+       EVENTS
+    *****************************************************************************
+    */
+    events: {
+      /**
+       * This event is fired after a child widget was added to this widget. The
+       * {@link qx.event.type.Data#getData} method of the event returns the
+       * added child.
+       */
+      addChildWidget: "qx.event.type.Data",
+
+      /**
+       * This event is fired after a child widget has been removed from this widget.
+       * The {@link qx.event.type.Data#getData} method of the event returns the
+       * removed child.
+       */
+      removeChildWidget: "qx.event.type.Data"
+    },
+
+    /*
+    *****************************************************************************
+       MEMBERS
+    *****************************************************************************
+    */
+    members: {
+      // overridden
+      _afterAddChild: function _afterAddChild(child) {
+        this.fireNonBubblingEvent("addChildWidget", qx.event.type.Data, [child]);
+      },
+      // overridden
+      _afterRemoveChild: function _afterRemoveChild(child) {
+        this.fireNonBubblingEvent("removeChildWidget", qx.event.type.Data, [child]);
+      }
+    },
+
+    /*
+    *****************************************************************************
+       DEFER
+    *****************************************************************************
+    */
+    defer: function defer(statics, members) {
+      qx.ui.core.MChildrenHandling.remap(members);
+      qx.ui.core.MLayoutHandling.remap(members);
+    }
+  });
+  qx.ui.container.Composite.$$dbClassInfo = $$dbClassInfo;
+})();
+
+(function () {
+  var $$dbClassInfo = {
+    "dependsOn": {
+      "qx.Class": {
+        "usage": "dynamic",
+        "require": true
+      },
+      "qx.core.Object": {
+        "require": true
+      },
+      "qx.ui.core.LayoutItem": {}
+    }
+  };
+  qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
+  /* ************************************************************************
+  
+     qooxdoo - the new era of web development
+  
+     http://qooxdoo.org
+  
+     Copyright:
+       2004-2008 1&1 Internet AG, Germany, http://www.1und1.de
+  
+     License:
+       MIT: https://opensource.org/licenses/MIT
+       See the LICENSE file in the project's top-level directory for details.
+  
+     Authors:
+       * Sebastian Werner (wpbasti)
+       * Fabian Jakobs (fjakobs)
+  
+  ************************************************************************ */
+
+  /**
+   * Base class for all layout managers.
+   *
+   * Custom layout manager must derive from
+   * this class and implement the methods {@link #invalidateLayoutCache},
+   * {@link #renderLayout} and {@link #getSizeHint}.
+   */
+  qx.Class.define("qx.ui.layout.Abstract", {
+    type: "abstract",
+    extend: qx.core.Object,
+
+    /*
+    *****************************************************************************
+       MEMBERS
+    *****************************************************************************
+    */
+    members: {
+      /** @type {Map} The cached size hint */
+      __sizeHint__P_42_0: null,
+
+      /** @type {Boolean} Whether the children cache is valid. This field is protected
+       *    because sub classes must be able to access it quickly.
+       */
+      _invalidChildrenCache: null,
+
+      /** @type {qx.ui.core.Widget} The connected widget */
+      __widget__P_42_1: null,
+
+      /*
+      ---------------------------------------------------------------------------
+        LAYOUT INTERFACE
+      ---------------------------------------------------------------------------
+      */
+
+      /**
+       * Invalidate all layout relevant caches. Automatically deletes the size hint.
+       *
+       * @abstract
+       */
+      invalidateLayoutCache: function invalidateLayoutCache() {
+        this.__sizeHint__P_42_0 = null;
+      },
+
+      /**
+       * Applies the children layout.
+       *
+       * @abstract
+       * @param availWidth {Integer} Final width available for the content (in pixel)
+       * @param availHeight {Integer} Final height available for the content (in pixel)
+       * @param padding {Map} Map containing the padding values. Keys:
+       * <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code>
+       */
+      renderLayout: function renderLayout(availWidth, availHeight, padding) {
+        this.warn("Missing renderLayout() implementation!");
+      },
+
+      /**
+       * Computes the layout dimensions and possible ranges of these.
+       *
+       * @return {Map|null} The map with the preferred width/height and the allowed
+       *   minimum and maximum values in cases where shrinking or growing
+       *   is required. Can also return <code>null</code> when this detection
+       *   is not supported by the layout.
+       */
+      getSizeHint: function getSizeHint() {
+        if (this.__sizeHint__P_42_0) {
+          return this.__sizeHint__P_42_0;
+        }
+
+        return this.__sizeHint__P_42_0 = this._computeSizeHint();
+      },
+
+      /**
+       * Whether the layout manager supports height for width.
+       *
+       * @return {Boolean} Whether the layout manager supports height for width
+       */
+      hasHeightForWidth: function hasHeightForWidth() {
+        return false;
+      },
+
+      /**
+       * If layout wants to trade height for width it has to implement this
+       * method and return the preferred height if it is resized to
+       * the given width. This function returns <code>null</code> if the item
+       * do not support height for width.
+       *
+       * @param width {Integer} The computed width
+       * @return {Integer} The desired height
+       */
+      getHeightForWidth: function getHeightForWidth(width) {
+        this.warn("Missing getHeightForWidth() implementation!");
+        return null;
+      },
+
+      /**
+       * This computes the size hint of the layout and returns it.
+       *
+       * @abstract
+       * @return {Map} The size hint.
+       */
+      _computeSizeHint: function _computeSizeHint() {
+        return null;
+      },
+
+      /**
+       * This method is called, on each child "add" and "remove" action and
+       * whenever the layout data of a child is changed. The method should be used
+       * to clear any children relevant cached data.
+       *
+       */
+      invalidateChildrenCache: function invalidateChildrenCache() {
+        this._invalidChildrenCache = true;
+      },
+
+      /**
+       * Verifies the value of a layout property.
+       *
+       * Note: This method is only available in the debug builds.
+       *
+       * @signature function(item, name, value)
+       * @param item {Object} The affected layout item
+       * @param name {Object} Name of the layout property
+       * @param value {Object} Value of the layout property
+       */
+      verifyLayoutProperty: function verifyLayoutProperty(item, name, value) {// empty implementation
+      },
+
+      /**
+       * Remove all currently visible separators
+       */
+      _clearSeparators: function _clearSeparators() {
+        // It may be that the widget do not implement clearSeparators which is especially true
+        // when it do not inherit from LayoutItem.
+        var widget = this.__widget__P_42_1;
+
+        if (widget instanceof qx.ui.core.LayoutItem) {
+          widget.clearSeparators();
+        }
+      },
+
+      /**
+       * Renders a separator between two children
+       *
+       * @param separator {String|qx.ui.decoration.IDecorator} The separator to render
+       * @param bounds {Map} Contains the left and top coordinate and the width and height
+       *    of the separator to render.
+       */
+      _renderSeparator: function _renderSeparator(separator, bounds) {
+        this.__widget__P_42_1.renderSeparator(separator, bounds);
+      },
+
+      /**
+       * This method is called by the widget to connect the widget with the layout.
+       *
+       * @param widget {qx.ui.core.Widget} The widget to connect to.
+       */
+      connectToWidget: function connectToWidget(widget) {
+        if (widget && this.__widget__P_42_1) {
+          throw new Error("It is not possible to manually set the connected widget.");
+        }
+
+        this.__widget__P_42_1 = widget; // Invalidate cache
+
+        this.invalidateChildrenCache();
+      },
+
+      /**
+       * Return the widget that is this layout is responsible for.
+       *
+       * @return {qx.ui.core.Widget} The widget connected to this layout.
+       */
+      _getWidget: function _getWidget() {
+        return this.__widget__P_42_1;
+      },
+
+      /**
+       * Indicate that the layout has layout changed and propagate this information
+       * up the widget hierarchy.
+       *
+       * Also a generic property apply method for all layout relevant properties.
+       */
+      _applyLayoutChange: function _applyLayoutChange() {
+        if (this.__widget__P_42_1) {
+          this.__widget__P_42_1.scheduleLayoutUpdate();
+        }
+      },
+
+      /**
+       * Returns the list of all layout relevant children.
+       *
+       * @return {Array} List of layout relevant children.
+       */
+      _getLayoutChildren: function _getLayoutChildren() {
+        return this.__widget__P_42_1.getLayoutChildren();
+      }
+    },
+
+    /*
+    *****************************************************************************
+       DESTRUCT
+    *****************************************************************************
+    */
+    destruct: function destruct() {
+      this.__widget__P_42_1 = this.__sizeHint__P_42_0 = null;
+    }
+  });
+  qx.ui.layout.Abstract.$$dbClassInfo = $$dbClassInfo;
+})();
+
+(function () {
+  var $$dbClassInfo = {
+    "dependsOn": {
+      "qx.Class": {
+        "usage": "dynamic",
+        "require": true
+      },
+      "qx.ui.layout.Abstract": {
+        "construct": true,
+        "require": true
+      },
+      "qx.ui.layout.Util": {},
+      "qx.theme.manager.Decoration": {}
+    }
+  };
+  qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
+  /* ************************************************************************
+  
+     qooxdoo - the new era of web development
+  
+     http://qooxdoo.org
+  
+     Copyright:
+       2004-2008 1&1 Internet AG, Germany, http://www.1und1.de
+  
+     License:
+       MIT: https://opensource.org/licenses/MIT
+       See the LICENSE file in the project's top-level directory for details.
+  
+     Authors:
+       * Sebastian Werner (wpbasti)
+       * Fabian Jakobs (fjakobs)
+  
+  ************************************************************************ */
+
+  /**
+   * A horizontal box layout.
+   *
+   * The horizontal box layout lays out widgets in a horizontal row, from left
+   * to right.
+   *
+   * *Features*
+   *
+   * * Minimum and maximum dimensions
+   * * Prioritized growing/shrinking (flex)
+   * * Margins (with horizontal collapsing)
+   * * Auto sizing (ignoring percent values)
+   * * Percent widths (not relevant for size hint)
+   * * Alignment (child property {@link qx.ui.core.LayoutItem#alignX} is ignored)
+   * * Horizontal spacing (collapsed with margins)
+   * * Reversed children layout (from last to first)
+   * * Vertical children stretching (respecting size hints)
+   *
+   * *Item Properties*
+   *
+   * <ul>
+   * <li><strong>flex</strong> <em>(Integer)</em>: The flexibility of a layout item determines how the container
+   *   distributes remaining empty space among its children. If items are made
+   *   flexible, they can grow or shrink accordingly. Their relative flex values
+   *   determine how the items are being resized, i.e. the larger the flex ratio
+   *   of two items, the larger the resizing of the first item compared to the
+   *   second.
+   *
+   *   If there is only one flex item in a layout container, its actual flex
+   *   value is not relevant. To disallow items to become flexible, set the
+   *   flex value to zero.
+   * </li>
+   * <li><strong>flexShrink</strong> <em>(Boolean)</em>: Only valid if `flex` is
+   *    set to a non-zero value, `flexShrink` tells the layout to force the child 
+   *    widget to shink if there is not enough space available for all of the children.
+   *    This is used in scenarios such as when the child insists that it has a `minWidth`
+   *    but there simply is not enough space to support that minimum width, so the 
+   *    overflow has to be cut off.  This setting allows the container to pick 
+   *    which children are able to have their `minWidth` sacrificed.  Without this
+   *    setting, one oversized child can force later children out of view, regardless
+   *    of `flex` settings 
+   * </li>
+   * <li><strong>width</strong> <em>(String)</em>: Allows to define a percent
+   *   width for the item. The width in percent, if specified, is used instead
+   *   of the width defined by the size hint. The minimum and maximum width still
+   *   takes care of the element's limits. It has no influence on the layout's
+   *   size hint. Percent values are mostly useful for widgets which are sized by
+   *   the outer hierarchy.
+   * </li>
+   * </ul>
+   *
+   * *Example*
+   *
+   * Here is a little example of how to use the HBox layout.
+   *
+   * <pre class="javascript">
+   * var layout = new qx.ui.layout.HBox();
+   * layout.setSpacing(4); // apply spacing
+   *
+   * var container = new qx.ui.container.Composite(layout);
+   *
+   * container.add(new qx.ui.core.Widget());
+   * container.add(new qx.ui.core.Widget());
+   * container.add(new qx.ui.core.Widget());
+   * </pre>
+   *
+   * *External Documentation*
+   *
+   * See <a href='https://qooxdoo.org/documentation/#/desktop/layout/box.md'>extended documentation</a>
+   * and links to demos for this layout.
+   *
+   */
+  qx.Class.define("qx.ui.layout.HBox", {
+    extend: qx.ui.layout.Abstract,
+
+    /*
+    *****************************************************************************
+       CONSTRUCTOR
+    *****************************************************************************
+    */
+
+    /**
+     * @param spacing {Integer?0} The spacing between child widgets {@link #spacing}.
+     * @param alignX {String?"left"} Horizontal alignment of the whole children
+     *     block {@link #alignX}.
+     * @param separator {String|qx.ui.decoration.IDecorator?} A separator to render between the items
+     */
+    construct: function construct(spacing, alignX, separator) {
+      qx.ui.layout.Abstract.constructor.call(this);
+
+      if (spacing) {
+        this.setSpacing(spacing);
+      }
+
+      if (alignX) {
+        this.setAlignX(alignX);
+      }
+
+      if (separator) {
+        this.setSeparator(separator);
+      }
+    },
+
+    /*
+    *****************************************************************************
+       PROPERTIES
+    *****************************************************************************
+    */
+    properties: {
+      /**
+       * Horizontal alignment of the whole children block. The horizontal
+       * alignment of the child is completely ignored in HBoxes (
+       * {@link qx.ui.core.LayoutItem#alignX}).
+       */
+      alignX: {
+        check: ["left", "center", "right"],
+        init: "left",
+        apply: "_applyLayoutChange"
+      },
+
+      /**
+       * Vertical alignment of each child. Can be overridden through
+       * {@link qx.ui.core.LayoutItem#alignY}.
+       */
+      alignY: {
+        check: ["top", "middle", "bottom"],
+        init: "top",
+        apply: "_applyLayoutChange"
+      },
+
+      /** Horizontal spacing between two children */
+      spacing: {
+        check: "Integer",
+        init: 0,
+        apply: "_applyLayoutChange"
+      },
+
+      /** Separator lines to use between the objects */
+      separator: {
+        check: "Decorator",
+        nullable: true,
+        apply: "_applyLayoutChange"
+      },
+
+      /** Whether the actual children list should be laid out in reversed order. */
+      reversed: {
+        check: "Boolean",
+        init: false,
+        apply: "_applyReversed"
+      }
+    },
+
+    /*
+    *****************************************************************************
+       MEMBERS
+    *****************************************************************************
+    */
+    members: {
+      __widths__P_6_0: null,
+      __flexs__P_6_1: null,
+      __enableFlex__P_6_2: null,
+      __children__P_6_3: null,
+
+      /*
+      ---------------------------------------------------------------------------
+        HELPER METHODS
+      ---------------------------------------------------------------------------
+      */
+      // property apply
+      _applyReversed: function _applyReversed() {
+        // easiest way is to invalidate the cache
+        this._invalidChildrenCache = true; // call normal layout change
+
+        this._applyLayoutChange();
+      },
+
+      /**
+       * Rebuilds caches for flex and percent layout properties
+       */
+      __rebuildCache__P_6_4: function __rebuildCache__P_6_4() {
+        var children = this._getLayoutChildren();
+
+        var length = children.length;
+        var enableFlex = false;
+        var reuse = this.__widths__P_6_0 && this.__widths__P_6_0.length != length && this.__flexs__P_6_1 && this.__widths__P_6_0;
+        var props; // Sparse array (keep old one if lengths has not been modified)
+
+        var widths = reuse ? this.__widths__P_6_0 : new Array(length);
+        var flexs = reuse ? this.__flexs__P_6_1 : new Array(length); // Reverse support
+
+        if (this.getReversed()) {
+          children = children.concat().reverse();
+        } // Loop through children to preparse values
+
+
+        for (var i = 0; i < length; i++) {
+          props = children[i].getLayoutProperties();
+
+          if (props.width != null) {
+            widths[i] = parseFloat(props.width) / 100;
+          }
+
+          if (props.flex != null) {
+            flexs[i] = props.flex;
+            enableFlex = true;
+          } else {
+            // reset (in case the index of the children changed: BUG #3131)
+            flexs[i] = 0;
+          }
+        } // Store data
+
+
+        if (!reuse) {
+          this.__widths__P_6_0 = widths;
+          this.__flexs__P_6_1 = flexs;
+        }
+
+        this.__enableFlex__P_6_2 = enableFlex;
+        this.__children__P_6_3 = children; // Clear invalidation marker
+
+        delete this._invalidChildrenCache;
+      },
+
+      /*
+      ---------------------------------------------------------------------------
+        LAYOUT INTERFACE
+      ---------------------------------------------------------------------------
+      */
+      // overridden
+      verifyLayoutProperty: function verifyLayoutProperty(item, name, value) {
+        if (name === "width") {
+          this.assertMatch(value, qx.ui.layout.Util.PERCENT_VALUE);
+        } else if (name === "flex") {
+          this.assertNumber(value);
+          this.assert(value >= 0);
+        } else if (name === "flexShrink") {
+          this.assertBoolean(value);
+        } else {
+          this.assert(false, "The property '" + name + "' is not supported by the HBox layout!");
+        }
+      },
+      // overridden
+      renderLayout: function renderLayout(availWidth, availHeight, padding) {
+        // Rebuild flex/width caches
+        if (this._invalidChildrenCache) {
+          this.__rebuildCache__P_6_4();
+        } // Cache children
+
+
+        var children = this.__children__P_6_3;
+        var length = children.length;
+        var util = qx.ui.layout.Util; // Compute gaps
+
+        var spacing = this.getSpacing();
+        var separator = this.getSeparator();
+        var gaps;
+
+        if (separator) {
+          gaps = util.computeHorizontalSeparatorGaps(children, spacing, separator);
+        } else {
+          gaps = util.computeHorizontalGaps(children, spacing, true);
+        } // First run to cache children data and compute allocated width
+
+
+        var i, child, width, percent;
+        var widths = [],
+            hint;
+        var allocatedWidth = gaps;
+
+        for (i = 0; i < length; i += 1) {
+          percent = this.__widths__P_6_0[i];
+          hint = children[i].getSizeHint();
+          width = percent != null ? Math.floor((availWidth - gaps) * percent) : hint.width; // Limit computed value
+
+          if (width < hint.minWidth) {
+            width = hint.minWidth;
+          } else if (width > hint.maxWidth) {
+            width = hint.maxWidth;
+          }
+
+          widths.push(width);
+          allocatedWidth += width;
+        } // Flex support (growing/shrinking)
+
+
+        if (this.__enableFlex__P_6_2 && allocatedWidth != availWidth) {
+          var flexibles = {};
+          var flex, offset;
+          var notEnoughSpace = allocatedWidth > availWidth;
+
+          for (i = 0; i < length; i += 1) {
+            flex = this.__flexs__P_6_1[i];
+
+            if (flex > 0) {
+              hint = children[i].getSizeHint();
+              flexibles[i] = {
+                min: hint.minWidth,
+                value: widths[i],
+                max: hint.maxWidth,
+                flex: flex
+              };
+
+              if (notEnoughSpace) {
+                var props = children[i].getLayoutProperties();
+
+                if (props && props.flexShrink) {
+                  flexibles[i].min = 0;
+                }
+              }
+            }
+          }
+
+          var result = util.computeFlexOffsets(flexibles, availWidth, allocatedWidth);
+
+          for (i in result) {
+            offset = result[i].offset;
+            widths[i] += offset;
+            allocatedWidth += offset;
+          }
+        } // Start with left coordinate
+
+
+        var left = children[0].getMarginLeft(); // Alignment support
+
+        if (allocatedWidth < availWidth && this.getAlignX() != "left") {
+          left = availWidth - allocatedWidth;
+
+          if (this.getAlignX() === "center") {
+            left = Math.round(left / 2);
+          }
+        } // Layouting children
+
+
+        var hint, top, height, width, marginRight, marginTop, marginBottom;
+        var spacing = this.getSpacing(); // Pre configure separators
+
+        this._clearSeparators(); // Compute separator width
+
+
+        if (separator) {
+          var separatorInsets = qx.theme.manager.Decoration.getInstance().resolve(separator).getInsets();
+          var separatorWidth = separatorInsets.left + separatorInsets.right;
+        } // Render children and separators
+
+
+        for (i = 0; i < length; i += 1) {
+          child = children[i];
+          width = widths[i];
+          hint = child.getSizeHint();
+          marginTop = child.getMarginTop();
+          marginBottom = child.getMarginBottom(); // Find usable height
+
+          height = Math.max(hint.minHeight, Math.min(availHeight - marginTop - marginBottom, hint.maxHeight)); // Respect vertical alignment
+
+          top = util.computeVerticalAlignOffset(child.getAlignY() || this.getAlignY(), height, availHeight, marginTop, marginBottom); // Add collapsed margin
+
+          if (i > 0) {
+            // Whether a separator has been configured
+            if (separator) {
+              // add margin of last child and spacing
+              left += marginRight + spacing; // then render the separator at this position
+
+              this._renderSeparator(separator, {
+                left: left + padding.left,
+                top: padding.top,
+                width: separatorWidth,
+                height: availHeight
+              }); // and finally add the size of the separator, the spacing (again) and the left margin
+
+
+              left += separatorWidth + spacing + child.getMarginLeft();
+            } else {
+              // Support margin collapsing when no separator is defined
+              left += util.collapseMargins(spacing, marginRight, child.getMarginLeft());
+            }
+          } // Layout child
+
+
+          child.renderLayout(left + padding.left, top + padding.top, width, height); // Add width
+
+          left += width; // Remember right margin (for collapsing)
+
+          marginRight = child.getMarginRight();
+        }
+      },
+      // overridden
+      _computeSizeHint: function _computeSizeHint() {
+        // Rebuild flex/width caches
+        if (this._invalidChildrenCache) {
+          this.__rebuildCache__P_6_4();
+        }
+
+        var util = qx.ui.layout.Util;
+        var children = this.__children__P_6_3; // Initialize
+
+        var minWidth = 0,
+            width = 0,
+            percentMinWidth = 0;
+        var minHeight = 0,
+            height = 0;
+        var child, hint, margin; // Iterate over children
+
+        for (var i = 0, l = children.length; i < l; i += 1) {
+          child = children[i];
+          hint = child.getSizeHint(); // Sum up widths
+
+          width += hint.width; // Detect if child is shrinkable or has percent width and update minWidth
+
+          var flex = this.__flexs__P_6_1[i];
+          var percent = this.__widths__P_6_0[i];
+
+          if (flex) {
+            minWidth += hint.minWidth;
+          } else if (percent) {
+            percentMinWidth = Math.max(percentMinWidth, Math.round(hint.minWidth / percent));
+          } else {
+            minWidth += hint.width;
+          } // Build vertical margin sum
+
+
+          margin = child.getMarginTop() + child.getMarginBottom(); // Find biggest height
+
+          if (hint.height + margin > height) {
+            height = hint.height + margin;
+          } // Find biggest minHeight
+
+
+          if (hint.minHeight + margin > minHeight) {
+            minHeight = hint.minHeight + margin;
+          }
+        }
+
+        minWidth += percentMinWidth; // Respect gaps
+
+        var spacing = this.getSpacing();
+        var separator = this.getSeparator();
+        var gaps;
+
+        if (separator) {
+          gaps = util.computeHorizontalSeparatorGaps(children, spacing, separator);
+        } else {
+          gaps = util.computeHorizontalGaps(children, spacing, true);
+        } // Return hint
+
+
+        return {
+          minWidth: minWidth + gaps,
+          width: width + gaps,
+          minHeight: minHeight,
+          height: height
+        };
+      }
+    },
+
+    /*
+    *****************************************************************************
+       DESTRUCTOR
+    *****************************************************************************
+    */
+    destruct: function destruct() {
+      this.__widths__P_6_0 = this.__flexs__P_6_1 = this.__children__P_6_3 = null;
+    }
+  });
+  qx.ui.layout.HBox.$$dbClassInfo = $$dbClassInfo;
+})();
+
+(function () {
+  var $$dbClassInfo = {
+    "dependsOn": {
       "qx.Class": {
         "usage": "dynamic",
         "require": true
@@ -22249,92 +23232,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       "qx.Interface": {
         "usage": "dynamic",
         "require": true
-      },
-      "qx.ui.form.IField": {
-        "require": true
-      }
-    }
-  };
-  qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* ************************************************************************
-  
-     qooxdoo - the new era of web development
-  
-     http://qooxdoo.org
-  
-     Copyright:
-       2004-2008 1&1 Internet AG, Germany, http://www.1und1.de
-  
-     License:
-       MIT: https://opensource.org/licenses/MIT
-       See the LICENSE file in the project's top-level directory for details.
-  
-     Authors:
-       * Martin Wittemann (martinwittemann)
-  
-  ************************************************************************ */
-
-  /**
-   * Form interface for all form widgets which have boolean as their primary
-   * data type like a checkbox.
-   */
-  qx.Interface.define("qx.ui.form.IBooleanForm", {
-    extend: qx.ui.form.IField,
-
-    /*
-    *****************************************************************************
-       EVENTS
-    *****************************************************************************
-    */
-    events: {
-      /** Fired when the value was modified */
-      "changeValue": "qx.event.type.Data"
-    },
-
-    /*
-    *****************************************************************************
-       MEMBERS
-    *****************************************************************************
-    */
-    members: {
-      /*
-      ---------------------------------------------------------------------------
-        VALUE PROPERTY
-      ---------------------------------------------------------------------------
-      */
-
-      /**
-       * Sets the element's value.
-       *
-       * @param value {Boolean|null} The new value of the element.
-       */
-      setValue: function setValue(value) {
-        return arguments.length == 1;
-      },
-
-      /**
-       * Resets the element's value to its initial value.
-       */
-      resetValue: function resetValue() {},
-
-      /**
-       * The element's user set value.
-       *
-       * @return {Boolean|null} The value.
-       */
-      getValue: function getValue() {}
-    }
-  });
-  qx.ui.form.IBooleanForm.$$dbClassInfo = $$dbClassInfo;
-})();
-
-(function () {
-  var $$dbClassInfo = {
-    "dependsOn": {
-      "qx.Interface": {
-        "usage": "dynamic",
-        "require": true
       }
     }
   };
@@ -22411,337 +23308,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     }
   });
   qx.ui.form.IExecutable.$$dbClassInfo = $$dbClassInfo;
-})();
-
-(function () {
-  var $$dbClassInfo = {
-    "dependsOn": {
-      "qx.Interface": {
-        "usage": "dynamic",
-        "require": true
-      },
-      "qx.ui.form.RadioGroup": {}
-    }
-  };
-  qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* ************************************************************************
-  
-     qooxdoo - the new era of web development
-  
-     http://qooxdoo.org
-  
-     Copyright:
-       2004-2008 1&1 Internet AG, Germany, http://www.1und1.de
-  
-     License:
-       MIT: https://opensource.org/licenses/MIT
-       See the LICENSE file in the project's top-level directory for details.
-  
-     Authors:
-       * Sebastian Werner (wpbasti)
-       * Fabian Jakobs (fjakobs)
-  
-  ************************************************************************ */
-
-  /**
-   * Each object, which should be managed by a {@link RadioGroup} have to
-   * implement this interface.
-   */
-  qx.Interface.define("qx.ui.form.IRadioItem", {
-    /*
-    *****************************************************************************
-       EVENTS
-    *****************************************************************************
-    */
-    events: {
-      /** Fired when the item was checked or unchecked */
-      "changeValue": "qx.event.type.Data"
-    },
-
-    /*
-    *****************************************************************************
-       MEMBERS
-    *****************************************************************************
-    */
-    members: {
-      /**
-       * Set whether the item is checked
-       *
-       * @param value {Boolean} whether the item should be checked
-       */
-      setValue: function setValue(value) {},
-
-      /**
-       * Get whether the item is checked
-       *
-       * @return {Boolean} whether the item it checked
-       */
-      getValue: function getValue() {},
-
-      /**
-       * Set the radiogroup, which manages this item
-       *
-       * @param value {qx.ui.form.RadioGroup} The radiogroup, which should
-       *     manage the item.
-       */
-      setGroup: function setGroup(value) {
-        this.assertInstance(value, qx.ui.form.RadioGroup);
-      },
-
-      /**
-       * Get the radiogroup, which manages this item
-       *
-       * @return {qx.ui.form.RadioGroup} The radiogroup, which manages the item.
-       */
-      getGroup: function getGroup() {}
-    }
-  });
-  qx.ui.form.IRadioItem.$$dbClassInfo = $$dbClassInfo;
-})();
-
-(function () {
-  var $$dbClassInfo = {
-    "dependsOn": {
-      "qx.Class": {
-        "usage": "dynamic",
-        "require": true
-      },
-      "qx.core.Object": {
-        "require": true
-      },
-      "qx.ui.core.LayoutItem": {}
-    }
-  };
-  qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* ************************************************************************
-  
-     qooxdoo - the new era of web development
-  
-     http://qooxdoo.org
-  
-     Copyright:
-       2004-2008 1&1 Internet AG, Germany, http://www.1und1.de
-  
-     License:
-       MIT: https://opensource.org/licenses/MIT
-       See the LICENSE file in the project's top-level directory for details.
-  
-     Authors:
-       * Sebastian Werner (wpbasti)
-       * Fabian Jakobs (fjakobs)
-  
-  ************************************************************************ */
-
-  /**
-   * Base class for all layout managers.
-   *
-   * Custom layout manager must derive from
-   * this class and implement the methods {@link #invalidateLayoutCache},
-   * {@link #renderLayout} and {@link #getSizeHint}.
-   */
-  qx.Class.define("qx.ui.layout.Abstract", {
-    type: "abstract",
-    extend: qx.core.Object,
-
-    /*
-    *****************************************************************************
-       MEMBERS
-    *****************************************************************************
-    */
-    members: {
-      /** @type {Map} The cached size hint */
-      __sizeHint__P_42_0: null,
-
-      /** @type {Boolean} Whether the children cache is valid. This field is protected
-       *    because sub classes must be able to access it quickly.
-       */
-      _invalidChildrenCache: null,
-
-      /** @type {qx.ui.core.Widget} The connected widget */
-      __widget__P_42_1: null,
-
-      /*
-      ---------------------------------------------------------------------------
-        LAYOUT INTERFACE
-      ---------------------------------------------------------------------------
-      */
-
-      /**
-       * Invalidate all layout relevant caches. Automatically deletes the size hint.
-       *
-       * @abstract
-       */
-      invalidateLayoutCache: function invalidateLayoutCache() {
-        this.__sizeHint__P_42_0 = null;
-      },
-
-      /**
-       * Applies the children layout.
-       *
-       * @abstract
-       * @param availWidth {Integer} Final width available for the content (in pixel)
-       * @param availHeight {Integer} Final height available for the content (in pixel)
-       * @param padding {Map} Map containing the padding values. Keys:
-       * <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code>
-       */
-      renderLayout: function renderLayout(availWidth, availHeight, padding) {
-        this.warn("Missing renderLayout() implementation!");
-      },
-
-      /**
-       * Computes the layout dimensions and possible ranges of these.
-       *
-       * @return {Map|null} The map with the preferred width/height and the allowed
-       *   minimum and maximum values in cases where shrinking or growing
-       *   is required. Can also return <code>null</code> when this detection
-       *   is not supported by the layout.
-       */
-      getSizeHint: function getSizeHint() {
-        if (this.__sizeHint__P_42_0) {
-          return this.__sizeHint__P_42_0;
-        }
-
-        return this.__sizeHint__P_42_0 = this._computeSizeHint();
-      },
-
-      /**
-       * Whether the layout manager supports height for width.
-       *
-       * @return {Boolean} Whether the layout manager supports height for width
-       */
-      hasHeightForWidth: function hasHeightForWidth() {
-        return false;
-      },
-
-      /**
-       * If layout wants to trade height for width it has to implement this
-       * method and return the preferred height if it is resized to
-       * the given width. This function returns <code>null</code> if the item
-       * do not support height for width.
-       *
-       * @param width {Integer} The computed width
-       * @return {Integer} The desired height
-       */
-      getHeightForWidth: function getHeightForWidth(width) {
-        this.warn("Missing getHeightForWidth() implementation!");
-        return null;
-      },
-
-      /**
-       * This computes the size hint of the layout and returns it.
-       *
-       * @abstract
-       * @return {Map} The size hint.
-       */
-      _computeSizeHint: function _computeSizeHint() {
-        return null;
-      },
-
-      /**
-       * This method is called, on each child "add" and "remove" action and
-       * whenever the layout data of a child is changed. The method should be used
-       * to clear any children relevant cached data.
-       *
-       */
-      invalidateChildrenCache: function invalidateChildrenCache() {
-        this._invalidChildrenCache = true;
-      },
-
-      /**
-       * Verifies the value of a layout property.
-       *
-       * Note: This method is only available in the debug builds.
-       *
-       * @signature function(item, name, value)
-       * @param item {Object} The affected layout item
-       * @param name {Object} Name of the layout property
-       * @param value {Object} Value of the layout property
-       */
-      verifyLayoutProperty: function verifyLayoutProperty(item, name, value) {// empty implementation
-      },
-
-      /**
-       * Remove all currently visible separators
-       */
-      _clearSeparators: function _clearSeparators() {
-        // It may be that the widget do not implement clearSeparators which is especially true
-        // when it do not inherit from LayoutItem.
-        var widget = this.__widget__P_42_1;
-
-        if (widget instanceof qx.ui.core.LayoutItem) {
-          widget.clearSeparators();
-        }
-      },
-
-      /**
-       * Renders a separator between two children
-       *
-       * @param separator {String|qx.ui.decoration.IDecorator} The separator to render
-       * @param bounds {Map} Contains the left and top coordinate and the width and height
-       *    of the separator to render.
-       */
-      _renderSeparator: function _renderSeparator(separator, bounds) {
-        this.__widget__P_42_1.renderSeparator(separator, bounds);
-      },
-
-      /**
-       * This method is called by the widget to connect the widget with the layout.
-       *
-       * @param widget {qx.ui.core.Widget} The widget to connect to.
-       */
-      connectToWidget: function connectToWidget(widget) {
-        if (widget && this.__widget__P_42_1) {
-          throw new Error("It is not possible to manually set the connected widget.");
-        }
-
-        this.__widget__P_42_1 = widget; // Invalidate cache
-
-        this.invalidateChildrenCache();
-      },
-
-      /**
-       * Return the widget that is this layout is responsible for.
-       *
-       * @return {qx.ui.core.Widget} The widget connected to this layout.
-       */
-      _getWidget: function _getWidget() {
-        return this.__widget__P_42_1;
-      },
-
-      /**
-       * Indicate that the layout has layout changed and propagate this information
-       * up the widget hierarchy.
-       *
-       * Also a generic property apply method for all layout relevant properties.
-       */
-      _applyLayoutChange: function _applyLayoutChange() {
-        if (this.__widget__P_42_1) {
-          this.__widget__P_42_1.scheduleLayoutUpdate();
-        }
-      },
-
-      /**
-       * Returns the list of all layout relevant children.
-       *
-       * @return {Array} List of layout relevant children.
-       */
-      _getLayoutChildren: function _getLayoutChildren() {
-        return this.__widget__P_42_1.getLayoutChildren();
-      }
-    },
-
-    /*
-    *****************************************************************************
-       DESTRUCT
-    *****************************************************************************
-    */
-    destruct: function destruct() {
-      this.__widget__P_42_1 = this.__sizeHint__P_42_0 = null;
-    }
-  });
-  qx.ui.layout.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
 (function () {
@@ -23069,6 +23635,516 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     }
   });
   qx.ui.layout.Atom.$$dbClassInfo = $$dbClassInfo;
+})();
+
+(function () {
+  var $$dbClassInfo = {
+    "dependsOn": {
+      "qx.Class": {
+        "usage": "dynamic",
+        "require": true
+      },
+      "qx.ui.basic.Atom": {
+        "construct": true,
+        "require": true
+      },
+      "qx.ui.core.MExecutable": {
+        "require": true
+      },
+      "qx.ui.form.IExecutable": {
+        "require": true
+      }
+    }
+  };
+  qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
+  /* ************************************************************************
+  
+     qooxdoo - the new era of web development
+  
+     http://qooxdoo.org
+  
+     Copyright:
+       2004-2008 1&1 Internet AG, Germany, http://www.1und1.de
+  
+     License:
+       MIT: https://opensource.org/licenses/MIT
+       See the LICENSE file in the project's top-level directory for details.
+  
+     Authors:
+       * Sebastian Werner (wpbasti)
+       * Fabian Jakobs (fjakobs)
+  
+  ************************************************************************ */
+
+  /**
+   * A Button widget which supports various states and allows it to be used
+   * via the mouse, touch, pen and the keyboard.
+   *
+   * If the user presses the button by clicking on it, or the <code>Enter</code> or
+   * <code>Space</code> keys, the button fires an {@link qx.ui.core.MExecutable#execute} event.
+   *
+   * If the {@link qx.ui.core.MExecutable#command} property is set, the
+   * command is executed as well.
+   *
+   * *Example*
+   *
+   * Here is a little example of how to use the widget.
+   *
+   * <pre class='javascript'>
+   *   var button = new qx.ui.form.Button("Hello World");
+   *
+   *   button.addListener("execute", function(e) {
+   *     alert("Button was clicked");
+   *   }, this);
+   *
+   *   this.getRoot().add(button);
+   * </pre>
+   *
+   * This example creates a button with the label "Hello World" and attaches an
+   * event listener to the {@link #execute} event.
+   *
+   * *External Documentation*
+   *
+   * <a href='http://qooxdoo.org/docs/#desktop/widget/button.md' target='_blank'>
+   * Documentation of this widget in the qooxdoo manual.</a>
+   */
+  qx.Class.define("qx.ui.form.Button", {
+    extend: qx.ui.basic.Atom,
+    include: [qx.ui.core.MExecutable],
+    implement: [qx.ui.form.IExecutable],
+
+    /*
+    *****************************************************************************
+       CONSTRUCTOR
+    *****************************************************************************
+    */
+
+    /**
+     * @param label {String} label of the atom
+     * @param icon {String?null} Icon URL of the atom
+     * @param command {qx.ui.command.Command?null} Command instance to connect with
+     */
+    construct: function construct(label, icon, command) {
+      qx.ui.basic.Atom.constructor.call(this, label, icon);
+
+      if (command != null) {
+        this.setCommand(command);
+      } // Add listeners
+
+
+      this.addListener("pointerover", this._onPointerOver);
+      this.addListener("pointerout", this._onPointerOut);
+      this.addListener("pointerdown", this._onPointerDown);
+      this.addListener("pointerup", this._onPointerUp);
+      this.addListener("tap", this._onTap);
+      this.addListener("keydown", this._onKeyDown);
+      this.addListener("keyup", this._onKeyUp); // Stop events
+
+      this.addListener("dblclick", function (e) {
+        e.stopPropagation();
+      });
+    },
+
+    /*
+    *****************************************************************************
+       PROPERTIES
+    *****************************************************************************
+    */
+    properties: {
+      // overridden
+      appearance: {
+        refine: true,
+        init: "button"
+      },
+      // overridden
+      focusable: {
+        refine: true,
+        init: true
+      }
+    },
+
+    /*
+    *****************************************************************************
+       MEMBERS
+    *****************************************************************************
+    */
+
+    /* eslint-disable @qooxdoo/qx/no-refs-in-members */
+    members: {
+      // overridden
+
+      /**
+       * @lint ignoreReferenceField(_forwardStates)
+       */
+      _forwardStates: {
+        focused: true,
+        hovered: true,
+        pressed: true,
+        disabled: true
+      },
+
+      /*
+      ---------------------------------------------------------------------------
+        USER API
+      ---------------------------------------------------------------------------
+      */
+
+      /**
+       * Manually press the button
+       */
+      press: function press() {
+        if (this.hasState("abandoned")) {
+          return;
+        }
+
+        this.addState("pressed");
+      },
+
+      /**
+       * Manually release the button
+       */
+      release: function release() {
+        if (this.hasState("pressed")) {
+          this.removeState("pressed");
+        }
+      },
+
+      /**
+       * Completely reset the button (remove all states)
+       */
+      reset: function reset() {
+        this.removeState("pressed");
+        this.removeState("abandoned");
+        this.removeState("hovered");
+      },
+
+      /*
+      ---------------------------------------------------------------------------
+        EVENT LISTENERS
+      ---------------------------------------------------------------------------
+      */
+
+      /**
+       * Listener method for "pointerover" event
+       * <ul>
+       * <li>Adds state "hovered"</li>
+       * <li>Removes "abandoned" and adds "pressed" state (if "abandoned" state is set)</li>
+       * </ul>
+       *
+       * @param e {qx.event.type.Pointer} Mouse event
+       */
+      _onPointerOver: function _onPointerOver(e) {
+        if (!this.isEnabled() || e.getTarget() !== this) {
+          return;
+        }
+
+        if (this.hasState("abandoned")) {
+          this.removeState("abandoned");
+          this.addState("pressed");
+        }
+
+        this.addState("hovered");
+      },
+
+      /**
+       * Listener method for "pointerout" event
+       * <ul>
+       * <li>Removes "hovered" state</li>
+       * <li>Adds "abandoned" and removes "pressed" state (if "pressed" state is set)</li>
+       * </ul>
+       *
+       * @param e {qx.event.type.Pointer} Mouse event
+       */
+      _onPointerOut: function _onPointerOut(e) {
+        if (!this.isEnabled() || e.getTarget() !== this) {
+          return;
+        }
+
+        this.removeState("hovered");
+
+        if (this.hasState("pressed")) {
+          this.removeState("pressed");
+          this.addState("abandoned");
+        }
+      },
+
+      /**
+       * Listener method for "pointerdown" event
+       * <ul>
+       * <li>Removes "abandoned" state</li>
+       * <li>Adds "pressed" state</li>
+       * </ul>
+       *
+       * @param e {qx.event.type.Pointer} Mouse event
+       */
+      _onPointerDown: function _onPointerDown(e) {
+        if (!e.isLeftPressed()) {
+          return;
+        }
+
+        e.stopPropagation(); // Activate capturing if the button get a pointerout while
+        // the button is pressed.
+
+        this.capture();
+        this.removeState("abandoned");
+        this.addState("pressed");
+      },
+
+      /**
+       * Listener method for "pointerup" event
+       * <ul>
+       * <li>Removes "pressed" state (if set)</li>
+       * <li>Removes "abandoned" state (if set)</li>
+       * <li>Adds "hovered" state (if "abandoned" state is not set)</li>
+       *</ul>
+       *
+       * @param e {qx.event.type.Pointer} Mouse event
+       */
+      _onPointerUp: function _onPointerUp(e) {
+        this.releaseCapture(); // We must remove the states before executing the command
+        // because in cases were the window lost the focus while
+        // executing we get the capture phase back (mouseout).
+
+        var hasPressed = this.hasState("pressed");
+        var hasAbandoned = this.hasState("abandoned");
+
+        if (hasPressed) {
+          this.removeState("pressed");
+        }
+
+        if (hasAbandoned) {
+          this.removeState("abandoned");
+        }
+
+        e.stopPropagation();
+      },
+
+      /**
+       * Listener method for "tap" event which stops the propagation.
+       *
+       * @param e {qx.event.type.Pointer} Pointer event
+       */
+      _onTap: function _onTap(e) {
+        // "execute" is fired here so that the button can be dragged
+        // without executing it (e.g. in a TabBar with overflow)
+        this.execute();
+        e.stopPropagation();
+      },
+
+      /**
+       * Listener method for "keydown" event.<br/>
+       * Removes "abandoned" and adds "pressed" state
+       * for the keys "Enter" or "Space"
+       *
+       * @param e {Event} Key event
+       */
+      _onKeyDown: function _onKeyDown(e) {
+        switch (e.getKeyIdentifier()) {
+          case "Enter":
+          case "Space":
+            this.removeState("abandoned");
+            this.addState("pressed");
+            e.stopPropagation();
+        }
+      },
+
+      /**
+       * Listener method for "keyup" event.<br/>
+       * Removes "abandoned" and "pressed" state (if "pressed" state is set)
+       * for the keys "Enter" or "Space"
+       *
+       * @param e {Event} Key event
+       */
+      _onKeyUp: function _onKeyUp(e) {
+        switch (e.getKeyIdentifier()) {
+          case "Enter":
+          case "Space":
+            if (this.hasState("pressed")) {
+              this.removeState("abandoned");
+              this.removeState("pressed");
+              this.execute();
+              e.stopPropagation();
+            }
+
+        }
+      }
+    }
+  });
+  qx.ui.form.Button.$$dbClassInfo = $$dbClassInfo;
+})();
+
+(function () {
+  var $$dbClassInfo = {
+    "dependsOn": {
+      "qx.Interface": {
+        "usage": "dynamic",
+        "require": true
+      },
+      "qx.ui.form.IField": {
+        "require": true
+      }
+    }
+  };
+  qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
+  /* ************************************************************************
+  
+     qooxdoo - the new era of web development
+  
+     http://qooxdoo.org
+  
+     Copyright:
+       2004-2008 1&1 Internet AG, Germany, http://www.1und1.de
+  
+     License:
+       MIT: https://opensource.org/licenses/MIT
+       See the LICENSE file in the project's top-level directory for details.
+  
+     Authors:
+       * Martin Wittemann (martinwittemann)
+  
+  ************************************************************************ */
+
+  /**
+   * Form interface for all form widgets which have boolean as their primary
+   * data type like a checkbox.
+   */
+  qx.Interface.define("qx.ui.form.IBooleanForm", {
+    extend: qx.ui.form.IField,
+
+    /*
+    *****************************************************************************
+       EVENTS
+    *****************************************************************************
+    */
+    events: {
+      /** Fired when the value was modified */
+      "changeValue": "qx.event.type.Data"
+    },
+
+    /*
+    *****************************************************************************
+       MEMBERS
+    *****************************************************************************
+    */
+    members: {
+      /*
+      ---------------------------------------------------------------------------
+        VALUE PROPERTY
+      ---------------------------------------------------------------------------
+      */
+
+      /**
+       * Sets the element's value.
+       *
+       * @param value {Boolean|null} The new value of the element.
+       */
+      setValue: function setValue(value) {
+        return arguments.length == 1;
+      },
+
+      /**
+       * Resets the element's value to its initial value.
+       */
+      resetValue: function resetValue() {},
+
+      /**
+       * The element's user set value.
+       *
+       * @return {Boolean|null} The value.
+       */
+      getValue: function getValue() {}
+    }
+  });
+  qx.ui.form.IBooleanForm.$$dbClassInfo = $$dbClassInfo;
+})();
+
+(function () {
+  var $$dbClassInfo = {
+    "dependsOn": {
+      "qx.Interface": {
+        "usage": "dynamic",
+        "require": true
+      },
+      "qx.ui.form.RadioGroup": {}
+    }
+  };
+  qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
+  /* ************************************************************************
+  
+     qooxdoo - the new era of web development
+  
+     http://qooxdoo.org
+  
+     Copyright:
+       2004-2008 1&1 Internet AG, Germany, http://www.1und1.de
+  
+     License:
+       MIT: https://opensource.org/licenses/MIT
+       See the LICENSE file in the project's top-level directory for details.
+  
+     Authors:
+       * Sebastian Werner (wpbasti)
+       * Fabian Jakobs (fjakobs)
+  
+  ************************************************************************ */
+
+  /**
+   * Each object, which should be managed by a {@link RadioGroup} have to
+   * implement this interface.
+   */
+  qx.Interface.define("qx.ui.form.IRadioItem", {
+    /*
+    *****************************************************************************
+       EVENTS
+    *****************************************************************************
+    */
+    events: {
+      /** Fired when the item was checked or unchecked */
+      "changeValue": "qx.event.type.Data"
+    },
+
+    /*
+    *****************************************************************************
+       MEMBERS
+    *****************************************************************************
+    */
+    members: {
+      /**
+       * Set whether the item is checked
+       *
+       * @param value {Boolean} whether the item should be checked
+       */
+      setValue: function setValue(value) {},
+
+      /**
+       * Get whether the item is checked
+       *
+       * @return {Boolean} whether the item it checked
+       */
+      getValue: function getValue() {},
+
+      /**
+       * Set the radiogroup, which manages this item
+       *
+       * @param value {qx.ui.form.RadioGroup} The radiogroup, which should
+       *     manage the item.
+       */
+      setGroup: function setGroup(value) {
+        this.assertInstance(value, qx.ui.form.RadioGroup);
+      },
+
+      /**
+       * Get the radiogroup, which manages this item
+       *
+       * @return {qx.ui.form.RadioGroup} The radiogroup, which manages the item.
+       */
+      getGroup: function getGroup() {}
+    }
+  });
+  qx.ui.form.IRadioItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
 (function () {
@@ -25059,244 +26135,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   });
   qx.ui.form.CheckBox.$$dbClassInfo = $$dbClassInfo;
 })();
-
-(function () {
-  var $$dbClassInfo = {
-    "dependsOn": {
-      "qx.Mixin": {
-        "usage": "dynamic",
-        "require": true
-      }
-    }
-  };
-  qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* ************************************************************************
-  
-     qooxdoo - the new era of web development
-  
-     http://qooxdoo.org
-  
-     Copyright:
-       2004-2008 1&1 Internet AG, Germany, http://www.1und1.de
-  
-     License:
-       MIT: https://opensource.org/licenses/MIT
-       See the LICENSE file in the project's top-level directory for details.
-  
-     Authors:
-       * Sebastian Werner (wpbasti)
-       * Fabian Jakobs (fjakobs)
-  
-  ************************************************************************ */
-
-  /**
-   * This mixin exposes all methods to manage the layout manager of a widget.
-   * It can only be included into instances of {@link qx.ui.core.Widget}.
-   *
-   * To optimize the method calls the including widget should call the method
-   * {@link #remap} in its defer function. This will map the protected
-   * methods to the public ones and save one method call for each function.
-   */
-  qx.Mixin.define("qx.ui.core.MLayoutHandling", {
-    /*
-    *****************************************************************************
-       MEMBERS
-    *****************************************************************************
-    */
-    members: {
-      /**
-       * Set a layout manager for the widget. A a layout manager can only be connected
-       * with one widget. Reset the connection with a previous widget first, if you
-       * like to use it in another widget instead.
-       *
-       * @param layout {qx.ui.layout.Abstract} The new layout or
-       *     <code>null</code> to reset the layout.
-       */
-      setLayout: function setLayout(layout) {
-        this._setLayout(layout);
-      },
-
-      /**
-       * Get the widget's layout manager.
-       *
-       * @return {qx.ui.layout.Abstract} The widget's layout manager
-       */
-      getLayout: function getLayout() {
-        return this._getLayout();
-      }
-    },
-
-    /*
-    *****************************************************************************
-       STATICS
-    *****************************************************************************
-    */
-    statics: {
-      /**
-       * Mapping of protected methods to public.
-       * This omits an additional function call when using these methods. Call
-       * this methods in the defer block of the including class.
-       *
-       * @param members {Map} The including classes members map
-       */
-      remap: function remap(members) {
-        members.getLayout = members._getLayout;
-        members.setLayout = members._setLayout;
-      }
-    }
-  });
-  qx.ui.core.MLayoutHandling.$$dbClassInfo = $$dbClassInfo;
-})();
-
-(function () {
-  var $$dbClassInfo = {
-    "dependsOn": {
-      "qx.Class": {
-        "usage": "dynamic",
-        "require": true
-      },
-      "qx.ui.core.Widget": {
-        "construct": true,
-        "require": true
-      },
-      "qx.ui.core.MChildrenHandling": {
-        "defer": "runtime",
-        "require": true
-      },
-      "qx.ui.core.MLayoutHandling": {
-        "defer": "runtime",
-        "require": true
-      },
-      "qx.event.type.Data": {}
-    }
-  };
-  qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* ************************************************************************
-  
-     qooxdoo - the new era of web development
-  
-     http://qooxdoo.org
-  
-     Copyright:
-       2004-2008 1&1 Internet AG, Germany, http://www.1und1.de
-  
-     License:
-       MIT: https://opensource.org/licenses/MIT
-       See the LICENSE file in the project's top-level directory for details.
-  
-     Authors:
-       * Sebastian Werner (wpbasti)
-       * Fabian Jakobs (fjakobs)
-  
-  ************************************************************************ */
-
-  /**
-   * The Composite is a generic container widget.
-   *
-   * It exposes all methods to set layouts and to manage child widgets
-   * as public methods. You must configure this widget with a layout manager to
-   * define the way the widget's children are positioned.
-   *
-   * *Example*
-   *
-   * Here is a little example of how to use the widget.
-   *
-   * <pre class='javascript'>
-   *   // create the composite
-   *   var composite = new qx.ui.container.Composite()
-   *
-   *   // configure it with a horizontal box layout with a spacing of '5'
-   *   composite.setLayout(new qx.ui.layout.HBox(5));
-   *
-   *   // add some children
-   *   composite.add(new qx.ui.basic.Label("Name: "));
-   *   composite.add(new qx.ui.form.TextField());
-   *
-   *   this.getRoot().add(composite);
-   * </pre>
-   *
-   * This example horizontally groups a label and text field by using a
-   * Composite configured with a horizontal box layout as a container.
-   *
-   * *External Documentation*
-   *
-   * <a href='http://qooxdoo.org/docs/#desktop/widget/composite.md' target='_blank'>
-   * Documentation of this widget in the qooxdoo manual.</a>
-   */
-  qx.Class.define("qx.ui.container.Composite", {
-    extend: qx.ui.core.Widget,
-    include: [qx.ui.core.MChildrenHandling, qx.ui.core.MLayoutHandling],
-
-    /*
-    *****************************************************************************
-       CONSTRUCTOR
-    *****************************************************************************
-    */
-
-    /**
-     * @param layout {qx.ui.layout.Abstract} A layout instance to use to
-     *   place widgets on the screen.
-     */
-    construct: function construct(layout) {
-      qx.ui.core.Widget.constructor.call(this);
-
-      if (layout != null) {
-        this._setLayout(layout);
-      }
-    },
-
-    /*
-    *****************************************************************************
-       EVENTS
-    *****************************************************************************
-    */
-    events: {
-      /**
-       * This event is fired after a child widget was added to this widget. The
-       * {@link qx.event.type.Data#getData} method of the event returns the
-       * added child.
-       */
-      addChildWidget: "qx.event.type.Data",
-
-      /**
-       * This event is fired after a child widget has been removed from this widget.
-       * The {@link qx.event.type.Data#getData} method of the event returns the
-       * removed child.
-       */
-      removeChildWidget: "qx.event.type.Data"
-    },
-
-    /*
-    *****************************************************************************
-       MEMBERS
-    *****************************************************************************
-    */
-    members: {
-      // overridden
-      _afterAddChild: function _afterAddChild(child) {
-        this.fireNonBubblingEvent("addChildWidget", qx.event.type.Data, [child]);
-      },
-      // overridden
-      _afterRemoveChild: function _afterRemoveChild(child) {
-        this.fireNonBubblingEvent("removeChildWidget", qx.event.type.Data, [child]);
-      }
-    },
-
-    /*
-    *****************************************************************************
-       DEFER
-    *****************************************************************************
-    */
-    defer: function defer(statics, members) {
-      qx.ui.core.MChildrenHandling.remap(members);
-      qx.ui.core.MLayoutHandling.remap(members);
-    }
-  });
-  qx.ui.container.Composite.$$dbClassInfo = $$dbClassInfo;
-})();
-//# sourceMappingURL=package-5.js.map?dt=1635861023376
+//# sourceMappingURL=package-5.js.map?dt=1635872824571
 qx.$$packageData['5'] = {
   "locales": {},
   "resources": {},

@@ -403,7 +403,7 @@
       isButtonPressed: function isButtonPressed(buttonId) {
         // Ensure the button has been properly initialized
         if (!this._sensorAccessAllowed.button[buttonId]) {
-          qx.core.Init.getApplication().error("Button ".concat(buttonId, " accessed without being Connected"));
+          qx.core.Init.getApplication().showError("Button ".concat(buttonId, " accessed without being Connected"));
           return false;
         }
 
@@ -450,7 +450,7 @@
               break;
           }
 
-          qx.core.Init.getApplication().error("Sensor at ".concat(sensorName, " accessed without being Connected"));
+          qx.core.Init.getApplication().showError("Sensor at ".concat(sensorName, " accessed without being Connected"));
           return false;
         }
 
@@ -463,7 +463,7 @@
       getEncoder: function getEncoder() {
         // Ensure the encoder has been properly initialized
         if (!this._sensorAccessAllowed.encoder) {
-          qx.core.Init.getApplication().error("Encoder accessed without being Connected");
+          qx.core.Init.getApplication().showError("Encoder accessed without being Connected");
           return false;
         }
 
@@ -476,7 +476,7 @@
       getVelocity: function getVelocity() {
         // Ensure the motor controller has been properly initialized
         if (!this._sensorAccessAllowed.motorController) {
-          qx.core.Init.getApplication().error("Motor Controller accessed without being Connected");
+          qx.core.Init.getApplication().showError("Motor Controller accessed without being Connected");
           return false;
         }
 
@@ -662,4 +662,4 @@
   elevatorSim.Elevator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Elevator.js.map?dt=1635778898223
+//# sourceMappingURL=Elevator.js.map?dt=1635869067669

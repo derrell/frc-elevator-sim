@@ -759,7 +759,7 @@
       workspace.addChangeListener(
         (event) =>
         {
-          let             code;
+          let             xml;
 
           switch(event.type)
           {
@@ -768,18 +768,28 @@
           case Blockly.Events.BLOCK_CHANGE :
           case Blockly.Events.BLOCK_MOVE :
             // Retrieve the workspace as XML
-            code = Blockly.Xml.workspaceToDom(workspace);
-            code = (new XMLSerializer()).serializeToString(code);
+            xml = Blockly.Xml.workspaceToDom(workspace);
+            xml = (new XMLSerializer()).serializeToString(xml);
 
             // Save it in local storage
-            window.localStorage.setItem("code_xml", code);
+            window.localStorage.setItem("code_xml", xml);
 
-            // Avoid confusion: disable the simulation whenever a change is made
+            // Avoid confusion: disable the simulation whenever a
+            // change is made
             window.parent.postMessage(
               {
                 type  : "control",
                 name  : "setEnabled",
                 value : false
+              },
+              "*");
+
+            // Send the new program to the app, for export
+            window.parent.postMessage(
+              {
+                type  : "control",
+                name  : "codeXML",
+                value : xml
               },
               "*");
 
@@ -815,10 +825,20 @@
       }
       Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), workspace);
 
+      // Send the code to the app, too, for possible export
+      window.parent.postMessage(
+        {
+          type  : "control",
+          name  : "codeXML",
+          value : xml
+        },
+        "*");
+
       window.addEventListener(
         "message",
         (event) =>
         {
+          let             xml;
           let             code;
 
           switch(event.data.type)
@@ -833,9 +853,6 @@
                 return;
               }
 
-              // code = Blockly.Xml.workspaceToDom(workspace);
-              // console.log("workspace: ", code);
-
               // Generate code from the blocks
               code = Blockly.JavaScript.workspaceToCode(workspace);
               // console.log("code: " + code);
@@ -847,14 +864,15 @@
                 },
                 "*");
               break;
-            }
-            break;
 
-          case "load" :
-            code = event.data.value;
-            Blockly.Xml.clearWorkspaceAndLoadFromXml(
-              Blockly.Xml.textToDom(code),
-              workspace);
+
+            case "load" :
+              xml = event.data.value;
+              Blockly.Xml.clearWorkspaceAndLoadFromXml(
+                Blockly.Xml.textToDom(xml),
+                workspace);
+              break;
+            }
             break;
           }
         });

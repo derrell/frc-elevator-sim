@@ -377,7 +377,7 @@ qx.Class.define("elevatorSim.Elevator",
       // Ensure the button has been properly initialized
       if (! this._sensorAccessAllowed.button[buttonId])
       {
-        qx.core.Init.getApplication().error(
+        qx.core.Init.getApplication().showError(
           `Button ${buttonId} accessed without being Connected`);
         return false;
       }
@@ -428,7 +428,7 @@ qx.Class.define("elevatorSim.Elevator",
           break;
         }
 
-        qx.core.Init.getApplication().error(
+        qx.core.Init.getApplication().showError(
           `Sensor at ${sensorName} accessed without being Connected`);
         return false;
       }
@@ -444,7 +444,7 @@ qx.Class.define("elevatorSim.Elevator",
       // Ensure the encoder has been properly initialized
       if (! this._sensorAccessAllowed.encoder)
       {
-        qx.core.Init.getApplication().error(
+        qx.core.Init.getApplication().showError(
           `Encoder accessed without being Connected`);
         return false;
       }
@@ -460,7 +460,7 @@ qx.Class.define("elevatorSim.Elevator",
       // Ensure the motor controller has been properly initialized
       if (! this._sensorAccessAllowed.motorController)
       {
-        qx.core.Init.getApplication().error(
+        qx.core.Init.getApplication().showError(
           `Motor Controller accessed without being Connected`);
         return false;
       }

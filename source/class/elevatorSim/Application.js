@@ -20,12 +20,17 @@ qx.Class.define("elevatorSim.Application",
 
   members :
   {
-    _blockly : null,
-    _enabled : null,
+    _win       : null,
+    _code      : null,
+    _blockly   : null,
+    _enabled   : null,
+    _butExport : null,
+    _butImport : null,
 
     main : function()
     {
       let             doc;
+      let             hBox;
       let             font;
       let             label;
       let             container;
@@ -56,6 +61,39 @@ qx.Class.define("elevatorSim.Application",
         });
       label.setFont(font);
       doc.add(label, { top : 30, left : 10 });
+
+      // Create the Export and Import buttons
+      hBox = new qx.ui.container.Composite(new qx.ui.layout.HBox(10));
+      doc.add(hBox, { top : 26, right : 450 });
+
+      this._butExport = new qx.ui.form.Button("Export");
+      hBox.add(this._butExport);
+      this._butExport.addListener(
+        "execute",
+        () =>
+        {
+          const copyToClipboard =
+            str =>
+              {
+                const el = document.createElement('textarea');
+                el.value = str;
+                el.setAttribute('readonly', '');
+                el.style.position = 'absolute';
+                el.style.left = '-9999px';
+                document.body.appendChild(el);
+                el.select();
+                document.execCommand('copy');
+                document.body.removeChild(el);
+              };
+          copyToClipboard(this._code);
+          window.alert(
+            "The code is now in your clipboard. " +
+              "Save it someplace, and later you can Import it.");
+        });
+
+      this._butImport = new qx.ui.form.Button("Import");
+      hBox.add(this._butImport);
+      this._butImport.addListener("execute", this._import, this);
 
       // Create the Enabled checkbox
       this._enabled = new qx.ui.form.CheckBox("Enabled");
@@ -115,6 +153,10 @@ qx.Class.define("elevatorSim.Application",
             case "setEnabled" :
               this._enabled.setValue(event.data.value);
               break;
+
+            case "codeXML" :
+              this._code = event.data.value;
+              break;
             }
             break;
           }
@@ -130,6 +172,91 @@ qx.Class.define("elevatorSim.Application",
 
       // Initially hide it
       elevatorCanvas.hide();
+
+      // Initially there is no code
+      this._code = "";
+    },
+
+    /*
+     * Show a window in which the user can paste code to be imported. This
+     * code, following confirmation, will replace the existing block program.
+     */
+    _import : function()
+    {
+      let             hBox;
+      let             label;
+      let             textArea;
+      let             butImport;
+      let             butCancel;
+
+      if (! this._win)
+      {
+        this._win = new qx.ui.window.Window("Import");
+        this._win.setPadding(10);
+        this._win.setLayout(new qx.ui.layout.VBox(10));
+      }
+
+      // Clean up from last time (if there was a last time)
+      this._win.removeAll();
+
+      // Create the form
+      label = new qx.ui.basic.Label(
+        "Paste the previously exported code to be imported here:");
+      this._win.add(label);
+
+      textArea = new qx.ui.form.TextArea("");
+      textArea.set(
+        {
+          width  : 400,
+          height : 200
+        });
+      this._win.add(textArea);
+
+      hBox = new qx.ui.container.Composite(new qx.ui.layout.HBox(10));
+      this._win.add(hBox);
+
+      // We'll center the buttons. Add the left spacer
+      hBox.add(new qx.ui.core.Spacer(), { flex : 1 });
+
+      // Add the Import button
+      butImport = new qx.ui.form.Button("Import");
+      hBox.add(butImport);
+      butImport.addListener(
+        "execute",
+        () =>
+        {
+          if (window.confirm(
+              "Are you sure you want to import this code, " +
+              "which will overwrite the existing block program?"))
+          {
+            this._blockly.getWindow().postMessage(
+              {
+                type  : "control",
+                name  : "load",
+                value : textArea.getValue()
+              },
+              "*");
+          }
+
+          this._win.close();
+        });
+
+      // Add the Cancel button
+      butCancel = new qx.ui.form.Button("Cancel");
+      hBox.add(butCancel);
+      butCancel.addListener(
+        "execute",
+        () =>
+        {
+          this._win.close();
+        });
+
+      // We'll center the buttons. Add the right spacer
+      hBox.add(new qx.ui.core.Spacer(), { flex : 1 });
+
+
+      this._win.center();
+      this._win.open();
     },
 
     /**
@@ -140,7 +267,7 @@ qx.Class.define("elevatorSim.Application",
      *
      * @ignore alert
      */
-    error : function(message)
+    showError : function(message)
     {
       // Stop the simulator
       this._enabled.setValue(false);

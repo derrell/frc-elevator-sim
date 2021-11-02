@@ -13152,6 +13152,8 @@
     "qx.ui.basic.Atom",
     "qx.ui.embed.AbstractIframe",
     "qx.ui.root.Abstract",
-    "qx.ui.basic.Image"
+    "qx.ui.basic.Image",
+    "qx.ui.window.Window",
+    "qx.ui.form.AbstractField"
   ]
 }
