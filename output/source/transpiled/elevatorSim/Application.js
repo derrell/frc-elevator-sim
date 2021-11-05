@@ -10,18 +10,20 @@
       },
       "qx.log.appender.Native": {},
       "qx.log.appender.Console": {},
+      "qx.log.Logger": {},
+      "qx.bom.Stylesheet": {},
       "qx.ui.basic.Label": {},
       "qx.bom.Font": {},
       "qx.ui.container.Composite": {},
       "qx.ui.layout.HBox": {},
       "qx.ui.form.Button": {},
+      "qx.ui.core.Spacer": {},
       "qx.ui.form.CheckBox": {},
       "elevatorSim.Elevator": {},
       "qx.ui.embed.Iframe": {},
       "qx.ui.window.Window": {},
       "qx.ui.layout.VBox": {},
-      "qx.ui.form.TextArea": {},
-      "qx.ui.core.Spacer": {}
+      "qx.ui.form.TextArea": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -50,6 +52,7 @@
       _enabled: null,
       _butExport: null,
       _butImport: null,
+      _butShowLog: null,
       main: function main() {
         var _this = this;
 
@@ -57,16 +60,34 @@
         var hBox;
         var font;
         var label;
+        var sheet;
+        var style;
+        var styles;
+        var appender;
         var container;
         var scriptLoader;
         var elevatorCanvas;
-        elevatorSim.Application.prototype.main.base.call(this); // Enable logging in debug variant
+        elevatorSim.Application.prototype.main.base.call(this);
+        appender = qx.log.appender.Native;
+        appender = qx.log.appender.Console; // this one must be last; used below
 
-        {
-          var appender;
-          appender = qx.log.appender.Native;
-          appender = qx.log.appender.Console;
-        }
+        qx.log.Logger.setLevel("info"); // Show and then hide the console, so its styles get created
+
+        appender.show();
+        appender.toggle(); // We need to fix up where the Console is displayed. Since the
+        // Console code doesn't store the style element it creates,
+        // we'll need to locate it.
+
+        styles = document.getElementsByTagName("style"); // The style we care about was just added, so is the last one in the list
+
+        style = styles[styles.length - 1]; // Get its sheet object
+
+        sheet = style.sheet; // Delete the rule that places the console
+
+        qx.bom.Stylesheet.removeRule(sheet, ".qxconsole"); // Recreate that rule
+
+        qx.bom.Stylesheet.addRule(sheet, ".qxconsole", "z-index:10000;width:600px;height:300px;bottom:0px;left:0px;position:absolute;border-right:1px solid black;color:black;border-bottom:1px solid black;color:black;font-family:Consolas,Monaco,monospace;font-size:11px;line-height:1.2;"); // Get the top-level document root where we'll place all widgets
+
         doc = this.getRoot(); // Add the title
 
         label = new qx.ui.basic.Label("Elevator Subsystem Simulator");
@@ -80,7 +101,7 @@
         doc.add(label, {
           top: 30,
           left: 10
-        }); // Create the Export and Import buttons
+        }); // Create the buttons
 
         hBox = new qx.ui.container.Composite(new qx.ui.layout.HBox(10));
         doc.add(hBox, {
@@ -110,7 +131,16 @@
         this._butImport = new qx.ui.form.Button("Import");
         hBox.add(this._butImport);
 
-        this._butImport.addListener("execute", this._import, this); // Create the Enabled checkbox
+        this._butImport.addListener("execute", this._import, this); // Add a spacer before the log button
+
+
+        hBox.add(new qx.ui.core.Spacer(40, 1));
+        this._butShowLog = new qx.ui.form.Button("Log");
+        hBox.add(this._butShowLog);
+
+        this._butShowLog.addListener("execute", function () {
+          appender.toggle();
+        }); // Create the Enabled checkbox
 
 
         this._enabled = new qx.ui.form.CheckBox("Enabled");
@@ -162,6 +192,10 @@
 
                 case "codeXML":
                   _this._code = event.data.value;
+                  break;
+
+                case "log":
+                  qx.log.Logger.info(event.data.value);
                   break;
               }
 
@@ -277,4 +311,4 @@
   elevatorSim.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1635872823751
+//# sourceMappingURL=Application.js.map?dt=1636140125954

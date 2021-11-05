@@ -890,7 +890,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       _asyncChecks: {},
 
       /** Internal cache for all checks. */
-      __cache__P_13_0: {},
+      __cache__P_17_0: {},
 
       /**
        * Internal map for environment keys to check methods.
@@ -954,8 +954,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       get: function get(key) {
         // check the cache
-        if (this.__cache__P_13_0[key] != undefined) {
-          return this.__cache__P_13_0[key];
+        if (this.__cache__P_17_0[key] != undefined) {
+          return this.__cache__P_17_0[key];
         } // search for a matching check
 
 
@@ -964,7 +964,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         if (check) {
           // execute the check and write the result in the cache
           var value = check();
-          this.__cache__P_13_0[key] = value;
+          this.__cache__P_17_0[key] = value;
           return value;
         } // try class lookup
 
@@ -976,7 +976,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           var method = classAndMethod[1];
           var value = clazz[method](); // call the check method
 
-          this.__cache__P_13_0[key] = value;
+          this.__cache__P_17_0[key] = value;
           return value;
         } // debug flag
 
@@ -1030,10 +1030,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         // check the cache
         var env = this;
 
-        if (this.__cache__P_13_0[key] != undefined) {
+        if (this.__cache__P_17_0[key] != undefined) {
           // force async behavior
           window.setTimeout(function () {
-            callback.call(self, env.__cache__P_13_0[key]);
+            callback.call(self, env.__cache__P_17_0[key]);
           }, 0);
           return;
         }
@@ -1042,7 +1042,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         if (check) {
           check(function (result) {
-            env.__cache__P_13_0[key] = result;
+            env.__cache__P_17_0[key] = result;
             callback.call(self, result);
           });
           return;
@@ -1056,7 +1056,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           var method = classAndMethod[1];
           clazz[method](function (result) {
             // call the check method
-            env.__cache__P_13_0[key] = result;
+            env.__cache__P_17_0[key] = result;
             callback.call(self, result);
           });
           return;
@@ -1079,7 +1079,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   check of the key.
        */
       select: function select(key, values) {
-        return this.__pickFromValues__P_13_1(this.get(key), values);
+        return this.__pickFromValues__P_17_1(this.get(key), values);
       },
 
       /**
@@ -1095,7 +1095,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       selectAsync: function selectAsync(key, values, self) {
         this.getAsync(key, function (result) {
-          var value = this.__pickFromValues__P_13_1(key, values);
+          var value = this.__pickFromValues__P_17_1(key, values);
 
           value.call(self, result);
         }, this);
@@ -1111,7 +1111,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param values {Map} A map containing some keys.
        * @return {var} The value stored as values[key] usually.
        */
-      __pickFromValues__P_13_1: function __pickFromValues__P_13_1(key, values) {
+      __pickFromValues__P_17_1: function __pickFromValues__P_17_1(key, values) {
         var value = values[key];
 
         if (values.hasOwnProperty(key)) {
@@ -1166,7 +1166,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param key {String} The key of the check.
        */
       invalidateCacheKey: function invalidateCacheKey(key) {
-        delete this.__cache__P_13_0[key];
+        delete this.__cache__P_17_0[key];
       },
 
       /**
@@ -1189,7 +1189,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
             this._checks[key] = check; // otherwise, create a check function and use that
           } else {
-            this._checks[key] = this.__createCheck__P_13_2(check);
+            this._checks[key] = this.__createCheck__P_17_2(check);
           }
         }
       },
@@ -1247,12 +1247,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * Import checks from global qx.$$environment into the Environment class.
        */
-      __importFromGenerator__P_13_3: function __importFromGenerator__P_13_3() {
+      __importFromGenerator__P_17_3: function __importFromGenerator__P_17_3() {
         // import the environment map
         if (qx && qx.$$environment) {
           for (var key in qx.$$environment) {
             var value = qx.$$environment[key];
-            this._checks[key] = this.__createCheck__P_13_2(value);
+            this._checks[key] = this.__createCheck__P_17_2(value);
           }
         }
       },
@@ -1261,7 +1261,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Checks the URL for environment settings and imports these into the
        * Environment class.
        */
-      __importFromUrl__P_13_4: function __importFromUrl__P_13_4() {
+      __importFromUrl__P_17_4: function __importFromUrl__P_17_4() {
         if (window.document && window.document.location) {
           var urlChecks = window.document.location.search.slice(1).split("&");
 
@@ -1283,7 +1283,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               value = parseFloat(value);
             }
 
-            this._checks[key] = this.__createCheck__P_13_2(value);
+            this._checks[key] = this.__createCheck__P_17_2(value);
           }
         }
       },
@@ -1294,7 +1294,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param value {var} The value which should be returned.
        * @return {Function} A function which could be used by a test.
        */
-      __createCheck__P_13_2: function __createCheck__P_13_2(value) {
+      __createCheck__P_17_2: function __createCheck__P_17_2(value) {
         return qx.Bootstrap.bind(function (value) {
           return value;
         }, null, value);
@@ -1305,15 +1305,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       statics._initDefaultQxValues(); // load the checks from the generator
 
 
-      statics.__importFromGenerator__P_13_3(); // load the checks from the url
+      statics.__importFromGenerator__P_17_3(); // load the checks from the url
 
 
       if (statics.get("qx.allowUrlSettings") === true) {
-        statics.__importFromUrl__P_13_4();
+        statics.__importFromUrl__P_17_4();
       }
     }
   });
   qx.core.Environment.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Environment.js.map?dt=1635778899345
+//# sourceMappingURL=Environment.js.map?dt=1636124290649

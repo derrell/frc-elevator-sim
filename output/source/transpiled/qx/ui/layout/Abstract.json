@@ -730,9 +730,9 @@
   },
   "descendants": [
     "qx.ui.layout.HBox",
+    "qx.ui.layout.VBox",
     "qx.ui.layout.Canvas",
     "qx.ui.layout.Grid",
-    "qx.ui.layout.Atom",
-    "qx.ui.layout.VBox"
+    "qx.ui.layout.Atom"
   ]
 }

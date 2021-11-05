@@ -417,7 +417,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       },
 
       /** Private list of classes which have a defer method that needs to be executed */
-      __pendingDefers__P_11_0: [],
+      __pendingDefers__P_15_0: [],
 
       /**
        * Adds a callback for a class so that it's defer method can be called, either after all classes
@@ -428,7 +428,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       addPendingDefer: function addPendingDefer(clazz, cb) {
         if (qx.$$loader && qx.$$loader.delayDefer) {
-          this.__pendingDefers__P_11_0.push(clazz);
+          this.__pendingDefers__P_15_0.push(clazz);
 
           clazz.$$pendingDefer = cb;
         } else {
@@ -521,8 +521,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         };
 
         if (!dbClassInfo) {
-          var pendingDefers = this.__pendingDefers__P_11_0;
-          this.__pendingDefers__P_11_0 = [];
+          var pendingDefers = this.__pendingDefers__P_15_0;
+          this.__pendingDefers__P_15_0 = [];
           pendingDefers.forEach(execute);
           return;
         }
@@ -590,7 +590,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @internal
        * @type {String[]}
        */
-      __shadowedKeys__P_11_1: ["isPrototypeOf", "hasOwnProperty", "toLocaleString", "toString", "valueOf", "propertyIsEnumerable", "constructor"],
+      __shadowedKeys__P_15_1: ["isPrototypeOf", "hasOwnProperty", "toLocaleString", "toString", "valueOf", "propertyIsEnumerable", "constructor"],
 
       /**
        * Get the keys of a map as array as returned by a "for ... in" statement.
@@ -619,7 +619,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           // This is why this checks are needed.
 
 
-          var shadowedKeys = qx.Bootstrap.__shadowedKeys__P_11_1;
+          var shadowedKeys = qx.Bootstrap.__shadowedKeys__P_15_1;
 
           for (var i = 0, a = shadowedKeys, l = a.length; i < l; i++) {
             if (hasOwnProperty.call(map, a[i])) {
@@ -658,7 +658,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @internal
        * @type {Map}
        */
-      __classToTypeMap__P_11_2: {
+      __classToTypeMap__P_15_2: {
         "[object String]": "String",
         "[object Array]": "Array",
         "[object Object]": "Object",
@@ -763,7 +763,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
 
         var classString = Object.prototype.toString.call(value);
-        return qx.Bootstrap.__classToTypeMap__P_11_2[classString] || classString.slice(8, -1);
+        return qx.Bootstrap.__classToTypeMap__P_15_2[classString] || classString.slice(8, -1);
       },
 
       /**
@@ -894,4 +894,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.Bootstrap.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Bootstrap.js.map?dt=1635778899087
+//# sourceMappingURL=Bootstrap.js.map?dt=1636124290416

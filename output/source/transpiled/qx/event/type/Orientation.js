@@ -57,8 +57,8 @@
     *****************************************************************************
     */
     members: {
-      __orientation__P_170_0: null,
-      __mode__P_170_1: null,
+      __orientation__P_175_0: null,
+      __mode__P_175_1: null,
 
       /**
        * Initialize the fields of the event. The event must be initialized before
@@ -70,8 +70,8 @@
        */
       init: function init(orientation, mode) {
         qx.event.type.Orientation.prototype.init.base.call(this, false, false);
-        this.__orientation__P_170_0 = orientation;
-        this.__mode__P_170_1 = mode;
+        this.__orientation__P_175_0 = orientation;
+        this.__mode__P_175_1 = mode;
         return this;
       },
 
@@ -87,8 +87,8 @@
        */
       clone: function clone(embryo) {
         var clone = qx.event.type.Orientation.prototype.clone.base.call(this, embryo);
-        clone.__orientation__P_170_0 = this.__orientation__P_170_0;
-        clone.__mode__P_170_1 = this.__mode__P_170_1;
+        clone.__orientation__P_175_0 = this.__orientation__P_175_0;
+        clone.__mode__P_175_1 = this.__mode__P_175_1;
         return clone;
       },
 
@@ -105,7 +105,7 @@
        * @return {Integer} The current orientation in degree
        */
       getOrientation: function getOrientation() {
-        return this.__orientation__P_170_0;
+        return this.__orientation__P_175_0;
       },
 
       /**
@@ -115,7 +115,7 @@
        *     is currently in landscape mode.
        */
       isLandscape: function isLandscape() {
-        return this.__mode__P_170_1 == "landscape";
+        return this.__mode__P_175_1 == "landscape";
       },
 
       /**
@@ -125,11 +125,11 @@
        *     is currently in portrait mode.
        */
       isPortrait: function isPortrait() {
-        return this.__mode__P_170_1 == "portrait";
+        return this.__mode__P_175_1 == "portrait";
       }
     }
   });
   qx.event.type.Orientation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Orientation.js.map?dt=1635778911415
+//# sourceMappingURL=Orientation.js.map?dt=1636124300516

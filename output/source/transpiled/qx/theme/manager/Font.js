@@ -120,7 +120,7 @@
         var theme = this.getTheme();
 
         if (theme !== null && theme.fonts[value]) {
-          var font = this.__getFontClass__P_29_0(theme.fonts[value]);
+          var font = this.__getFontClass__P_33_0(theme.fonts[value]);
 
           var fo = new font(); // Inject information about custom charcter set tests before we apply the
           // complete blob in one.
@@ -134,12 +134,12 @@
 
         {
           if (theme) {
-            if (!this.__warnedMissingFonts__P_29_1) {
-              this.__warnedMissingFonts__P_29_1 = {};
+            if (!this.__warnedMissingFonts__P_33_1) {
+              this.__warnedMissingFonts__P_33_1 = {};
             }
 
-            if (!this.__warnedMissingFonts__P_29_1[value]) {
-              this.__warnedMissingFonts__P_29_1[value] = true;
+            if (!this.__warnedMissingFonts__P_33_1[value]) {
+              this.__warnedMissingFonts__P_33_1[value] = true;
               this.debug("Cannot resolve a font named ".concat(value, " - available fonts are ").concat(Object.keys(theme.fonts).join(", ")));
             }
           }
@@ -167,7 +167,7 @@
         var theme = this.getTheme();
 
         if (theme !== null && value && theme.fonts[value]) {
-          var font = this.__getFontClass__P_29_0(theme.fonts[value]);
+          var font = this.__getFontClass__P_33_0(theme.fonts[value]);
 
           var fo = new font(); // Inject information about custom charcter set tests before we apply the
           // complete blob in one.
@@ -189,7 +189,7 @@
        * @param fonts {Map} all fonts of the theme
        * @param fontName {String} font name to include
        */
-      __resolveInclude__P_29_2: function __resolveInclude__P_29_2(fonts, fontName) {
+      __resolveInclude__P_33_2: function __resolveInclude__P_33_2(fonts, fontName) {
         if (fonts[fontName].include) {
           // get font infos out of the font theme
           var fontToInclude = fonts[fonts[fontName].include]; // delete 'include' key - not part of the merge
@@ -198,7 +198,7 @@
           delete fonts[fontName].include;
           fonts[fontName] = qx.lang.Object.mergeWith(fonts[fontName], fontToInclude, false);
 
-          this.__resolveInclude__P_29_2(fonts, fontName);
+          this.__resolveInclude__P_33_2(fonts, fontName);
         }
       },
       // apply method
@@ -217,10 +217,10 @@
 
           for (var key in source) {
             if (source[key].include && source[source[key].include]) {
-              this.__resolveInclude__P_29_2(source, key);
+              this.__resolveInclude__P_33_2(source, key);
             }
 
-            var font = this.__getFontClass__P_29_0(source[key]);
+            var font = this.__getFontClass__P_33_0(source[key]);
 
             var fo = new font(); // Inject information about custom charcter set tests before we apply the
             // complete blob in one.
@@ -243,7 +243,7 @@
        * @param config {Map} The font's configuration map
        * @return {Class}
        */
-      __getFontClass__P_29_0: function __getFontClass__P_29_0(config) {
+      __getFontClass__P_33_0: function __getFontClass__P_33_0(config) {
         if (config.sources) {
           return qx.bom.webfonts.WebFont;
         }
@@ -264,4 +264,4 @@
   qx.theme.manager.Font.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Font.js.map?dt=1635778900769
+//# sourceMappingURL=Font.js.map?dt=1636124291817

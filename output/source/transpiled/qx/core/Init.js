@@ -79,7 +79,7 @@
        *
        * @param e {qx.event.type.Native} Incoming beforeunload event.
        */
-      __close__P_14_0: function __close__P_14_0(e) {
+      __close__P_18_0: function __close__P_18_0(e) {
         var app = this.getApplication();
 
         if (app) {
@@ -92,7 +92,7 @@
        * created application instance.
        *
        */
-      __shutdown__P_14_1: function __shutdown__P_14_1() {
+      __shutdown__P_18_1: function __shutdown__P_18_1() {
         var app = this.getApplication();
 
         if (app) {
@@ -108,11 +108,11 @@
     */
     defer: function defer(statics) {
       qx.event.Registration.addListener(window, "ready", statics.ready, statics);
-      qx.event.Registration.addListener(window, "shutdown", statics.__shutdown__P_14_1, statics);
-      qx.event.Registration.addListener(window, "beforeunload", statics.__close__P_14_0, statics);
+      qx.event.Registration.addListener(window, "shutdown", statics.__shutdown__P_18_1, statics);
+      qx.event.Registration.addListener(window, "beforeunload", statics.__close__P_18_0, statics);
     }
   });
   qx.core.Init.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Init.js.map?dt=1635778899473
+//# sourceMappingURL=Init.js.map?dt=1636124290762

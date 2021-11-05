@@ -121,7 +121,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __Property__P_36_0: true ? qx.core.Property : null,
+      __Property__P_40_0: true ? qx.core.Property : null,
 
       /*
       ---------------------------------------------------------------------------
@@ -247,8 +247,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var clazz = this.constructor;
         var clone = new clazz();
         var props = qx.Class.getProperties(clazz);
-        var user = this.__Property__P_36_0.$$store.user;
-        var setter = this.__Property__P_36_0.$$method.set;
+        var user = this.__Property__P_40_0.$$store.user;
+        var setter = this.__Property__P_40_0.$$method.set;
         var name; // Iterate through properties
 
         for (var i = 0, l = props.length; i < l; i++) {
@@ -270,7 +270,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       */
 
       /** @type {Map} stored user data */
-      __userData__P_36_1: null,
+      __userData__P_40_1: null,
 
       /**
        * Store user defined data inside the object.
@@ -279,11 +279,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param value {Object} the value of the user data
        */
       setUserData: function setUserData(key, value) {
-        if (!this.__userData__P_36_1) {
-          this.__userData__P_36_1 = {};
+        if (!this.__userData__P_40_1) {
+          this.__userData__P_40_1 = {};
         }
 
-        this.__userData__P_36_1[key] = value;
+        this.__userData__P_40_1[key] = value;
       },
 
       /**
@@ -293,11 +293,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Object} the user data
        */
       getUserData: function getUserData(key) {
-        if (!this.__userData__P_36_1) {
+        if (!this.__userData__P_40_1) {
           return null;
         }
 
-        var data = this.__userData__P_36_1[key];
+        var data = this.__userData__P_40_1[key];
         return data === undefined ? null : data;
       },
 
@@ -305,7 +305,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Clears all user defined data from the object.
        */
       resetUserData: function resetUserData() {
-        this.__userData__P_36_1 = null;
+        this.__userData__P_40_1 = null;
       },
 
       /*
@@ -486,13 +486,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
       qx.core.ObjectRegistry.unregister(this); // Cleanup user data
 
-      this.__userData__P_36_1 = null; // only of properties are available
+      this.__userData__P_40_1 = null; // only of properties are available
 
       {
         // Cleanup properties
         var clazz = this.constructor;
         var properties;
-        var store = this.__Property__P_36_0.$$store;
+        var store = this.__Property__P_40_0.$$store;
         var storeUser = store.user;
         var storeTheme = store.theme;
         var storeInherit = store.inherit;
@@ -518,4 +518,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.core.Object.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Object.js.map?dt=1635778901022
+//# sourceMappingURL=Object.js.map?dt=1636124292035

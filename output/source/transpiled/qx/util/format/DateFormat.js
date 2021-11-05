@@ -110,20 +110,20 @@
      */
     construct: function construct(format, locale) {
       qx.core.Object.constructor.call(this);
-      this.__initialLocale__P_63_0 = this.__locale__P_63_1 = locale;
+      this.__initialLocale__P_79_0 = this.__locale__P_79_1 = locale;
 
       if (format != null) {
-        this.__format__P_63_2 = format.toString();
+        this.__format__P_79_2 = format.toString();
 
-        if (this.__format__P_63_2 in qx.util.format.DateFormat.ISO_MASKS) {
-          if (this.__format__P_63_2 === 'isoUtcDateTime') {
-            this.__UTC__P_63_3 = true;
+        if (this.__format__P_79_2 in qx.util.format.DateFormat.ISO_MASKS) {
+          if (this.__format__P_79_2 === 'isoUtcDateTime') {
+            this.__UTC__P_79_3 = true;
           }
 
-          this.__format__P_63_2 = qx.util.format.DateFormat.ISO_MASKS[this.__format__P_63_2];
+          this.__format__P_79_2 = qx.util.format.DateFormat.ISO_MASKS[this.__format__P_79_2];
         }
       } else {
-        this.__format__P_63_2 = qx.locale.Date.getDateFormat("long", this.getLocale()) + " " + qx.locale.Date.getDateTimeFormat("HHmmss", "HH:mm:ss", this.getLocale());
+        this.__format__P_79_2 = qx.locale.Date.getDateFormat("long", this.getLocale()) + " " + qx.locale.Date.getDateTimeFormat("HHmmss", "HH:mm:ss", this.getLocale());
       }
     },
 
@@ -147,7 +147,7 @@
         var DateFormat = qx.util.format.DateFormat;
         var format = qx.locale.Date.getDateFormat("short") + ""; // Memoizing the instance, so caller doesn't have to dispose it.
 
-        if (DateFormat._dateInstance == null || DateFormat._dateInstance.__format__P_63_2 != format) {
+        if (DateFormat._dateInstance == null || DateFormat._dateInstance.__format__P_79_2 != format) {
           DateFormat._dateInstance = new DateFormat(format);
         }
 
@@ -168,7 +168,7 @@
         var DateFormat = qx.util.format.DateFormat;
         var format = qx.locale.Date.getDateFormat("long") + " " + qx.locale.Date.getDateTimeFormat("HHmmss", "HH:mm:ss"); // Memoizing the instance, so caller doesn't have to dispose it.
 
-        if (DateFormat._dateTimeInstance == null || DateFormat._dateTimeInstance.__format__P_63_2 != format) {
+        if (DateFormat._dateTimeInstance == null || DateFormat._dateTimeInstance.__format__P_79_2 != format) {
           DateFormat._dateTimeInstance = new DateFormat(format);
         }
 
@@ -204,13 +204,13 @@
     *****************************************************************************
     */
     members: {
-      __locale__P_63_1: null,
-      __initialLocale__P_63_0: null,
-      __format__P_63_2: null,
-      __parseFeed__P_63_4: null,
-      __parseRules__P_63_5: null,
-      __formatTree__P_63_6: null,
-      __UTC__P_63_3: null,
+      __locale__P_79_1: null,
+      __initialLocale__P_79_0: null,
+      __format__P_79_2: null,
+      __parseFeed__P_79_4: null,
+      __parseRules__P_79_5: null,
+      __formatTree__P_79_6: null,
+      __UTC__P_79_3: null,
 
       /**
        * Fills a number with leading zeros ("25" -> "0025").
@@ -219,7 +219,7 @@
        * @param minSize {Integer} the minimum size the returned string should have.
        * @return {String} the filled number as string.
        */
-      __fillNumber__P_63_7: function __fillNumber__P_63_7(number, minSize) {
+      __fillNumber__P_79_7: function __fillNumber__P_79_7(number, minSize) {
         var str = "" + (number < 0 ? -1 * number : number);
 
         while (str.length < minSize) {
@@ -235,7 +235,7 @@
        * @param date {Date} the date.
        * @return {Integer} the day in year.
        */
-      __getDayInYear__P_63_8: function __getDayInYear__P_63_8(date) {
+      __getDayInYear__P_79_8: function __getDayInYear__P_79_8(date) {
         var helpDate = new Date(date.getTime());
         var day = helpDate.getDate();
 
@@ -254,7 +254,7 @@
        * @param date {Date} the date to get the thursday of.
        * @return {Date} the thursday in the same week as the date.
        */
-      __thursdayOfSameWeek__P_63_9: function __thursdayOfSameWeek__P_63_9(date) {
+      __thursdayOfSameWeek__P_79_9: function __thursdayOfSameWeek__P_79_9(date) {
         return new Date(date.getTime() + (3 - (date.getDay() + 6) % 7) * 86400000);
       },
 
@@ -264,16 +264,16 @@
        * @param date {Date} the date to get the week in year of.
        * @return {Integer} the week in year.
        */
-      __getWeekInYear__P_63_10: function __getWeekInYear__P_63_10(date) {
+      __getWeekInYear__P_79_10: function __getWeekInYear__P_79_10(date) {
         // The following algorithm comes from http://www.salesianer.de/util/kalwoch.html
         // Get the thursday of the week the date belongs to
-        var thursdayDate = this.__thursdayOfSameWeek__P_63_9(date); // Get the year the thursday (and therefore the week) belongs to
+        var thursdayDate = this.__thursdayOfSameWeek__P_79_9(date); // Get the year the thursday (and therefore the week) belongs to
 
 
         var weekYear = thursdayDate.getFullYear(); // Get the thursday of the week january 4th belongs to
         // (which defines week 1 of a year)
 
-        var thursdayWeek1 = this.__thursdayOfSameWeek__P_63_9(new Date(weekYear, 0, 4)); // Calculate the calendar week
+        var thursdayWeek1 = this.__thursdayOfSameWeek__P_79_9(new Date(weekYear, 0, 4)); // Calculate the calendar week
 
 
         return Math.floor(1.5 + (thursdayDate.getTime() - thursdayWeek1.getTime()) / 86400000 / 7);
@@ -285,10 +285,10 @@
        * @param date {Date} the date to get the week in year of.
        * @return {Integer} the week in month.
        */
-      __getWeekInMonth__P_63_11: function __getWeekInMonth__P_63_11(date) {
-        var thursdayDate = this.__thursdayOfSameWeek__P_63_9(date);
+      __getWeekInMonth__P_79_11: function __getWeekInMonth__P_79_11(date) {
+        var thursdayDate = this.__thursdayOfSameWeek__P_79_9(date);
 
-        var thursdayWeek1 = this.__thursdayOfSameWeek__P_63_9(new Date(date.getFullYear(), date.getMonth(), 4));
+        var thursdayWeek1 = this.__thursdayOfSameWeek__P_79_9(new Date(date.getFullYear(), date.getMonth(), 4));
 
         return Math.floor(1.5 + (thursdayDate.getTime() - thursdayWeek1.getTime()) / 86400000 / 7);
       },
@@ -302,8 +302,8 @@
        * @param date {Date} the date to get the week in year of.
        * @return {Integer} the week year.
        */
-      __getWeekYear__P_63_12: function __getWeekYear__P_63_12(date) {
-        var thursdayDate = this.__thursdayOfSameWeek__P_63_9(date);
+      __getWeekYear__P_79_12: function __getWeekYear__P_79_12(date) {
+        var thursdayDate = this.__thursdayOfSameWeek__P_79_9(date);
 
         return thursdayDate.getFullYear();
       },
@@ -314,7 +314,7 @@
        * @param year {Integer} the year to check.
        * @return {Boolean} true if it is a leap year.
        */
-      __isLeapYear__P_63_13: function __isLeapYear__P_63_13(year) {
+      __isLeapYear__P_79_13: function __isLeapYear__P_79_13(year) {
         var februaryDate = new Date(year, 2, 1);
         februaryDate.setDate(-1);
         return februaryDate.getDate() + 1 === 29;
@@ -327,7 +327,7 @@
        * @param year {Integer} the year to check.
        * @return {Object} a json object {month: M, day: D}.
        */
-      __getMonthAndDayFromDayOfYear__P_63_14: function __getMonthAndDayFromDayOfYear__P_63_14(dayOfYear, year) {
+      __getMonthAndDayFromDayOfYear__P_79_14: function __getMonthAndDayFromDayOfYear__P_79_14(dayOfYear, year) {
         var month = 0;
         var day = 0; // if we don't know the year, we take a non-leap year'
 
@@ -366,14 +366,14 @@
        * @param dayOfMonth {Integer} the day in month
        * @return {Integer} the year.
        */
-      __getYearFromWeekYearAndMonth__P_63_15: function __getYearFromWeekYearAndMonth__P_63_15(weekYear, month, dayOfMonth) {
+      __getYearFromWeekYearAndMonth__P_79_15: function __getYearFromWeekYearAndMonth__P_79_15(weekYear, month, dayOfMonth) {
         var year;
 
         switch (month) {
           case 11:
             year = weekYear - 1;
 
-            if (weekYear != this.__getWeekYear__P_63_12(new Date(year, month, dayOfMonth))) {
+            if (weekYear != this.__getWeekYear__P_79_12(new Date(year, month, dayOfMonth))) {
               year = weekYear;
             }
 
@@ -382,7 +382,7 @@
           case 0:
             year = weekYear + 1;
 
-            if (weekYear != this.__getWeekYear__P_63_12(new Date(year, month, dayOfMonth))) {
+            if (weekYear != this.__getWeekYear__P_79_12(new Date(year, month, dayOfMonth))) {
               year = weekYear;
             }
 
@@ -405,7 +405,7 @@
           throw new Error("Cannot set locale to " + value + " - please provide a string");
         }
 
-        this.__locale__P_63_1 = value === null ? this.__initialLocale__P_63_0 : value;
+        this.__locale__P_79_1 = value === null ? this.__initialLocale__P_79_0 : value;
       },
 
       /**
@@ -419,7 +419,7 @@
        * Returns the locale
        */
       getLocale: function getLocale() {
-        var locale = this.__locale__P_63_1;
+        var locale = this.__locale__P_79_1;
 
         if (locale === undefined) {
           locale = qx.locale.Manager.getInstance().getLocale();
@@ -434,7 +434,7 @@
        * @return {String}
        */
       getFormatString: function getFormatString() {
-        return this.__format__P_63_2;
+        return this.__format__P_79_2;
       },
 
       /**
@@ -456,7 +456,7 @@
           return null;
         }
 
-        if (this.__UTC__P_63_3) {
+        if (this.__UTC__P_79_3) {
           date = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds(), date.getUTCMilliseconds());
         }
 
@@ -474,12 +474,12 @@
         var timezoneHours = Math.floor(Math.abs(timezoneOffset) / 60);
         var timezoneMinutes = Math.abs(timezoneOffset) % 60; // Create the output
 
-        this.__initFormatTree__P_63_16();
+        this.__initFormatTree__P_79_16();
 
         var output = "";
 
-        for (var i = 0; i < this.__formatTree__P_63_6.length; i++) {
-          var currAtom = this.__formatTree__P_63_6[i];
+        for (var i = 0; i < this.__formatTree__P_79_6.length; i++) {
+          var currAtom = this.__formatTree__P_79_6[i];
 
           if (currAtom.type == "literal") {
             output += currAtom.text;
@@ -494,7 +494,7 @@
               case 'y':
                 // Year
                 if (wildcardSize == 2) {
-                  replacement = this.__fillNumber__P_63_7(fullYear % 100, 2);
+                  replacement = this.__fillNumber__P_79_7(fullYear % 100, 2);
                 } else {
                   var year = Math.abs(fullYear);
                   replacement = year + "";
@@ -514,7 +514,7 @@
 
               case 'Y':
                 // Year
-                replacement = this.__getWeekYear__P_63_12(date) + "";
+                replacement = this.__getWeekYear__P_79_12(date) + "";
                 var year = replacement.replace('-', '');
 
                 if (wildcardSize > replacement.length) {
@@ -541,7 +541,7 @@
               case 'Q':
                 // quarter
                 if (wildcardSize == 1 || wildcardSize == 2) {
-                  replacement = this.__fillNumber__P_63_7(parseInt(month / 4) + 1, wildcardSize);
+                  replacement = this.__fillNumber__P_79_7(parseInt(month / 4) + 1, wildcardSize);
                 }
 
                 if (wildcardSize == 3) {
@@ -553,7 +553,7 @@
               case 'q':
                 // quarter stand alone
                 if (wildcardSize == 1 || wildcardSize == 2) {
-                  replacement = this.__fillNumber__P_63_7(parseInt(month / 4) + 1, wildcardSize);
+                  replacement = this.__fillNumber__P_79_7(parseInt(month / 4) + 1, wildcardSize);
                 }
 
                 if (wildcardSize == 3) {
@@ -564,22 +564,22 @@
 
               case 'D':
                 // Day in year (e.g. 189)
-                replacement = this.__fillNumber__P_63_7(this.__getDayInYear__P_63_8(date), wildcardSize);
+                replacement = this.__fillNumber__P_79_7(this.__getDayInYear__P_79_8(date), wildcardSize);
                 break;
 
               case 'd':
                 // Day in month
-                replacement = this.__fillNumber__P_63_7(dayOfMonth, wildcardSize);
+                replacement = this.__fillNumber__P_79_7(dayOfMonth, wildcardSize);
                 break;
 
               case 'w':
                 // Week in year (e.g. 27)
-                replacement = this.__fillNumber__P_63_7(this.__getWeekInYear__P_63_10(date), wildcardSize);
+                replacement = this.__fillNumber__P_79_7(this.__getWeekInYear__P_79_10(date), wildcardSize);
                 break;
 
               case 'W':
                 // Week in year (e.g. 27)
-                replacement = this.__getWeekInMonth__P_63_11(date);
+                replacement = this.__getWeekInMonth__P_79_11(date);
                 break;
 
               case 'E':
@@ -601,7 +601,7 @@
                 var localeDayOfWeek = 1 + (dayOfWeek - startOfWeek >= 0 ? dayOfWeek - startOfWeek : 7 + (dayOfWeek - startOfWeek));
 
                 if (wildcardSize >= 1 && wildcardSize <= 2) {
-                  replacement = this.__fillNumber__P_63_7(localeDayOfWeek, wildcardSize);
+                  replacement = this.__fillNumber__P_79_7(localeDayOfWeek, wildcardSize);
                 } else if (wildcardSize == 3) {
                   replacement = qx.locale.Date.getDayName("abbreviated", dayOfWeek, locale, "format", true);
                 } else if (wildcardSize == 4) {
@@ -633,7 +633,7 @@
               case 'M':
                 // Month
                 if (wildcardSize == 1 || wildcardSize == 2) {
-                  replacement = this.__fillNumber__P_63_7(month + 1, wildcardSize);
+                  replacement = this.__fillNumber__P_79_7(month + 1, wildcardSize);
                 } else if (wildcardSize == 3) {
                   replacement = qx.locale.Date.getMonthName("abbreviated", month, locale, "format", true);
                 } else if (wildcardSize == 4) {
@@ -647,7 +647,7 @@
               case 'L':
                 // Stand-alone month
                 if (wildcardSize == 1 || wildcardSize == 2) {
-                  replacement = this.__fillNumber__P_63_7(month + 1, wildcardSize);
+                  replacement = this.__fillNumber__P_79_7(month + 1, wildcardSize);
                 } else if (wildcardSize == 3) {
                   replacement = qx.locale.Date.getMonthName("abbreviated", month, locale, "stand-alone", true);
                 } else if (wildcardSize == 4) {
@@ -666,37 +666,37 @@
 
               case 'H':
                 // Hour in day (0-23)
-                replacement = this.__fillNumber__P_63_7(hours, wildcardSize);
+                replacement = this.__fillNumber__P_79_7(hours, wildcardSize);
                 break;
 
               case 'k':
                 // Hour in day (1-24)
-                replacement = this.__fillNumber__P_63_7(hours == 0 ? 24 : hours, wildcardSize);
+                replacement = this.__fillNumber__P_79_7(hours == 0 ? 24 : hours, wildcardSize);
                 break;
 
               case 'K':
                 // Hour in am/pm (0-11)
-                replacement = this.__fillNumber__P_63_7(hours % 12, wildcardSize);
+                replacement = this.__fillNumber__P_79_7(hours % 12, wildcardSize);
                 break;
 
               case 'h':
                 // Hour in am/pm (1-12)
-                replacement = this.__fillNumber__P_63_7(hours % 12 == 0 ? 12 : hours % 12, wildcardSize);
+                replacement = this.__fillNumber__P_79_7(hours % 12 == 0 ? 12 : hours % 12, wildcardSize);
                 break;
 
               case 'm':
                 // Minute in hour
-                replacement = this.__fillNumber__P_63_7(minutes, wildcardSize);
+                replacement = this.__fillNumber__P_79_7(minutes, wildcardSize);
                 break;
 
               case 's':
                 // Second in minute
-                replacement = this.__fillNumber__P_63_7(seconds, wildcardSize);
+                replacement = this.__fillNumber__P_79_7(seconds, wildcardSize);
                 break;
 
               case 'S':
                 // Fractional second
-                replacement = this.__fillNumber__P_63_7(ms, 3);
+                replacement = this.__fillNumber__P_79_7(ms, 3);
 
                 if (wildcardSize < replacement.length) {
                   replacement = replacement.substr(0, wildcardSize);
@@ -712,7 +712,7 @@
               case 'z':
                 // Time zone
                 if (wildcardSize >= 1 && wildcardSize <= 4) {
-                  replacement = "GMT" + (timezoneSign > 0 ? "-" : "+") + this.__fillNumber__P_63_7(Math.abs(timezoneHours), 2) + ":" + this.__fillNumber__P_63_7(timezoneMinutes, 2);
+                  replacement = "GMT" + (timezoneSign > 0 ? "-" : "+") + this.__fillNumber__P_79_7(Math.abs(timezoneHours), 2) + ":" + this.__fillNumber__P_79_7(timezoneMinutes, 2);
                 }
 
                 break;
@@ -720,9 +720,9 @@
               case 'Z':
                 // RFC 822 time zone
                 if (wildcardSize >= 1 && wildcardSize <= 3) {
-                  replacement = (timezoneSign > 0 ? "-" : "+") + this.__fillNumber__P_63_7(Math.abs(timezoneHours), 2) + this.__fillNumber__P_63_7(timezoneMinutes, 2);
+                  replacement = (timezoneSign > 0 ? "-" : "+") + this.__fillNumber__P_79_7(Math.abs(timezoneHours), 2) + this.__fillNumber__P_79_7(timezoneMinutes, 2);
                 } else {
-                  replacement = "GMT" + (timezoneSign > 0 ? "-" : "+") + this.__fillNumber__P_63_7(Math.abs(timezoneHours), 2) + ":" + this.__fillNumber__P_63_7(timezoneMinutes, 2);
+                  replacement = "GMT" + (timezoneSign > 0 ? "-" : "+") + this.__fillNumber__P_79_7(Math.abs(timezoneHours), 2) + ":" + this.__fillNumber__P_79_7(timezoneMinutes, 2);
                 }
 
                 break;
@@ -744,13 +744,13 @@
        *       match to the format.
        */
       parse: function parse(dateStr) {
-        this.__initParseFeed__P_63_17(); // Apply the regex
+        this.__initParseFeed__P_79_17(); // Apply the regex
 
 
-        var hit = this.__parseFeed__P_63_4.regex.exec(dateStr);
+        var hit = this.__parseFeed__P_79_4.regex.exec(dateStr);
 
         if (hit == null) {
-          throw new Error("Date string '" + dateStr + "' does not match the date format: " + this.__format__P_63_2);
+          throw new Error("Date string '" + dateStr + "' does not match the date format: " + this.__format__P_79_2);
         } // Apply the rules
 
 
@@ -775,8 +775,8 @@
         var applyWeekYearAfterRule = false;
         var applyDayOfYearAfterRule = false;
 
-        for (var i = 0; i < this.__parseFeed__P_63_4.usedRules.length; i++) {
-          var rule = this.__parseFeed__P_63_4.usedRules[i];
+        for (var i = 0; i < this.__parseFeed__P_79_4.usedRules.length; i++) {
+          var rule = this.__parseFeed__P_79_4.usedRules[i];
           var value = hit[currGroup];
 
           if (rule.field != null) {
@@ -788,8 +788,8 @@
           if (rule.pattern == "Y+") {
             var yearRuleApplied = false;
 
-            for (var k = 0; k < this.__parseFeed__P_63_4.usedRules.length; k++) {
-              if (this.__parseFeed__P_63_4.usedRules[k].pattern == 'y+') {
+            for (var k = 0; k < this.__parseFeed__P_79_4.usedRules.length; k++) {
+              if (this.__parseFeed__P_79_4.usedRules[k].pattern == 'y+') {
                 yearRuleApplied = true;
                 break;
               }
@@ -803,8 +803,8 @@
           if (rule.pattern.indexOf("D") != -1) {
             var dayRuleApplied = false;
 
-            for (var k = 0; k < this.__parseFeed__P_63_4.usedRules.length; k++) {
-              if (this.__parseFeed__P_63_4.usedRules[k].pattern.indexOf("d") != -1) {
+            for (var k = 0; k < this.__parseFeed__P_79_4.usedRules.length; k++) {
+              if (this.__parseFeed__P_79_4.usedRules[k].pattern.indexOf("d") != -1) {
                 dayRuleApplied = true;
                 break;
               }
@@ -819,11 +819,11 @@
         }
 
         if (applyWeekYearAfterRule) {
-          dateValues.year = this.__getYearFromWeekYearAndMonth__P_63_15(dateValues.weekYear, dateValues.month, dateValues.day);
+          dateValues.year = this.__getYearFromWeekYearAndMonth__P_79_15(dateValues.weekYear, dateValues.month, dateValues.day);
         }
 
         if (applyDayOfYearAfterRule) {
-          var dayAndMonth = this.__getMonthAndDayFromDayOfYear__P_63_14(dateValues.dayOfYear, dateValues.year);
+          var dayAndMonth = this.__getMonthAndDayFromDayOfYear__P_79_14(dateValues.dayOfYear, dateValues.year);
 
           dateValues.month = dayAndMonth.month;
           dateValues.day = dayAndMonth.day;
@@ -835,7 +835,7 @@
 
         var date = new Date(dateValues.year, dateValues.month, dateValues.day, dateValues.ispm ? dateValues.hour + 12 : dateValues.hour, dateValues.min, dateValues.sec, dateValues.ms);
 
-        if (this.__UTC__P_63_3) {
+        if (this.__UTC__P_79_3) {
           date = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds(), date.getUTCMilliseconds());
         }
 
@@ -851,16 +851,16 @@
        * Parses the date format.
        *
        */
-      __initFormatTree__P_63_16: function __initFormatTree__P_63_16() {
-        if (this.__formatTree__P_63_6 != null) {
+      __initFormatTree__P_79_16: function __initFormatTree__P_79_16() {
+        if (this.__formatTree__P_79_6 != null) {
           return;
         }
 
-        this.__formatTree__P_63_6 = [];
+        this.__formatTree__P_79_6 = [];
         var currWildcardChar;
         var currWildcardSize = 0;
         var currLiteral = "";
-        var format = this.__format__P_63_2;
+        var format = this.__format__P_79_2;
         var state = "default";
         var i = 0;
 
@@ -903,7 +903,7 @@
                 i++;
               } else {
                 // It does not -> The current wildcard is done
-                this.__formatTree__P_63_6.push({
+                this.__formatTree__P_79_6.push({
                   type: "wildcard",
                   character: currWildcardChar,
                   size: currWildcardSize
@@ -947,7 +947,7 @@
               if (state != "default") {
                 // Add the literal
                 if (currLiteral.length > 0) {
-                  this.__formatTree__P_63_6.push({
+                  this.__formatTree__P_79_6.push({
                     type: "literal",
                     text: currLiteral
                   });
@@ -966,13 +966,13 @@
 
 
         if (currWildcardChar != null) {
-          this.__formatTree__P_63_6.push({
+          this.__formatTree__P_79_6.push({
             type: "wildcard",
             character: currWildcardChar,
             size: currWildcardSize
           });
         } else if (currLiteral.length > 0) {
-          this.__formatTree__P_63_6.push({
+          this.__formatTree__P_79_6.push({
             type: "literal",
             text: currLiteral
           });
@@ -987,24 +987,24 @@
        *
        * @throws {Error} If the date format is malformed.
        */
-      __initParseFeed__P_63_17: function __initParseFeed__P_63_17() {
-        if (this.__parseFeed__P_63_4 != null) {
+      __initParseFeed__P_79_17: function __initParseFeed__P_79_17() {
+        if (this.__parseFeed__P_79_4 != null) {
           // We already have the parse feed
           return;
         }
 
-        var format = this.__format__P_63_2; // Initialize the rules
+        var format = this.__format__P_79_2; // Initialize the rules
 
-        this.__initParseRules__P_63_18();
+        this.__initParseRules__P_79_18();
 
-        this.__initFormatTree__P_63_16(); // Get the used rules and construct the regex pattern
+        this.__initFormatTree__P_79_16(); // Get the used rules and construct the regex pattern
 
 
         var usedRules = [];
         var pattern = "^";
 
-        for (var atomIdx = 0; atomIdx < this.__formatTree__P_63_6.length; atomIdx++) {
-          var currAtom = this.__formatTree__P_63_6[atomIdx];
+        for (var atomIdx = 0; atomIdx < this.__formatTree__P_79_6.length; atomIdx++) {
+          var currAtom = this.__formatTree__P_79_6[atomIdx];
 
           if (currAtom.type == "literal") {
             pattern += qx.lang.String.escapeRegexpChars(currAtom.text);
@@ -1015,10 +1015,10 @@
 
             var wildcardRule;
 
-            for (var ruleIdx = 0; ruleIdx < this.__parseRules__P_63_5.length; ruleIdx++) {
-              var rule = this.__parseRules__P_63_5[ruleIdx];
+            for (var ruleIdx = 0; ruleIdx < this.__parseRules__P_79_5.length; ruleIdx++) {
+              var rule = this.__parseRules__P_79_5[ruleIdx];
 
-              if (this.__isRuleForWildcard__P_63_19(rule, wildcardChar, wildcardSize)) {
+              if (this.__isRuleForWildcard__P_79_19(rule, wildcardChar, wildcardSize)) {
                 // We found the right rule for the wildcard
                 wildcardRule = rule;
                 break;
@@ -1054,7 +1054,7 @@
         } // Create the this.__parseFeed
 
 
-        this.__parseFeed__P_63_4 = {
+        this.__parseFeed__P_79_4 = {
           regex: regex,
           "usedRules": usedRules,
           pattern: pattern
@@ -1068,7 +1068,7 @@
        * @param wildcardSize {Integer} the number of  wildcardChar characters in the wildcard
        * @return {Boolean} if the rule matches or not
        */
-      __isRuleForWildcard__P_63_19: function __isRuleForWildcard__P_63_19(rule, wildcardChar, wildcardSize) {
+      __isRuleForWildcard__P_79_19: function __isRuleForWildcard__P_79_19(rule, wildcardChar, wildcardSize) {
         if (wildcardChar === 'y' && rule.pattern === 'y+') {
           rule.regex = rule.regexFunc(wildcardSize);
           return true;
@@ -1084,16 +1084,16 @@
        * Initializes the static parse rules.
        *
        */
-      __initParseRules__P_63_18: function __initParseRules__P_63_18() {
+      __initParseRules__P_79_18: function __initParseRules__P_79_18() {
         var DateFormat = qx.util.format.DateFormat;
         var LString = qx.lang.String;
 
-        if (this.__parseRules__P_63_5 != null) {
+        if (this.__parseRules__P_79_5 != null) {
           // The parse rules are already initialized
           return;
         }
 
-        var rules = this.__parseRules__P_63_5 = [];
+        var rules = this.__parseRules__P_79_5 = [];
         var amMarker = qx.locale.Date.getAmMarker(this.getLocale()).toString() || DateFormat.AM_MARKER;
         var pmMarker = qx.locale.Date.getPmMarker(this.getLocale()).toString() || DateFormat.PM_MARKER;
         var locale = this.getLocale();
@@ -1592,4 +1592,4 @@
   qx.util.format.DateFormat.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DateFormat.js.map?dt=1635778903896
+//# sourceMappingURL=DateFormat.js.map?dt=1636124295192

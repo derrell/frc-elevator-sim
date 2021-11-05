@@ -95,7 +95,7 @@
 
       qx.ui.core.queue.Visibility.add(this);
       this.initNativeHelp();
-      this.addListener("keypress", this.__preventScrollWhenFocused__P_58_0, this);
+      this.addListener("keypress", this.__preventScrollWhenFocused__P_75_0, this);
     },
 
     /*
@@ -183,7 +183,7 @@
     *****************************************************************************
     */
     members: {
-      __globalCursorStyleSheet__P_58_1: null,
+      __globalCursorStyleSheet__P_75_1: null,
       // overridden
       isRootWidget: function isRootWidget() {
         return true;
@@ -205,10 +205,10 @@
         // For performance reasons this is impractical in IE
         "default": function _default(value, old) {
           var Stylesheet = qx.bom.Stylesheet;
-          var sheet = this.__globalCursorStyleSheet__P_58_1;
+          var sheet = this.__globalCursorStyleSheet__P_75_1;
 
           if (!sheet) {
-            this.__globalCursorStyleSheet__P_58_1 = sheet = Stylesheet.createElement();
+            this.__globalCursorStyleSheet__P_75_1 = sheet = Stylesheet.createElement();
           }
 
           Stylesheet.removeAllRules(sheet);
@@ -245,7 +245,7 @@
       *
       * @param e {qx.event.type.KeySequence} The KeySequence event
       */
-      __preventScrollWhenFocused__P_58_0: function __preventScrollWhenFocused__P_58_0(e) {
+      __preventScrollWhenFocused__P_75_0: function __preventScrollWhenFocused__P_75_0(e) {
         // Require space pressed
         if (e.getKeyIdentifier() !== "Space") {
           return;
@@ -302,7 +302,7 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__globalCursorStyleSheet__P_58_1 = null;
+      this.__globalCursorStyleSheet__P_75_1 = null;
     },
 
     /*
@@ -317,4 +317,4 @@
   qx.ui.root.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1635778903524
+//# sourceMappingURL=Abstract.js.map?dt=1636124294917

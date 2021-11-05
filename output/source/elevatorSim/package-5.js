@@ -2277,7 +2277,7 @@
   qx.Bootstrap.define("qx.bom.client.Device", {
     statics: {
       /** Maps user agent names to device IDs */
-      __ids__P_115_0: {
+      __ids__P_140_0: {
         "Windows Phone": "iemobile",
         "iPod": "ipod",
         "iPad": "ipad",
@@ -2300,7 +2300,7 @@
       getName: function getName() {
         var str = [];
 
-        for (var key in qx.bom.client.Device.__ids__P_115_0) {
+        for (var key in qx.bom.client.Device.__ids__P_140_0) {
           str.push(key);
         }
 
@@ -2308,7 +2308,7 @@
         var match = reg.exec(navigator.userAgent);
 
         if (match && match[1]) {
-          return qx.bom.client.Device.__ids__P_115_0[match[1]];
+          return qx.bom.client.Device.__ids__P_140_0[match[1]];
         }
 
         return "pc";
@@ -2619,17 +2619,17 @@
        *
        * @internal
        */
-      __normalizations__P_143_0: {},
+      __normalizations__P_157_0: {},
 
       /**
        * Registry of event hooks
        * @internal
        */
-      __hooks__P_143_1: {
+      __hooks__P_157_1: {
         on: {},
         off: {}
       },
-      __isReady__P_143_2: false,
+      __isReady__P_157_2: false,
 
       /**
        * Executes the given function once the document is ready.
@@ -2646,7 +2646,7 @@
 
 
         var onWindowLoad = function onWindowLoad() {
-          qx.module.Event.__isReady__P_143_2 = true;
+          qx.module.Event.__isReady__P_157_2 = true;
           callback();
         };
 
@@ -2665,7 +2665,7 @@
           // Continually check to see if the document is ready
           var timer = function timer() {
             // onWindowLoad already executed
-            if (qx.module.Event.__isReady__P_143_2) {
+            if (qx.module.Event.__isReady__P_157_2) {
               return;
             }
 
@@ -2704,7 +2704,7 @@
           types = [types];
         }
 
-        var registry = qx.module.Event.__normalizations__P_143_0;
+        var registry = qx.module.Event.__normalizations__P_157_0;
 
         for (var i = 0, l = types.length; i < l; i++) {
           var type = types[i];
@@ -2731,7 +2731,7 @@
           types = [types];
         }
 
-        var registry = qx.module.Event.__normalizations__P_143_0;
+        var registry = qx.module.Event.__normalizations__P_157_0;
 
         for (var i = 0, l = types.length; i < l; i++) {
           var type = types[i];
@@ -2749,7 +2749,7 @@
        * @return {Map} Map of event types/normalizer functions
        */
       $getEventNormalizationRegistry: function $getEventNormalizationRegistry() {
-        return qx.module.Event.__normalizations__P_143_0;
+        return qx.module.Event.__normalizations__P_157_0;
       },
 
       /**
@@ -2766,7 +2766,7 @@
           types = [types];
         }
 
-        var onHooks = qx.module.Event.__hooks__P_143_1.on;
+        var onHooks = qx.module.Event.__hooks__P_157_1.on;
 
         for (var i = 0, l = types.length; i < l; i++) {
           var type = types[i];
@@ -2784,7 +2784,7 @@
           return;
         }
 
-        var offHooks = qx.module.Event.__hooks__P_143_1.off;
+        var offHooks = qx.module.Event.__hooks__P_157_1.off;
 
         for (var i = 0, l = types.length; i < l; i++) {
           var type = types[i];
@@ -2813,7 +2813,7 @@
           types = [types];
         }
 
-        var onHooks = qx.module.Event.__hooks__P_143_1.on;
+        var onHooks = qx.module.Event.__hooks__P_157_1.on;
 
         for (var i = 0, l = types.length; i < l; i++) {
           var type = types[i];
@@ -2827,7 +2827,7 @@
           return;
         }
 
-        var offHooks = qx.module.Event.__hooks__P_143_1.off;
+        var offHooks = qx.module.Event.__hooks__P_157_1.off;
 
         for (var i = 0, l = types.length; i < l; i++) {
           var type = types[i];
@@ -2846,7 +2846,7 @@
        * @internal
        */
       $getEventHookRegistry: function $getEventHookRegistry() {
-        return qx.module.Event.__hooks__P_143_1;
+        return qx.module.Event.__hooks__P_157_1;
       }
     },
     members: {
@@ -2868,7 +2868,7 @@
           var el = this[i];
           var ctx = context || qxWeb(el); // call hooks
 
-          var hooks = qx.module.Event.__hooks__P_143_1.on; // generic
+          var hooks = qx.module.Event.__hooks__P_157_1.on; // generic
 
           var typeHooks = hooks["*"] || []; // type specific
 
@@ -2882,7 +2882,7 @@
 
           var bound = function (el, event) {
             // apply normalizations
-            var registry = qx.module.Event.__normalizations__P_143_0; // generic
+            var registry = qx.module.Event.__normalizations__P_157_0; // generic
 
             var normalizations = registry["*"] || []; // type specific
 
@@ -2910,24 +2910,24 @@
 
           el.$$emitter.getEntryById(el.$$lastlistenerId).useCapture = !!useCapture;
 
-          if (!el.__listener__P_143_3) {
-            el.__listener__P_143_3 = {};
+          if (!el.__listener__P_157_3) {
+            el.__listener__P_157_3 = {};
           }
 
-          if (!el.__listener__P_143_3[type]) {
-            el.__listener__P_143_3[type] = {};
+          if (!el.__listener__P_157_3[type]) {
+            el.__listener__P_157_3[type] = {};
           }
 
-          el.__listener__P_143_3[type][el.$$lastlistenerId] = bound;
+          el.__listener__P_157_3[type][el.$$lastlistenerId] = bound;
 
           if (!context) {
             // store a reference to the dynamically created context so we know
             // what to check for when removing the listener
-            if (!el.__ctx__P_143_4) {
-              el.__ctx__P_143_4 = {};
+            if (!el.__ctx__P_157_4) {
+              el.__ctx__P_157_4 = {};
             }
 
-            el.__ctx__P_143_4[el.$$lastlistenerId] = ctx;
+            el.__ctx__P_157_4[el.$$lastlistenerId] = ctx;
           }
         }
 
@@ -2952,7 +2952,7 @@
         for (var j = 0; j < this.length; j++) {
           var el = this[j]; // continue if no listeners are available
 
-          if (!el.__listener__P_143_3) {
+          if (!el.__listener__P_157_3) {
             continue;
           }
 
@@ -2962,22 +2962,22 @@
             types.push(type);
           } else {
             // no type specified, remove all listeners
-            for (var listenerType in el.__listener__P_143_3) {
+            for (var listenerType in el.__listener__P_157_3) {
               types.push(listenerType);
             }
           }
 
           for (var i = 0, l = types.length; i < l; i++) {
-            for (var id in el.__listener__P_143_3[types[i]]) {
-              var storedListener = el.__listener__P_143_3[types[i]][id];
+            for (var id in el.__listener__P_157_3[types[i]]) {
+              var storedListener = el.__listener__P_157_3[types[i]][id];
 
               if (removeAll || storedListener == listener || storedListener.original == listener) {
                 // get the stored context
-                var hasStoredContext = typeof el.__ctx__P_143_4 !== "undefined" && el.__ctx__P_143_4[id];
+                var hasStoredContext = typeof el.__ctx__P_157_4 !== "undefined" && el.__ctx__P_157_4[id];
                 var storedContext;
 
                 if (!context && hasStoredContext) {
-                  storedContext = el.__ctx__P_143_4[id];
+                  storedContext = el.__ctx__P_157_4[id];
                 } // remove the listener from the emitter
 
 
@@ -2991,17 +2991,17 @@
 
 
                 if (result !== null) {
-                  delete el.__listener__P_143_3[types[i]][id];
+                  delete el.__listener__P_157_3[types[i]][id];
                 }
 
                 if (hasStoredContext) {
-                  delete el.__ctx__P_143_4[id];
+                  delete el.__ctx__P_157_4[id];
                 }
               }
             } // call hooks
 
 
-            var hooks = qx.module.Event.__hooks__P_143_1.off; // generic
+            var hooks = qx.module.Event.__hooks__P_157_1.off; // generic
 
             var typeHooks = hooks["*"] || []; // type specific
 
@@ -5667,7 +5667,7 @@
    */
   qx.Bootstrap.define("qx.bom.client.Css", {
     statics: {
-      __WEBKIT_LEGACY_GRADIENT__P_26_0: null,
+      __WEBKIT_LEGACY_GRADIENT__P_30_0: null,
 
       /**
        * Checks what box model is used in the current environment.
@@ -5862,7 +5862,7 @@
        * @internal
        */
       getLinearGradient: function getLinearGradient() {
-        qx.bom.client.Css.__WEBKIT_LEGACY_GRADIENT__P_26_0 = false;
+        qx.bom.client.Css.__WEBKIT_LEGACY_GRADIENT__P_30_0 = false;
         var value = "linear-gradient(0deg, #fff, #000)";
         var el = document.createElement("div");
         var style = qx.bom.Style.getAppliedStyle(el, "backgroundImage", value);
@@ -5873,7 +5873,7 @@
           var style = qx.bom.Style.getAppliedStyle(el, "backgroundImage", value, false);
 
           if (style) {
-            qx.bom.client.Css.__WEBKIT_LEGACY_GRADIENT__P_26_0 = true;
+            qx.bom.client.Css.__WEBKIT_LEGACY_GRADIENT__P_30_0 = true;
           }
         } // not supported
 
@@ -5916,11 +5916,11 @@
        * @internal
        */
       getLegacyWebkitGradient: function getLegacyWebkitGradient() {
-        if (qx.bom.client.Css.__WEBKIT_LEGACY_GRADIENT__P_26_0 === null) {
+        if (qx.bom.client.Css.__WEBKIT_LEGACY_GRADIENT__P_30_0 === null) {
           qx.bom.client.Css.getLinearGradient();
         }
 
-        return qx.bom.client.Css.__WEBKIT_LEGACY_GRADIENT__P_26_0;
+        return qx.bom.client.Css.__WEBKIT_LEGACY_GRADIENT__P_30_0;
       },
 
       /**
@@ -6234,8 +6234,8 @@
      */
     construct: function construct(tagName, styles, attributes) {
       qx.html.Node.constructor.call(this, tagName || "div");
-      this.__styleValues__P_79_0 = styles || null;
-      this.__attribValues__P_79_1 = attributes || null;
+      this.__styleValues__P_62_0 = styles || null;
+      this.__attribValues__P_62_1 = attributes || null;
 
       if (attributes) {
         for (var key in attributes) {
@@ -6291,10 +6291,10 @@
       _actions: [],
 
       /**  @type {Map} List of all selections. */
-      __selection__P_79_2: {},
-      __focusHandler__P_79_3: null,
-      __mouseCapture__P_79_4: null,
-      __SELF_CLOSING_TAGS__P_79_5: null,
+      __selection__P_62_2: {},
+      __focusHandler__P_62_3: null,
+      __mouseCapture__P_62_4: null,
+      __SELF_CLOSING_TAGS__P_62_5: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -6309,7 +6309,7 @@
        * @param job {String} The job descriptor. Should always be <code>"element"</code>.
        */
       _scheduleFlush: function _scheduleFlush(job) {
-        qx.html.Element.__deferredCall__P_79_6.schedule();
+        qx.html.Element.__deferredCall__P_62_6.schedule();
       },
 
       /**
@@ -6324,25 +6324,25 @@
         }
         {
           // blur elements, which will be removed
-          var focusHandler = this.__getFocusHandler__P_79_7();
+          var focusHandler = this.__getFocusHandler__P_62_7();
 
           var focusedDomElement = focusHandler.getFocus();
 
-          if (focusedDomElement && this.__willBecomeInvisible__P_79_8(focusedDomElement)) {
+          if (focusedDomElement && this.__willBecomeInvisible__P_62_8(focusedDomElement)) {
             focusHandler.blur(focusedDomElement);
           } // deactivate elements, which will be removed
 
 
           var activeDomElement = focusHandler.getActive();
 
-          if (activeDomElement && this.__willBecomeInvisible__P_79_8(activeDomElement)) {
+          if (activeDomElement && this.__willBecomeInvisible__P_62_8(activeDomElement)) {
             qx.bom.Element.deactivate(activeDomElement);
           } // release capture for elements, which will be removed
 
 
-          var captureDomElement = this.__getCaptureElement__P_79_9();
+          var captureDomElement = this.__getCaptureElement__P_62_9();
 
-          if (captureDomElement && this.__willBecomeInvisible__P_79_8(captureDomElement)) {
+          if (captureDomElement && this.__willBecomeInvisible__P_62_8(captureDomElement)) {
             qx.bom.Element.releaseCapture(captureDomElement);
           }
         }
@@ -6425,40 +6425,40 @@
             if (elem && elem.offsetWidth) {
               var done = true; // ScrollToX
 
-              if (obj.__lazyScrollX__P_79_10 != null) {
-                obj._domNode.scrollLeft = obj.__lazyScrollX__P_79_10;
-                delete obj.__lazyScrollX__P_79_10;
+              if (obj.__lazyScrollX__P_62_10 != null) {
+                obj._domNode.scrollLeft = obj.__lazyScrollX__P_62_10;
+                delete obj.__lazyScrollX__P_62_10;
               } // ScrollToY
 
 
-              if (obj.__lazyScrollY__P_79_11 != null) {
-                obj._domNode.scrollTop = obj.__lazyScrollY__P_79_11;
-                delete obj.__lazyScrollY__P_79_11;
+              if (obj.__lazyScrollY__P_62_11 != null) {
+                obj._domNode.scrollTop = obj.__lazyScrollY__P_62_11;
+                delete obj.__lazyScrollY__P_62_11;
               } // ScrollIntoViewX
 
 
-              var intoViewX = obj.__lazyScrollIntoViewX__P_79_12;
+              var intoViewX = obj.__lazyScrollIntoViewX__P_62_12;
 
               if (intoViewX != null) {
                 var child = intoViewX.element.getDomElement();
 
                 if (child && child.offsetWidth) {
                   qx.bom.element.Scroll.intoViewX(child, elem, intoViewX.align);
-                  delete obj.__lazyScrollIntoViewX__P_79_12;
+                  delete obj.__lazyScrollIntoViewX__P_62_12;
                 } else {
                   done = false;
                 }
               } // ScrollIntoViewY
 
 
-              var intoViewY = obj.__lazyScrollIntoViewY__P_79_13;
+              var intoViewY = obj.__lazyScrollIntoViewY__P_62_13;
 
               if (intoViewY != null) {
                 var child = intoViewY.element.getDomElement();
 
                 if (child && child.offsetWidth) {
                   qx.bom.element.Scroll.intoViewY(child, elem, intoViewY.align);
-                  delete obj.__lazyScrollIntoViewY__P_79_13;
+                  delete obj.__lazyScrollIntoViewY__P_62_13;
                 } else {
                   done = false;
                 }
@@ -6494,13 +6494,13 @@
           this._actions = [];
         } // Process selection
 
-        for (var hc in this.__selection__P_79_2) {
-          var selection = this.__selection__P_79_2[hc];
+        for (var hc in this.__selection__P_62_2) {
+          var selection = this.__selection__P_62_2[hc];
           var elem = selection.element._domNode;
 
           if (elem) {
             qx.bom.Selection.set(elem, selection.start, selection.end);
-            delete this.__selection__P_79_2[hc];
+            delete this.__selection__P_62_2[hc];
           }
         } // Fire appear/disappear events
 
@@ -6513,14 +6513,14 @@
        *
        * @return {qx.event.handler.Focus} The focus handler
        */
-      __getFocusHandler__P_79_7: function __getFocusHandler__P_79_7() {
+      __getFocusHandler__P_62_7: function __getFocusHandler__P_62_7() {
         {
-          if (!this.__focusHandler__P_79_3) {
+          if (!this.__focusHandler__P_62_3) {
             var eventManager = qx.event.Registration.getManager(window);
-            this.__focusHandler__P_79_3 = eventManager.getHandler(qx.event.handler.Focus);
+            this.__focusHandler__P_62_3 = eventManager.getHandler(qx.event.handler.Focus);
           }
 
-          return this.__focusHandler__P_79_3;
+          return this.__focusHandler__P_62_3;
         }
       },
 
@@ -6529,14 +6529,14 @@
        *
        * @return {Element} The mouse capture DOM element
        */
-      __getCaptureElement__P_79_9: function __getCaptureElement__P_79_9() {
+      __getCaptureElement__P_62_9: function __getCaptureElement__P_62_9() {
         {
-          if (!this.__mouseCapture__P_79_4) {
+          if (!this.__mouseCapture__P_62_4) {
             var eventManager = qx.event.Registration.getManager(window);
-            this.__mouseCapture__P_79_4 = eventManager.getDispatcher(qx.event.dispatch.MouseCapture);
+            this.__mouseCapture__P_62_4 = eventManager.getDispatcher(qx.event.dispatch.MouseCapture);
           }
 
-          return this.__mouseCapture__P_79_4.getCaptureElement();
+          return this.__mouseCapture__P_62_4.getCaptureElement();
         }
       },
 
@@ -6546,7 +6546,7 @@
        * @param domElement {Element} The DOM element to check
        * @return {Boolean} Whether the element will become invisible
        */
-      __willBecomeInvisible__P_79_8: function __willBecomeInvisible__P_79_8(domElement) {
+      __willBecomeInvisible__P_62_8: function __willBecomeInvisible__P_62_8(domElement) {
         var element = this.fromDomElement(domElement);
         return element && !element._willBeSeeable();
       },
@@ -6625,15 +6625,15 @@
       */
 
       /** @type {Boolean} Marker for always visible root nodes (often the body node) */
-      __root__P_79_14: false,
-      __lazyScrollIntoViewX__P_79_12: null,
-      __lazyScrollIntoViewY__P_79_13: null,
-      __lazyScrollX__P_79_10: null,
-      __lazyScrollY__P_79_11: null,
-      __styleJobs__P_79_15: null,
-      __attribJobs__P_79_16: null,
-      __styleValues__P_79_0: null,
-      __attribValues__P_79_1: null,
+      __root__P_62_14: false,
+      __lazyScrollIntoViewX__P_62_12: null,
+      __lazyScrollIntoViewY__P_62_13: null,
+      __lazyScrollX__P_62_10: null,
+      __lazyScrollY__P_62_11: null,
+      __styleJobs__P_62_15: null,
+      __attribJobs__P_62_16: null,
+      __styleValues__P_62_0: null,
+      __attribValues__P_62_1: null,
 
       /*
        * @Override
@@ -6646,9 +6646,9 @@
        * @Override
        */
       serialize: function serialize(writer) {
-        if (this.__childrenHaveChanged__P_79_17) {
+        if (this.__childrenHaveChanged__P_62_17) {
           this.importQxObjectIds();
-          this.__childrenHaveChanged__P_79_17 = false;
+          this.__childrenHaveChanged__P_62_17 = false;
         }
 
         return qx.html.Element.prototype.serialize.base.call(this, writer);
@@ -6660,7 +6660,7 @@
       _serializeImpl: function _serializeImpl(writer) {
         writer("<", this._nodeName); // Copy attributes
 
-        var data = this.__attribValues__P_79_1;
+        var data = this.__attribValues__P_62_1;
 
         if (data) {
           var Attribute = qx.bom.element.Attribute;
@@ -6672,7 +6672,7 @@
         } // Copy styles
 
 
-        var data = this.__styleValues__P_79_0 || {};
+        var data = this.__styleValues__P_62_0 || {};
 
         if (!this.isVisible()) {
           data = qx.lang.Object.clone(data);
@@ -6708,7 +6708,7 @@
 
 
         if (!this._children || !this._children.length) {
-          if (qx.html.Element.__SELF_CLOSING_TAGS__P_79_5[this._nodeName]) {
+          if (qx.html.Element.__SELF_CLOSING_TAGS__P_62_5[this._nodeName]) {
             writer(">");
           } else {
             writer("></", this._nodeName, ">");
@@ -6752,7 +6752,7 @@
       _addChildImpl: function _addChildImpl(child) {
         qx.html.Element.prototype._addChildImpl.base.call(this, child);
 
-        this.__childrenHaveChanged__P_79_17 = true;
+        this.__childrenHaveChanged__P_62_17 = true;
       },
 
       /*
@@ -6761,16 +6761,16 @@
       _removeChildImpl: function _removeChildImpl(child) {
         qx.html.Element.prototype._removeChildImpl.base.call(this, child);
 
-        this.__childrenHaveChanged__P_79_17 = true;
+        this.__childrenHaveChanged__P_62_17 = true;
       },
 
       /*
        * @Override
        */
       getQxObject: function getQxObject(id) {
-        if (this.__childrenHaveChanged__P_79_17) {
+        if (this.__childrenHaveChanged__P_62_17) {
           this.importQxObjectIds();
-          this.__childrenHaveChanged__P_79_17 = false;
+          this.__childrenHaveChanged__P_62_17 = false;
         }
 
         return qx.html.Element.prototype.getQxObject.base.call(this, id);
@@ -6885,7 +6885,7 @@
 
         var elem = this._domNode; // Copy attributes
 
-        var data = this.__attribValues__P_79_1;
+        var data = this.__attribValues__P_62_1;
 
         if (data) {
           var Attribute = qx.bom.element.Attribute;
@@ -6926,7 +6926,7 @@
         } // Copy styles
 
 
-        var data = this.__styleValues__P_79_0;
+        var data = this.__styleValues__P_62_0;
 
         if (data) {
           var Style = qx.bom.element.Style;
@@ -6968,10 +6968,10 @@
         var Attribute = qx.bom.element.Attribute;
         var Style = qx.bom.element.Style; // Sync attributes
 
-        var jobs = this.__attribJobs__P_79_16;
+        var jobs = this.__attribJobs__P_62_16;
 
         if (jobs) {
-          var data = this.__attribValues__P_79_1;
+          var data = this.__attribValues__P_62_1;
 
           if (data) {
             var value;
@@ -6987,14 +6987,14 @@
             }
           }
 
-          this.__attribJobs__P_79_16 = null;
+          this.__attribJobs__P_62_16 = null;
         } // Sync styles
 
 
-        var jobs = this.__styleJobs__P_79_15;
+        var jobs = this.__styleJobs__P_62_15;
 
         if (jobs) {
-          var data = this.__styleValues__P_79_0;
+          var data = this.__styleValues__P_62_0;
 
           if (data) {
             var styles = {};
@@ -7006,7 +7006,7 @@
             Style.setStyles(elem, styles);
           }
 
-          this.__styleJobs__P_79_15 = null;
+          this.__styleJobs__P_62_15 = null;
         }
       },
 
@@ -7022,20 +7022,20 @@
        * @param root {Boolean} The root flag.
        */
       setRoot: function setRoot(root) {
-        if (root && !this.__root__P_79_14) {
+        if (root && !this.__root__P_62_14) {
           qx.html.Element._hasRoots++;
-        } else if (!root && this.__root__P_79_14) {
+        } else if (!root && this.__root__P_62_14) {
           qx.html.Element._hasRoots--;
         }
 
-        this.__root__P_79_14 = root;
+        this.__root__P_62_14 = root;
       },
 
       /*
        * @Override
        */
       isRoot: function isRoot() {
-        return this.__root__P_79_14;
+        return this.__root__P_62_14;
       },
 
       /**
@@ -7264,7 +7264,7 @@
         if (direct !== false && thisEl && thisEl.offsetWidth && childEl && childEl.offsetWidth) {
           qx.bom.element.Scroll.intoViewX(childEl, thisEl, align);
         } else {
-          this.__lazyScrollIntoViewX__P_79_12 = {
+          this.__lazyScrollIntoViewX__P_62_12 = {
             element: elem,
             align: align
           };
@@ -7273,7 +7273,7 @@
           qx.html.Element._scheduleFlush("element");
         }
 
-        delete this.__lazyScrollX__P_79_10;
+        delete this.__lazyScrollX__P_62_10;
       },
 
       /**
@@ -7298,7 +7298,7 @@
         if (direct !== false && thisEl && thisEl.offsetWidth && childEl && childEl.offsetWidth) {
           qx.bom.element.Scroll.intoViewY(childEl, thisEl, align);
         } else {
-          this.__lazyScrollIntoViewY__P_79_13 = {
+          this.__lazyScrollIntoViewY__P_62_13 = {
             element: elem,
             align: align
           };
@@ -7307,7 +7307,7 @@
           qx.html.Element._scheduleFlush("element");
         }
 
-        delete this.__lazyScrollY__P_79_11;
+        delete this.__lazyScrollY__P_62_11;
       },
 
       /**
@@ -7322,15 +7322,15 @@
 
         if (lazy !== true && thisEl && thisEl.offsetWidth) {
           thisEl.scrollLeft = x;
-          delete this.__lazyScrollX__P_79_10;
+          delete this.__lazyScrollX__P_62_10;
         } else {
-          this.__lazyScrollX__P_79_10 = x;
+          this.__lazyScrollX__P_62_10 = x;
           qx.html.Element._scroll[this.toHashCode()] = this;
 
           qx.html.Element._scheduleFlush("element");
         }
 
-        delete this.__lazyScrollIntoViewX__P_79_12;
+        delete this.__lazyScrollIntoViewX__P_62_12;
       },
 
       /**
@@ -7345,7 +7345,7 @@
           return thisEl.scrollLeft;
         }
 
-        return this.__lazyScrollX__P_79_10 || 0;
+        return this.__lazyScrollX__P_62_10 || 0;
       },
 
       /**
@@ -7360,15 +7360,15 @@
 
         if (lazy !== true && thisEl && thisEl.offsetWidth) {
           thisEl.scrollTop = y;
-          delete this.__lazyScrollY__P_79_11;
+          delete this.__lazyScrollY__P_62_11;
         } else {
-          this.__lazyScrollY__P_79_11 = y;
+          this.__lazyScrollY__P_62_11 = y;
           qx.html.Element._scroll[this.toHashCode()] = this;
 
           qx.html.Element._scheduleFlush("element");
         }
 
-        delete this.__lazyScrollIntoViewY__P_79_13;
+        delete this.__lazyScrollIntoViewY__P_62_13;
       },
 
       /**
@@ -7383,7 +7383,7 @@
           return thisEl.scrollTop;
         }
 
-        return this.__lazyScrollY__P_79_11 || 0;
+        return this.__lazyScrollY__P_62_11 || 0;
       },
 
       /**
@@ -7393,28 +7393,28 @@
         this.enableScrolling();
         this.scrollToX(0);
         this.scrollToY(0);
-        this.addListener("scroll", this.__onScroll__P_79_18, this);
+        this.addListener("scroll", this.__onScroll__P_62_18, this);
       },
 
       /**
        * Re-enables browser-native scrolling
        */
       enableScrolling: function enableScrolling() {
-        this.removeListener("scroll", this.__onScroll__P_79_18, this);
+        this.removeListener("scroll", this.__onScroll__P_62_18, this);
       },
-      __inScroll__P_79_19: null,
+      __inScroll__P_62_19: null,
 
       /**
        * Handler for the scroll-event
        *
        * @param e {qx.event.type.Native} scroll-event
        */
-      __onScroll__P_79_18: function __onScroll__P_79_18(e) {
-        if (!this.__inScroll__P_79_19) {
-          this.__inScroll__P_79_19 = true;
+      __onScroll__P_62_18: function __onScroll__P_62_18(e) {
+        if (!this.__inScroll__P_62_19) {
+          this.__inScroll__P_62_19 = true;
           this._domNode.scrollTop = 0;
           this._domNode.scrollLeft = 0;
-          delete this.__inScroll__P_79_19;
+          delete this.__inScroll__P_62_19;
         }
       },
 
@@ -7555,7 +7555,7 @@
         } // if element not created, save the selection for flushing
 
 
-        qx.html.Element.__selection__P_79_2[this.toHashCode()] = {
+        qx.html.Element.__selection__P_62_2[this.toHashCode()] = {
           element: this,
           start: start,
           end: end
@@ -7577,7 +7577,7 @@
           qx.bom.Selection.clear(el);
         }
 
-        delete qx.html.Element.__selection__P_79_2[this.toHashCode()];
+        delete qx.html.Element.__selection__P_62_2[this.toHashCode()];
       },
 
       /*
@@ -7597,7 +7597,7 @@
        * @param action {String} action to queue
        * @param args {Array} optional list of arguments for the action
        */
-      __performAction__P_79_20: function __performAction__P_79_20(action, args) {
+      __performAction__P_62_20: function __performAction__P_62_20(action, args) {
         {
           var actions = qx.html.Element._actions;
           actions.push({
@@ -7620,7 +7620,7 @@
        */
       focus: function focus() {
         {
-          this.__performAction__P_79_20("focus");
+          this.__performAction__P_62_20("focus");
         }
       },
 
@@ -7632,7 +7632,7 @@
        */
       blur: function blur() {
         {
-          this.__performAction__P_79_20("blur");
+          this.__performAction__P_62_20("blur");
         }
       },
 
@@ -7644,7 +7644,7 @@
        */
       activate: function activate() {
         {
-          this.__performAction__P_79_20("activate");
+          this.__performAction__P_62_20("activate");
         }
       },
 
@@ -7656,7 +7656,7 @@
        */
       deactivate: function deactivate() {
         {
-          this.__performAction__P_79_20("deactivate");
+          this.__performAction__P_62_20("deactivate");
         }
       },
 
@@ -7671,7 +7671,7 @@
        */
       capture: function capture(containerCapture) {
         {
-          this.__performAction__P_79_20("capture", [containerCapture !== false]);
+          this.__performAction__P_62_20("capture", [containerCapture !== false]);
         }
       },
 
@@ -7682,7 +7682,7 @@
        */
       releaseCapture: function releaseCapture() {
         {
-          this.__performAction__P_79_20("releaseCapture");
+          this.__performAction__P_62_20("releaseCapture");
         }
       },
 
@@ -7702,20 +7702,20 @@
        * @return {qx.html.Element} this object (for chaining support)
        */
       setStyle: function setStyle(key, value, direct) {
-        if (!this.__styleValues__P_79_0) {
-          this.__styleValues__P_79_0 = {};
+        if (!this.__styleValues__P_62_0) {
+          this.__styleValues__P_62_0 = {};
         }
 
-        if (this.__styleValues__P_79_0[key] == value) {
+        if (this.__styleValues__P_62_0[key] == value) {
           return this;
         }
 
-        this._applyStyle(key, value, this.__styleValues__P_79_0[key]);
+        this._applyStyle(key, value, this.__styleValues__P_62_0[key]);
 
         if (value == null) {
-          delete this.__styleValues__P_79_0[key];
+          delete this.__styleValues__P_62_0[key];
         } else {
-          this.__styleValues__P_79_0[key] = value;
+          this.__styleValues__P_62_0[key] = value;
         } // Uncreated elements simply copy all data
         // on creation. We don't need to remember any
         // jobs. It is a simple full list copy.
@@ -7729,12 +7729,12 @@
           } // Dynamically create if needed
 
 
-          if (!this.__styleJobs__P_79_15) {
-            this.__styleJobs__P_79_15 = {};
+          if (!this.__styleJobs__P_62_15) {
+            this.__styleJobs__P_62_15 = {};
           } // Store job info
 
 
-          this.__styleJobs__P_79_15[key] = true; // Register modification
+          this.__styleJobs__P_62_15[key] = true; // Register modification
 
           qx.html.Element._modified[this.toHashCode()] = this;
 
@@ -7770,29 +7770,29 @@
         // performance critical!
         var Style = qx.bom.element.Style;
 
-        if (!this.__styleValues__P_79_0) {
-          this.__styleValues__P_79_0 = {};
+        if (!this.__styleValues__P_62_0) {
+          this.__styleValues__P_62_0 = {};
         }
 
         if (this._domNode) {
           // Dynamically create if needed
-          if (!this.__styleJobs__P_79_15) {
-            this.__styleJobs__P_79_15 = {};
+          if (!this.__styleJobs__P_62_15) {
+            this.__styleJobs__P_62_15 = {};
           }
 
           for (var key in map) {
             var value = map[key];
 
-            if (this.__styleValues__P_79_0[key] == value) {
+            if (this.__styleValues__P_62_0[key] == value) {
               continue;
             }
 
-            this._applyStyle(key, value, this.__styleValues__P_79_0[key]);
+            this._applyStyle(key, value, this.__styleValues__P_62_0[key]);
 
             if (value == null) {
-              delete this.__styleValues__P_79_0[key];
+              delete this.__styleValues__P_62_0[key];
             } else {
-              this.__styleValues__P_79_0[key] = value;
+              this.__styleValues__P_62_0[key] = value;
             } // Omit queuing in direct mode
 
 
@@ -7802,7 +7802,7 @@
             } // Store job info
 
 
-            this.__styleJobs__P_79_15[key] = true;
+            this.__styleJobs__P_62_15[key] = true;
           } // Register modification
 
 
@@ -7813,16 +7813,16 @@
           for (var key in map) {
             var value = map[key];
 
-            if (this.__styleValues__P_79_0[key] == value) {
+            if (this.__styleValues__P_62_0[key] == value) {
               continue;
             }
 
-            this._applyStyle(key, value, this.__styleValues__P_79_0[key]);
+            this._applyStyle(key, value, this.__styleValues__P_62_0[key]);
 
             if (value == null) {
-              delete this.__styleValues__P_79_0[key];
+              delete this.__styleValues__P_62_0[key];
             } else {
-              this.__styleValues__P_79_0[key] = value;
+              this.__styleValues__P_62_0[key] = value;
             }
           }
         }
@@ -7850,7 +7850,7 @@
        * @return {var} the value of the style attribute
        */
       getStyle: function getStyle(key) {
-        return this.__styleValues__P_79_0 ? this.__styleValues__P_79_0[key] : null;
+        return this.__styleValues__P_62_0 ? this.__styleValues__P_62_0[key] : null;
       },
 
       /**
@@ -7859,7 +7859,7 @@
        * @return {Map} All styles or <code>null</code> when none are configured.
        */
       getAllStyles: function getAllStyles() {
-        return this.__styleValues__P_79_0 || null;
+        return this.__styleValues__P_62_0 || null;
       },
 
       /*
@@ -7867,7 +7867,7 @@
         CSS CLASS SUPPORT
       ---------------------------------------------------------------------------
       */
-      __breakClasses__P_79_21: function __breakClasses__P_79_21() {
+      __breakClasses__P_62_21: function __breakClasses__P_62_21() {
         var map = {};
         (this.getAttribute("class") || "").split(" ").forEach(function (name) {
           if (name) {
@@ -7876,7 +7876,7 @@
         });
         return map;
       },
-      __combineClasses__P_79_22: function __combineClasses__P_79_22(map) {
+      __combineClasses__P_62_22: function __combineClasses__P_62_22(map) {
         var primaryClass = this.getCssClass();
         var arr = [];
 
@@ -7898,7 +7898,7 @@
       addClass: function addClass(name) {
         var _this2 = this;
 
-        var classes = this.__breakClasses__P_79_21();
+        var classes = this.__breakClasses__P_62_21();
 
         var primaryClass = (this.getCssClass() || "").toLowerCase();
         name.split(" ").forEach(function (name) {
@@ -7910,7 +7910,7 @@
 
           classes[nameLower] = name;
         });
-        this.setAttribute("class", this.__combineClasses__P_79_22(classes));
+        this.setAttribute("class", this.__combineClasses__P_62_22(classes));
         return this;
       },
 
@@ -7923,7 +7923,7 @@
       removeClass: function removeClass(name) {
         var _this3 = this;
 
-        var classes = this.__breakClasses__P_79_21();
+        var classes = this.__breakClasses__P_62_21();
 
         var primaryClass = (this.getCssClass() || "").toLowerCase();
         name.split(" ").forEach(function (name) {
@@ -7935,7 +7935,7 @@
 
           delete classes[nameLower];
         });
-        this.setAttribute("class", this.__combineClasses__P_79_22(classes));
+        this.setAttribute("class", this.__combineClasses__P_62_22(classes));
         return this;
       },
 
@@ -7951,7 +7951,7 @@
        * Apply method for cssClass
        */
       _applyCssClass: function _applyCssClass(value, oldValue) {
-        var classes = this.__breakClasses__P_79_21();
+        var classes = this.__breakClasses__P_62_21();
 
         if (oldValue) {
           oldValue.split(" ").forEach(function (name) {
@@ -7965,7 +7965,7 @@
           });
         }
 
-        this.setAttribute("class", this.__combineClasses__P_79_22(classes));
+        this.setAttribute("class", this.__combineClasses__P_62_22(classes));
       },
 
       /*
@@ -8046,18 +8046,18 @@
        * @return {qx.html.Element} this object (for chaining support)
        */
       setAttribute: function setAttribute(key, value, direct) {
-        if (!this.__attribValues__P_79_1) {
-          this.__attribValues__P_79_1 = {};
+        if (!this.__attribValues__P_62_1) {
+          this.__attribValues__P_62_1 = {};
         }
 
-        if (this.__attribValues__P_79_1[key] == value) {
+        if (this.__attribValues__P_62_1[key] == value) {
           return this;
         }
 
         if (value == null) {
-          delete this.__attribValues__P_79_1[key];
+          delete this.__attribValues__P_62_1[key];
         } else {
-          this.__attribValues__P_79_1[key] = value;
+          this.__attribValues__P_62_1[key] = value;
         }
 
         if (key == "data-qx-object-id") {
@@ -8075,12 +8075,12 @@
           } // Dynamically create if needed
 
 
-          if (!this.__attribJobs__P_79_16) {
-            this.__attribJobs__P_79_16 = {};
+          if (!this.__attribJobs__P_62_16) {
+            this.__attribJobs__P_62_16 = {};
           } // Store job info
 
 
-          this.__attribJobs__P_79_16[key] = true; // Register modification
+          this.__attribJobs__P_62_16[key] = true; // Register modification
 
           qx.html.Element._modified[this.toHashCode()] = this;
 
@@ -8126,7 +8126,7 @@
        * @return {var} the value of the attribute
        */
       getAttribute: function getAttribute(key) {
-        return this.__attribValues__P_79_1 ? this.__attribValues__P_79_1[key] : null;
+        return this.__attribValues__P_62_1 ? this.__attribValues__P_62_1[key] : null;
       }
     },
 
@@ -8136,10 +8136,10 @@
      *****************************************************************************
      */
     defer: function defer(statics) {
-      statics.__deferredCall__P_79_6 = new qx.util.DeferredCall(statics.flush, statics);
-      statics.__SELF_CLOSING_TAGS__P_79_5 = {};
+      statics.__deferredCall__P_62_6 = new qx.util.DeferredCall(statics.flush, statics);
+      statics.__SELF_CLOSING_TAGS__P_62_5 = {};
       ["area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"].forEach(function (tagName) {
-        statics.__SELF_CLOSING_TAGS__P_79_5[tagName] = true;
+        statics.__SELF_CLOSING_TAGS__P_62_5[tagName] = true;
       });
     },
 
@@ -8157,7 +8157,7 @@
       }
 
       this.setRoot(false);
-      this.__attribValues__P_79_1 = this.__styleValues__P_79_0 = this.__attribJobs__P_79_16 = this.__styleJobs__P_79_15 = this.__lazyScrollIntoViewX__P_79_12 = this.__lazyScrollIntoViewY__P_79_13 = null;
+      this.__attribValues__P_62_1 = this.__styleValues__P_62_0 = this.__attribJobs__P_62_16 = this.__styleJobs__P_62_15 = this.__lazyScrollIntoViewX__P_62_12 = this.__lazyScrollIntoViewY__P_62_13 = null;
     }
   });
   qx.html.Element.$$dbClassInfo = $$dbClassInfo;
@@ -8497,25 +8497,25 @@
       */
 
       /** @type {Integer} The computed height */
-      __computedHeightForWidth__P_75_0: null,
+      __computedHeightForWidth__P_65_0: null,
 
       /** @type {Map} The computed size of the layout item */
-      __computedLayout__P_75_1: null,
+      __computedLayout__P_65_1: null,
 
       /** @type {Boolean} Whether the current layout is valid */
-      __hasInvalidLayout__P_75_2: null,
+      __hasInvalidLayout__P_65_2: null,
 
       /** @type {Map} Cached size hint */
-      __sizeHint__P_75_3: null,
+      __sizeHint__P_65_3: null,
 
       /** @type {Boolean} Whether the margins have changed and must be updated */
-      __updateMargin__P_75_4: null,
+      __updateMargin__P_65_4: null,
 
       /** @type {Map} user provided bounds of the widget, which override the layout manager */
-      __userBounds__P_75_5: null,
+      __userBounds__P_65_5: null,
 
       /** @type {Map} The item's layout properties */
-      __layoutProperties__P_75_6: null,
+      __layoutProperties__P_65_6: null,
 
       /**
        * Get the computed location and dimension as computed by
@@ -8527,7 +8527,7 @@
        *    <code>top</code>.
        */
       getBounds: function getBounds() {
-        return this.__userBounds__P_75_5 || this.__computedLayout__P_75_1 || null;
+        return this.__userBounds__P_65_5 || this.__computedLayout__P_65_1 || null;
       },
 
       /**
@@ -8575,10 +8575,10 @@
         } // Detect size changes
         // Dynamically create data structure for computed layout
 
-        var computed = this.__computedLayout__P_75_1;
+        var computed = this.__computedLayout__P_65_1;
 
         if (!computed) {
-          computed = this.__computedLayout__P_75_1 = {};
+          computed = this.__computedLayout__P_65_1 = {};
         } // Detect changes
 
 
@@ -8597,14 +8597,14 @@
         } // Clear invalidation marker
 
 
-        if (this.__hasInvalidLayout__P_75_2) {
+        if (this.__hasInvalidLayout__P_65_2) {
           changes.local = true;
-          delete this.__hasInvalidLayout__P_75_2;
+          delete this.__hasInvalidLayout__P_65_2;
         }
 
-        if (this.__updateMargin__P_75_4) {
+        if (this.__updateMargin__P_65_4) {
           changes.margin = true;
-          delete this.__updateMargin__P_75_4;
+          delete this.__updateMargin__P_65_4;
         }
         /*
          * Height for width support
@@ -8621,9 +8621,9 @@
         if (this.getHeight() == null && this._hasHeightForWidth()) {
           var flowHeight = this._getHeightForWidth(width);
 
-          if (flowHeight != null && flowHeight !== this.__computedHeightForWidth__P_75_0) {
+          if (flowHeight != null && flowHeight !== this.__computedHeightForWidth__P_65_0) {
             // This variable is used in the next computation of the size hint
-            this.__computedHeightForWidth__P_75_0 = flowHeight; // Re-add to layout queue
+            this.__computedHeightForWidth__P_65_0 = flowHeight; // Re-add to layout queue
 
             qx.ui.core.queue.Layout.add(this);
           }
@@ -8649,7 +8649,7 @@
        * @return {Boolean} Returns <code>true</code>
        */
       hasValidLayout: function hasValidLayout() {
-        return !this.__hasInvalidLayout__P_75_2;
+        return !this.__hasInvalidLayout__P_65_2;
       },
 
       /**
@@ -8667,8 +8667,8 @@
        */
       invalidateLayoutCache: function invalidateLayoutCache() {
         // this.debug("Mark layout invalid!");
-        this.__hasInvalidLayout__P_75_2 = true;
-        this.__sizeHint__P_75_3 = null;
+        this.__hasInvalidLayout__P_65_2 = true;
+        this.__sizeHint__P_65_3 = null;
       },
 
       /**
@@ -8701,7 +8701,7 @@
        *   is required.
        */
       getSizeHint: function getSizeHint(compute) {
-        var hint = this.__sizeHint__P_75_3;
+        var hint = this.__sizeHint__P_65_3;
 
         if (hint) {
           return hint;
@@ -8712,10 +8712,10 @@
         } // Compute as defined
 
 
-        hint = this.__sizeHint__P_75_3 = this._computeSizeHint(); // Respect height for width
+        hint = this.__sizeHint__P_65_3 = this._computeSizeHint(); // Respect height for width
 
-        if (this._hasHeightForWidth() && this.__computedHeightForWidth__P_75_0 && this.getHeight() == null) {
-          hint.height = this.__computedHeightForWidth__P_75_0;
+        if (this._hasHeightForWidth() && this.__computedHeightForWidth__P_65_0 && this.getHeight() == null) {
+          hint.height = this.__computedHeightForWidth__P_65_0;
         } // normalize width
 
 
@@ -8823,7 +8823,7 @@
       },
       // property apply
       _applyMargin: function _applyMargin() {
-        this.__updateMargin__P_75_4 = true;
+        this.__updateMargin__P_65_4 = true;
         var parent = this.$$parent;
 
         if (parent) {
@@ -8859,7 +8859,7 @@
        * @return {Boolean} Whether user bounds are set on this layout item
        */
       hasUserBounds: function hasUserBounds() {
-        return !!this.__userBounds__P_75_5;
+        return !!this.__userBounds__P_65_5;
       },
 
       /**
@@ -8872,7 +8872,7 @@
        * @param height {Integer} height of the layout item
        */
       setUserBounds: function setUserBounds(left, top, width, height) {
-        if (!this.__userBounds__P_75_5) {
+        if (!this.__userBounds__P_65_5) {
           var parent = this.$$parent;
 
           if (parent) {
@@ -8880,7 +8880,7 @@
           }
         }
 
-        this.__userBounds__P_75_5 = {
+        this.__userBounds__P_65_5 = {
           left: left,
           top: top,
           width: width,
@@ -8895,8 +8895,8 @@
        *
        */
       resetUserBounds: function resetUserBounds() {
-        if (this.__userBounds__P_75_5) {
-          delete this.__userBounds__P_75_5;
+        if (this.__userBounds__P_65_5) {
+          delete this.__userBounds__P_65_5;
           var parent = this.$$parent;
 
           if (parent) {
@@ -8918,7 +8918,7 @@
        *
        * @lint ignoreReferenceField(__emptyProperties)
        */
-      __emptyProperties__P_75_7: {},
+      __emptyProperties__P_65_7: {},
 
       /**
        * Stores the given layout properties
@@ -8930,10 +8930,10 @@
           return;
         }
 
-        var storage = this.__layoutProperties__P_75_6;
+        var storage = this.__layoutProperties__P_65_6;
 
         if (!storage) {
-          storage = this.__layoutProperties__P_75_6 = {};
+          storage = this.__layoutProperties__P_65_6 = {};
         } // Check values through parent
 
 
@@ -8959,7 +8959,7 @@
        * @return {Map} Returns a map of layout properties
        */
       getLayoutProperties: function getLayoutProperties() {
-        return this.__layoutProperties__P_75_6 || this.__emptyProperties__P_75_7;
+        return this.__layoutProperties__P_65_6 || this.__emptyProperties__P_65_7;
       },
 
       /**
@@ -8967,7 +8967,7 @@
        *
        */
       clearLayoutProperties: function clearLayoutProperties() {
-        delete this.__layoutProperties__P_75_6;
+        delete this.__layoutProperties__P_65_6;
       },
 
       /**
@@ -9082,10 +9082,10 @@
       // overridden
       clone: function clone() {
         var clone = qx.ui.core.LayoutItem.prototype.clone.base.call(this);
-        var props = this.__layoutProperties__P_75_6;
+        var props = this.__layoutProperties__P_65_6;
 
         if (props) {
-          clone.__layoutProperties__P_75_6 = qx.lang.Object.clone(props);
+          clone.__layoutProperties__P_65_6 = qx.lang.Object.clone(props);
         }
 
         return clone;
@@ -9102,7 +9102,7 @@
       {
         qx.theme.manager.Meta.getInstance().removeListener("changeTheme", this._onChangeTheme, this);
       }
-      this.$$parent = this.$$subparent = this.__layoutProperties__P_75_6 = this.__computedLayout__P_75_1 = this.__userBounds__P_75_5 = this.__sizeHint__P_75_3 = null;
+      this.$$parent = this.$$subparent = this.__layoutProperties__P_65_6 = this.__computedLayout__P_65_1 = this.__userBounds__P_65_5 = this.__sizeHint__P_65_3 = null;
     }
   });
   qx.ui.core.LayoutItem.$$dbClassInfo = $$dbClassInfo;
@@ -9227,7 +9227,7 @@
     construct: function construct() {
       qx.ui.core.LayoutItem.constructor.call(this); // Create basic element
 
-      this.__contentElement__P_24_0 = this.__createContentElement__P_24_1(); // Initialize properties
+      this.__contentElement__P_28_0 = this.__createContentElement__P_28_1(); // Initialize properties
 
       this.initFocusable();
       this.initSelectable();
@@ -9996,7 +9996,7 @@
       },
 
       /** @type {Map} Contains all pooled separators for reuse */
-      __separatorPool__P_24_2: new qx.util.ObjectPool()
+      __separatorPool__P_28_2: new qx.util.ObjectPool()
     },
 
     /*
@@ -10005,9 +10005,9 @@
     *****************************************************************************
     */
     members: {
-      __contentElement__P_24_0: null,
-      __initialAppearanceApplied__P_24_3: null,
-      __toolTipTextListenerId__P_24_4: null,
+      __contentElement__P_28_0: null,
+      __initialAppearanceApplied__P_28_3: null,
+      __toolTipTextListenerId__P_28_4: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -10018,10 +10018,10 @@
       /**
        * @type {qx.ui.layout.Abstract} The connected layout manager
        */
-      __layoutManager__P_24_5: null,
+      __layoutManager__P_28_5: null,
       // overridden
       _getLayout: function _getLayout() {
-        return this.__layoutManager__P_24_5;
+        return this.__layoutManager__P_28_5;
       },
 
       /**
@@ -10039,15 +10039,15 @@
           }
         }
 
-        if (this.__layoutManager__P_24_5) {
-          this.__layoutManager__P_24_5.connectToWidget(null);
+        if (this.__layoutManager__P_28_5) {
+          this.__layoutManager__P_28_5.connectToWidget(null);
         }
 
         if (layout) {
           layout.connectToWidget(this);
         }
 
-        this.__layoutManager__P_24_5 = layout;
+        this.__layoutManager__P_28_5 = layout;
         qx.ui.core.queue.Layout.add(this);
       },
       // overridden
@@ -10109,7 +10109,7 @@
         }
 
         if (inner || changes.local || changes.margin) {
-          if (this.__layoutManager__P_24_5 && this.hasLayoutChildren()) {
+          if (this.__layoutManager__P_28_5 && this.hasLayoutChildren()) {
             var inset = this.getInsets();
             var innerWidth = width - inset.left - inset.right;
             var innerHeight = height - inset.top - inset.bottom;
@@ -10133,7 +10133,7 @@
               left: this.getPaddingLeft() + decoratorPadding.left
             };
 
-            this.__layoutManager__P_24_5.renderLayout(innerWidth, innerHeight, padding);
+            this.__layoutManager__P_28_5.renderLayout(innerWidth, innerHeight, padding);
           } else if (this.hasLayoutChildren()) {
             throw new Error("At least one child in control " + this._findTopControl() + " requires a layout, but no one was defined!");
           }
@@ -10158,16 +10158,16 @@
         SEPARATOR SUPPORT
       ---------------------------------------------------------------------------
       */
-      __separators__P_24_6: null,
+      __separators__P_28_6: null,
       // overridden
       clearSeparators: function clearSeparators() {
-        var reg = this.__separators__P_24_6;
+        var reg = this.__separators__P_28_6;
 
         if (!reg) {
           return;
         }
 
-        var pool = qx.ui.core.Widget.__separatorPool__P_24_2;
+        var pool = qx.ui.core.Widget.__separatorPool__P_28_2;
         var content = this.getContentElement();
         var widget;
 
@@ -10183,7 +10183,7 @@
       // overridden
       renderSeparator: function renderSeparator(separator, bounds) {
         // Insert
-        var widget = qx.ui.core.Widget.__separatorPool__P_24_2.getObject(qx.ui.core.Widget);
+        var widget = qx.ui.core.Widget.__separatorPool__P_28_2.getObject(qx.ui.core.Widget);
 
         widget.set({
           decorator: separator
@@ -10209,11 +10209,11 @@
         } // Remember element
 
 
-        if (!this.__separators__P_24_6) {
-          this.__separators__P_24_6 = [];
+        if (!this.__separators__P_28_6) {
+          this.__separators__P_28_6 = [];
         }
 
-        this.__separators__P_24_6.push(widget);
+        this.__separators__P_28_6.push(widget);
       },
 
       /*
@@ -10316,8 +10316,8 @@
       invalidateLayoutCache: function invalidateLayoutCache() {
         qx.ui.core.Widget.prototype.invalidateLayoutCache.base.call(this);
 
-        if (this.__layoutManager__P_24_5) {
-          this.__layoutManager__P_24_5.invalidateLayoutCache();
+        if (this.__layoutManager__P_28_5) {
+          this.__layoutManager__P_28_5.invalidateLayoutCache();
         }
       },
 
@@ -10334,7 +10334,7 @@
        * @return {Map}
        */
       _getContentHint: function _getContentHint() {
-        var layout = this.__layoutManager__P_24_5;
+        var layout = this.__layoutManager__P_28_5;
 
         if (layout) {
           if (this.hasLayoutChildren()) {
@@ -10597,7 +10597,7 @@
        *
        * @return {qx.html.Element} The content HTML element
        */
-      __createContentElement__P_24_1: function __createContentElement__P_24_1() {
+      __createContentElement__P_28_1: function __createContentElement__P_28_1() {
         var el = this._createContentElement();
 
         el.connectObject(this); // make sure to allow all pointer events
@@ -10646,7 +10646,7 @@
        * @return {qx.html.Element} The widget's content element
        */
       getContentElement: function getContentElement() {
-        return this.__contentElement__P_24_0;
+        return this.__contentElement__P_28_0;
       },
 
       /*
@@ -10656,7 +10656,7 @@
       */
 
       /** @type {qx.ui.core.LayoutItem[]} List of all child widgets */
-      __widgetChildren__P_24_7: null,
+      __widgetChildren__P_28_7: null,
 
       /**
        * Returns all children, which are layout relevant. This excludes all widgets,
@@ -10666,10 +10666,10 @@
        * @return {qx.ui.core.Widget[]} All layout relevant children.
        */
       getLayoutChildren: function getLayoutChildren() {
-        var children = this.__widgetChildren__P_24_7;
+        var children = this.__widgetChildren__P_28_7;
 
         if (!children) {
-          return this.__emptyChildren__P_24_8;
+          return this.__emptyChildren__P_28_8;
         }
 
         var layoutChildren;
@@ -10701,7 +10701,7 @@
        * Resets the cache for children which should be laid out.
        */
       invalidateLayoutChildren: function invalidateLayoutChildren() {
-        var layout = this.__layoutManager__P_24_5;
+        var layout = this.__layoutManager__P_28_5;
 
         if (layout) {
           layout.invalidateChildrenCache();
@@ -10718,7 +10718,7 @@
        * @return {Boolean} Whether the layout has layout relevant children
        */
       hasLayoutChildren: function hasLayoutChildren() {
-        var children = this.__widgetChildren__P_24_7;
+        var children = this.__widgetChildren__P_28_7;
 
         if (!children) {
           return false;
@@ -10754,7 +10754,7 @@
        *
        * @lint ignoreReferenceField(__emptyChildren)
        */
-      __emptyChildren__P_24_8: [],
+      __emptyChildren__P_28_8: [],
 
       /**
        * Returns the children list
@@ -10763,7 +10763,7 @@
        *   reference types, so please do not modify it in-place).
        */
       _getChildren: function _getChildren() {
-        return this.__widgetChildren__P_24_7 || this.__emptyChildren__P_24_8;
+        return this.__widgetChildren__P_28_7 || this.__emptyChildren__P_28_8;
       },
 
       /**
@@ -10775,7 +10775,7 @@
        *   the given widget is no child of this layout.
        */
       _indexOf: function _indexOf(child) {
-        var children = this.__widgetChildren__P_24_7;
+        var children = this.__widgetChildren__P_28_7;
 
         if (!children) {
           return -1;
@@ -10790,7 +10790,7 @@
        * @return {Boolean} Returns <code>true</code> when the widget has children.
        */
       _hasChildren: function _hasChildren() {
-        var children = this.__widgetChildren__P_24_7;
+        var children = this.__widgetChildren__P_28_7;
         return children != null && !!children[0];
       },
 
@@ -10800,7 +10800,7 @@
        * @param queue {Array} The queue to add widgets to
        */
       addChildrenToQueue: function addChildrenToQueue(queue) {
-        var children = this.__widgetChildren__P_24_7;
+        var children = this.__widgetChildren__P_28_7;
 
         if (!children) {
           return;
@@ -10831,16 +10831,16 @@
         } // When moving in the same widget, remove widget first
 
         if (child.getLayoutParent() == this) {
-          qx.lang.Array.remove(this.__widgetChildren__P_24_7, child);
+          qx.lang.Array.remove(this.__widgetChildren__P_28_7, child);
         }
 
-        if (this.__widgetChildren__P_24_7) {
-          this.__widgetChildren__P_24_7.push(child);
+        if (this.__widgetChildren__P_28_7) {
+          this.__widgetChildren__P_28_7.push(child);
         } else {
-          this.__widgetChildren__P_24_7 = [child];
+          this.__widgetChildren__P_28_7 = [child];
         }
 
-        this.__addHelper__P_24_9(child, options);
+        this.__addHelper__P_28_9(child, options);
       },
 
       /**
@@ -10853,28 +10853,28 @@
        * @param options {Map?null} Optional layout data for widget.
        */
       _addAt: function _addAt(child, index, options) {
-        if (!this.__widgetChildren__P_24_7) {
-          this.__widgetChildren__P_24_7 = [];
+        if (!this.__widgetChildren__P_28_7) {
+          this.__widgetChildren__P_28_7 = [];
         } // When moving in the same widget, remove widget first
 
 
         if (child.getLayoutParent() == this) {
-          qx.lang.Array.remove(this.__widgetChildren__P_24_7, child);
+          qx.lang.Array.remove(this.__widgetChildren__P_28_7, child);
         }
 
-        var ref = this.__widgetChildren__P_24_7[index];
+        var ref = this.__widgetChildren__P_28_7[index];
 
         if (ref === child) {
           child.setLayoutProperties(options);
         }
 
         if (ref) {
-          qx.lang.Array.insertBefore(this.__widgetChildren__P_24_7, child, ref);
+          qx.lang.Array.insertBefore(this.__widgetChildren__P_28_7, child, ref);
         } else {
-          this.__widgetChildren__P_24_7.push(child);
+          this.__widgetChildren__P_28_7.push(child);
         }
 
-        this.__addHelper__P_24_9(child, options);
+        this.__addHelper__P_28_9(child, options);
       },
 
       /**
@@ -10893,18 +10893,18 @@
           return;
         }
 
-        if (!this.__widgetChildren__P_24_7) {
-          this.__widgetChildren__P_24_7 = [];
+        if (!this.__widgetChildren__P_28_7) {
+          this.__widgetChildren__P_28_7 = [];
         } // When moving in the same widget, remove widget first
 
 
         if (child.getLayoutParent() == this) {
-          qx.lang.Array.remove(this.__widgetChildren__P_24_7, child);
+          qx.lang.Array.remove(this.__widgetChildren__P_28_7, child);
         }
 
-        qx.lang.Array.insertBefore(this.__widgetChildren__P_24_7, child, before);
+        qx.lang.Array.insertBefore(this.__widgetChildren__P_28_7, child, before);
 
-        this.__addHelper__P_24_9(child, options);
+        this.__addHelper__P_28_9(child, options);
       },
 
       /**
@@ -10924,18 +10924,18 @@
           return;
         }
 
-        if (!this.__widgetChildren__P_24_7) {
-          this.__widgetChildren__P_24_7 = [];
+        if (!this.__widgetChildren__P_28_7) {
+          this.__widgetChildren__P_28_7 = [];
         } // When moving in the same widget, remove widget first
 
 
         if (child.getLayoutParent() == this) {
-          qx.lang.Array.remove(this.__widgetChildren__P_24_7, child);
+          qx.lang.Array.remove(this.__widgetChildren__P_28_7, child);
         }
 
-        qx.lang.Array.insertAfter(this.__widgetChildren__P_24_7, child, after);
+        qx.lang.Array.insertAfter(this.__widgetChildren__P_28_7, child, after);
 
-        this.__addHelper__P_24_9(child, options);
+        this.__addHelper__P_28_9(child, options);
       },
 
       /**
@@ -10944,13 +10944,13 @@
        * @param child {qx.ui.core.LayoutItem} the widget to remove
        */
       _remove: function _remove(child) {
-        if (!this.__widgetChildren__P_24_7) {
+        if (!this.__widgetChildren__P_28_7) {
           throw new Error("This widget has no children!");
         }
 
-        qx.lang.Array.remove(this.__widgetChildren__P_24_7, child);
+        qx.lang.Array.remove(this.__widgetChildren__P_28_7, child);
 
-        this.__removeHelper__P_24_10(child);
+        this.__removeHelper__P_28_10(child);
       },
 
       /**
@@ -10960,14 +10960,14 @@
        * @return {qx.ui.core.LayoutItem} The removed item.
        */
       _removeAt: function _removeAt(index) {
-        if (!this.__widgetChildren__P_24_7) {
+        if (!this.__widgetChildren__P_28_7) {
           throw new Error("This widget has no children!");
         }
 
-        var child = this.__widgetChildren__P_24_7[index];
-        qx.lang.Array.removeAt(this.__widgetChildren__P_24_7, index);
+        var child = this.__widgetChildren__P_28_7[index];
+        qx.lang.Array.removeAt(this.__widgetChildren__P_28_7, index);
 
-        this.__removeHelper__P_24_10(child);
+        this.__removeHelper__P_28_10(child);
 
         return child;
       },
@@ -10978,18 +10978,18 @@
        * @return {Array} An array containing the removed children.
        */
       _removeAll: function _removeAll() {
-        if (!this.__widgetChildren__P_24_7) {
+        if (!this.__widgetChildren__P_28_7) {
           return [];
         } // Working on a copy to make it possible to clear the
         // internal array before calling setLayoutParent()
 
 
-        var children = this.__widgetChildren__P_24_7.concat();
+        var children = this.__widgetChildren__P_28_7.concat();
 
-        this.__widgetChildren__P_24_7.length = 0;
+        this.__widgetChildren__P_28_7.length = 0;
 
         for (var i = children.length - 1; i >= 0; i--) {
-          this.__removeHelper__P_24_10(children[i]);
+          this.__removeHelper__P_28_10(children[i]);
         }
 
         qx.ui.core.queue.Layout.add(this);
@@ -11033,7 +11033,7 @@
        * @param child {qx.ui.core.LayoutItem} The child to add.
        * @param options {Map|null} Optional layout data for the widget.
        */
-      __addHelper__P_24_9: function __addHelper__P_24_9(child, options) {
+      __addHelper__P_28_9: function __addHelper__P_28_9(child, options) {
         {
           this.assertInstance(child, qx.ui.core.LayoutItem, "Invalid widget to add: " + child);
           this.assertNotIdentical(child, this, "Could not add widget to itself: " + child);
@@ -11072,7 +11072,7 @@
        *
        * @param child {qx.ui.core.LayoutItem} The child to remove.
        */
-      __removeHelper__P_24_10: function __removeHelper__P_24_10(child) {
+      __removeHelper__P_28_10: function __removeHelper__P_28_10(child) {
         {
           this.assertNotUndefined(child);
         }
@@ -11084,8 +11084,8 @@
 
         child.setLayoutParent(null); // clear the layout's children cache
 
-        if (this.__layoutManager__P_24_5) {
-          this.__layoutManager__P_24_5.invalidateChildrenCache();
+        if (this.__layoutManager__P_28_5) {
+          this.__layoutManager__P_28_5.invalidateChildrenCache();
         } // Add to layout queue
 
 
@@ -11151,7 +11151,7 @@
         this._updateInsets = true;
         qx.ui.core.queue.Layout.add(this);
 
-        this.__updateContentPadding__P_24_11(name, value);
+        this.__updateContentPadding__P_28_11(name, value);
       },
 
       /**
@@ -11160,7 +11160,7 @@
        * @param style {String} The name of the css padding property e.g. <code>paddingTop</code>
        * @param value {Number} The value to set.
        */
-      __updateContentPadding__P_24_11: function __updateContentPadding__P_24_11(style, value) {
+      __updateContentPadding__P_28_11: function __updateContentPadding__P_28_11(style, value) {
         var content = this.getContentElement();
         var decorator = this.getDecorator();
         decorator = qx.theme.manager.Decoration.getInstance().resolve(decorator);
@@ -11205,12 +11205,12 @@
       // property apply
       _applyToolTipText: function _applyToolTipText(value, old) {
         {
-          if (this.__toolTipTextListenerId__P_24_4) {
+          if (this.__toolTipTextListenerId__P_28_4) {
             return;
           }
 
           var manager = qx.locale.Manager.getInstance();
-          this.__toolTipTextListenerId__P_24_4 = manager.addListener("changeLocale", function () {
+          this.__toolTipTextListenerId__P_28_4 = manager.addListener("changeLocale", function () {
             var toolTipText = this.getToolTipText();
 
             if (toolTipText && toolTipText.translate) {
@@ -11322,7 +11322,7 @@
       */
 
       /** @type {Map} The current widget states */
-      __states__P_24_12: null,
+      __states__P_28_12: null,
 
       /** @type {Boolean} Whether the widget has state changes which are not yet queued */
       $$stateChanges: null,
@@ -11337,7 +11337,7 @@
        * @return {Boolean} whether the state is set.
        */
       hasState: function hasState(state) {
-        var states = this.__states__P_24_12;
+        var states = this.__states__P_28_12;
         return !!states && !!states[state];
       },
 
@@ -11348,10 +11348,10 @@
        */
       addState: function addState(state) {
         // Dynamically create state map
-        var states = this.__states__P_24_12;
+        var states = this.__states__P_28_12;
 
         if (!states) {
-          states = this.__states__P_24_12 = {};
+          states = this.__states__P_28_12 = {};
         }
 
         if (states[state]) {
@@ -11359,7 +11359,7 @@
         } // Add state and queue
 
 
-        this.__states__P_24_12[state] = true; // Fast path for hovered state
+        this.__states__P_28_12[state] = true; // Fast path for hovered state
 
         if (state === "hovered") {
           this.syncAppearance();
@@ -11371,7 +11371,7 @@
 
 
         var forward = this._forwardStates;
-        var controls = this.__childControls__P_24_13;
+        var controls = this.__childControls__P_28_13;
 
         if (forward && forward[state] && controls) {
           var control;
@@ -11393,14 +11393,14 @@
        */
       removeState: function removeState(state) {
         // Check for existing state
-        var states = this.__states__P_24_12;
+        var states = this.__states__P_28_12;
 
         if (!states || !states[state]) {
           return;
         } // Clear state and queue
 
 
-        delete this.__states__P_24_12[state]; // Fast path for hovered state
+        delete this.__states__P_28_12[state]; // Fast path for hovered state
 
         if (state === "hovered") {
           this.syncAppearance();
@@ -11412,7 +11412,7 @@
 
 
         var forward = this._forwardStates;
-        var controls = this.__childControls__P_24_13;
+        var controls = this.__childControls__P_28_13;
 
         if (forward && forward[state] && controls) {
           for (var id in controls) {
@@ -11434,10 +11434,10 @@
        * @param value {String} New state
        */
       replaceState: function replaceState(old, value) {
-        var states = this.__states__P_24_12;
+        var states = this.__states__P_28_12;
 
         if (!states) {
-          states = this.__states__P_24_12 = {};
+          states = this.__states__P_28_12 = {};
         }
 
         if (!states[value]) {
@@ -11456,7 +11456,7 @@
 
 
         var forward = this._forwardStates;
-        var controls = this.__childControls__P_24_13;
+        var controls = this.__childControls__P_28_13;
 
         if (forward && forward[value] && controls) {
           for (var id in controls) {
@@ -11476,10 +11476,10 @@
       */
 
       /** @type {String} The currently compiled selector to lookup the matching appearance */
-      __appearanceSelector__P_24_14: null,
+      __appearanceSelector__P_28_14: null,
 
       /** @type {Boolean} Whether the selectors needs to be recomputed before updating appearance */
-      __updateSelector__P_24_15: null,
+      __updateSelector__P_28_15: null,
 
       /**
        * Renders the appearance using the current widget states.
@@ -11487,16 +11487,16 @@
        * Used exclusively by {qx.ui.core.queue.Appearance}.
        */
       syncAppearance: function syncAppearance() {
-        var states = this.__states__P_24_12;
-        var selector = this.__appearanceSelector__P_24_14;
+        var states = this.__states__P_28_12;
+        var selector = this.__appearanceSelector__P_28_14;
         var manager = qx.theme.manager.Appearance.getInstance(); // Cache deep accessor
 
         var styler = qx.core.Property.$$method.setThemed;
         var unstyler = qx.core.Property.$$method.resetThemed; // Check for requested selector update
 
-        if (this.__updateSelector__P_24_15) {
+        if (this.__updateSelector__P_28_15) {
           // Clear flag
-          delete this.__updateSelector__P_24_15; // Check if the selector was created previously
+          delete this.__updateSelector__P_28_15; // Check if the selector was created previously
 
           if (selector) {
             // Query old selector
@@ -11518,7 +11518,7 @@
 
 
           selector = id.reverse().join("/").replace(/#[0-9]+/g, "");
-          this.__appearanceSelector__P_24_14 = selector;
+          this.__appearanceSelector__P_28_14 = selector;
         } // Query current selector
 
 
@@ -11552,7 +11552,7 @@
           }
         }
 
-        this.fireDataEvent("syncAppearance", this.__states__P_24_12);
+        this.fireDataEvent("syncAppearance", this.__states__P_28_12);
       },
       // property apply
       _applyAppearance: function _applyAppearance(value, old) {
@@ -11568,9 +11568,9 @@
       checkAppearanceNeeds: function checkAppearanceNeeds() {
         // CASE 1: Widget has never got an appearance already because it was never
         // visible before. Normally add it to the queue is the easiest way to update it.
-        if (!this.__initialAppearanceApplied__P_24_3) {
+        if (!this.__initialAppearanceApplied__P_28_3) {
           qx.ui.core.queue.Appearance.add(this);
-          this.__initialAppearanceApplied__P_24_3 = true;
+          this.__initialAppearanceApplied__P_28_3 = true;
         } // CASE 2: Widget has got an appearance before, but was hidden for some time
         // which results into maybe omitted state changes have not been applied.
         // In this case the widget is already queued in the appearance. This is basically
@@ -11588,11 +11588,11 @@
        */
       updateAppearance: function updateAppearance() {
         // Clear selector
-        this.__updateSelector__P_24_15 = true; // Add to appearance queue
+        this.__updateSelector__P_28_15 = true; // Add to appearance queue
 
         qx.ui.core.queue.Appearance.add(this); // Update child controls
 
-        var controls = this.__childControls__P_24_13;
+        var controls = this.__childControls__P_28_13;
 
         if (controls) {
           var obj;
@@ -12154,15 +12154,15 @@
        * @return {Boolean} <code>true</code> when the child control is registered.
        */
       hasChildControl: function hasChildControl(id) {
-        if (!this.__childControls__P_24_13) {
+        if (!this.__childControls__P_28_13) {
           return false;
         }
 
-        return !!this.__childControls__P_24_13[id];
+        return !!this.__childControls__P_28_13[id];
       },
 
       /** @type {Map} Map of instantiated child controls */
-      __childControls__P_24_13: null,
+      __childControls__P_28_13: null,
 
       /**
        * Returns a map of all already created child controls
@@ -12170,7 +12170,7 @@
        * @return {Map} mapping of child control id to the child widget.
        */
       _getCreatedChildControls: function _getCreatedChildControls() {
-        return this.__childControls__P_24_13;
+        return this.__childControls__P_28_13;
       },
 
       /**
@@ -12192,15 +12192,15 @@
        * @return {qx.ui.core.Widget} Child control
        */
       getChildControl: function getChildControl(id, notcreate) {
-        if (!this.__childControls__P_24_13) {
+        if (!this.__childControls__P_28_13) {
           if (notcreate) {
             return null;
           }
 
-          this.__childControls__P_24_13 = {};
+          this.__childControls__P_28_13 = {};
         }
 
-        var control = this.__childControls__P_24_13[id];
+        var control = this.__childControls__P_28_13[id];
 
         if (control) {
           return control;
@@ -12272,7 +12272,7 @@
         delete control.$$subcontrol;
         delete control.$$subparent; // remove state forwarding
 
-        var states = this.__states__P_24_12;
+        var states = this.__states__P_28_12;
         var forward = this._forwardStates;
 
         if (states && forward && control instanceof qx.ui.core.Widget) {
@@ -12283,7 +12283,7 @@
           }
         }
 
-        delete this.__childControls__P_24_13[id];
+        delete this.__childControls__P_28_13[id];
         return control;
       },
 
@@ -12298,9 +12298,9 @@
        * @throws {Error} when the control was created before
        */
       _createChildControl: function _createChildControl(id) {
-        if (!this.__childControls__P_24_13) {
-          this.__childControls__P_24_13 = {};
-        } else if (this.__childControls__P_24_13[id]) {
+        if (!this.__childControls__P_28_13) {
+          this.__childControls__P_28_13 = {};
+        } else if (this.__childControls__P_28_13[id]) {
           throw new Error("Child control '" + id + "' already created!");
         }
 
@@ -12325,7 +12325,7 @@
         control.$$subcontrol = id;
         control.$$subparent = this; // Support for state forwarding
 
-        var states = this.__states__P_24_12;
+        var states = this.__states__P_28_12;
         var forward = this._forwardStates;
 
         if (states && forward && control instanceof qx.ui.core.Widget) {
@@ -12346,7 +12346,7 @@
 
         this.fireDataEvent("createChildControl", control); // Register control and return
 
-        return this.__childControls__P_24_13[id] = control;
+        return this.__childControls__P_28_13[id] = control;
       },
 
       /**
@@ -12370,7 +12370,7 @@
        *
        */
       _disposeChildControls: function _disposeChildControls() {
-        var controls = this.__childControls__P_24_13;
+        var controls = this.__childControls__P_28_13;
 
         if (!controls) {
           return;
@@ -12388,7 +12388,7 @@
           }
         }
 
-        delete this.__childControls__P_24_13;
+        delete this.__childControls__P_28_13;
       },
 
       /**
@@ -12579,8 +12579,8 @@
       // it just slows down things a bit, so do not do them.
       if (!qx.core.ObjectRegistry.inShutDown) {
         {
-          if (this.__toolTipTextListenerId__P_24_4) {
-            qx.locale.Manager.getInstance().removeListenerById(this.__toolTipTextListenerId__P_24_4);
+          if (this.__toolTipTextListenerId__P_28_4) {
+            qx.locale.Manager.getInstance().removeListenerById(this.__toolTipTextListenerId__P_28_4);
           }
         } // Remove widget pointer from DOM
 
@@ -12607,18 +12607,18 @@
 
       if (!qx.core.ObjectRegistry.inShutDown) {
         this.clearSeparators();
-        this.__separators__P_24_6 = null;
+        this.__separators__P_28_6 = null;
       } else {
-        this._disposeArray("__separators__P_24_6");
+        this._disposeArray("__separators__P_28_6");
       } // Clear children array
 
 
-      this._disposeArray("__widgetChildren__P_24_7"); // Cleanup map of appearance states
+      this._disposeArray("__widgetChildren__P_28_7"); // Cleanup map of appearance states
 
 
-      this.__states__P_24_12 = this.__childControls__P_24_13 = null; // Dispose layout manager and HTML elements
+      this.__states__P_28_12 = this.__childControls__P_28_13 = null; // Dispose layout manager and HTML elements
 
-      this._disposeObjects("__layoutManager__P_24_5", "__contentElement__P_24_0");
+      this._disposeObjects("__layoutManager__P_28_5", "__contentElement__P_28_0");
     }
   });
   qx.ui.core.Widget.$$dbClassInfo = $$dbClassInfo;
@@ -12895,7 +12895,7 @@
       }
     },
     members: {
-      __blocker__P_107_0: null,
+      __blocker__P_134_0: null,
 
       /**
        * Template method for creating the blocker item.
@@ -12927,7 +12927,7 @@
        * @return {Boolean} Whether the widget is blocked.
        */
       isBlocked: function isBlocked() {
-        return this.__blocker__P_107_0 && this.__blocker__P_107_0.isBlocked();
+        return this.__blocker__P_134_0 && this.__blocker__P_134_0.isBlocked();
       },
 
       /**
@@ -12936,8 +12936,8 @@
        * the number of {@link #unblock} calls is identical to {@link #block} calls.
        */
       unblock: function unblock() {
-        if (this.__blocker__P_107_0) {
-          this.__blocker__P_107_0.unblock();
+        if (this.__blocker__P_134_0) {
+          this.__blocker__P_134_0.unblock();
         }
       },
 
@@ -12946,8 +12946,8 @@
        * the amount of {@link #block} calls. The blocker is directly removed.
        */
       forceUnblock: function forceUnblock() {
-        if (this.__blocker__P_107_0) {
-          this.__blocker__P_107_0.forceUnblock();
+        if (this.__blocker__P_134_0) {
+          this.__blocker__P_134_0.forceUnblock();
         }
       },
 
@@ -12967,15 +12967,15 @@
        * @return {qx.ui.core.Blocker} The blocker
        */
       getBlocker: function getBlocker() {
-        if (!this.__blocker__P_107_0) {
-          this.__blocker__P_107_0 = this._createBlocker();
+        if (!this.__blocker__P_134_0) {
+          this.__blocker__P_134_0 = this._createBlocker();
         }
 
-        return this.__blocker__P_107_0;
+        return this.__blocker__P_134_0;
       }
     },
     destruct: function destruct() {
-      this._disposeObjects("__blocker__P_107_0");
+      this._disposeObjects("__blocker__P_134_0");
     }
   });
   qx.ui.core.MBlocker.$$dbClassInfo = $$dbClassInfo;
@@ -13054,8 +13054,8 @@
     *****************************************************************************
     */
     members: {
-      __windows__P_108_0: null,
-      __manager__P_108_1: null,
+      __windows__P_135_0: null,
+      __manager__P_135_1: null,
 
       /**
        * Get the desktop's window manager. Each desktop must have a window manager.
@@ -13065,11 +13065,11 @@
        * @return {qx.ui.window.IWindowManager} The desktop's window manager
        */
       getWindowManager: function getWindowManager() {
-        if (!this.__manager__P_108_1) {
+        if (!this.__manager__P_135_1) {
           this.setWindowManager(new qx.ui.window.Window.DEFAULT_MANAGER_CLASS());
         }
 
-        return this.__manager__P_108_1;
+        return this.__manager__P_135_1;
       },
 
       /**
@@ -13088,12 +13088,12 @@
        * @param manager {qx.ui.window.IWindowManager} The window manager
        */
       setWindowManager: function setWindowManager(manager) {
-        if (this.__manager__P_108_1) {
-          this.__manager__P_108_1.setDesktop(null);
+        if (this.__manager__P_135_1) {
+          this.__manager__P_135_1.setDesktop(null);
         }
 
         manager.setDesktop(this);
-        this.__manager__P_108_1 = manager;
+        this.__manager__P_135_1 = manager;
       },
 
       /**
@@ -13197,11 +13197,11 @@
        * @return {qx.ui.window.Window[]} Array of managed windows
        */
       getWindows: function getWindows() {
-        if (!this.__windows__P_108_0) {
-          this.__windows__P_108_0 = [];
+        if (!this.__windows__P_135_0) {
+          this.__windows__P_135_0 = [];
         }
 
-        return this.__windows__P_108_0;
+        return this.__windows__P_135_0;
       }
     },
 
@@ -13211,9 +13211,9 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this._disposeArray("__windows__P_108_0");
+      this._disposeArray("__windows__P_135_0");
 
-      this._disposeObjects("__manager__P_108_1");
+      this._disposeObjects("__manager__P_135_1");
     }
   });
   qx.ui.window.MDesktop.$$dbClassInfo = $$dbClassInfo;
@@ -13316,7 +13316,7 @@
 
       qx.ui.core.queue.Visibility.add(this);
       this.initNativeHelp();
-      this.addListener("keypress", this.__preventScrollWhenFocused__P_58_0, this);
+      this.addListener("keypress", this.__preventScrollWhenFocused__P_75_0, this);
     },
 
     /*
@@ -13404,7 +13404,7 @@
     *****************************************************************************
     */
     members: {
-      __globalCursorStyleSheet__P_58_1: null,
+      __globalCursorStyleSheet__P_75_1: null,
       // overridden
       isRootWidget: function isRootWidget() {
         return true;
@@ -13426,10 +13426,10 @@
         // For performance reasons this is impractical in IE
         "default": function _default(value, old) {
           var Stylesheet = qx.bom.Stylesheet;
-          var sheet = this.__globalCursorStyleSheet__P_58_1;
+          var sheet = this.__globalCursorStyleSheet__P_75_1;
 
           if (!sheet) {
-            this.__globalCursorStyleSheet__P_58_1 = sheet = Stylesheet.createElement();
+            this.__globalCursorStyleSheet__P_75_1 = sheet = Stylesheet.createElement();
           }
 
           Stylesheet.removeAllRules(sheet);
@@ -13466,7 +13466,7 @@
       *
       * @param e {qx.event.type.KeySequence} The KeySequence event
       */
-      __preventScrollWhenFocused__P_58_0: function __preventScrollWhenFocused__P_58_0(e) {
+      __preventScrollWhenFocused__P_75_0: function __preventScrollWhenFocused__P_75_0(e) {
         // Require space pressed
         if (e.getKeyIdentifier() !== "Space") {
           return;
@@ -13523,7 +13523,7 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__globalCursorStyleSheet__P_58_1 = null;
+      this.__globalCursorStyleSheet__P_75_1 = null;
     },
 
     /*
@@ -13589,7 +13589,7 @@
     construct: function construct() {
       qx.core.Object.constructor.call(this); // Create data structure
 
-      this.__roots__P_59_0 = {};
+      this.__roots__P_57_0 = {};
     },
 
     /*
@@ -13613,10 +13613,10 @@
     *****************************************************************************
     */
     members: {
-      __roots__P_59_0: null,
-      __activeChild__P_59_1: null,
-      __focusedChild__P_59_2: null,
-      __currentRoot__P_59_3: null,
+      __roots__P_57_0: null,
+      __activeChild__P_57_1: null,
+      __focusedChild__P_57_2: null,
+      __currentRoot__P_57_3: null,
 
       /**
        * Connects to a top-level root element (which initially receives
@@ -13628,7 +13628,7 @@
        */
       connectTo: function connectTo(root) {
         // this.debug("Connect to: " + root);
-        root.addListener("keypress", this.__onKeyPress__P_59_4, this);
+        root.addListener("keypress", this.__onKeyPress__P_57_4, this);
         root.addListener("focusin", this._onFocusIn, this, true);
         root.addListener("focusout", this._onFocusOut, this, true);
         root.addListener("activate", this._onActivate, this, true);
@@ -13643,7 +13643,7 @@
        */
       addRoot: function addRoot(widget) {
         // this.debug("Add focusRoot: " + widget);
-        this.__roots__P_59_0[widget.toHashCode()] = widget;
+        this.__roots__P_57_0[widget.toHashCode()] = widget;
       },
 
       /**
@@ -13653,7 +13653,7 @@
        */
       removeRoot: function removeRoot(widget) {
         // this.debug("Remove focusRoot: " + widget);
-        delete this.__roots__P_59_0[widget.toHashCode()];
+        delete this.__roots__P_57_0[widget.toHashCode()];
       },
 
       /**
@@ -13663,7 +13663,7 @@
        *    if no widget is active
        */
       getActiveWidget: function getActiveWidget() {
-        return this.__activeChild__P_59_1;
+        return this.__activeChild__P_57_1;
       },
 
       /**
@@ -13673,7 +13673,7 @@
        * @return {Boolean} <code>true</code> if the given widget is active
        */
       isActive: function isActive(widget) {
-        return this.__activeChild__P_59_1 == widget;
+        return this.__activeChild__P_57_1 == widget;
       },
 
       /**
@@ -13683,7 +13683,7 @@
        *    if no widget has the focus
        */
       getFocusedWidget: function getFocusedWidget() {
-        return this.__focusedChild__P_59_2;
+        return this.__focusedChild__P_57_2;
       },
 
       /**
@@ -13693,7 +13693,7 @@
        * @return {Boolean} <code>true</code> if the given widget is focused
        */
       isFocused: function isFocused(widget) {
-        return this.__focusedChild__P_59_2 == widget;
+        return this.__focusedChild__P_57_2 == widget;
       },
 
       /**
@@ -13703,7 +13703,7 @@
        * @return {Boolean} <code>true</code> if the given widget is a focus root
        */
       isFocusRoot: function isFocusRoot(widget) {
-        return !!this.__roots__P_59_0[widget.toHashCode()];
+        return !!this.__roots__P_57_0[widget.toHashCode()];
       },
 
       /*
@@ -13719,12 +13719,12 @@
        */
       _onActivate: function _onActivate(e) {
         var target = e.getTarget();
-        this.__activeChild__P_59_1 = target; //this.debug("active: " + target);
+        this.__activeChild__P_57_1 = target; //this.debug("active: " + target);
 
-        var root = this.__findFocusRoot__P_59_5(target);
+        var root = this.__findFocusRoot__P_57_5(target);
 
-        if (root != this.__currentRoot__P_59_3) {
-          this.__currentRoot__P_59_3 = root;
+        if (root != this.__currentRoot__P_57_3) {
+          this.__currentRoot__P_57_3 = root;
         }
       },
 
@@ -13736,8 +13736,8 @@
       _onDeactivate: function _onDeactivate(e) {
         var target = e.getTarget();
 
-        if (this.__activeChild__P_59_1 == target) {
-          this.__activeChild__P_59_1 = null;
+        if (this.__activeChild__P_57_1 == target) {
+          this.__activeChild__P_57_1 = null;
         }
       },
 
@@ -13749,8 +13749,8 @@
       _onFocusIn: function _onFocusIn(e) {
         var target = e.getTarget();
 
-        if (target != this.__focusedChild__P_59_2) {
-          this.__focusedChild__P_59_2 = target;
+        if (target != this.__focusedChild__P_57_2) {
+          this.__focusedChild__P_57_2 = target;
           target.visualizeFocus();
         }
       },
@@ -13763,8 +13763,8 @@
       _onFocusOut: function _onFocusOut(e) {
         var target = e.getTarget();
 
-        if (target == this.__focusedChild__P_59_2) {
-          this.__focusedChild__P_59_2 = null;
+        if (target == this.__focusedChild__P_57_2) {
+          this.__focusedChild__P_57_2 = null;
           target.visualizeBlur();
         }
       },
@@ -13774,12 +13774,12 @@
        *
        * @param e {qx.event.type.KeySequence} Key event
        */
-      __onKeyPress__P_59_4: function __onKeyPress__P_59_4(e) {
+      __onKeyPress__P_57_4: function __onKeyPress__P_57_4(e) {
         if (e.getKeyIdentifier() != "Tab" || !this.isUseTabNavigation()) {
           return;
         }
 
-        if (!this.__currentRoot__P_59_3) {
+        if (!this.__currentRoot__P_57_3) {
           return;
         } // Stop all key-events with a TAB keycode
 
@@ -13787,12 +13787,12 @@
         e.stopPropagation();
         e.preventDefault(); // Support shift key to reverse widget detection order
 
-        var current = this.__focusedChild__P_59_2;
+        var current = this.__focusedChild__P_57_2;
 
         if (!e.isShiftPressed()) {
-          var next = current ? this.__getWidgetAfter__P_59_6(current) : this.__getFirstWidget__P_59_7();
+          var next = current ? this.__getWidgetAfter__P_57_6(current) : this.__getFirstWidget__P_57_7();
         } else {
-          var next = current ? this.__getWidgetBefore__P_59_8(current) : this.__getLastWidget__P_59_9();
+          var next = current ? this.__getWidgetBefore__P_57_8(current) : this.__getLastWidget__P_57_9();
         } // If there was a widget found, focus it
 
 
@@ -13814,8 +13814,8 @@
        * @return {qx.ui.core.Widget|null} The focus root for the given widget or
        * <code>true</code> if no focus root could be found
        */
-      __findFocusRoot__P_59_5: function __findFocusRoot__P_59_5(widget) {
-        var roots = this.__roots__P_59_0;
+      __findFocusRoot__P_57_5: function __findFocusRoot__P_57_5(widget) {
+        var roots = this.__roots__P_57_0;
 
         while (widget) {
           if (roots[widget.toHashCode()]) {
@@ -13842,7 +13842,7 @@
        * @return {Integer} A sort() compatible integer with values
        *   small than 0, exactly 0 or bigger than 0.
        */
-      __compareTabOrder__P_59_10: function __compareTabOrder__P_59_10(widget1, widget2) {
+      __compareTabOrder__P_57_10: function __compareTabOrder__P_57_10(widget1, widget2) {
         if (widget1 === widget2) {
           return 0;
         } // Sort-Check #1: Tab-Index
@@ -13888,8 +13888,8 @@
        * @return {qx.ui.core.Widget} Returns the first (positioned) widget from
        *    the current root.
        */
-      __getFirstWidget__P_59_7: function __getFirstWidget__P_59_7() {
-        return this.__getFirst__P_59_11(this.__currentRoot__P_59_3, null);
+      __getFirstWidget__P_57_7: function __getFirstWidget__P_57_7() {
+        return this.__getFirst__P_57_11(this.__currentRoot__P_57_3, null);
       },
 
       /**
@@ -13898,8 +13898,8 @@
        * @return {qx.ui.core.Widget} Returns the last (positioned) widget from
        *    the current root.
        */
-      __getLastWidget__P_59_9: function __getLastWidget__P_59_9() {
-        return this.__getLast__P_59_12(this.__currentRoot__P_59_3, null);
+      __getLastWidget__P_57_9: function __getLastWidget__P_57_9() {
+        return this.__getLast__P_57_12(this.__currentRoot__P_57_3, null);
       },
 
       /**
@@ -13908,11 +13908,11 @@
        * @param widget {qx.ui.core.Widget} Widget to start with
        * @return {qx.ui.core.Widget} The found widget.
        */
-      __getWidgetAfter__P_59_6: function __getWidgetAfter__P_59_6(widget) {
-        var root = this.__currentRoot__P_59_3;
+      __getWidgetAfter__P_57_6: function __getWidgetAfter__P_57_6(widget) {
+        var root = this.__currentRoot__P_57_3;
 
         if (root == widget) {
-          return this.__getFirstWidget__P_59_7();
+          return this.__getFirstWidget__P_57_7();
         }
 
         while (widget && widget.getAnonymous()) {
@@ -13925,11 +13925,11 @@
 
         var result = [];
 
-        this.__collectAllAfter__P_59_13(root, widget, result);
+        this.__collectAllAfter__P_57_13(root, widget, result);
 
-        result.sort(this.__compareTabOrder__P_59_10);
+        result.sort(this.__compareTabOrder__P_57_10);
         var len = result.length;
-        return len > 0 ? result[0] : this.__getFirstWidget__P_59_7();
+        return len > 0 ? result[0] : this.__getFirstWidget__P_57_7();
       },
 
       /**
@@ -13938,11 +13938,11 @@
        * @param widget {qx.ui.core.Widget} Widget to start with
        * @return {qx.ui.core.Widget} The found widget.
        */
-      __getWidgetBefore__P_59_8: function __getWidgetBefore__P_59_8(widget) {
-        var root = this.__currentRoot__P_59_3;
+      __getWidgetBefore__P_57_8: function __getWidgetBefore__P_57_8(widget) {
+        var root = this.__currentRoot__P_57_3;
 
         if (root == widget) {
-          return this.__getLastWidget__P_59_9();
+          return this.__getLastWidget__P_57_9();
         }
 
         while (widget && widget.getAnonymous()) {
@@ -13955,11 +13955,11 @@
 
         var result = [];
 
-        this.__collectAllBefore__P_59_14(root, widget, result);
+        this.__collectAllBefore__P_57_14(root, widget, result);
 
-        result.sort(this.__compareTabOrder__P_59_10);
+        result.sort(this.__compareTabOrder__P_57_10);
         var len = result.length;
-        return len > 0 ? result[len - 1] : this.__getLastWidget__P_59_9();
+        return len > 0 ? result[len - 1] : this.__getLastWidget__P_57_9();
       },
 
       /*
@@ -13977,7 +13977,7 @@
        * @param widget {qx.ui.core.Widget} Child widget to start with
        * @param result {Array} Result list
        */
-      __collectAllAfter__P_59_13: function __collectAllAfter__P_59_13(parent, widget, result) {
+      __collectAllAfter__P_57_13: function __collectAllAfter__P_57_13(parent, widget, result) {
         var children = parent.getLayoutChildren();
         var child;
 
@@ -13989,11 +13989,11 @@
           }
 
           if (!this.isFocusRoot(child) && child.isEnabled() && child.isVisible()) {
-            if (child.isTabable() && this.__compareTabOrder__P_59_10(widget, child) < 0) {
+            if (child.isTabable() && this.__compareTabOrder__P_57_10(widget, child) < 0) {
               result.push(child);
             }
 
-            this.__collectAllAfter__P_59_13(child, widget, result);
+            this.__collectAllAfter__P_57_13(child, widget, result);
           }
         }
       },
@@ -14007,7 +14007,7 @@
        * @param widget {qx.ui.core.Widget} Child widget to start with
        * @param result {Array} Result list
        */
-      __collectAllBefore__P_59_14: function __collectAllBefore__P_59_14(parent, widget, result) {
+      __collectAllBefore__P_57_14: function __collectAllBefore__P_57_14(parent, widget, result) {
         var children = parent.getLayoutChildren();
         var child;
 
@@ -14019,11 +14019,11 @@
           }
 
           if (!this.isFocusRoot(child) && child.isEnabled() && child.isVisible()) {
-            if (child.isTabable() && this.__compareTabOrder__P_59_10(widget, child) > 0) {
+            if (child.isTabable() && this.__compareTabOrder__P_57_10(widget, child) > 0) {
               result.push(child);
             }
 
-            this.__collectAllBefore__P_59_14(child, widget, result);
+            this.__collectAllBefore__P_57_14(child, widget, result);
           }
         }
       },
@@ -14035,7 +14035,7 @@
        * @param firstWidget {qx.ui.core.Widget?null} Current first widget
        * @return {qx.ui.core.Widget} The first (positioned) widget
        */
-      __getFirst__P_59_11: function __getFirst__P_59_11(parent, firstWidget) {
+      __getFirst__P_57_11: function __getFirst__P_57_11(parent, firstWidget) {
         var children = parent.getLayoutChildren();
         var child;
 
@@ -14049,13 +14049,13 @@
 
           if (!this.isFocusRoot(child) && child.isEnabled() && child.isVisible()) {
             if (child.isTabable()) {
-              if (firstWidget == null || this.__compareTabOrder__P_59_10(child, firstWidget) < 0) {
+              if (firstWidget == null || this.__compareTabOrder__P_57_10(child, firstWidget) < 0) {
                 firstWidget = child;
               }
             } // Deep iteration into children hierarchy
 
 
-            firstWidget = this.__getFirst__P_59_11(child, firstWidget);
+            firstWidget = this.__getFirst__P_57_11(child, firstWidget);
           }
         }
 
@@ -14069,7 +14069,7 @@
        * @param lastWidget {qx.ui.core.Widget?null} Current last widget
        * @return {qx.ui.core.Widget} The last (positioned) widget
        */
-      __getLast__P_59_12: function __getLast__P_59_12(parent, lastWidget) {
+      __getLast__P_57_12: function __getLast__P_57_12(parent, lastWidget) {
         var children = parent.getLayoutChildren();
         var child;
 
@@ -14083,13 +14083,13 @@
 
           if (!this.isFocusRoot(child) && child.isEnabled() && child.isVisible()) {
             if (child.isTabable()) {
-              if (lastWidget == null || this.__compareTabOrder__P_59_10(child, lastWidget) > 0) {
+              if (lastWidget == null || this.__compareTabOrder__P_57_10(child, lastWidget) > 0) {
                 lastWidget = child;
               }
             } // Deep iteration into children hierarchy
 
 
-            lastWidget = this.__getLast__P_59_12(child, lastWidget);
+            lastWidget = this.__getLast__P_57_12(child, lastWidget);
           }
         }
 
@@ -14103,9 +14103,9 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this._disposeMap("__roots__P_59_0");
+      this._disposeMap("__roots__P_57_0");
 
-      this.__focusedChild__P_59_2 = this.__activeChild__P_59_1 = this.__currentRoot__P_59_3 = null;
+      this.__focusedChild__P_57_2 = this.__activeChild__P_57_1 = this.__currentRoot__P_57_3 = null;
     }
   });
   qx.ui.core.FocusHandler.$$dbClassInfo = $$dbClassInfo;
@@ -14149,13 +14149,13 @@
   qx.Class.define("qx.ui.core.queue.Visibility", {
     statics: {
       /** @type {Array} This contains all the queued widgets for the next flush. */
-      __queue__P_77_0: [],
+      __queue__P_94_0: [],
 
       /** @type {Map} map of widgets by hash code which are in the queue */
-      __lookup__P_77_1: {},
+      __lookup__P_94_1: {},
 
       /** @type {Map} Maps hash codes to visibility */
-      __data__P_77_2: {},
+      __data__P_94_2: {},
 
       /**
        * Clears the cached data of the given widget. Normally only used
@@ -14164,12 +14164,12 @@
        * @param widget {qx.ui.core.Widget} The widget to clear
        */
       remove: function remove(widget) {
-        if (this.__lookup__P_77_1[widget.toHashCode()]) {
-          delete this.__lookup__P_77_1[widget.toHashCode()];
-          qx.lang.Array.remove(this.__queue__P_77_0, widget);
+        if (this.__lookup__P_94_1[widget.toHashCode()]) {
+          delete this.__lookup__P_94_1[widget.toHashCode()];
+          qx.lang.Array.remove(this.__queue__P_94_0, widget);
         }
 
-        delete this.__data__P_77_2[widget.toHashCode()];
+        delete this.__data__P_94_2[widget.toHashCode()];
       },
 
       /**
@@ -14182,7 +14182,7 @@
        * @return {Boolean} Whether the widget is visible
        */
       isVisible: function isVisible(widget) {
-        return this.__data__P_77_2[widget.toHashCode()] || false;
+        return this.__data__P_94_2[widget.toHashCode()] || false;
       },
 
       /**
@@ -14191,8 +14191,8 @@
        * @param widget {qx.ui.core.Widget} The widget to update
        * @return {Boolean} Whether the widget is visible
        */
-      __computeVisible__P_77_3: function __computeVisible__P_77_3(widget) {
-        var data = this.__data__P_77_2;
+      __computeVisible__P_94_3: function __computeVisible__P_94_3(widget) {
+        var data = this.__data__P_94_2;
         var hash = widget.toHashCode();
         var visible; // Respect local value
 
@@ -14203,7 +14203,7 @@
           var parent = widget.$$parent;
 
           if (parent) {
-            visible = this.__computeVisible__P_77_3(parent);
+            visible = this.__computeVisible__P_94_3(parent);
           } else {
             visible = widget.isRootWidget();
           }
@@ -14220,13 +14220,13 @@
        * @param widget {qx.ui.core.Widget} The widget to add.
        */
       add: function add(widget) {
-        if (this.__lookup__P_77_1[widget.toHashCode()]) {
+        if (this.__lookup__P_94_1[widget.toHashCode()]) {
           return;
         }
 
-        this.__queue__P_77_0.unshift(widget);
+        this.__queue__P_94_0.unshift(widget);
 
-        this.__lookup__P_77_1[widget.toHashCode()] = widget;
+        this.__lookup__P_94_1[widget.toHashCode()] = widget;
         qx.ui.core.queue.Manager.scheduleFlush("visibility");
       },
 
@@ -14237,8 +14237,8 @@
        */
       flush: function flush() {
         // Dispose all registered objects
-        var queue = this.__queue__P_77_0;
-        var data = this.__data__P_77_2; // Dynamically add children to queue
+        var queue = this.__queue__P_94_0;
+        var data = this.__data__P_94_2; // Dynamically add children to queue
         // Only respect already known widgets because otherwise the children
         // are also already in the queue (added on their own)
 
@@ -14271,7 +14271,7 @@
           queue.splice(i, 1); // Only update when not already updated by another widget
 
           if (data[hash] == null) {
-            this.__computeVisible__P_77_3(widget);
+            this.__computeVisible__P_94_3(widget);
           } // Check for updates required to the appearance.
           // Hint: Invisible widgets are ignored inside appearance flush
 
@@ -14282,8 +14282,8 @@
         } // Recreate the array is cheaper compared to keep a sparse array over time
 
 
-        this.__queue__P_77_0 = [];
-        this.__lookup__P_77_1 = {};
+        this.__queue__P_94_0 = [];
+        this.__lookup__P_94_1 = {};
       }
     }
   });
@@ -14408,12 +14408,12 @@
      */
     construct: function construct(doc) {
       // Symbolic links
-      this.__window__P_16_0 = qx.dom.Node.getWindow(doc);
-      this.__doc__P_16_1 = doc; // Base call
+      this.__window__P_20_0 = qx.dom.Node.getWindow(doc);
+      this.__doc__P_20_1 = doc; // Base call
 
       qx.ui.root.Abstract.constructor.call(this); // Resize handling
 
-      qx.event.Registration.addListener(this.__window__P_16_0, "resize", this._onResize, this); // Use a hard-coded canvas layout
+      qx.event.Registration.addListener(this.__window__P_20_0, "resize", this._onResize, this); // Use a hard-coded canvas layout
 
       this._setLayout(new qx.ui.layout.Canvas()); // Directly schedule layout for root element
 
@@ -14425,7 +14425,7 @@
 
       this.getContentElement().setStyle("-webkit-backface-visibility", "hidden"); // prevent scrolling on touch devices
 
-      this.addListener("touchmove", this.__stopScrolling__P_16_2, this); // handle focus for iOS which seems to deny any focus action
+      this.addListener("touchmove", this.__stopScrolling__P_20_2, this); // handle focus for iOS which seems to deny any focus action
 
       if (qx.core.Environment.get("os.name") == "ios") {
         this.getContentElement().addListener("tap", function (e) {
@@ -14448,8 +14448,8 @@
     *****************************************************************************
     */
     members: {
-      __window__P_16_0: null,
-      __doc__P_16_1: null,
+      __window__P_20_0: null,
+      __doc__P_20_1: null,
       // overridden
 
       /**
@@ -14459,7 +14459,7 @@
        * @return {qx.html.Element} The container HTML element
        */
       _createContentElement: function _createContentElement() {
-        var doc = this.__doc__P_16_1;
+        var doc = this.__doc__P_20_1;
 
         if (qx.core.Environment.get("engine.name") == "webkit") {
           // In the "DOMContentLoaded" event of WebKit (Safari, Chrome) no body
@@ -14510,8 +14510,8 @@
       },
       // overridden
       _computeSizeHint: function _computeSizeHint() {
-        var width = qx.bom.Viewport.getWidth(this.__window__P_16_0);
-        var height = qx.bom.Viewport.getHeight(this.__window__P_16_0);
+        var width = qx.bom.Viewport.getWidth(this.__window__P_20_0);
+        var height = qx.bom.Viewport.getHeight(this.__window__P_20_0);
         return {
           minWidth: width,
           width: width,
@@ -14535,7 +14535,7 @@
        * the native page scrolling.
        * @param e {qx.event.type.Touch} The qooxdoo touch event.
        */
-      __stopScrolling__P_16_2: function __stopScrolling__P_16_2(e) {
+      __stopScrolling__P_20_2: function __stopScrolling__P_20_2(e) {
         var node = e.getOriginalTarget();
 
         while (node && node.style) {
@@ -14570,7 +14570,7 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__window__P_16_0 = this.__doc__P_16_1 = null;
+      this.__window__P_20_0 = this.__doc__P_20_1 = null;
     }
   });
   qx.ui.root.Application.$$dbClassInfo = $$dbClassInfo;
@@ -14632,11 +14632,11 @@
           return this.formatOffset(entry.offset, 6);
         }
 
-        if (!qx.log.appender.Formatter.__DATETIME_FORMAT__P_17_0) {
-          qx.log.appender.Formatter.__DATETIME_FORMAT__P_17_0 = new qx.util.format.DateFormat("YYYY-MM-dd HH:mm:ss");
+        if (!qx.log.appender.Formatter.__DATETIME_FORMAT__P_21_0) {
+          qx.log.appender.Formatter.__DATETIME_FORMAT__P_21_0 = new qx.util.format.DateFormat("YYYY-MM-dd HH:mm:ss");
         }
 
-        return qx.log.appender.Formatter.__DATETIME_FORMAT__P_17_0.format(entry.time);
+        return qx.log.appender.Formatter.__DATETIME_FORMAT__P_21_0.format(entry.time);
       },
 
       /**
@@ -14840,10 +14840,10 @@
     },
     statics: {
       /** @type {qx.util.format.DateFormat} format for datetimes */
-      __DATETIME_FORMAT__P_17_0: null,
+      __DATETIME_FORMAT__P_21_0: null,
 
       /** @type {qx.log.appender.Formatter} the default instance */
-      __defaultFormatter__P_17_1: null,
+      __defaultFormatter__P_21_1: null,
 
       /**
        * Returns the default formatter
@@ -14851,11 +14851,11 @@
        * @return {qx.log.appender.Formatter}
        */
       getFormatter: function getFormatter() {
-        if (!qx.log.appender.Formatter.__defaultFormatter__P_17_1) {
-          qx.log.appender.Formatter.__defaultFormatter__P_17_1 = new qx.log.appender.Formatter();
+        if (!qx.log.appender.Formatter.__defaultFormatter__P_21_1) {
+          qx.log.appender.Formatter.__defaultFormatter__P_21_1 = new qx.log.appender.Formatter();
         }
 
-        return qx.log.appender.Formatter.__defaultFormatter__P_17_1;
+        return qx.log.appender.Formatter.__defaultFormatter__P_21_1;
       },
 
       /**
@@ -14864,7 +14864,7 @@
        * @param instance {qx.log.appender.Formatter}
        */
       setFormatter: function setFormatter(instance) {
-        qx.log.appender.Formatter.__defaultFormatter__P_17_1 = instance;
+        qx.log.appender.Formatter.__defaultFormatter__P_21_1 = instance;
       },
 
       /**
@@ -14875,7 +14875,7 @@
        * @return {String} escaped value
        */
       escapeHTML: function escapeHTML(value) {
-        return String(value).replace(/[<>&"']/g, qx.log.appender.Formatter.__escapeHTMLReplace__P_17_2);
+        return String(value).replace(/[<>&"']/g, qx.log.appender.Formatter.__escapeHTMLReplace__P_21_2);
       },
 
       /**
@@ -14885,7 +14885,7 @@
        *          {String} Single item to replace.
        * @return {String} Replaced item
        */
-      __escapeHTMLReplace__P_17_2: function __escapeHTMLReplace__P_17_2(ch) {
+      __escapeHTMLReplace__P_21_2: function __escapeHTMLReplace__P_21_2(ch) {
         var map = {
           "<": "&lt;",
           ">": "&gt;",
@@ -15654,17 +15654,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     construct: function construct(manager) {
       qx.core.Object.constructor.call(this); // Define shorthands
 
-      this.__manager__P_20_0 = manager;
-      this.__window__P_20_1 = manager.getWindow(); // Gecko ignores key events when not explicitly clicked in the document.
+      this.__manager__P_23_0 = manager;
+      this.__window__P_23_1 = manager.getWindow(); // Gecko ignores key events when not explicitly clicked in the document.
 
       if (qx.core.Environment.get("engine.name") == "gecko") {
-        this.__root__P_20_2 = this.__window__P_20_1;
+        this.__root__P_23_2 = this.__window__P_23_1;
       } else {
-        this.__root__P_20_2 = this.__window__P_20_1.document.documentElement;
+        this.__root__P_23_2 = this.__window__P_23_1.document.documentElement;
       } // Internal sequence cache
 
 
-      this.__lastUpDownType__P_20_3 = {}; // Initialize observer
+      this.__lastUpDownType__P_23_3 = {}; // Initialize observer
 
       this._initKeyObserver();
     },
@@ -15699,14 +15699,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __onKeyUpDownWrapper__P_20_4: null,
-      __manager__P_20_0: null,
-      __window__P_20_1: null,
-      __root__P_20_2: null,
-      __lastUpDownType__P_20_3: null,
-      __lastKeyCode__P_20_5: null,
-      __inputListeners__P_20_6: null,
-      __onKeyPressWrapper__P_20_7: null,
+      __onKeyUpDownWrapper__P_23_4: null,
+      __manager__P_23_0: null,
+      __window__P_23_1: null,
+      __root__P_23_2: null,
+      __lastUpDownType__P_23_3: null,
+      __lastKeyCode__P_23_5: null,
+      __inputListeners__P_23_6: null,
+      __onKeyPressWrapper__P_23_7: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -15736,7 +15736,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.Promise?} a promise if the event handlers created one
        */
       _fireInputEvent: function _fireInputEvent(domEvent, charCode) {
-        var target = this.__getEventTarget__P_20_8();
+        var target = this.__getEventTarget__P_23_8();
 
         var tracker = {};
         var self = this; // Only fire when target is defined and visible
@@ -15744,16 +15744,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         if (target && target.offsetWidth != 0) {
           var event = qx.event.Registration.createEvent("keyinput", qx.event.type.KeyInput, [domEvent, target, charCode]);
           qx.event.Utils.then(tracker, function () {
-            self.__manager__P_20_0.dispatchEvent(target, event);
+            self.__manager__P_23_0.dispatchEvent(target, event);
           });
         } // Fire user action event
         // Needs to check if still alive first
 
 
-        if (this.__window__P_20_1) {
+        if (this.__window__P_23_1) {
           var self = this;
           qx.event.Utils.then(tracker, function () {
-            return qx.event.Registration.fireEvent(self.__window__P_20_1, "useraction", qx.event.type.Data, ["keyinput"]);
+            return qx.event.Registration.fireEvent(self.__window__P_23_1, "useraction", qx.event.type.Data, ["keyinput"]);
           });
         }
 
@@ -15769,7 +15769,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.Promise?} a promise, if any of the event handlers returned a promise
        */
       _fireSequenceEvent: function _fireSequenceEvent(domEvent, type, keyIdentifier) {
-        var target = this.__getEventTarget__P_20_8();
+        var target = this.__getEventTarget__P_23_8();
 
         var keyCode = domEvent.keyCode;
         var tracker = {};
@@ -15777,7 +15777,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         var event = qx.event.Registration.createEvent(type, qx.event.type.KeySequence, [domEvent, target, keyIdentifier]);
         qx.event.Utils.then(tracker, function () {
-          return self.__manager__P_20_0.dispatchEvent(target, event);
+          return self.__manager__P_23_0.dispatchEvent(target, event);
         }); // IE and Safari suppress a "keypress" event if the "keydown" event's
         // default action was prevented. In this case we emulate the "keypress"
         //
@@ -15797,9 +15797,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         // Needs to check if still alive first
 
 
-        if (this.__window__P_20_1) {
+        if (this.__window__P_23_1) {
           qx.event.Utils.then(tracker, function () {
-            return qx.event.Registration.fireEvent(self.__window__P_20_1, "useraction", qx.event.type.Data, [type]);
+            return qx.event.Registration.fireEvent(self.__window__P_23_1, "useraction", qx.event.type.Data, [type]);
           });
         }
 
@@ -15811,8 +15811,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {Element} the event target element
        */
-      __getEventTarget__P_20_8: function __getEventTarget__P_20_8() {
-        var focusHandler = this.__manager__P_20_0.getHandler(qx.event.handler.Focus);
+      __getEventTarget__P_23_8: function __getEventTarget__P_23_8() {
+        var focusHandler = this.__manager__P_23_0.getHandler(qx.event.handler.Focus);
 
         var target = focusHandler.getActive(); // Fallback to focused element when active is null or invisible
 
@@ -15822,7 +15822,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
         if (!target || target.offsetWidth == 0) {
-          target = this.__manager__P_20_0.getWindow().document.body;
+          target = this.__manager__P_23_0.getWindow().document.body;
         }
 
         return target;
@@ -15840,12 +15840,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @signature function()
        */
       _initKeyObserver: function _initKeyObserver() {
-        this.__onKeyUpDownWrapper__P_20_4 = qx.lang.Function.listener(this.__onKeyUpDown__P_20_9, this);
-        this.__onKeyPressWrapper__P_20_7 = qx.lang.Function.listener(this.__onKeyPress__P_20_10, this);
+        this.__onKeyUpDownWrapper__P_23_4 = qx.lang.Function.listener(this.__onKeyUpDown__P_23_9, this);
+        this.__onKeyPressWrapper__P_23_7 = qx.lang.Function.listener(this.__onKeyPress__P_23_10, this);
         var Event = qx.bom.Event;
-        Event.addNativeListener(this.__root__P_20_2, "keyup", this.__onKeyUpDownWrapper__P_20_4);
-        Event.addNativeListener(this.__root__P_20_2, "keydown", this.__onKeyUpDownWrapper__P_20_4);
-        Event.addNativeListener(this.__root__P_20_2, "keypress", this.__onKeyPressWrapper__P_20_7);
+        Event.addNativeListener(this.__root__P_23_2, "keyup", this.__onKeyUpDownWrapper__P_23_4);
+        Event.addNativeListener(this.__root__P_23_2, "keydown", this.__onKeyUpDownWrapper__P_23_4);
+        Event.addNativeListener(this.__root__P_23_2, "keypress", this.__onKeyPressWrapper__P_23_7);
       },
 
       /**
@@ -15855,16 +15855,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       _stopKeyObserver: function _stopKeyObserver() {
         var Event = qx.bom.Event;
-        Event.removeNativeListener(this.__root__P_20_2, "keyup", this.__onKeyUpDownWrapper__P_20_4);
-        Event.removeNativeListener(this.__root__P_20_2, "keydown", this.__onKeyUpDownWrapper__P_20_4);
-        Event.removeNativeListener(this.__root__P_20_2, "keypress", this.__onKeyPressWrapper__P_20_7);
+        Event.removeNativeListener(this.__root__P_23_2, "keyup", this.__onKeyUpDownWrapper__P_23_4);
+        Event.removeNativeListener(this.__root__P_23_2, "keydown", this.__onKeyUpDownWrapper__P_23_4);
+        Event.removeNativeListener(this.__root__P_23_2, "keypress", this.__onKeyPressWrapper__P_23_7);
 
-        for (var key in this.__inputListeners__P_20_6 || {}) {
-          var listener = this.__inputListeners__P_20_6[key];
+        for (var key in this.__inputListeners__P_23_6 || {}) {
+          var listener = this.__inputListeners__P_23_6[key];
           Event.removeNativeListener(listener.target, "keypress", listener.callback);
         }
 
-        delete this.__inputListeners__P_20_6;
+        delete this.__inputListeners__P_23_6;
       },
 
       /*
@@ -15880,7 +15880,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @signature function(domEvent)
        * @param domEvent {Event} DOM event object
        */
-      __onKeyUpDown__P_20_9: qx.event.GlobalError.observeMethod(qx.core.Environment.select("engine.name", {
+      __onKeyUpDown__P_23_9: qx.event.GlobalError.observeMethod(qx.core.Environment.select("engine.name", {
         "gecko|webkit|mshtml": function geckoWebkitMshtml(domEvent) {
           var keyCode = 0;
           var charCode = 0;
@@ -15907,11 +15907,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           } // Store last type
 
 
-          this.__lastUpDownType__P_20_3[keyCode] = type;
+          this.__lastUpDownType__P_23_3[keyCode] = type;
           return tracker.promise;
         },
         "opera": function opera(domEvent) {
-          this.__lastKeyCode__P_20_5 = domEvent.keyCode;
+          this.__lastKeyCode__P_23_5 = domEvent.keyCode;
           return this._idealKeyHandler(domEvent.keyCode, 0, domEvent.type, domEvent);
         }
       })),
@@ -15928,29 +15928,29 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param type {String} The event type
        * @param keyCode {Integer} the key code
        */
-      __firefoxInputFix__P_20_11: qx.core.Environment.select("engine.name", {
+      __firefoxInputFix__P_23_11: qx.core.Environment.select("engine.name", {
         "gecko": function gecko(target, type, keyCode) {
           if (type === "keydown" && (keyCode == 33 || keyCode == 34 || keyCode == 38 || keyCode == 40) && target.type == "text" && target.tagName.toLowerCase() === "input" && target.getAttribute("autoComplete") !== "off") {
-            if (!this.__inputListeners__P_20_6) {
-              this.__inputListeners__P_20_6 = {};
+            if (!this.__inputListeners__P_23_6) {
+              this.__inputListeners__P_23_6 = {};
             }
 
             var hash = qx.core.ObjectRegistry.toHashCode(target);
 
-            if (this.__inputListeners__P_20_6[hash]) {
+            if (this.__inputListeners__P_23_6[hash]) {
               return;
             }
 
             var self = this;
-            this.__inputListeners__P_20_6[hash] = {
+            this.__inputListeners__P_23_6[hash] = {
               target: target,
               callback: function callback(domEvent) {
                 qx.bom.Event.stopPropagation(domEvent);
 
-                self.__onKeyPress__P_20_10(domEvent);
+                self.__onKeyPress__P_23_10(domEvent);
               }
             };
-            var listener = qx.event.GlobalError.observeMethod(this.__inputListeners__P_20_6[hash].callback);
+            var listener = qx.event.GlobalError.observeMethod(this.__inputListeners__P_23_6[hash].callback);
             qx.bom.Event.addNativeListener(target, "keypress", listener);
           }
         },
@@ -15963,7 +15963,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @signature function(domEvent)
        * @param domEvent {Event} DOM event object
        */
-      __onKeyPress__P_20_10: qx.event.GlobalError.observeMethod(qx.core.Environment.select("engine.name", {
+      __onKeyPress__P_23_10: qx.event.GlobalError.observeMethod(qx.core.Environment.select("engine.name", {
         "mshtml": function mshtml(domEvent) {
           domEvent = window.event || domEvent;
 
@@ -16001,8 +16001,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           // current keycode.
           // See http://bugzilla.qooxdoo.org/show_bug.cgi?id=603
 
-          if (keyCode != this.__lastKeyCode__P_20_5) {
-            return this._idealKeyHandler(0, this.__lastKeyCode__P_20_5, type, domEvent);
+          if (keyCode != this.__lastKeyCode__P_23_5) {
+            return this._idealKeyHandler(0, this.__lastKeyCode__P_23_5, type, domEvent);
           } else {
             if (qx.event.util.Keyboard.keyCodeToIdentifierMap[domEvent.keyCode]) {
               return this._idealKeyHandler(domEvent.keyCode, 0, domEvent.type, domEvent);
@@ -16101,7 +16101,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     destruct: function destruct() {
       this._stopKeyObserver();
 
-      this.__lastKeyCode__P_20_5 = this.__manager__P_20_0 = this.__window__P_20_1 = this.__root__P_20_2 = this.__lastUpDownType__P_20_3 = null;
+      this.__lastKeyCode__P_23_5 = this.__manager__P_23_0 = this.__window__P_23_1 = this.__root__P_23_2 = this.__lastUpDownType__P_23_3 = null;
     },
 
     /*
@@ -16270,15 +16270,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         var self = this;
         var tracker = {};
-        var __TRACE_LOGGING__P_123_0 = false; //(event._type == "pointerup" && event._target.className === "qx-toolbar-button-checked");
+        var __TRACE_LOGGING__P_143_0 = false; //(event._type == "pointerup" && event._target.className === "qx-toolbar-button-checked");
 
-        var __TRACE__P_123_1 = function __TRACE__P_123_1() {};
+        var __TRACE__P_143_1 = function __TRACE__P_143_1() {};
 
-        if (__TRACE_LOGGING__P_123_0) {
+        if (__TRACE_LOGGING__P_143_0) {
           var serial = (this.SERIAL || 0) + 1;
           this.SERIAL = serial + 1;
 
-          __TRACE__P_123_1 = function __TRACE__P_123_1() {
+          __TRACE__P_143_1 = function __TRACE__P_143_1() {
             var args = [].slice.apply(arguments);
             args.unshift("serial #" + serial + ": ");
             console.log.apply(this, args);
@@ -16287,17 +16287,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         qx.event.Utils["catch"](tracker, function () {
           // This function must exist to suppress "unhandled rejection" messages from promises
-          __TRACE__P_123_1("Aborted serial=" + serial + ", type=" + event.getType());
+          __TRACE__P_143_1("Aborted serial=" + serial + ", type=" + event.getType());
         }); // capturing phase
 
         qx.event.Utils.then(tracker, function () {
           // loop through the hierarchy in reverted order (from root)
           event.setEventPhase(qx.event.type.Event.CAPTURING_PHASE);
 
-          __TRACE__P_123_1("captureList=" + captureList.length);
+          __TRACE__P_143_1("captureList=" + captureList.length);
 
           return qx.event.Utils.series(captureList, function (localList, i) {
-            __TRACE__P_123_1("captureList[" + i + "]: localList.length=" + localList.length);
+            __TRACE__P_143_1("captureList[" + i + "]: localList.length=" + localList.length);
 
             var currentTarget = captureTargets[i];
             event.setCurrentTarget(currentTarget);
@@ -16311,11 +16311,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               if (!self._manager.isBlacklisted(listener.unique)) {
-                __TRACE__P_123_1("captureList[" + i + "] => localList[" + listenerIndex + "] callListener");
+                __TRACE__P_143_1("captureList[" + i + "] => localList[" + listenerIndex + "] callListener");
 
                 return listener.handler.call(context, event);
               } else {
-                __TRACE__P_123_1("captureList[" + i + "] => localList[" + listenerIndex + "] is blacklisted");
+                __TRACE__P_143_1("captureList[" + i + "] => localList[" + listenerIndex + "] is blacklisted");
               }
             }, true);
 
@@ -16335,13 +16335,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           event.setEventPhase(qx.event.type.Event.AT_TARGET);
           event.setCurrentTarget(target);
 
-          __TRACE__P_123_1("targetList=" + targetList.length);
+          __TRACE__P_143_1("targetList=" + targetList.length);
 
           return qx.event.Utils.series(targetList, function (localList, i) {
-            __TRACE__P_123_1("targetList[" + i + "] localList.length=" + localList.length);
+            __TRACE__P_143_1("targetList[" + i + "] localList.length=" + localList.length);
 
             var result = qx.event.Utils.series(localList, function (listener, listenerIndex) {
-              __TRACE__P_123_1("targetList[" + i + "] -> localList[" + listenerIndex + "] callListener");
+              __TRACE__P_143_1("targetList[" + i + "] -> localList[" + listenerIndex + "] callListener");
 
               context = listener.context || target;
               {
@@ -16351,7 +16351,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                 }
               }
 
-              __TRACE__P_123_1("Calling target serial=" + serial + ", type=" + event.getType());
+              __TRACE__P_143_1("Calling target serial=" + serial + ", type=" + event.getType());
 
               return listener.handler.call(context, event);
             }, true);
@@ -16372,15 +16372,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         qx.event.Utils.then(tracker, function () {
           event.setEventPhase(qx.event.type.Event.BUBBLING_PHASE);
 
-          __TRACE__P_123_1("bubbleList=" + bubbleList.length);
+          __TRACE__P_143_1("bubbleList=" + bubbleList.length);
 
           return qx.event.Utils.series(bubbleList, function (localList, i) {
-            __TRACE__P_123_1("bubbleList[" + i + "] localList.length=" + localList.length);
+            __TRACE__P_143_1("bubbleList[" + i + "] localList.length=" + localList.length);
 
             var currentTarget = bubbleTargets[i];
             event.setCurrentTarget(currentTarget);
             var result = qx.event.Utils.series(localList, function (listener, listenerIndex) {
-              __TRACE__P_123_1("bubbleList[" + i + "] -> localList[" + listenerIndex + "] callListener");
+              __TRACE__P_143_1("bubbleList[" + i + "] -> localList[" + listenerIndex + "] callListener");
 
               context = listener.context || currentTarget;
               {
@@ -16404,15 +16404,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           });
         });
 
-        if (__TRACE_LOGGING__P_123_0) {
+        if (__TRACE_LOGGING__P_143_0) {
           if (tracker.promise) {
-            __TRACE__P_123_1("events promised");
+            __TRACE__P_143_1("events promised");
 
             qx.event.Utils.then(tracker, function () {
-              __TRACE__P_123_1("events promised done");
+              __TRACE__P_143_1("events promised done");
             });
           } else {
-            __TRACE__P_123_1("events done");
+            __TRACE__P_143_1("events done");
           }
         }
 
@@ -16859,7 +16859,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @lint ignoreReferenceField(__buttonsDom2EventModel)
        */
-      __buttonsDom2EventModel__P_72_0: {
+      __buttonsDom2EventModel__P_88_0: {
         0: "left",
         2: "right",
         1: "middle"
@@ -16870,7 +16870,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @lint ignoreReferenceField(__buttonsDom3EventModel)
        */
-      __buttonsDom3EventModel__P_72_1: {
+      __buttonsDom3EventModel__P_88_1: {
         0: "none",
         1: "left",
         2: "right",
@@ -16882,7 +16882,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @lint ignoreReferenceField(__buttonsMshtmlEventModel)
        */
-      __buttonsMshtmlEventModel__P_72_2: {
+      __buttonsMshtmlEventModel__P_88_2: {
         1: "left",
         2: "right",
         4: "middle"
@@ -16933,12 +16933,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               // if the button value is -1, we should use the DOM level 3 .buttons attribute
               // the value -1 is only set for pointer events: http://msdn.microsoft.com/en-us/library/ie/ff974877(v=vs.85).aspx
               if (this._native.button === -1) {
-                return this.__buttonsDom3EventModel__P_72_1[this._native.buttons] || "none";
+                return this.__buttonsDom3EventModel__P_88_1[this._native.buttons] || "none";
               }
 
-              return this.__buttonsDom2EventModel__P_72_0[this._native.button] || "none";
+              return this.__buttonsDom2EventModel__P_88_0[this._native.button] || "none";
             } else {
-              return this.__buttonsMshtmlEventModel__P_72_2[this._native.button] || "none";
+              return this.__buttonsMshtmlEventModel__P_88_2[this._native.button] || "none";
             }
 
         }
@@ -17917,7 +17917,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * a delay which causes another target and with that, another instance of this handler.
        * last touch was.
        */
-      __lastTouch__P_114_0: null
+      __lastTouch__P_139_0: null
     },
 
     /**
@@ -17928,52 +17928,52 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      * is not supported, e.g. in IE8)
      */
     construct: function construct(target, emitter) {
-      this.__defaultTarget__P_114_1 = target;
-      this.__emitter__P_114_2 = emitter;
-      this.__eventNames__P_114_3 = [];
-      this.__buttonStates__P_114_4 = [];
-      this.__activeTouches__P_114_5 = [];
+      this.__defaultTarget__P_139_1 = target;
+      this.__emitter__P_139_2 = emitter;
+      this.__eventNames__P_139_3 = [];
+      this.__buttonStates__P_139_4 = [];
+      this.__activeTouches__P_139_5 = [];
       this._processedFlag = "$$qx" + this.classname.substr(this.classname.lastIndexOf(".") + 1) + "Processed";
       var engineName = qx.core.Environment.get("engine.name");
       var docMode = parseInt(qx.core.Environment.get("browser.documentmode"), 10);
 
       if (engineName == "mshtml" && docMode == 10) {
         // listen to native prefixed events and custom unprefixed (see bug #8921)
-        this.__eventNames__P_114_3 = ["MSPointerDown", "MSPointerMove", "MSPointerUp", "MSPointerCancel", "MSPointerOver", "MSPointerOut", "pointerdown", "pointermove", "pointerup", "pointercancel", "pointerover", "pointerout"];
+        this.__eventNames__P_139_3 = ["MSPointerDown", "MSPointerMove", "MSPointerUp", "MSPointerCancel", "MSPointerOver", "MSPointerOut", "pointerdown", "pointermove", "pointerup", "pointercancel", "pointerover", "pointerout"];
 
         this._initPointerObserver();
       } else {
         if (qx.core.Environment.get("event.mspointer")) {
-          this.__nativePointerEvents__P_114_6 = true;
+          this.__nativePointerEvents__P_139_6 = true;
         }
 
-        this.__eventNames__P_114_3 = ["pointerdown", "pointermove", "pointerup", "pointercancel", "pointerover", "pointerout"];
+        this.__eventNames__P_139_3 = ["pointerdown", "pointermove", "pointerup", "pointercancel", "pointerover", "pointerout"];
 
         this._initPointerObserver();
       }
 
       if (!qx.core.Environment.get("event.mspointer")) {
         if (qx.core.Environment.get("device.touch")) {
-          this.__eventNames__P_114_3 = ["touchstart", "touchend", "touchmove", "touchcancel"];
+          this.__eventNames__P_139_3 = ["touchstart", "touchend", "touchmove", "touchcancel"];
 
           this._initObserver(this._onTouchEvent);
         }
 
-        this.__eventNames__P_114_3 = ["mousedown", "mouseup", "mousemove", "mouseover", "mouseout", "contextmenu"];
+        this.__eventNames__P_139_3 = ["mousedown", "mouseup", "mousemove", "mouseover", "mouseout", "contextmenu"];
 
         this._initObserver(this._onMouseEvent);
       }
     },
     members: {
-      __defaultTarget__P_114_1: null,
-      __emitter__P_114_2: null,
-      __eventNames__P_114_3: null,
-      __nativePointerEvents__P_114_6: false,
-      __wrappedListener__P_114_7: null,
-      __lastButtonState__P_114_8: 0,
-      __buttonStates__P_114_4: null,
-      __primaryIdentifier__P_114_9: null,
-      __activeTouches__P_114_5: null,
+      __defaultTarget__P_139_1: null,
+      __emitter__P_139_2: null,
+      __eventNames__P_139_3: null,
+      __nativePointerEvents__P_139_6: false,
+      __wrappedListener__P_139_7: null,
+      __lastButtonState__P_139_8: 0,
+      __buttonStates__P_139_4: null,
+      __primaryIdentifier__P_139_9: null,
+      __activeTouches__P_139_5: null,
       _processedFlag: null,
 
       /**
@@ -17990,17 +17990,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * native event
        */
       _initObserver: function _initObserver(callback, useEmitter) {
-        this.__wrappedListener__P_114_7 = qx.lang.Function.listener(callback, this);
+        this.__wrappedListener__P_139_7 = qx.lang.Function.listener(callback, this);
 
-        this.__eventNames__P_114_3.forEach(function (type) {
-          if (useEmitter && qx.dom.Node.isDocument(this.__defaultTarget__P_114_1)) {
-            if (!this.__defaultTarget__P_114_1.$$emitter) {
-              this.__defaultTarget__P_114_1.$$emitter = new qx.event.Emitter();
+        this.__eventNames__P_139_3.forEach(function (type) {
+          if (useEmitter && qx.dom.Node.isDocument(this.__defaultTarget__P_139_1)) {
+            if (!this.__defaultTarget__P_139_1.$$emitter) {
+              this.__defaultTarget__P_139_1.$$emitter = new qx.event.Emitter();
             }
 
-            this.__defaultTarget__P_114_1.$$emitter.on(type, this.__wrappedListener__P_114_7);
+            this.__defaultTarget__P_139_1.$$emitter.on(type, this.__wrappedListener__P_139_7);
           } else {
-            qx.bom.Event.addNativeListener(this.__defaultTarget__P_114_1, type, this.__wrappedListener__P_114_7);
+            qx.bom.Event.addNativeListener(this.__defaultTarget__P_139_1, type, this.__wrappedListener__P_139_7);
           }
         }.bind(this));
       },
@@ -18015,7 +18015,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           return;
         }
 
-        if (!this.__nativePointerEvents__P_114_6) {
+        if (!this.__nativePointerEvents__P_139_6) {
           domEvent.stopPropagation();
         }
 
@@ -18042,29 +18042,29 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         this._determineActiveTouches(domEvent.type, changedTouches); // Detecting vacuum touches. (Touches which are not active anymore, but did not fire a touchcancel event)
 
 
-        if (domEvent.touches.length < this.__activeTouches__P_114_5.length) {
+        if (domEvent.touches.length < this.__activeTouches__P_139_5.length) {
           // Firing pointer cancel for previously active touches.
-          for (var i = this.__activeTouches__P_114_5.length - 1; i >= 0; i--) {
+          for (var i = this.__activeTouches__P_139_5.length - 1; i >= 0; i--) {
             var cancelEvent = new qx.event.type.dom.Pointer("pointercancel", domEvent, {
-              identifier: this.__activeTouches__P_114_5[i].identifier,
+              identifier: this.__activeTouches__P_139_5[i].identifier,
               target: domEvent.target,
               pointerType: "touch",
-              pointerId: this.__activeTouches__P_114_5[i].identifier + 2
+              pointerId: this.__activeTouches__P_139_5[i].identifier + 2
             });
 
             this._fireEvent(cancelEvent, "pointercancel", domEvent.target);
           } // Reset primary identifier
 
 
-          this.__primaryIdentifier__P_114_9 = null; // cleanup of active touches array.
+          this.__primaryIdentifier__P_139_9 = null; // cleanup of active touches array.
 
-          this.__activeTouches__P_114_5 = []; // Do nothing after pointer cancel.
+          this.__activeTouches__P_139_5 = []; // Do nothing after pointer cancel.
 
           return;
         }
 
-        if (domEvent.type == "touchstart" && this.__primaryIdentifier__P_114_9 === null) {
-          this.__primaryIdentifier__P_114_9 = changedTouches[0].identifier;
+        if (domEvent.type == "touchstart" && this.__primaryIdentifier__P_139_9 === null) {
+          this.__primaryIdentifier__P_139_9 = changedTouches[0].identifier;
         }
 
         for (var i = 0, l = changedTouches.length; i < l; i++) {
@@ -18090,12 +18090,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             this._fireEvent(overEvt, "pointerover", touchProps.target);
           }
 
-          if (touch.identifier == this.__primaryIdentifier__P_114_9) {
+          if (touch.identifier == this.__primaryIdentifier__P_139_9) {
             touchProps.isPrimary = true; // always simulate left click on touch interactions for primary pointer
 
             touchProps.button = 0;
             touchProps.buttons = 1;
-            qx.event.handler.PointerCore.__lastTouch__P_114_0 = {
+            qx.event.handler.PointerCore.__lastTouch__P_139_0 = {
               "x": touch.clientX,
               "y": touch.clientY,
               "time": new Date().getTime()
@@ -18112,8 +18112,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
             this._fireEvent(outEvt, "pointerout", domEvent.target);
 
-            if (this.__primaryIdentifier__P_114_9 == touch.identifier) {
-              this.__primaryIdentifier__P_114_9 = null;
+            if (this.__primaryIdentifier__P_139_9 == touch.identifier) {
+              this.__primaryIdentifier__P_139_9 = null;
             }
           }
         }
@@ -18139,32 +18139,32 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
 
         if (domEvent.type == "mousedown") {
-          this.__buttonStates__P_114_4[domEvent.which] = 1;
+          this.__buttonStates__P_139_4[domEvent.which] = 1;
         } else if (domEvent.type == "mouseup") {
           if (qx.core.Environment.get("os.name") == "osx" && qx.core.Environment.get("engine.name") == "gecko") {
-            if (this.__buttonStates__P_114_4[domEvent.which] != 1 && domEvent.ctrlKey) {
-              this.__buttonStates__P_114_4[1] = 0;
+            if (this.__buttonStates__P_139_4[domEvent.which] != 1 && domEvent.ctrlKey) {
+              this.__buttonStates__P_139_4[1] = 0;
             }
           }
 
-          this.__buttonStates__P_114_4[domEvent.which] = 0;
+          this.__buttonStates__P_139_4[domEvent.which] = 0;
         }
 
         var type = qx.event.handler.PointerCore.MOUSE_TO_POINTER_MAPPING[domEvent.type];
         var target = qx.bom.Event.getTarget(domEvent);
-        var buttonsPressed = qx.lang.Array.sum(this.__buttonStates__P_114_4);
+        var buttonsPressed = qx.lang.Array.sum(this.__buttonStates__P_139_4);
         var mouseProps = {
           pointerType: "mouse",
           pointerId: 1
         }; // if the button state changes but not from or to zero
 
-        if (this.__lastButtonState__P_114_8 != buttonsPressed && buttonsPressed !== 0 && this.__lastButtonState__P_114_8 !== 0) {
+        if (this.__lastButtonState__P_139_8 != buttonsPressed && buttonsPressed !== 0 && this.__lastButtonState__P_139_8 !== 0) {
           var moveEvt = new qx.event.type.dom.Pointer("pointermove", domEvent, mouseProps);
 
           this._fireEvent(moveEvt, "pointermove", target);
         }
 
-        this.__lastButtonState__P_114_8 = buttonsPressed; // pointerdown should only trigger form the first pressed button.
+        this.__lastButtonState__P_139_8 = buttonsPressed; // pointerdown should only trigger form the first pressed button.
 
         if (domEvent.type == "mousedown" && buttonsPressed > 1) {
           return;
@@ -18176,7 +18176,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
 
         if (domEvent.type == "contextmenu") {
-          this.__buttonStates__P_114_4[domEvent.which] = 0;
+          this.__buttonStates__P_139_4[domEvent.which] = 0;
           return;
         }
 
@@ -18193,27 +18193,27 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       _determineActiveTouches: function _determineActiveTouches(type, changedTouches) {
         if (type == "touchstart") {
           for (var i = 0; i < changedTouches.length; i++) {
-            this.__activeTouches__P_114_5.push(changedTouches[i]);
+            this.__activeTouches__P_139_5.push(changedTouches[i]);
           }
         } else if (type == "touchend" || type == "touchcancel") {
           var updatedActiveTouches = [];
 
-          for (var i = 0; i < this.__activeTouches__P_114_5.length; i++) {
+          for (var i = 0; i < this.__activeTouches__P_139_5.length; i++) {
             var add = true;
 
             for (var j = 0; j < changedTouches.length; j++) {
-              if (this.__activeTouches__P_114_5[i].identifier == changedTouches[j].identifier) {
+              if (this.__activeTouches__P_139_5[i].identifier == changedTouches[j].identifier) {
                 add = false;
                 break;
               }
             }
 
             if (add) {
-              updatedActiveTouches.push(this.__activeTouches__P_114_5[i]);
+              updatedActiveTouches.push(this.__activeTouches__P_139_5[i]);
             }
           }
 
-          this.__activeTouches__P_114_5 = updatedActiveTouches;
+          this.__activeTouches__P_139_5 = updatedActiveTouches;
         }
       },
 
@@ -18225,13 +18225,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code> if passed mouse position is a synthetic MouseEvent.
        */
       _isSimulatedMouseEvent: function _isSimulatedMouseEvent(x, y) {
-        var touch = qx.event.handler.PointerCore.__lastTouch__P_114_0;
+        var touch = qx.event.handler.PointerCore.__lastTouch__P_139_0;
 
         if (touch) {
           var timeSinceTouch = new Date().getTime() - touch.time;
           var dist = qx.event.handler.PointerCore.SIM_MOUSE_DISTANCE;
-          var distX = Math.abs(x - qx.event.handler.PointerCore.__lastTouch__P_114_0.x);
-          var distY = Math.abs(y - qx.event.handler.PointerCore.__lastTouch__P_114_0.y);
+          var distX = Math.abs(x - qx.event.handler.PointerCore.__lastTouch__P_139_0.x);
+          var distY = Math.abs(y - qx.event.handler.PointerCore.__lastTouch__P_139_0.y);
 
           if (timeSinceTouch < qx.event.handler.PointerCore.SIM_MOUSE_DELAY) {
             if (distX < dist || distY < dist) {
@@ -18247,8 +18247,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Removes native pointer event listeners.
        */
       _stopObserver: function _stopObserver() {
-        for (var i = 0; i < this.__eventNames__P_114_3.length; i++) {
-          qx.bom.Event.removeNativeListener(this.__defaultTarget__P_114_1, this.__eventNames__P_114_3[i], this.__wrappedListener__P_114_7);
+        for (var i = 0; i < this.__eventNames__P_139_3.length; i++) {
+          qx.bom.Event.removeNativeListener(this.__defaultTarget__P_139_1, this.__eventNames__P_139_3[i], this.__wrappedListener__P_139_7);
         }
       },
 
@@ -18278,7 +18278,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         if (qx.core.Environment.get("event.dispatchevent")) {
           var tracker = {};
 
-          if (!this.__nativePointerEvents__P_114_6) {
+          if (!this.__nativePointerEvents__P_139_6) {
             qx.event.Utils.then(tracker, function () {
               return target.dispatchEvent(domEvent);
             });
@@ -18325,7 +18325,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       dispose: function dispose() {
         this._stopObserver();
 
-        this.__defaultTarget__P_114_1 = this.__emitter__P_114_2 = null;
+        this.__defaultTarget__P_139_1 = this.__emitter__P_139_2 = null;
       }
     }
   });
@@ -18459,15 +18459,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      */
     construct: function construct(manager) {
       // Define shorthands
-      this.__manager__P_67_0 = manager;
-      this.__window__P_67_1 = manager.getWindow();
-      this.__root__P_67_2 = this.__window__P_67_1.document;
-      qx.event.handler.PointerCore.apply(this, [this.__root__P_67_2]);
+      this.__manager__P_83_0 = manager;
+      this.__window__P_83_1 = manager.getWindow();
+      this.__root__P_83_2 = this.__window__P_83_1.document;
+      qx.event.handler.PointerCore.apply(this, [this.__root__P_83_2]);
     },
     members: {
-      __manager__P_67_0: null,
-      __window__P_67_1: null,
-      __root__P_67_2: null,
+      __manager__P_83_0: null,
+      __window__P_83_1: null,
+      __root__P_83_2: null,
       // interface implementation
       canHandleEvent: function canHandleEvent(target, type) {},
       // interface implementation
@@ -18530,12 +18530,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           });
           qx.event.Utils.then(tracker, function () {
             if ((domEvent.getPointerType() !== "mouse" || domEvent.button <= qx.event.handler.PointerCore.LEFT_BUTTON) && (type == "pointerdown" || type == "pointerup" || type == "pointermove" || type == "pointercancel")) {
-              return qx.event.Registration.fireEvent(self.__root__P_67_2, qx.event.handler.PointerCore.POINTER_TO_GESTURE_MAPPING[type], qx.event.type.Pointer, [domEvent, target, null, false, false]);
+              return qx.event.Registration.fireEvent(self.__root__P_83_2, qx.event.handler.PointerCore.POINTER_TO_GESTURE_MAPPING[type], qx.event.type.Pointer, [domEvent, target, null, false, false]);
             }
           });
           qx.event.Utils.then(tracker, function () {
             // Fire user action event
-            return qx.event.Registration.fireEvent(self.__window__P_67_1, "useraction", qx.event.type.Data, [type]);
+            return qx.event.Registration.fireEvent(self.__window__P_83_1, "useraction", qx.event.type.Data, [type]);
           });
           return tracker.promise;
         }
@@ -18554,9 +18554,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Dispose this object
        */
       dispose: function dispose() {
-        this.__callBase__P_67_3("dispose");
+        this.__callBase__P_83_3("dispose");
 
-        this.__manager__P_67_0 = this.__window__P_67_1 = this.__root__P_67_2 = null;
+        this.__manager__P_83_0 = this.__window__P_83_1 = this.__root__P_83_2 = null;
       },
 
       /**
@@ -18565,7 +18565,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param method {String} Name of the overridden method.
        * @param args {Array} Arguments.
        */
-      __callBase__P_67_3: function __callBase__P_67_3(method, args) {
+      __callBase__P_83_3: function __callBase__P_83_3(method, args) {
         qx.event.handler.PointerCore.prototype[method].apply(this, args || []);
       }
     },
@@ -18744,45 +18744,45 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      * is not supported, e.g. in IE8)
      */
     construct: function construct(target, emitter) {
-      this.__defaultTarget__P_68_0 = target;
-      this.__emitter__P_68_1 = emitter;
-      this.__gesture__P_68_2 = {};
-      this.__lastTap__P_68_3 = {};
-      this.__stopMomentum__P_68_4 = {};
-      this.__momentum__P_68_5 = {};
-      this.__rollEvents__P_68_6 = [];
+      this.__defaultTarget__P_84_0 = target;
+      this.__emitter__P_84_1 = emitter;
+      this.__gesture__P_84_2 = {};
+      this.__lastTap__P_84_3 = {};
+      this.__stopMomentum__P_84_4 = {};
+      this.__momentum__P_84_5 = {};
+      this.__rollEvents__P_84_6 = [];
 
       this._initObserver();
     },
     members: {
-      __defaultTarget__P_68_0: null,
-      __emitter__P_68_1: null,
-      __gesture__P_68_2: null,
-      __eventName__P_68_7: null,
-      __primaryTarget__P_68_8: null,
-      __isMultiPointerGesture__P_68_9: null,
-      __initialAngle__P_68_10: null,
-      __lastTap__P_68_3: null,
-      __rollImpulseId__P_68_11: null,
-      __stopMomentum__P_68_4: null,
-      __initialDistance__P_68_12: null,
-      __momentum__P_68_5: null,
-      __rollEvents__P_68_6: null,
-      __rollEventsCountStart__P_68_13: 0,
-      __rollEventsCount__P_68_14: 0,
-      __touchPadDetectionPerformed__P_68_15: false,
-      __lastRollEventTime__P_68_16: 0,
+      __defaultTarget__P_84_0: null,
+      __emitter__P_84_1: null,
+      __gesture__P_84_2: null,
+      __eventName__P_84_7: null,
+      __primaryTarget__P_84_8: null,
+      __isMultiPointerGesture__P_84_9: null,
+      __initialAngle__P_84_10: null,
+      __lastTap__P_84_3: null,
+      __rollImpulseId__P_84_11: null,
+      __stopMomentum__P_84_4: null,
+      __initialDistance__P_84_12: null,
+      __momentum__P_84_5: null,
+      __rollEvents__P_84_6: null,
+      __rollEventsCountStart__P_84_13: 0,
+      __rollEventsCount__P_84_14: 0,
+      __touchPadDetectionPerformed__P_84_15: false,
+      __lastRollEventTime__P_84_16: 0,
 
       /**
        * Register pointer event listeners
        */
       _initObserver: function _initObserver() {
         qx.event.handler.GestureCore.GESTURE_EVENTS.forEach(function (gestureType) {
-          qxWeb(this.__defaultTarget__P_68_0).on(gestureType, this.checkAndFireGesture, this);
+          qxWeb(this.__defaultTarget__P_84_0).on(gestureType, this.checkAndFireGesture, this);
         }.bind(this));
 
         if (qx.core.Environment.get("engine.name") == "mshtml" && qx.core.Environment.get("browser.documentmode") < 9) {
-          qxWeb(this.__defaultTarget__P_68_0).on("dblclick", this._onDblClick, this);
+          qxWeb(this.__defaultTarget__P_84_0).on("dblclick", this._onDblClick, this);
         } // list to wheel events
 
 
@@ -18795,11 +18795,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       _stopObserver: function _stopObserver() {
         qx.event.handler.GestureCore.GESTURE_EVENTS.forEach(function (pointerType) {
-          qxWeb(this.__defaultTarget__P_68_0).off(pointerType, this.checkAndFireGesture, this);
+          qxWeb(this.__defaultTarget__P_84_0).off(pointerType, this.checkAndFireGesture, this);
         }.bind(this));
 
         if (qx.core.Environment.get("engine.name") == "mshtml" && qx.core.Environment.get("browser.documentmode") < 9) {
-          qxWeb(this.__defaultTarget__P_68_0).off("dblclick", this._onDblClick, this);
+          qxWeb(this.__defaultTarget__P_84_0).off("dblclick", this._onDblClick, this);
         }
 
         var data = qx.core.Environment.get("event.mousewheel");
@@ -18840,10 +18840,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param target {Element} event target
        */
       gestureBegin: function gestureBegin(domEvent, target) {
-        if (this.__gesture__P_68_2[domEvent.pointerId]) {
-          this.__stopLongTapTimer__P_68_17(this.__gesture__P_68_2[domEvent.pointerId]);
+        if (this.__gesture__P_84_2[domEvent.pointerId]) {
+          this.__stopLongTapTimer__P_84_17(this.__gesture__P_84_2[domEvent.pointerId]);
 
-          delete this.__gesture__P_68_2[domEvent.pointerId];
+          delete this.__gesture__P_84_2[domEvent.pointerId];
         }
         /*
           If the dom event's target or one of its ancestors have
@@ -18856,7 +18856,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           return;
         }
 
-        this.__gesture__P_68_2[domEvent.pointerId] = {
+        this.__gesture__P_84_2[domEvent.pointerId] = {
           "startTime": new Date().getTime(),
           "lastEventTime": new Date().getTime(),
           "startX": domEvent.clientX,
@@ -18868,20 +18868,20 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           "target": target,
           "isTap": true,
           "isPrimary": domEvent.isPrimary,
-          "longTapTimer": window.setTimeout(this.__fireLongTap__P_68_18.bind(this, domEvent, target), qx.event.handler.GestureCore.LONGTAP_TIME)
+          "longTapTimer": window.setTimeout(this.__fireLongTap__P_84_18.bind(this, domEvent, target), qx.event.handler.GestureCore.LONGTAP_TIME)
         };
 
         if (domEvent.isPrimary) {
-          this.__isMultiPointerGesture__P_68_9 = false;
-          this.__primaryTarget__P_68_8 = target;
+          this.__isMultiPointerGesture__P_84_9 = false;
+          this.__primaryTarget__P_84_8 = target;
 
-          this.__fireTrack__P_68_19("trackstart", domEvent, target);
+          this.__fireTrack__P_84_19("trackstart", domEvent, target);
         } else {
-          this.__isMultiPointerGesture__P_68_9 = true;
+          this.__isMultiPointerGesture__P_84_9 = true;
 
-          if (Object.keys(this.__gesture__P_68_2).length === 2) {
-            this.__initialAngle__P_68_10 = this._calcAngle();
-            this.__initialDistance__P_68_12 = this._calcDistance();
+          if (Object.keys(this.__gesture__P_84_2).length === 2) {
+            this.__initialAngle__P_84_10 = this._calcAngle();
+            this.__initialDistance__P_84_12 = this._calcDistance();
           }
         }
       },
@@ -18893,7 +18893,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param target {Element} event target
        */
       gestureMove: function gestureMove(domEvent, target) {
-        var gesture = this.__gesture__P_68_2[domEvent.pointerId];
+        var gesture = this.__gesture__P_84_2[domEvent.pointerId];
 
         if (gesture) {
           var oldClientX = gesture.clientX;
@@ -18910,14 +18910,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             gesture.velocityY = gesture.clientY - oldClientY;
           }
 
-          if (Object.keys(this.__gesture__P_68_2).length === 2) {
-            this.__fireRotate__P_68_20(domEvent, gesture.target);
+          if (Object.keys(this.__gesture__P_84_2).length === 2) {
+            this.__fireRotate__P_84_20(domEvent, gesture.target);
 
-            this.__firePinch__P_68_21(domEvent, gesture.target);
+            this.__firePinch__P_84_21(domEvent, gesture.target);
           }
 
-          if (!this.__isMultiPointerGesture__P_68_9) {
-            this.__fireTrack__P_68_19("track", domEvent, gesture.target);
+          if (!this.__isMultiPointerGesture__P_84_9) {
+            this.__fireTrack__P_84_19("track", domEvent, gesture.target);
 
             this._fireRoll(domEvent, "touch", gesture.target);
           } // abort long tap timer if the distance is too big
@@ -18927,7 +18927,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             gesture.isTap = this._isBelowTapMaxDistance(domEvent);
 
             if (!gesture.isTap) {
-              this.__stopLongTapTimer__P_68_17(gesture);
+              this.__stopLongTapTimer__P_84_17(gesture);
             }
           }
         }
@@ -18942,7 +18942,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean}
        */
       _hasIntermediaryHandler: function _hasIntermediaryHandler(target) {
-        while (target && target !== this.__defaultTarget__P_68_0) {
+        while (target && target !== this.__defaultTarget__P_84_0) {
           if (target.$$gestureHandler) {
             return true;
           }
@@ -18961,13 +18961,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       gestureFinish: function gestureFinish(domEvent, target) {
         // If no start position is available for this pointerup event, cancel gesture recognition.
-        if (!this.__gesture__P_68_2[domEvent.pointerId]) {
+        if (!this.__gesture__P_84_2[domEvent.pointerId]) {
           return;
         }
 
-        var gesture = this.__gesture__P_68_2[domEvent.pointerId]; // delete the long tap
+        var gesture = this.__gesture__P_84_2[domEvent.pointerId]; // delete the long tap
 
-        this.__stopLongTapTimer__P_68_17(gesture);
+        this.__stopLongTapTimer__P_84_17(gesture);
         /*
           If the dom event's target or one of its ancestors have
           a gesture handler, we don't need to fire the gesture again
@@ -18980,13 +18980,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // always start the roll impulse on the original target
 
 
-        this.__handleRollImpulse__P_68_22(gesture.velocityX, gesture.velocityY, domEvent, gesture.target);
+        this.__handleRollImpulse__P_84_22(gesture.velocityX, gesture.velocityY, domEvent, gesture.target);
 
-        this.__fireTrack__P_68_19("trackend", domEvent, gesture.target);
+        this.__fireTrack__P_84_19("trackend", domEvent, gesture.target);
 
         if (gesture.isTap) {
           if (target !== gesture.target) {
-            delete this.__gesture__P_68_2[domEvent.pointerId];
+            delete this.__gesture__P_84_2[domEvent.pointerId];
             return;
           }
 
@@ -18994,24 +18994,24 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
           var isDblTap = false;
 
-          if (Object.keys(this.__lastTap__P_68_3).length > 0) {
+          if (Object.keys(this.__lastTap__P_84_3).length > 0) {
             // delete old tap entries
             var limit = Date.now() - qx.event.handler.GestureCore.DOUBLETAP_TIME;
 
-            for (var time in this.__lastTap__P_68_3) {
+            for (var time in this.__lastTap__P_84_3) {
               if (time < limit) {
-                delete this.__lastTap__P_68_3[time];
+                delete this.__lastTap__P_84_3[time];
               } else {
-                var lastTap = this.__lastTap__P_68_3[time];
+                var lastTap = this.__lastTap__P_84_3[time];
 
-                var isBelowDoubleTapDistance = this.__isBelowDoubleTapDistance__P_68_23(lastTap.x, lastTap.y, domEvent.clientX, domEvent.clientY, domEvent.getPointerType());
+                var isBelowDoubleTapDistance = this.__isBelowDoubleTapDistance__P_84_23(lastTap.x, lastTap.y, domEvent.clientX, domEvent.clientY, domEvent.getPointerType());
 
                 var isSameTarget = lastTap.target === (domEvent.target || target);
                 var isSameButton = lastTap.button === domEvent.button;
 
                 if (isBelowDoubleTapDistance && isSameButton && isSameTarget) {
                   isDblTap = true;
-                  delete this.__lastTap__P_68_3[time];
+                  delete this.__lastTap__P_84_3[time];
 
                   this._fireEvent(domEvent, "dbltap", domEvent.target || target);
                 }
@@ -19020,7 +19020,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
 
           if (!isDblTap) {
-            this.__lastTap__P_68_3[Date.now()] = {
+            this.__lastTap__P_84_3[Date.now()] = {
               x: domEvent.clientX,
               y: domEvent.clientY,
               target: domEvent.target || target,
@@ -19028,7 +19028,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             };
           }
         } else if (!this._isBelowTapMaxDistance(domEvent)) {
-          var swipe = this.__getSwipeGesture__P_68_24(domEvent, target);
+          var swipe = this.__getSwipeGesture__P_84_24(domEvent, target);
 
           if (swipe) {
             domEvent.swipe = swipe;
@@ -19037,7 +19037,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         }
 
-        delete this.__gesture__P_68_2[domEvent.pointerId];
+        delete this.__gesture__P_84_2[domEvent.pointerId];
       },
 
       /**
@@ -19046,7 +19046,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param id {Integer} The timeoutId of a 'roll' event
        */
       stopMomentum: function stopMomentum(id) {
-        this.__stopMomentum__P_68_4[id] = true;
+        this.__stopMomentum__P_84_4[id] = true;
       },
 
       /**
@@ -19054,15 +19054,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param id {Number} The pointer Id.
        */
       gestureCancel: function gestureCancel(id) {
-        if (this.__gesture__P_68_2[id]) {
-          this.__stopLongTapTimer__P_68_17(this.__gesture__P_68_2[id]);
+        if (this.__gesture__P_84_2[id]) {
+          this.__stopLongTapTimer__P_84_17(this.__gesture__P_84_2[id]);
 
-          delete this.__gesture__P_68_2[id];
+          delete this.__gesture__P_84_2[id];
         }
 
-        if (this.__momentum__P_68_5[id]) {
-          this.stopMomentum(this.__momentum__P_68_5[id]);
-          delete this.__momentum__P_68_5[id];
+        if (this.__momentum__P_84_5[id]) {
+          this.stopMomentum(this.__momentum__P_84_5[id]);
+          delete this.__momentum__P_84_5[id];
         }
       },
 
@@ -19075,7 +19075,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @internal
        */
       updateGestureTarget: function updateGestureTarget(id, target) {
-        this.__gesture__P_68_2[id].target = target;
+        this.__gesture__P_84_2[id].target = target;
       },
 
       /**
@@ -19086,18 +19086,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param target {Element} The target of the momentum roll events
        * @param time {Number ?} The time in ms between the last two calls
        */
-      __handleRollImpulse__P_68_22: function __handleRollImpulse__P_68_22(deltaX, deltaY, domEvent, target, time) {
+      __handleRollImpulse__P_84_22: function __handleRollImpulse__P_84_22(deltaX, deltaY, domEvent, target, time) {
         var oldTimeoutId = domEvent.timeoutId;
 
-        if (!time && this.__momentum__P_68_5[domEvent.pointerId]) {
+        if (!time && this.__momentum__P_84_5[domEvent.pointerId]) {
           // new roll impulse started, stop the old one
-          this.stopMomentum(this.__momentum__P_68_5[domEvent.pointerId]);
+          this.stopMomentum(this.__momentum__P_84_5[domEvent.pointerId]);
         } // do nothing if we don't need to scroll
 
 
-        if (Math.abs(deltaY) < 1 && Math.abs(deltaX) < 1 || this.__stopMomentum__P_68_4[oldTimeoutId] || !this.getWindow()) {
-          delete this.__stopMomentum__P_68_4[oldTimeoutId];
-          delete this.__momentum__P_68_5[domEvent.pointerId];
+        if (Math.abs(deltaY) < 1 && Math.abs(deltaX) < 1 || this.__stopMomentum__P_84_4[oldTimeoutId] || !this.getWindow()) {
+          delete this.__stopMomentum__P_84_4[oldTimeoutId];
+          delete this.__momentum__P_84_5[domEvent.pointerId];
           return;
         }
 
@@ -19113,7 +19113,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         deltaX = deltaX / time; // set up a new timer with the new delta
 
         var timeoutId = qx.bom.AnimationFrame.request(qx.lang.Function.bind(function (deltaX, deltaY, domEvent, target, time) {
-          this.__handleRollImpulse__P_68_22(deltaX, deltaY, domEvent, target, time);
+          this.__handleRollImpulse__P_84_22(deltaX, deltaY, domEvent, target, time);
         }, this, deltaX, deltaY, domEvent, target, time));
         deltaX = Math.round(deltaX * 100) / 100;
         deltaY = Math.round(deltaY * 100) / 100; // scroll the desired new delta
@@ -19124,7 +19124,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         };
         domEvent.momentum = true;
         domEvent.timeoutId = timeoutId;
-        this.__momentum__P_68_5[domEvent.pointerId] = timeoutId;
+        this.__momentum__P_84_5[domEvent.pointerId] = timeoutId;
 
         this._fireEvent(domEvent, "roll", domEvent.target || target);
       },
@@ -19137,8 +19137,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var pointerA = null;
         var pointerB = null;
 
-        for (var pointerId in this.__gesture__P_68_2) {
-          var gesture = this.__gesture__P_68_2[pointerId];
+        for (var pointerId in this.__gesture__P_84_2) {
+          var gesture = this.__gesture__P_84_2[pointerId];
 
           if (pointerA === null) {
             pointerA = gesture;
@@ -19160,8 +19160,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var pointerA = null;
         var pointerB = null;
 
-        for (var pointerId in this.__gesture__P_68_2) {
-          var gesture = this.__gesture__P_68_2[pointerId];
+        for (var pointerId in this.__gesture__P_84_2) {
+          var gesture = this.__gesture__P_84_2[pointerId];
 
           if (pointerA === null) {
             pointerA = gesture;
@@ -19204,7 +19204,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param type {String} The pointer type e.g. "mouse"
        * @return {Boolean} <code>true</code>, if points are in range
        */
-      __isBelowDoubleTapDistance__P_68_23: function __isBelowDoubleTapDistance__P_68_23(x1, y1, x2, y2, type) {
+      __isBelowDoubleTapDistance__P_84_23: function __isBelowDoubleTapDistance__P_84_23(x1, y1, x2, y2, type) {
         var clazz = qx.event.handler.GestureCore;
         var inX = Math.abs(x1 - x2) < clazz.DOUBLETAP_MAX_DISTANCE[type];
         var inY = Math.abs(y1 - y2) < clazz.DOUBLETAP_MAX_DISTANCE[type];
@@ -19217,7 +19217,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       * @return {Map} containing the deltaX as x, and deltaY as y.
       */
       _getDeltaCoordinates: function _getDeltaCoordinates(domEvent) {
-        var gesture = this.__gesture__P_68_2[domEvent.pointerId];
+        var gesture = this.__gesture__P_84_2[domEvent.pointerId];
 
         if (!gesture) {
           return null;
@@ -19248,7 +19248,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       _fireEvent: function _fireEvent(domEvent, type, target) {
         // The target may have been removed, e.g. menu hide on tap
-        if (!this.__defaultTarget__P_68_0) {
+        if (!this.__defaultTarget__P_84_0) {
           return;
         }
 
@@ -19265,11 +19265,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             momentum: domEvent.momentum
           });
           return target.dispatchEvent(evt);
-        } else if (this.__emitter__P_68_1) {
+        } else if (this.__emitter__P_84_1) {
           evt = new qx.event.type.dom.Custom(type, domEvent, {
-            target: this.__defaultTarget__P_68_0,
-            currentTarget: this.__defaultTarget__P_68_0,
-            srcElement: this.__defaultTarget__P_68_0,
+            target: this.__defaultTarget__P_84_0,
+            currentTarget: this.__defaultTarget__P_84_0,
+            srcElement: this.__defaultTarget__P_84_0,
             swipe: domEvent.swipe,
             scale: domEvent.scale,
             angle: domEvent.angle,
@@ -19278,7 +19278,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             momentum: domEvent.momentum
           });
 
-          this.__emitter__P_68_1.emit(type, domEvent);
+          this.__emitter__P_84_1.emit(type, domEvent);
         }
       },
 
@@ -19303,8 +19303,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param target {Element} event target
        * @return {Map|null} returns the swipe data when the user performed a swipe, null if the gesture was no swipe.
        */
-      __getSwipeGesture__P_68_24: function __getSwipeGesture__P_68_24(domEvent, target) {
-        var gesture = this.__gesture__P_68_2[domEvent.pointerId];
+      __getSwipeGesture__P_84_24: function __getSwipeGesture__P_84_24(domEvent, target) {
+        var gesture = this.__gesture__P_84_2[domEvent.pointerId];
 
         if (!gesture) {
           return null;
@@ -19337,7 +19337,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param domEvent {Event} DOM event
        * @param target {Element} event target
        */
-      __fireTrack__P_68_19: function __fireTrack__P_68_19(type, domEvent, target) {
+      __fireTrack__P_84_19: function __fireTrack__P_84_19(type, domEvent, target) {
         domEvent.delta = this._getDeltaCoordinates(domEvent);
 
         this._fireEvent(domEvent, type, domEvent.target || target);
@@ -19350,7 +19350,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param target {Element} event target
        * @param rollFactor {Integer} the roll factor to apply
        */
-      __fireRollEvent__P_68_25: function __fireRollEvent__P_68_25(domEvent, target, rollFactor) {
+      __fireRollEvent__P_84_25: function __fireRollEvent__P_84_25(domEvent, target, rollFactor) {
         domEvent.delta = {
           x: qx.util.Wheel.getDelta(domEvent, "x") * rollFactor,
           y: qx.util.Wheel.getDelta(domEvent, "y") * rollFactor
@@ -19366,7 +19366,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @param target {Element} event target
        */
-      __performAdaptativeRollScrolling__P_68_26: function __performAdaptativeRollScrolling__P_68_26(target) {
+      __performAdaptativeRollScrolling__P_84_26: function __performAdaptativeRollScrolling__P_84_26(target) {
         var rollFactor = qx.event.handler.GestureCore.ROLL_FACTOR;
 
         if (qx.util.Wheel.IS_TOUCHPAD) {
@@ -19374,29 +19374,29 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           rollFactor = qx.event.handler.GestureCore.TOUCHPAD_ROLL_FACTOR;
         }
 
-        this.__lastRollEventTime__P_68_16 = new Date().getTime();
-        var reLength = this.__rollEvents__P_68_6.length;
+        this.__lastRollEventTime__P_84_16 = new Date().getTime();
+        var reLength = this.__rollEvents__P_84_6.length;
 
         for (var i = 0; i < reLength; i++) {
-          var domEvent = this.__rollEvents__P_68_6[i];
+          var domEvent = this.__rollEvents__P_84_6[i];
 
-          this.__fireRollEvent__P_68_25(domEvent, target, rollFactor);
+          this.__fireRollEvent__P_84_25(domEvent, target, rollFactor);
         }
 
-        this.__rollEvents__P_68_6 = [];
+        this.__rollEvents__P_84_6 = [];
       },
 
       /**
        * Ends touch pad detection process.
        */
-      __endTouchPadDetection__P_68_27: function __endTouchPadDetection__P_68_27() {
-        if (this.__rollEvents__P_68_6.length > qx.event.handler.GestureCore.TOUCHPAD_WHEEL_EVENTS_THRESHOLD) {
+      __endTouchPadDetection__P_84_27: function __endTouchPadDetection__P_84_27() {
+        if (this.__rollEvents__P_84_6.length > qx.event.handler.GestureCore.TOUCHPAD_WHEEL_EVENTS_THRESHOLD) {
           qx.util.Wheel.IS_TOUCHPAD = true;
         } else {
           qx.util.Wheel.IS_TOUCHPAD = false;
         }
 
-        this.__touchPadDetectionPerformed__P_68_15 = true;
+        this.__touchPadDetectionPerformed__P_84_15 = true;
       },
 
       /**
@@ -19426,54 +19426,54 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             now = new Date().getTime();
             detectionTimeout = qx.event.handler.GestureCore.TOUCHPAD_WHEEL_EVENTS_TIMEOUT;
 
-            if (this.__lastRollEventTime__P_68_16 > 0 && now - this.__lastRollEventTime__P_68_16 > detectionTimeout) {
+            if (this.__lastRollEventTime__P_84_16 > 0 && now - this.__lastRollEventTime__P_84_16 > detectionTimeout) {
               // The detection timeout was reached. A new detection step should occur.
-              this.__touchPadDetectionPerformed__P_68_15 = false;
-              this.__rollEvents__P_68_6 = [];
-              this.__lastRollEventTime__P_68_16 = 0;
+              this.__touchPadDetectionPerformed__P_84_15 = false;
+              this.__rollEvents__P_84_6 = [];
+              this.__lastRollEventTime__P_84_16 = 0;
             }
 
-            if (!this.__touchPadDetectionPerformed__P_68_15) {
+            if (!this.__touchPadDetectionPerformed__P_84_15) {
               // We are into a detection session. We count the events so that we can decide if
               // they were fired by a real mouse wheel or a touchpad. Just swallow them until the
               // detection period is over.
-              if (this.__rollEvents__P_68_6.length === 0) {
+              if (this.__rollEvents__P_84_6.length === 0) {
                 // detection starts
-                this.__rollEventsCountStart__P_68_13 = now;
+                this.__rollEventsCountStart__P_84_13 = now;
                 qx.event.Timer.once(function () {
-                  if (!this.__touchPadDetectionPerformed__P_68_15) {
+                  if (!this.__touchPadDetectionPerformed__P_84_15) {
                     // There were not enough events during the TOUCHPAD_WHEEL_EVENTS_PERIOD to actually
                     // trigger a scrolling. Trigger it manually.
-                    this.__endTouchPadDetection__P_68_27();
+                    this.__endTouchPadDetection__P_84_27();
 
-                    this.__performAdaptativeRollScrolling__P_68_26(target);
+                    this.__performAdaptativeRollScrolling__P_84_26(target);
                   }
                 }, this, qx.event.handler.GestureCore.TOUCHPAD_WHEEL_EVENTS_PERIOD + 50);
               }
 
-              this.__rollEvents__P_68_6.push(domEvent);
+              this.__rollEvents__P_84_6.push(domEvent);
 
-              this.__rollEventsCount__P_68_14++;
+              this.__rollEventsCount__P_84_14++;
 
-              if (now - this.__rollEventsCountStart__P_68_13 > qx.event.handler.GestureCore.TOUCHPAD_WHEEL_EVENTS_PERIOD) {
-                this.__endTouchPadDetection__P_68_27();
+              if (now - this.__rollEventsCountStart__P_84_13 > qx.event.handler.GestureCore.TOUCHPAD_WHEEL_EVENTS_PERIOD) {
+                this.__endTouchPadDetection__P_84_27();
               }
             }
 
-            if (this.__touchPadDetectionPerformed__P_68_15) {
-              if (this.__rollEvents__P_68_6.length === 0) {
-                this.__rollEvents__P_68_6.push(domEvent);
+            if (this.__touchPadDetectionPerformed__P_84_15) {
+              if (this.__rollEvents__P_84_6.length === 0) {
+                this.__rollEvents__P_84_6.push(domEvent);
               } // Detection is done. We can now decide the roll factor to apply to the delta.
               // Default to a real mouse wheel event as opposed to a touchpad one.
 
 
-              this.__performAdaptativeRollScrolling__P_68_26(target);
+              this.__performAdaptativeRollScrolling__P_84_26(target);
             }
           } else {
-            this.__fireRollEvent__P_68_25(domEvent, target, qx.event.handler.GestureCore.ROLL_FACTOR);
+            this.__fireRollEvent__P_84_25(domEvent, target, qx.event.handler.GestureCore.ROLL_FACTOR);
           }
         } else {
-          var gesture = this.__gesture__P_68_2[domEvent.pointerId];
+          var gesture = this.__gesture__P_84_2[domEvent.pointerId];
           domEvent.delta = {
             x: -gesture.velocityX,
             y: -gesture.velocityY,
@@ -19490,13 +19490,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param domEvent {Event} DOM event
        * @param target {Element} event target
        */
-      __fireRotate__P_68_20: function __fireRotate__P_68_20(domEvent, target) {
+      __fireRotate__P_84_20: function __fireRotate__P_84_20(domEvent, target) {
         if (!domEvent.isPrimary) {
           var angle = this._calcAngle();
 
-          domEvent.angle = Math.round((angle - this.__initialAngle__P_68_10) % 360);
+          domEvent.angle = Math.round((angle - this.__initialAngle__P_84_10) % 360);
 
-          this._fireEvent(domEvent, "rotate", this.__primaryTarget__P_68_8);
+          this._fireEvent(domEvent, "rotate", this.__primaryTarget__P_84_8);
         }
       },
 
@@ -19506,14 +19506,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param domEvent {Event} DOM event
        * @param target {Element} event target
        */
-      __firePinch__P_68_21: function __firePinch__P_68_21(domEvent, target) {
+      __firePinch__P_84_21: function __firePinch__P_84_21(domEvent, target) {
         if (!domEvent.isPrimary) {
           var distance = this._calcDistance();
 
-          var scale = distance / this.__initialDistance__P_68_12;
+          var scale = distance / this.__initialDistance__P_84_12;
           domEvent.scale = Math.round(scale * 100) / 100;
 
-          this._fireEvent(domEvent, "pinch", this.__primaryTarget__P_68_8);
+          this._fireEvent(domEvent, "pinch", this.__primaryTarget__P_84_8);
         }
       },
 
@@ -19523,8 +19523,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param domEvent {Event} DOM event
        * @param target {Element} event target
        */
-      __fireLongTap__P_68_18: function __fireLongTap__P_68_18(domEvent, target) {
-        var gesture = this.__gesture__P_68_2[domEvent.pointerId];
+      __fireLongTap__P_84_18: function __fireLongTap__P_84_18(domEvent, target) {
+        var gesture = this.__gesture__P_84_2[domEvent.pointerId];
 
         if (gesture) {
           this._fireEvent(domEvent, "longtap", domEvent.target || target);
@@ -19538,7 +19538,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Stops the time for the long tap event.
        * @param gesture {Map} Data may representing the gesture.
        */
-      __stopLongTapTimer__P_68_17: function __stopLongTapTimer__P_68_17(gesture) {
+      __stopLongTapTimer__P_84_17: function __stopLongTapTimer__P_84_17(gesture) {
         if (gesture.longTapTimer) {
           window.clearTimeout(gesture.longTapTimer);
           gesture.longTapTimer = null;
@@ -19549,13 +19549,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Dispose the current instance
        */
       dispose: function dispose() {
-        for (var gesture in this.__gesture__P_68_2) {
-          this.__stopLongTapTimer__P_68_17(gesture);
+        for (var gesture in this.__gesture__P_84_2) {
+          this.__stopLongTapTimer__P_84_17(gesture);
         }
 
         this._stopObserver();
 
-        this.__defaultTarget__P_68_0 = this.__emitter__P_68_1 = null;
+        this.__defaultTarget__P_84_0 = this.__emitter__P_84_1 = null;
       }
     }
   });
@@ -20131,25 +20131,25 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      */
     construct: function construct(manager) {
       // Define shorthands
-      this.__manager__P_21_0 = manager;
-      this.__window__P_21_1 = manager.getWindow();
-      this.__root__P_21_2 = this.__window__P_21_1.document;
-      qx.event.handler.GestureCore.apply(this, [this.__root__P_21_2]);
+      this.__manager__P_24_0 = manager;
+      this.__window__P_24_1 = manager.getWindow();
+      this.__root__P_24_2 = this.__window__P_24_1.document;
+      qx.event.handler.GestureCore.apply(this, [this.__root__P_24_2]);
     },
     members: {
-      __manager__P_21_0: null,
-      __window__P_21_1: null,
-      __root__P_21_2: null,
-      __listener__P_21_3: null,
-      __onDblClickWrapped__P_21_4: null,
-      __fireRollWrapped__P_21_5: null,
+      __manager__P_24_0: null,
+      __window__P_24_1: null,
+      __root__P_24_2: null,
+      __listener__P_24_3: null,
+      __onDblClickWrapped__P_24_4: null,
+      __fireRollWrapped__P_24_5: null,
 
       /**
        * Getter for the internal __window object
        * @return {Window} DOM window instance
        */
       getWindow: function getWindow() {
-        return this.__window__P_21_1;
+        return this.__window__P_24_1;
       },
       // interface implementation
       canHandleEvent: function canHandleEvent(target, type) {},
@@ -20161,22 +20161,22 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       },
       // overridden
       _initObserver: function _initObserver() {
-        this.__listener__P_21_3 = qx.lang.Function.listener(this.checkAndFireGesture, this);
+        this.__listener__P_24_3 = qx.lang.Function.listener(this.checkAndFireGesture, this);
         qx.event.handler.Gesture.GESTURE_EVENTS.forEach(function (type) {
-          qx.event.Registration.addListener(this.__root__P_21_2, type, this.__listener__P_21_3, this);
+          qx.event.Registration.addListener(this.__root__P_24_2, type, this.__listener__P_24_3, this);
         }.bind(this));
 
         if (qx.core.Environment.get("engine.name") == "mshtml" && qx.core.Environment.get("browser.documentmode") < 9) {
-          this.__onDblClickWrapped__P_21_4 = qx.lang.Function.listener(this._onDblClick, this);
-          qx.bom.Event.addNativeListener(this.__root__P_21_2, "dblclick", this.__onDblClickWrapped__P_21_4);
+          this.__onDblClickWrapped__P_24_4 = qx.lang.Function.listener(this._onDblClick, this);
+          qx.bom.Event.addNativeListener(this.__root__P_24_2, "dblclick", this.__onDblClickWrapped__P_24_4);
         } // list to wheel events
 
 
-        var data = qx.bom.client.Event.getMouseWheel(this.__window__P_21_1);
-        this.__fireRollWrapped__P_21_5 = qx.lang.Function.listener(this._fireRoll, this); // replaced the useCapture (4th parameter) from this to true
+        var data = qx.bom.client.Event.getMouseWheel(this.__window__P_24_1);
+        this.__fireRollWrapped__P_24_5 = qx.lang.Function.listener(this._fireRoll, this); // replaced the useCapture (4th parameter) from this to true
         // see https://github.com/qooxdoo/qooxdoo/pull/9292
 
-        qx.bom.Event.addNativeListener(data.target, data.type, this.__fireRollWrapped__P_21_5, true, false);
+        qx.bom.Event.addNativeListener(data.target, data.type, this.__fireRollWrapped__P_24_5, true, false);
       },
 
       /**
@@ -20187,20 +20187,20 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param target {Element ? null} event target
        */
       checkAndFireGesture: function checkAndFireGesture(pointerEvent, type, target) {
-        this.__callBase__P_21_6("checkAndFireGesture", [pointerEvent.getNativeEvent(), pointerEvent.getType(), pointerEvent.getTarget()]);
+        this.__callBase__P_24_6("checkAndFireGesture", [pointerEvent.getNativeEvent(), pointerEvent.getType(), pointerEvent.getTarget()]);
       },
       // overridden
       _stopObserver: function _stopObserver() {
         qx.event.handler.Gesture.GESTURE_EVENTS.forEach(function (type) {
-          qx.event.Registration.removeListener(this.__root__P_21_2, type, this.__listener__P_21_3);
+          qx.event.Registration.removeListener(this.__root__P_24_2, type, this.__listener__P_24_3);
         }.bind(this));
 
         if (qx.core.Environment.get("engine.name") == "mshtml" && qx.core.Environment.get("browser.documentmode") < 9) {
-          qx.bom.Event.removeNativeListener(this.__root__P_21_2, "dblclick", this.__onDblClickWrapped__P_21_4);
+          qx.bom.Event.removeNativeListener(this.__root__P_24_2, "dblclick", this.__onDblClickWrapped__P_24_4);
         }
 
-        var data = qx.bom.client.Event.getMouseWheel(this.__window__P_21_1);
-        qx.bom.Event.removeNativeListener(data.target, data.type, this.__fireRollWrapped__P_21_5);
+        var data = qx.bom.client.Event.getMouseWheel(this.__window__P_24_1);
+        qx.bom.Event.removeNativeListener(data.target, data.type, this.__fireRollWrapped__P_24_5);
       },
       // overridden
       _hasIntermediaryHandler: function _hasIntermediaryHandler(target) {
@@ -20232,7 +20232,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // Fire user action event
 
 
-        qx.event.Registration.fireEvent(this.__window__P_21_1, "useraction", qx.event.type.Data, [type]);
+        qx.event.Registration.fireEvent(this.__window__P_24_1, "useraction", qx.event.type.Data, [type]);
       },
 
       /**
@@ -20241,9 +20241,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       dispose: function dispose() {
         this._stopObserver();
 
-        this.__callBase__P_21_6("dispose");
+        this.__callBase__P_24_6("dispose");
 
-        this.__manager__P_21_0 = this.__window__P_21_1 = this.__root__P_21_2 = this.__onDblClickWrapped__P_21_4 = null;
+        this.__manager__P_24_0 = this.__window__P_24_1 = this.__root__P_24_2 = this.__onDblClickWrapped__P_24_4 = null;
       },
 
       /**
@@ -20252,7 +20252,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param method {String} Name of the overridden method.
        * @param args {Array} Arguments.
        */
-      __callBase__P_21_6: function __callBase__P_21_6(method, args) {
+      __callBase__P_24_6: function __callBase__P_24_6(method, args) {
         qx.event.handler.GestureCore.prototype[method].apply(this, args || []);
       }
     },
@@ -20587,6 +20587,412 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     }
   });
   qx.log.appender.Console.$$dbClassInfo = $$dbClassInfo;
+})();
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+(function () {
+  var $$dbClassInfo = {
+    "dependsOn": {
+      "qx.Bootstrap": {
+        "usage": "dynamic",
+        "require": true
+      },
+      "qx.bom.Stylesheet": {},
+      "qx.core.Environment": {
+        "defer": "runtime"
+      }
+    },
+    "environment": {
+      "provided": ["html.stylesheet.createstylesheet", "html.stylesheet.insertrule", "html.stylesheet.deleterule", "html.stylesheet.addimport", "html.stylesheet.removeimport"],
+      "required": {}
+    }
+  };
+  qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
+  /* ************************************************************************
+  
+     qooxdoo - the new era of web development
+  
+     http://qooxdoo.org
+  
+     Copyright:
+       2004-2011 1&1 Internet AG, Germany, http://www.1und1.de
+  
+     License:
+       MIT: https://opensource.org/licenses/MIT
+       See the LICENSE file in the project's top-level directory for details.
+  
+     Authors:
+       * Daniel Wagner (d_wagner)
+  
+  ************************************************************************ */
+
+  /**
+   * Internal class which contains the checks used by {@link qx.core.Environment}.
+   * All checks in here are marked as internal which means you should never use
+   * them directly.
+   *
+   * This class contains checks related to Stylesheet objects.
+   *
+   * @internal
+   */
+  qx.Bootstrap.define("qx.bom.client.Stylesheet", {
+    statics: {
+      /**
+       * Returns a stylesheet to be used for feature checks
+       *
+       * @return {StyleSheet} Stylesheet element
+       */
+      __getStylesheet__P_85_0: function __getStylesheet__P_85_0() {
+        if (!qx.bom.client.Stylesheet.__stylesheet__P_85_1) {
+          qx.bom.client.Stylesheet.__stylesheet__P_85_1 = qx.bom.Stylesheet.createElement();
+        }
+
+        return qx.bom.client.Stylesheet.__stylesheet__P_85_1;
+      },
+
+      /**
+       * Check for IE's non-standard document.createStyleSheet function.
+       * In IE9 (standards mode), the typeof check returns "function" so false is
+       * returned. This is intended since IE9 supports the DOM-standard
+       * createElement("style") which should be used instead.
+       *
+       * @internal
+       * @return {Boolean} <code>true</code> if the browser supports
+       * document.createStyleSheet
+       */
+      getCreateStyleSheet: function getCreateStyleSheet() {
+        return _typeof(document.createStyleSheet) === "object";
+      },
+
+      /**
+       * Check for stylesheet.insertRule. Legacy IEs do not support this.
+       *
+       * @internal
+       * @return {Boolean} <code>true</code> if insertRule is supported
+       */
+      getInsertRule: function getInsertRule() {
+        return typeof qx.bom.client.Stylesheet.__getStylesheet__P_85_0().insertRule === "function";
+      },
+
+      /**
+       * Check for stylesheet.deleteRule. Legacy IEs do not support this.
+       *
+       * @internal
+       * @return {Boolean} <code>true</code> if deleteRule is supported
+       */
+      getDeleteRule: function getDeleteRule() {
+        return typeof qx.bom.client.Stylesheet.__getStylesheet__P_85_0().deleteRule === "function";
+      },
+
+      /**
+       * Decides whether to use the legacy IE-only stylesheet.addImport or the
+       * DOM-standard stylesheet.insertRule('@import [...]')
+       *
+       * @internal
+       * @return {Boolean} <code>true</code> if stylesheet.addImport is supported
+       */
+      getAddImport: function getAddImport() {
+        return _typeof(qx.bom.client.Stylesheet.__getStylesheet__P_85_0().addImport) === "object";
+      },
+
+      /**
+       * Decides whether to use the legacy IE-only stylesheet.removeImport or the
+       * DOM-standard stylesheet.deleteRule('@import [...]')
+       *
+       * @internal
+       * @return {Boolean} <code>true</code> if stylesheet.removeImport is supported
+       */
+      getRemoveImport: function getRemoveImport() {
+        return _typeof(qx.bom.client.Stylesheet.__getStylesheet__P_85_0().removeImport) === "object";
+      }
+    },
+    defer: function defer(statics) {
+      qx.core.Environment.add("html.stylesheet.createstylesheet", statics.getCreateStyleSheet);
+      qx.core.Environment.add("html.stylesheet.insertrule", statics.getInsertRule);
+      qx.core.Environment.add("html.stylesheet.deleterule", statics.getDeleteRule);
+      qx.core.Environment.add("html.stylesheet.addimport", statics.getAddImport);
+      qx.core.Environment.add("html.stylesheet.removeimport", statics.getRemoveImport);
+    }
+  });
+  qx.bom.client.Stylesheet.$$dbClassInfo = $$dbClassInfo;
+})();
+
+(function () {
+  var $$dbClassInfo = {
+    "dependsOn": {
+      "qx.bom.client.Stylesheet": {
+        "require": true
+      },
+      "qx.core.Environment": {
+        "defer": "load",
+        "require": true
+      },
+      "qx.Bootstrap": {
+        "usage": "dynamic",
+        "require": true
+      },
+      "qx.core.Assert": {},
+      "qx.dom.Element": {},
+      "qx.util.Uri": {}
+    },
+    "environment": {
+      "provided": [],
+      "required": {
+        "html.stylesheet.createstylesheet": {
+          "className": "qx.bom.client.Stylesheet"
+        },
+        "html.stylesheet.insertrule": {
+          "className": "qx.bom.client.Stylesheet"
+        },
+        "html.stylesheet.deleterule": {
+          "className": "qx.bom.client.Stylesheet"
+        },
+        "html.stylesheet.addimport": {
+          "className": "qx.bom.client.Stylesheet"
+        },
+        "html.stylesheet.removeimport": {
+          "className": "qx.bom.client.Stylesheet"
+        }
+      }
+    }
+  };
+  qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
+  /* ************************************************************************
+  
+     qooxdoo - the new era of web development
+  
+     http://qooxdoo.org
+  
+     Copyright:
+       2004-2008 1&1 Internet AG, Germany, http://www.1und1.de
+       2006 STZ-IDA, Germany, http://www.stz-ida.de
+  
+     License:
+       MIT: https://opensource.org/licenses/MIT
+       See the LICENSE file in the project's top-level directory for details.
+  
+     Authors:
+       * Sebastian Werner (wpbasti)
+       * Andreas Ecker (ecker)
+       * Andreas Junghans (lucidcake)
+  
+  ************************************************************************ */
+
+  /**
+   * Cross-browser wrapper to work with CSS stylesheets.
+   * @require(qx.bom.client.Stylesheet)
+   */
+  qx.Bootstrap.define("qx.bom.Stylesheet", {
+    /*
+    *****************************************************************************
+       STATICS
+    *****************************************************************************
+    */
+    statics: {
+      /**
+       * Include a CSS file
+       *
+       * <em>Note:</em> Using a resource ID as the <code>href</code> parameter
+       * will no longer be supported. Call
+       * <code>qx.util.ResourceManager.getInstance().toUri(href)</code> to get
+       * valid URI to be used with this method.
+       *
+       * @param href {String} Href value
+       * @param doc {Document?} Document to modify
+       */
+      includeFile: function includeFile(href, doc) {
+        if (!doc) {
+          doc = document;
+        }
+
+        var el = doc.createElement("link");
+        el.type = "text/css";
+        el.rel = "stylesheet";
+        el.href = href;
+        var head = doc.getElementsByTagName("head")[0];
+        head.appendChild(el);
+      },
+
+      /**
+       * Create a new Stylesheet node and append it to the document
+       *
+       * @param text {String?} optional string of css rules
+       * @return {StyleSheet} the generates stylesheet element
+       */
+      createElement: function createElement(text) {
+        if (qx.core.Environment.get("html.stylesheet.createstylesheet")) {
+          var sheet = document.createStyleSheet();
+
+          if (text) {
+            sheet.cssText = text;
+          }
+
+          return sheet;
+        } else {
+          var elem = document.createElement("style");
+          elem.type = "text/css";
+
+          if (text) {
+            elem.appendChild(document.createTextNode(text));
+          }
+
+          document.getElementsByTagName("head")[0].appendChild(elem);
+          return elem.sheet;
+        }
+      },
+
+      /**
+       * Insert a new CSS rule into a given Stylesheet
+       *
+       * @param sheet {Object} the target Stylesheet object
+       * @param selector {String} the selector
+       * @param entry {String} style rule
+       */
+      addRule: function addRule(sheet, selector, entry) {
+        {
+          var msg = "qx.bom.Stylesheet.addRule: The rule '" + entry + "' for the selector '" + selector + "' must not be enclosed in braces";
+          qx.core.Assert.assertFalse(/^\s*?\{.*?\}\s*?$/.test(entry), msg);
+        }
+
+        if (qx.core.Environment.get("html.stylesheet.insertrule")) {
+          sheet.insertRule(selector + "{" + entry + "}", sheet.cssRules.length);
+        } else {
+          sheet.addRule(selector, entry);
+        }
+      },
+
+      /**
+       * Remove a CSS rule from a stylesheet
+       *
+       * @param sheet {Object} the Stylesheet
+       * @param selector {String} the Selector of the rule to remove
+       */
+      removeRule: function removeRule(sheet, selector) {
+        if (qx.core.Environment.get("html.stylesheet.deleterule")) {
+          var rules = sheet.cssRules;
+          var len = rules.length;
+
+          for (var i = len - 1; i >= 0; --i) {
+            if (rules[i].selectorText == selector) {
+              sheet.deleteRule(i);
+            }
+          }
+        } else {
+          var rules = sheet.rules;
+          var len = rules.length;
+
+          for (var i = len - 1; i >= 0; --i) {
+            if (rules[i].selectorText == selector) {
+              sheet.removeRule(i);
+            }
+          }
+        }
+      },
+
+      /**
+       * Remove the given sheet from its owner.
+       * @param sheet {Object} the stylesheet object
+       */
+      removeSheet: function removeSheet(sheet) {
+        var owner = sheet.ownerNode ? sheet.ownerNode : sheet.owningElement;
+        qx.dom.Element.removeChild(owner, owner.parentNode);
+      },
+
+      /**
+       * Remove all CSS rules from a stylesheet
+       *
+       * @param sheet {Object} the stylesheet object
+       */
+      removeAllRules: function removeAllRules(sheet) {
+        if (qx.core.Environment.get("html.stylesheet.deleterule")) {
+          var rules = sheet.cssRules;
+          var len = rules.length;
+
+          for (var i = len - 1; i >= 0; i--) {
+            sheet.deleteRule(i);
+          }
+        } else {
+          var rules = sheet.rules;
+          var len = rules.length;
+
+          for (var i = len - 1; i >= 0; i--) {
+            sheet.removeRule(i);
+          }
+        }
+      },
+
+      /**
+       * Add an import of an external CSS file to a stylesheet
+       *
+       * @param sheet {Object} the stylesheet object
+       * @param url {String} URL of the external stylesheet file
+       */
+      addImport: function addImport(sheet, url) {
+        if (qx.core.Environment.get("html.stylesheet.addimport")) {
+          sheet.addImport(url);
+        } else {
+          sheet.insertRule('@import "' + url + '";', sheet.cssRules.length);
+        }
+      },
+
+      /**
+       * Removes an import from a stylesheet
+       *
+       * @param sheet {Object} the stylesheet object
+       * @param url {String} URL of the imported CSS file
+       */
+      removeImport: function removeImport(sheet, url) {
+        if (qx.core.Environment.get("html.stylesheet.removeimport")) {
+          var imports = sheet.imports;
+          var len = imports.length;
+
+          for (var i = len - 1; i >= 0; i--) {
+            if (imports[i].href == url || imports[i].href == qx.util.Uri.getAbsolute(url)) {
+              sheet.removeImport(i);
+            }
+          }
+        } else {
+          var rules = sheet.cssRules;
+          var len = rules.length;
+
+          for (var i = len - 1; i >= 0; i--) {
+            if (rules[i].href == url) {
+              sheet.deleteRule(i);
+            }
+          }
+        }
+      },
+
+      /**
+       * Remove all imports from a stylesheet
+       *
+       * @param sheet {Object} the stylesheet object
+       */
+      removeAllImports: function removeAllImports(sheet) {
+        if (qx.core.Environment.get("html.stylesheet.removeimport")) {
+          var imports = sheet.imports;
+          var len = imports.length;
+
+          for (var i = len - 1; i >= 0; i--) {
+            sheet.removeImport(i);
+          }
+        } else {
+          var rules = sheet.cssRules;
+          var len = rules.length;
+
+          for (var i = len - 1; i >= 0; i--) {
+            if (rules[i].type == rules[i].IMPORT_RULE) {
+              sheet.deleteRule(i);
+            }
+          }
+        }
+      }
+    }
+  });
+  qx.bom.Stylesheet.$$dbClassInfo = $$dbClassInfo;
 })();
 
 (function () {
@@ -21057,10 +21463,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
     /* eslint-disable @qooxdoo/qx/no-refs-in-members */
     members: {
-      __font__P_4_0: null,
-      __invalidContentSize__P_4_1: null,
-      __tapListenerId__P_4_2: null,
-      __webfontListenerId__P_4_3: null,
+      __font__P_5_0: null,
+      __invalidContentSize__P_5_1: null,
+      __tapListenerId__P_5_2: null,
+      __webfontListenerId__P_5_3: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -21069,14 +21475,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       */
       // overridden
       _getContentHint: function _getContentHint() {
-        if (this.__invalidContentSize__P_4_1) {
-          this.__contentSize__P_4_4 = this.__computeContentSize__P_4_5();
-          delete this.__invalidContentSize__P_4_1;
+        if (this.__invalidContentSize__P_5_1) {
+          this.__contentSize__P_5_4 = this.__computeContentSize__P_5_5();
+          delete this.__invalidContentSize__P_5_1;
         }
 
         return {
-          width: this.__contentSize__P_4_4.width,
-          height: this.__contentSize__P_4_4.height
+          width: this.__contentSize__P_5_4.width,
+          height: this.__contentSize__P_5_4.height
         };
       },
       // overridden
@@ -21105,7 +21511,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           return null;
         }
 
-        return this.__computeContentSize__P_4_5(width).height;
+        return this.__computeContentSize__P_5_5(width).height;
       },
       // overridden
       _createContentElement: function _createContentElement() {
@@ -21135,33 +21541,33 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @lint ignoreReferenceField(__contentSize)
        */
-      __contentSize__P_4_4: {
+      __contentSize__P_5_4: {
         width: 0,
         height: 0
       },
       // property apply
       _applyFont: function _applyFont(value, old) {
-        if (old && this.__font__P_4_0 && this.__webfontListenerId__P_4_3) {
-          this.__font__P_4_0.removeListenerById(this.__webfontListenerId__P_4_3);
+        if (old && this.__font__P_5_0 && this.__webfontListenerId__P_5_3) {
+          this.__font__P_5_0.removeListenerById(this.__webfontListenerId__P_5_3);
 
-          this.__webfontListenerId__P_4_3 = null;
+          this.__webfontListenerId__P_5_3 = null;
         } // Apply
 
 
         var styles;
 
         if (value) {
-          this.__font__P_4_0 = qx.theme.manager.Font.getInstance().resolve(value);
+          this.__font__P_5_0 = qx.theme.manager.Font.getInstance().resolve(value);
 
-          if (this.__font__P_4_0 instanceof qx.bom.webfonts.WebFont) {
-            if (!this.__font__P_4_0.isValid()) {
-              this.__webfontListenerId__P_4_3 = this.__font__P_4_0.addListener("changeStatus", this._onWebFontStatusChange, this);
+          if (this.__font__P_5_0 instanceof qx.bom.webfonts.WebFont) {
+            if (!this.__font__P_5_0.isValid()) {
+              this.__webfontListenerId__P_5_3 = this.__font__P_5_0.addListener("changeStatus", this._onWebFontStatusChange, this);
             }
           }
 
-          styles = this.__font__P_4_0.getStyles();
+          styles = this.__font__P_5_0.getStyles();
         } else {
-          this.__font__P_4_0 = null;
+          this.__font__P_5_0 = null;
           styles = qx.bom.Font.getDefaultStyles();
         } // check if text color already set - if so this local value has higher priority
 
@@ -21172,7 +21578,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         this.getContentElement().setStyles(styles); // Invalidate text size
 
-        this.__invalidContentSize__P_4_1 = true; // Update layout
+        this.__invalidContentSize__P_5_1 = true; // Update layout
 
         qx.ui.core.queue.Layout.add(this);
       },
@@ -21183,15 +21589,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param width {Integer?null} Optional width constraint
        * @return {Map} Map with <code>width</code> and <code>height</code> keys
        */
-      __computeContentSize__P_4_5: function __computeContentSize__P_4_5(width) {
+      __computeContentSize__P_5_5: function __computeContentSize__P_5_5(width) {
         var Label = qx.bom.Label;
         var font = this.getFont();
-        var styles = font ? this.__font__P_4_0.getStyles() : qx.bom.Font.getDefaultStyles();
+        var styles = font ? this.__font__P_5_0.getStyles() : qx.bom.Font.getDefaultStyles();
         var content = this.getValue() || "A";
         var rich = this.getRich();
 
-        if (this.__webfontListenerId__P_4_3) {
-          this.__fixEllipsis__P_4_6();
+        if (this.__webfontListenerId__P_5_3) {
+          this.__fixEllipsis__P_5_6();
         }
 
         if (rich && this.getBreakWithinWords()) {
@@ -21206,7 +21612,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       * though there is enough space for the text. Re-applying the content forces
       * a recalculation and fixes the problem. See qx bug #6293
       */
-      __fixEllipsis__P_4_6: function __fixEllipsis__P_4_6() {
+      __fixEllipsis__P_5_6: function __fixEllipsis__P_5_6() {
         if (!this.getContentElement()) {
           return;
         }
@@ -21230,13 +21636,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       _applyBuddy: function _applyBuddy(value, old) {
         if (old != null) {
           this.removeRelatedBindings(old);
-          this.removeListenerById(this.__tapListenerId__P_4_2);
-          this.__tapListenerId__P_4_2 = null;
+          this.removeListenerById(this.__tapListenerId__P_5_2);
+          this.__tapListenerId__P_5_2 = null;
         }
 
         if (value != null) {
           value.bind("enabled", this, "enabled");
-          this.__tapListenerId__P_4_2 = this.addListener("tap", function () {
+          this.__tapListenerId__P_5_2 = this.addListener("tap", function () {
             // only focus focusable elements [BUG #3555]
             if (value.isFocusable()) {
               value.focus.apply(value);
@@ -21254,7 +21660,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         // Sync with content element
         this.getContentElement().setRich(value); // Mark text size cache as invalid
 
-        this.__invalidContentSize__P_4_1 = true; // Update layout
+        this.__invalidContentSize__P_5_1 = true; // Update layout
 
         qx.ui.core.queue.Layout.add(this);
       },
@@ -21304,12 +21710,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           // safari has trouble resizing, adding it again fixed the issue [BUG #8786]
           if (qx.core.Environment.get("browser.name") == "safari" && parseFloat(qx.core.Environment.get("browser.version")) >= 8) {
             window.setTimeout(function () {
-              this.__invalidContentSize__P_4_1 = true;
+              this.__invalidContentSize__P_5_1 = true;
               qx.ui.core.queue.Layout.add(this);
             }.bind(this), 0);
           }
 
-          this.__invalidContentSize__P_4_1 = true;
+          this.__invalidContentSize__P_5_1 = true;
           qx.ui.core.queue.Layout.add(this);
         }
       },
@@ -21323,7 +21729,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // Mark text size cache as invalid
 
 
-        this.__invalidContentSize__P_4_1 = true; // Update layout
+        this.__invalidContentSize__P_5_1 = true; // Update layout
 
         qx.ui.core.queue.Layout.add(this);
       }
@@ -21339,11 +21745,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         qx.locale.Manager.getInstance().removeListener("changeLocale", this._onChangeLocale, this);
       }
 
-      if (this.__font__P_4_0 && this.__webfontListenerId__P_4_3) {
-        this.__font__P_4_0.removeListenerById(this.__webfontListenerId__P_4_3);
+      if (this.__font__P_5_0 && this.__webfontListenerId__P_5_3) {
+        this.__font__P_5_0.removeListenerById(this.__webfontListenerId__P_5_3);
       }
 
-      this.__font__P_4_0 = null;
+      this.__font__P_5_0 = null;
     }
   });
   qx.ui.basic.Label.$$dbClassInfo = $$dbClassInfo;
@@ -21406,7 +21812,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      */
     construct: function construct(size, family) {
       qx.core.Object.constructor.call(this);
-      this.__lookupMap__P_5_0 = {
+      this.__lookupMap__P_6_0 = {
         fontFamily: "",
         fontSize: null,
         fontWeight: null,
@@ -21494,7 +21900,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       },
 
       /** @type {Map} Default (empty) CSS styles */
-      __defaultStyles__P_5_1: {
+      __defaultStyles__P_6_1: {
         fontFamily: "",
         fontSize: "",
         fontWeight: "",
@@ -21515,7 +21921,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Map} Default styles
        */
       getDefaultStyles: function getDefaultStyles() {
-        return this.__defaultStyles__P_5_1;
+        return this.__defaultStyles__P_6_1;
       }
     },
 
@@ -21636,13 +22042,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __lookupMap__P_5_0: null,
+      __lookupMap__P_6_0: null,
       // property apply
       _applySize: function _applySize(value, old) {
-        this.__lookupMap__P_5_0.fontSize = value === null ? null : value + "px";
+        this.__lookupMap__P_6_0.fontSize = value === null ? null : value + "px";
       },
       _applyLineHeight: function _applyLineHeight(value, old) {
-        this.__lookupMap__P_5_0.lineHeight = value === null ? null : value;
+        this.__lookupMap__P_6_0.lineHeight = value === null ? null : value;
       },
       // property apply
       _applyFamily: function _applyFamily(value, old) {
@@ -21665,39 +22071,39 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         // the browser from applying the element style
 
 
-        this.__lookupMap__P_5_0.fontFamily = family;
+        this.__lookupMap__P_6_0.fontFamily = family;
       },
       // property apply
       _applyBold: function _applyBold(value, old) {
-        this.__lookupMap__P_5_0.fontWeight = value == null ? null : value ? "bold" : "normal";
+        this.__lookupMap__P_6_0.fontWeight = value == null ? null : value ? "bold" : "normal";
       },
       // property apply
       _applyItalic: function _applyItalic(value, old) {
-        this.__lookupMap__P_5_0.fontStyle = value == null ? null : value ? "italic" : "normal";
+        this.__lookupMap__P_6_0.fontStyle = value == null ? null : value ? "italic" : "normal";
       },
       // property apply
       _applyDecoration: function _applyDecoration(value, old) {
-        this.__lookupMap__P_5_0.textDecoration = value == null ? null : value;
+        this.__lookupMap__P_6_0.textDecoration = value == null ? null : value;
       },
       // property apply
       _applyColor: function _applyColor(value, old) {
-        this.__lookupMap__P_5_0.color = null;
+        this.__lookupMap__P_6_0.color = null;
 
         if (value) {
-          this.__lookupMap__P_5_0.color = qx.theme.manager.Color.getInstance().resolve(value);
+          this.__lookupMap__P_6_0.color = qx.theme.manager.Color.getInstance().resolve(value);
         }
       },
       // property apply
       _applyWeight: function _applyWeight(value, old) {
-        this.__lookupMap__P_5_0.fontWeight = value;
+        this.__lookupMap__P_6_0.fontWeight = value;
       },
       // property apply
       _applyTextShadow: function _applyTextShadow(value, old) {
-        this.__lookupMap__P_5_0.textShadow = value == null ? null : value;
+        this.__lookupMap__P_6_0.textShadow = value == null ? null : value;
       },
       // property apply
       _applyLetterSpacing: function _applyLetterSpacing(value, old) {
-        this.__lookupMap__P_5_0.letterSpacing = value === null ? null : value + "px";
+        this.__lookupMap__P_6_0.letterSpacing = value === null ? null : value + "px";
       },
 
       /**
@@ -21709,7 +22115,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * widget.
        */
       getStyles: function getStyles() {
-        return this.__lookupMap__P_5_0;
+        return this.__lookupMap__P_6_0;
       }
     }
   });
@@ -22005,7 +22411,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     */
     members: {
       /** @type {Map} The cached size hint */
-      __sizeHint__P_42_0: null,
+      __sizeHint__P_43_0: null,
 
       /** @type {Boolean} Whether the children cache is valid. This field is protected
        *    because sub classes must be able to access it quickly.
@@ -22013,7 +22419,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       _invalidChildrenCache: null,
 
       /** @type {qx.ui.core.Widget} The connected widget */
-      __widget__P_42_1: null,
+      __widget__P_43_1: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -22027,7 +22433,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @abstract
        */
       invalidateLayoutCache: function invalidateLayoutCache() {
-        this.__sizeHint__P_42_0 = null;
+        this.__sizeHint__P_43_0 = null;
       },
 
       /**
@@ -22052,11 +22458,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   is not supported by the layout.
        */
       getSizeHint: function getSizeHint() {
-        if (this.__sizeHint__P_42_0) {
-          return this.__sizeHint__P_42_0;
+        if (this.__sizeHint__P_43_0) {
+          return this.__sizeHint__P_43_0;
         }
 
-        return this.__sizeHint__P_42_0 = this._computeSizeHint();
+        return this.__sizeHint__P_43_0 = this._computeSizeHint();
       },
 
       /**
@@ -22121,7 +22527,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       _clearSeparators: function _clearSeparators() {
         // It may be that the widget do not implement clearSeparators which is especially true
         // when it do not inherit from LayoutItem.
-        var widget = this.__widget__P_42_1;
+        var widget = this.__widget__P_43_1;
 
         if (widget instanceof qx.ui.core.LayoutItem) {
           widget.clearSeparators();
@@ -22136,7 +22542,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *    of the separator to render.
        */
       _renderSeparator: function _renderSeparator(separator, bounds) {
-        this.__widget__P_42_1.renderSeparator(separator, bounds);
+        this.__widget__P_43_1.renderSeparator(separator, bounds);
       },
 
       /**
@@ -22145,11 +22551,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param widget {qx.ui.core.Widget} The widget to connect to.
        */
       connectToWidget: function connectToWidget(widget) {
-        if (widget && this.__widget__P_42_1) {
+        if (widget && this.__widget__P_43_1) {
           throw new Error("It is not possible to manually set the connected widget.");
         }
 
-        this.__widget__P_42_1 = widget; // Invalidate cache
+        this.__widget__P_43_1 = widget; // Invalidate cache
 
         this.invalidateChildrenCache();
       },
@@ -22160,7 +22566,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.ui.core.Widget} The widget connected to this layout.
        */
       _getWidget: function _getWidget() {
-        return this.__widget__P_42_1;
+        return this.__widget__P_43_1;
       },
 
       /**
@@ -22170,8 +22576,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Also a generic property apply method for all layout relevant properties.
        */
       _applyLayoutChange: function _applyLayoutChange() {
-        if (this.__widget__P_42_1) {
-          this.__widget__P_42_1.scheduleLayoutUpdate();
+        if (this.__widget__P_43_1) {
+          this.__widget__P_43_1.scheduleLayoutUpdate();
         }
       },
 
@@ -22181,7 +22587,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Array} List of layout relevant children.
        */
       _getLayoutChildren: function _getLayoutChildren() {
-        return this.__widget__P_42_1.getLayoutChildren();
+        return this.__widget__P_43_1.getLayoutChildren();
       }
     },
 
@@ -22191,7 +22597,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__widget__P_42_1 = this.__sizeHint__P_42_0 = null;
+      this.__widget__P_43_1 = this.__sizeHint__P_43_0 = null;
     }
   });
   qx.ui.layout.Abstract.$$dbClassInfo = $$dbClassInfo;
@@ -22391,10 +22797,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __widths__P_6_0: null,
-      __flexs__P_6_1: null,
-      __enableFlex__P_6_2: null,
-      __children__P_6_3: null,
+      __widths__P_7_0: null,
+      __flexs__P_7_1: null,
+      __enableFlex__P_7_2: null,
+      __children__P_7_3: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -22412,16 +22818,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * Rebuilds caches for flex and percent layout properties
        */
-      __rebuildCache__P_6_4: function __rebuildCache__P_6_4() {
+      __rebuildCache__P_7_4: function __rebuildCache__P_7_4() {
         var children = this._getLayoutChildren();
 
         var length = children.length;
         var enableFlex = false;
-        var reuse = this.__widths__P_6_0 && this.__widths__P_6_0.length != length && this.__flexs__P_6_1 && this.__widths__P_6_0;
+        var reuse = this.__widths__P_7_0 && this.__widths__P_7_0.length != length && this.__flexs__P_7_1 && this.__widths__P_7_0;
         var props; // Sparse array (keep old one if lengths has not been modified)
 
-        var widths = reuse ? this.__widths__P_6_0 : new Array(length);
-        var flexs = reuse ? this.__flexs__P_6_1 : new Array(length); // Reverse support
+        var widths = reuse ? this.__widths__P_7_0 : new Array(length);
+        var flexs = reuse ? this.__flexs__P_7_1 : new Array(length); // Reverse support
 
         if (this.getReversed()) {
           children = children.concat().reverse();
@@ -22446,12 +22852,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
         if (!reuse) {
-          this.__widths__P_6_0 = widths;
-          this.__flexs__P_6_1 = flexs;
+          this.__widths__P_7_0 = widths;
+          this.__flexs__P_7_1 = flexs;
         }
 
-        this.__enableFlex__P_6_2 = enableFlex;
-        this.__children__P_6_3 = children; // Clear invalidation marker
+        this.__enableFlex__P_7_2 = enableFlex;
+        this.__children__P_7_3 = children; // Clear invalidation marker
 
         delete this._invalidChildrenCache;
       },
@@ -22478,11 +22884,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       renderLayout: function renderLayout(availWidth, availHeight, padding) {
         // Rebuild flex/width caches
         if (this._invalidChildrenCache) {
-          this.__rebuildCache__P_6_4();
+          this.__rebuildCache__P_7_4();
         } // Cache children
 
 
-        var children = this.__children__P_6_3;
+        var children = this.__children__P_7_3;
         var length = children.length;
         var util = qx.ui.layout.Util; // Compute gaps
 
@@ -22503,7 +22909,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var allocatedWidth = gaps;
 
         for (i = 0; i < length; i += 1) {
-          percent = this.__widths__P_6_0[i];
+          percent = this.__widths__P_7_0[i];
           hint = children[i].getSizeHint();
           width = percent != null ? Math.floor((availWidth - gaps) * percent) : hint.width; // Limit computed value
 
@@ -22518,13 +22924,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // Flex support (growing/shrinking)
 
 
-        if (this.__enableFlex__P_6_2 && allocatedWidth != availWidth) {
+        if (this.__enableFlex__P_7_2 && allocatedWidth != availWidth) {
           var flexibles = {};
           var flex, offset;
           var notEnoughSpace = allocatedWidth > availWidth;
 
           for (i = 0; i < length; i += 1) {
-            flex = this.__flexs__P_6_1[i];
+            flex = this.__flexs__P_7_1[i];
 
             if (flex > 0) {
               hint = children[i].getSizeHint();
@@ -22622,11 +23028,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       _computeSizeHint: function _computeSizeHint() {
         // Rebuild flex/width caches
         if (this._invalidChildrenCache) {
-          this.__rebuildCache__P_6_4();
+          this.__rebuildCache__P_7_4();
         }
 
         var util = qx.ui.layout.Util;
-        var children = this.__children__P_6_3; // Initialize
+        var children = this.__children__P_7_3; // Initialize
 
         var minWidth = 0,
             width = 0,
@@ -22641,8 +23047,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
           width += hint.width; // Detect if child is shrinkable or has percent width and update minWidth
 
-          var flex = this.__flexs__P_6_1[i];
-          var percent = this.__widths__P_6_0[i];
+          var flex = this.__flexs__P_7_1[i];
+          var percent = this.__widths__P_7_0[i];
 
           if (flex) {
             minWidth += hint.minWidth;
@@ -22693,7 +23099,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__widths__P_6_0 = this.__flexs__P_6_1 = this.__children__P_6_3 = null;
+      this.__widths__P_7_0 = this.__flexs__P_7_1 = this.__children__P_7_3 = null;
     }
   });
   qx.ui.layout.HBox.$$dbClassInfo = $$dbClassInfo;
@@ -23109,9 +23515,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __executableBindingIds__P_97_0: null,
-      __semaphore__P_97_1: false,
-      __executeListenerId__P_97_2: null,
+      __executableBindingIds__P_45_0: null,
+      __semaphore__P_45_1: false,
+      __executeListenerId__P_45_2: null,
 
       /**
        * @type {Map} Set of properties, which will by synced from the command to the
@@ -23131,10 +23537,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var cmd = this.getCommand();
 
         if (cmd) {
-          if (this.__semaphore__P_97_1) {
-            this.__semaphore__P_97_1 = false;
+          if (this.__semaphore__P_45_1) {
+            this.__semaphore__P_45_1 = false;
           } else {
-            this.__semaphore__P_97_1 = true;
+            this.__semaphore__P_45_1 = true;
             cmd.execute(this);
           }
         }
@@ -23147,15 +23553,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @param e {qx.event.type.Event} The execute event of the command.
        */
-      __onCommandExecute__P_97_3: function __onCommandExecute__P_97_3(e) {
+      __onCommandExecute__P_45_3: function __onCommandExecute__P_45_3(e) {
         if (this.isEnabled()) {
-          if (this.__semaphore__P_97_1) {
-            this.__semaphore__P_97_1 = false;
+          if (this.__semaphore__P_45_1) {
+            this.__semaphore__P_45_1 = false;
             return;
           }
 
           if (this.isEnabled()) {
-            this.__semaphore__P_97_1 = true;
+            this.__semaphore__P_45_1 = true;
             this.execute();
           }
         }
@@ -23164,18 +23570,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       _applyCommand: function _applyCommand(value, old) {
         // execute forwarding
         if (old != null) {
-          old.removeListenerById(this.__executeListenerId__P_97_2);
+          old.removeListenerById(this.__executeListenerId__P_45_2);
         }
 
         if (value != null) {
-          this.__executeListenerId__P_97_2 = value.addListener("execute", this.__onCommandExecute__P_97_3, this);
+          this.__executeListenerId__P_45_2 = value.addListener("execute", this.__onCommandExecute__P_45_3, this);
         } // binding stuff
 
 
-        var ids = this.__executableBindingIds__P_97_0;
+        var ids = this.__executableBindingIds__P_45_0;
 
         if (ids == null) {
-          this.__executableBindingIds__P_97_0 = ids = {};
+          this.__executableBindingIds__P_45_0 = ids = {};
         }
 
         var selfPropertyValue;
@@ -23220,7 +23626,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     destruct: function destruct() {
       this._applyCommand(null, this.getCommand());
 
-      this.__executableBindingIds__P_97_0 = null;
+      this.__executableBindingIds__P_45_0 = null;
     }
   });
   qx.ui.core.MExecutable.$$dbClassInfo = $$dbClassInfo;
@@ -23977,6 +24383,136 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
+      "qx.Class": {
+        "usage": "dynamic",
+        "require": true
+      },
+      "qx.ui.core.LayoutItem": {
+        "construct": true,
+        "require": true
+      },
+      "qx.ui.core.queue.Dispose": {}
+    }
+  };
+  qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
+  /* ************************************************************************
+  
+     qooxdoo - the new era of web development
+  
+     http://qooxdoo.org
+  
+     Copyright:
+       2004-2008 1&1 Internet AG, Germany, http://www.1und1.de
+  
+     License:
+       MIT: https://opensource.org/licenses/MIT
+       See the LICENSE file in the project's top-level directory for details.
+  
+     Authors:
+       * Sebastian Werner (wpbasti)
+       * Fabian Jakobs (fjakobs)
+  
+  ************************************************************************ */
+
+  /**
+   * A Spacer is a "virtual" widget, which can be placed into any layout and takes
+   * the space a normal widget of the same size would take.
+   *
+   * Spacers are invisible and very light weight because they don't require any
+   * DOM modifications.
+   *
+   * *Example*
+   *
+   * Here is a little example of how to use the widget.
+   *
+   * <pre class='javascript'>
+   *   var container = new qx.ui.container.Composite(new qx.ui.layout.HBox());
+   *   container.add(new qx.ui.core.Widget());
+   *   container.add(new qx.ui.core.Spacer(50));
+   *   container.add(new qx.ui.core.Widget());
+   * </pre>
+   *
+   * This example places two widgets and a spacer into a container with a
+   * horizontal box layout. In this scenario the spacer creates an empty area of
+   * 50 pixel width between the two widgets.
+   *
+   * *External Documentation*
+   *
+   * <a href='http://qooxdoo.org/docs/#desktop/widget/spacer.md' target='_blank'>
+   * Documentation of this widget in the qooxdoo manual.</a>
+   */
+  qx.Class.define("qx.ui.core.Spacer", {
+    extend: qx.ui.core.LayoutItem,
+
+    /*
+    *****************************************************************************
+       CONSTRUCTOR
+    *****************************************************************************
+    */
+
+    /**
+     * @param width {Integer?null} the initial width
+     * @param height {Integer?null} the initial height
+     */
+    construct: function construct(width, height) {
+      qx.ui.core.LayoutItem.constructor.call(this); // Initialize dimensions
+
+      this.setWidth(width != null ? width : 0);
+      this.setHeight(height != null ? height : 0);
+    },
+
+    /*
+    *****************************************************************************
+       MEMBERS
+    *****************************************************************************
+    */
+    members: {
+      /**
+       * Helper method called from the visibility queue to detect outstanding changes
+       * to the appearance.
+       *
+       * @internal
+       */
+      checkAppearanceNeeds: function checkAppearanceNeeds() {// placeholder to improve compatibility with Widget.
+      },
+
+      /**
+       * Recursively adds all children to the given queue
+       *
+       * @param queue {Map} The queue to add widgets to
+       */
+      addChildrenToQueue: function addChildrenToQueue(queue) {// placeholder to improve compatibility with Widget.
+      },
+
+      /**
+       * Removes this widget from its parent and dispose it.
+       *
+       * Please note that the widget is not disposed synchronously. The
+       * real dispose happens after the next queue flush.
+       *
+       */
+      destroy: function destroy() {
+        if (this.$$disposed) {
+          return;
+        }
+
+        var parent = this.$$parent;
+
+        if (parent) {
+          parent._remove(this);
+        }
+
+        qx.ui.core.queue.Dispose.add(this);
+      }
+    }
+  });
+  qx.ui.core.Spacer.$$dbClassInfo = $$dbClassInfo;
+})();
+
+(function () {
+  var $$dbClassInfo = {
+    "dependsOn": {
       "qx.Interface": {
         "usage": "dynamic",
         "require": true
@@ -24508,7 +25044,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.Mixin.define("qx.ui.form.MForm", {
     construct: function construct() {
       {
-        qx.locale.Manager.getInstance().addListener("changeLocale", this.__onChangeLocale__P_38_0, this);
+        qx.locale.Manager.getInstance().addListener("changeLocale", this.__onChangeLocale__P_46_0, this);
       }
     },
     properties: {
@@ -24563,7 +25099,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @signature function(e)
        * @param e {Event} the change event
        */
-      __onChangeLocale__P_38_0: function __onChangeLocale__P_38_0(e) {
+      __onChangeLocale__P_46_0: function __onChangeLocale__P_46_0(e) {
         // invalid message
         var invalidMessage = this.getInvalidMessage();
 
@@ -24581,7 +25117,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     },
     destruct: function destruct() {
       {
-        qx.locale.Manager.getInstance().removeListener("changeLocale", this.__onChangeLocale__P_38_0, this);
+        qx.locale.Manager.getInstance().removeListener("changeLocale", this.__onChangeLocale__P_46_0, this);
       }
     }
   });
@@ -24998,13 +25534,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     construct: function construct(txt) {
       var txt = txt || ""; // no base call needed
 
-      this.__txt__P_125_0 = txt;
+      this.__txt__P_145_0 = txt;
       this.length = txt.length;
     },
     members: {
       $$isString: true,
       length: 0,
-      __txt__P_125_0: null,
+      __txt__P_145_0: null,
 
       /**
        * Returns a string representing the specified object.
@@ -25017,7 +25553,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} A new string containing the string value.
        */
       toString: function toString() {
-        return this.__txt__P_125_0;
+        return this.__txt__P_145_0;
       },
 
       /**
@@ -25372,14 +25908,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      */
     construct: function construct(translation, messageId, args, localized) {
       qx.type.BaseString.constructor.call(this, translation);
-      this.__messageId__P_86_0 = messageId;
-      this.__localized__P_86_1 = !!localized;
-      this.__args__P_86_2 = args;
+      this.__messageId__P_101_0 = messageId;
+      this.__localized__P_101_1 = !!localized;
+      this.__args__P_101_2 = args;
     },
     members: {
-      __localized__P_86_1: null,
-      __messageId__P_86_0: null,
-      __args__P_86_2: null,
+      __localized__P_101_1: null,
+      __messageId__P_101_0: null,
+      __args__P_101_2: null,
 
       /**
        * Get a translation of the string using the current locale.
@@ -25388,11 +25924,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *    locale.
        */
       translate: function translate() {
-        if (this.__localized__P_86_1) {
-          return qx.locale.Manager.getInstance().localize(this.__messageId__P_86_0, this.__args__P_86_2);
+        if (this.__localized__P_101_1) {
+          return qx.locale.Manager.getInstance().localize(this.__messageId__P_101_0, this.__args__P_101_2);
         }
 
-        return qx.locale.Manager.getInstance().translate(this.__messageId__P_86_0, this.__args__P_86_2);
+        return qx.locale.Manager.getInstance().translate(this.__messageId__P_101_0, this.__args__P_101_2);
       },
 
       /**
@@ -25401,7 +25937,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} The messageId of this localized String
        */
       getMessageId: function getMessageId() {
-        return this.__messageId__P_86_0;
+        return this.__messageId__P_101_0;
       }
     }
   });
@@ -25473,7 +26009,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @internal
        */
       getLocale: function getLocale() {
-        var locale = qx.bom.client.Locale.__getNavigatorLocale__P_87_0();
+        var locale = qx.bom.client.Locale.__getNavigatorLocale__P_102_0();
 
         var index = locale.indexOf("-");
 
@@ -25492,7 +26028,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @internal
        */
       getVariant: function getVariant() {
-        var locale = qx.bom.client.Locale.__getNavigatorLocale__P_87_0();
+        var locale = qx.bom.client.Locale.__getNavigatorLocale__P_102_0();
 
         var variant = "";
         var index = locale.indexOf("-");
@@ -25509,7 +26045,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {String} The language set by the navigator.
        */
-      __getNavigatorLocale__P_87_0: function __getNavigatorLocale__P_87_0() {
+      __getNavigatorLocale__P_102_0: function __getNavigatorLocale__P_102_0() {
         var locale = navigator.userLanguage || navigator.language || ""; // Android Bug: Android does not return the system language from the
         // navigator language before version 4.4.x. Try to parse the language
         // from the userAgent.
@@ -25632,10 +26168,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__translations__P_25_0 = qx.$$translations || {};
-      this.__locales__P_25_1 = qx.$$locales || {};
+      this.__translations__P_29_0 = qx.$$translations || {};
+      this.__locales__P_29_1 = qx.$$locales || {};
       this.initLocale();
-      this.__clientLocale__P_25_2 = this.getLocale();
+      this.__clientLocale__P_29_2 = this.getLocale();
     },
 
     /*
@@ -25767,12 +26303,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __defaultLocale__P_25_3: qx.core.Environment.get("locale.default"),
-      __locale__P_25_4: null,
-      __language__P_25_5: null,
-      __translations__P_25_0: null,
-      __locales__P_25_1: null,
-      __clientLocale__P_25_2: null,
+      __defaultLocale__P_29_3: qx.core.Environment.get("locale.default"),
+      __locale__P_29_4: null,
+      __language__P_29_5: null,
+      __translations__P_29_0: null,
+      __locales__P_29_1: null,
+      __clientLocale__P_29_2: null,
 
       /**
        * Get the language code of the current locale
@@ -25782,7 +26318,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} language code
        */
       getLanguage: function getLanguage() {
-        return this.__language__P_25_5;
+        return this.__language__P_29_5;
       },
 
       /**
@@ -25811,9 +26347,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       getAvailableLocales: function getAvailableLocales(includeNonloaded) {
         var locales = [];
 
-        for (var locale in this.__locales__P_25_1) {
-          if (locale != this.__defaultLocale__P_25_3) {
-            if (this.__locales__P_25_1[locale] === null && !includeNonloaded) {
+        for (var locale in this.__locales__P_29_1) {
+          if (locale != this.__defaultLocale__P_29_3) {
+            if (this.__locales__P_29_1[locale] === null && !includeNonloaded) {
               continue; // skip not yet loaded locales
             }
 
@@ -25830,7 +26366,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param locale {String} locale to be used
        * @return {String} language
        */
-      __extractLanguage__P_25_6: function __extractLanguage__P_25_6(locale) {
+      __extractLanguage__P_29_6: function __extractLanguage__P_29_6(locale) {
         var language;
 
         if (locale == null) {
@@ -25850,12 +26386,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       // property apply
       _applyLocale: function _applyLocale(value, old) {
         {
-          if (!(value in this.__locales__P_25_1 || value == this.__clientLocale__P_25_2)) {
+          if (!(value in this.__locales__P_29_1 || value == this.__clientLocale__P_29_2)) {
             qx.log.Logger.warn("Locale: " + value + " not available.");
           }
         }
-        this.__locale__P_25_4 = value;
-        this.__language__P_25_5 = this.__extractLanguage__P_25_6(value);
+        this.__locale__P_29_4 = value;
+        this.__language__P_29_5 = this.__extractLanguage__P_29_6(value);
       },
 
       /**
@@ -25871,7 +26407,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *                             are separate keys.
        */
       addTranslation: function addTranslation(languageCode, translationMap) {
-        var catalog = this.__translations__P_25_0;
+        var catalog = this.__translations__P_29_0;
 
         if (catalog[languageCode]) {
           for (var key in translationMap) {
@@ -25893,7 +26429,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *                        <i>{"cldr_date_format_short" : "M/d/yy"}</i>.
        */
       addLocale: function addLocale(localeCode, localeMap) {
-        var catalog = this.__locales__P_25_1;
+        var catalog = this.__locales__P_29_1;
 
         if (catalog[localeCode]) {
           for (var key in localeMap) {
@@ -25918,8 +26454,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String | LocalizedString} translated message or localized string
        */
       translate: function translate(messageId, args, locale) {
-        var catalog = this.__translations__P_25_0;
-        return this.__lookupAndExpand__P_25_7(catalog, messageId, args, locale);
+        var catalog = this.__translations__P_29_0;
+        return this.__lookupAndExpand__P_29_7(catalog, messageId, args, locale);
       },
 
       /**
@@ -25936,8 +26472,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String | LocalizedString} translated message or localized string
        */
       localize: function localize(messageId, args, locale) {
-        var catalog = this.__locales__P_25_1;
-        return this.__lookupAndExpand__P_25_7(catalog, messageId, args, locale);
+        var catalog = this.__locales__P_29_1;
+        return this.__lookupAndExpand__P_29_7(catalog, messageId, args, locale);
       },
 
       /**
@@ -25954,7 +26490,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param locale {String ? #locale} locale to be used; if not given, defaults to the value of {@link #locale}
        * @return {String | LocalizedString} translated message or localized string
        */
-      __lookupAndExpand__P_25_7: function __lookupAndExpand__P_25_7(catalog, messageId, args, locale) {
+      __lookupAndExpand__P_29_7: function __lookupAndExpand__P_29_7(catalog, messageId, args, locale) {
         {
           this.assertObject(catalog);
           this.assertString(messageId);
@@ -25967,10 +26503,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
 
         if (locale) {
-          var language = this.__extractLanguage__P_25_6(locale);
+          var language = this.__extractLanguage__P_29_6(locale);
         } else {
-          locale = this.__locale__P_25_4;
-          language = this.__language__P_25_5;
+          locale = this.__locale__P_29_4;
+          language = this.__language__P_29_5;
         } // e.g. DE_at
 
 
@@ -25984,8 +26520,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // C
 
 
-        if (!txt && catalog[this.__defaultLocale__P_25_3]) {
-          txt = catalog[this.__defaultLocale__P_25_3][messageId];
+        if (!txt && catalog[this.__defaultLocale__P_29_3]) {
+          txt = catalog[this.__defaultLocale__P_29_3][messageId];
         }
 
         if (!txt) {
@@ -26009,7 +26545,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
 
         {
-          txt = new qx.locale.LocalizedString(txt, messageId, args, catalog === this.__locales__P_25_1);
+          txt = new qx.locale.LocalizedString(txt, messageId, args, catalog === this.__locales__P_29_1);
         }
         return txt;
       }
@@ -26135,7 +26671,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   });
   qx.ui.form.CheckBox.$$dbClassInfo = $$dbClassInfo;
 })();
-//# sourceMappingURL=package-5.js.map?dt=1635872824571
+//# sourceMappingURL=package-5.js.map?dt=1636140127037
 qx.$$packageData['5'] = {
   "locales": {},
   "resources": {},

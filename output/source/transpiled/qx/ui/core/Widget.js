@@ -117,7 +117,7 @@
     construct: function construct() {
       qx.ui.core.LayoutItem.constructor.call(this); // Create basic element
 
-      this.__contentElement__P_24_0 = this.__createContentElement__P_24_1(); // Initialize properties
+      this.__contentElement__P_28_0 = this.__createContentElement__P_28_1(); // Initialize properties
 
       this.initFocusable();
       this.initSelectable();
@@ -886,7 +886,7 @@
       },
 
       /** @type {Map} Contains all pooled separators for reuse */
-      __separatorPool__P_24_2: new qx.util.ObjectPool()
+      __separatorPool__P_28_2: new qx.util.ObjectPool()
     },
 
     /*
@@ -895,9 +895,9 @@
     *****************************************************************************
     */
     members: {
-      __contentElement__P_24_0: null,
-      __initialAppearanceApplied__P_24_3: null,
-      __toolTipTextListenerId__P_24_4: null,
+      __contentElement__P_28_0: null,
+      __initialAppearanceApplied__P_28_3: null,
+      __toolTipTextListenerId__P_28_4: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -908,10 +908,10 @@
       /**
        * @type {qx.ui.layout.Abstract} The connected layout manager
        */
-      __layoutManager__P_24_5: null,
+      __layoutManager__P_28_5: null,
       // overridden
       _getLayout: function _getLayout() {
-        return this.__layoutManager__P_24_5;
+        return this.__layoutManager__P_28_5;
       },
 
       /**
@@ -929,15 +929,15 @@
           }
         }
 
-        if (this.__layoutManager__P_24_5) {
-          this.__layoutManager__P_24_5.connectToWidget(null);
+        if (this.__layoutManager__P_28_5) {
+          this.__layoutManager__P_28_5.connectToWidget(null);
         }
 
         if (layout) {
           layout.connectToWidget(this);
         }
 
-        this.__layoutManager__P_24_5 = layout;
+        this.__layoutManager__P_28_5 = layout;
         qx.ui.core.queue.Layout.add(this);
       },
       // overridden
@@ -999,7 +999,7 @@
         }
 
         if (inner || changes.local || changes.margin) {
-          if (this.__layoutManager__P_24_5 && this.hasLayoutChildren()) {
+          if (this.__layoutManager__P_28_5 && this.hasLayoutChildren()) {
             var inset = this.getInsets();
             var innerWidth = width - inset.left - inset.right;
             var innerHeight = height - inset.top - inset.bottom;
@@ -1023,7 +1023,7 @@
               left: this.getPaddingLeft() + decoratorPadding.left
             };
 
-            this.__layoutManager__P_24_5.renderLayout(innerWidth, innerHeight, padding);
+            this.__layoutManager__P_28_5.renderLayout(innerWidth, innerHeight, padding);
           } else if (this.hasLayoutChildren()) {
             throw new Error("At least one child in control " + this._findTopControl() + " requires a layout, but no one was defined!");
           }
@@ -1048,16 +1048,16 @@
         SEPARATOR SUPPORT
       ---------------------------------------------------------------------------
       */
-      __separators__P_24_6: null,
+      __separators__P_28_6: null,
       // overridden
       clearSeparators: function clearSeparators() {
-        var reg = this.__separators__P_24_6;
+        var reg = this.__separators__P_28_6;
 
         if (!reg) {
           return;
         }
 
-        var pool = qx.ui.core.Widget.__separatorPool__P_24_2;
+        var pool = qx.ui.core.Widget.__separatorPool__P_28_2;
         var content = this.getContentElement();
         var widget;
 
@@ -1073,7 +1073,7 @@
       // overridden
       renderSeparator: function renderSeparator(separator, bounds) {
         // Insert
-        var widget = qx.ui.core.Widget.__separatorPool__P_24_2.getObject(qx.ui.core.Widget);
+        var widget = qx.ui.core.Widget.__separatorPool__P_28_2.getObject(qx.ui.core.Widget);
 
         widget.set({
           decorator: separator
@@ -1099,11 +1099,11 @@
         } // Remember element
 
 
-        if (!this.__separators__P_24_6) {
-          this.__separators__P_24_6 = [];
+        if (!this.__separators__P_28_6) {
+          this.__separators__P_28_6 = [];
         }
 
-        this.__separators__P_24_6.push(widget);
+        this.__separators__P_28_6.push(widget);
       },
 
       /*
@@ -1206,8 +1206,8 @@
       invalidateLayoutCache: function invalidateLayoutCache() {
         qx.ui.core.Widget.prototype.invalidateLayoutCache.base.call(this);
 
-        if (this.__layoutManager__P_24_5) {
-          this.__layoutManager__P_24_5.invalidateLayoutCache();
+        if (this.__layoutManager__P_28_5) {
+          this.__layoutManager__P_28_5.invalidateLayoutCache();
         }
       },
 
@@ -1224,7 +1224,7 @@
        * @return {Map}
        */
       _getContentHint: function _getContentHint() {
-        var layout = this.__layoutManager__P_24_5;
+        var layout = this.__layoutManager__P_28_5;
 
         if (layout) {
           if (this.hasLayoutChildren()) {
@@ -1487,7 +1487,7 @@
        *
        * @return {qx.html.Element} The content HTML element
        */
-      __createContentElement__P_24_1: function __createContentElement__P_24_1() {
+      __createContentElement__P_28_1: function __createContentElement__P_28_1() {
         var el = this._createContentElement();
 
         el.connectObject(this); // make sure to allow all pointer events
@@ -1536,7 +1536,7 @@
        * @return {qx.html.Element} The widget's content element
        */
       getContentElement: function getContentElement() {
-        return this.__contentElement__P_24_0;
+        return this.__contentElement__P_28_0;
       },
 
       /*
@@ -1546,7 +1546,7 @@
       */
 
       /** @type {qx.ui.core.LayoutItem[]} List of all child widgets */
-      __widgetChildren__P_24_7: null,
+      __widgetChildren__P_28_7: null,
 
       /**
        * Returns all children, which are layout relevant. This excludes all widgets,
@@ -1556,10 +1556,10 @@
        * @return {qx.ui.core.Widget[]} All layout relevant children.
        */
       getLayoutChildren: function getLayoutChildren() {
-        var children = this.__widgetChildren__P_24_7;
+        var children = this.__widgetChildren__P_28_7;
 
         if (!children) {
-          return this.__emptyChildren__P_24_8;
+          return this.__emptyChildren__P_28_8;
         }
 
         var layoutChildren;
@@ -1591,7 +1591,7 @@
        * Resets the cache for children which should be laid out.
        */
       invalidateLayoutChildren: function invalidateLayoutChildren() {
-        var layout = this.__layoutManager__P_24_5;
+        var layout = this.__layoutManager__P_28_5;
 
         if (layout) {
           layout.invalidateChildrenCache();
@@ -1608,7 +1608,7 @@
        * @return {Boolean} Whether the layout has layout relevant children
        */
       hasLayoutChildren: function hasLayoutChildren() {
-        var children = this.__widgetChildren__P_24_7;
+        var children = this.__widgetChildren__P_28_7;
 
         if (!children) {
           return false;
@@ -1644,7 +1644,7 @@
        *
        * @lint ignoreReferenceField(__emptyChildren)
        */
-      __emptyChildren__P_24_8: [],
+      __emptyChildren__P_28_8: [],
 
       /**
        * Returns the children list
@@ -1653,7 +1653,7 @@
        *   reference types, so please do not modify it in-place).
        */
       _getChildren: function _getChildren() {
-        return this.__widgetChildren__P_24_7 || this.__emptyChildren__P_24_8;
+        return this.__widgetChildren__P_28_7 || this.__emptyChildren__P_28_8;
       },
 
       /**
@@ -1665,7 +1665,7 @@
        *   the given widget is no child of this layout.
        */
       _indexOf: function _indexOf(child) {
-        var children = this.__widgetChildren__P_24_7;
+        var children = this.__widgetChildren__P_28_7;
 
         if (!children) {
           return -1;
@@ -1680,7 +1680,7 @@
        * @return {Boolean} Returns <code>true</code> when the widget has children.
        */
       _hasChildren: function _hasChildren() {
-        var children = this.__widgetChildren__P_24_7;
+        var children = this.__widgetChildren__P_28_7;
         return children != null && !!children[0];
       },
 
@@ -1690,7 +1690,7 @@
        * @param queue {Array} The queue to add widgets to
        */
       addChildrenToQueue: function addChildrenToQueue(queue) {
-        var children = this.__widgetChildren__P_24_7;
+        var children = this.__widgetChildren__P_28_7;
 
         if (!children) {
           return;
@@ -1721,16 +1721,16 @@
         } // When moving in the same widget, remove widget first
 
         if (child.getLayoutParent() == this) {
-          qx.lang.Array.remove(this.__widgetChildren__P_24_7, child);
+          qx.lang.Array.remove(this.__widgetChildren__P_28_7, child);
         }
 
-        if (this.__widgetChildren__P_24_7) {
-          this.__widgetChildren__P_24_7.push(child);
+        if (this.__widgetChildren__P_28_7) {
+          this.__widgetChildren__P_28_7.push(child);
         } else {
-          this.__widgetChildren__P_24_7 = [child];
+          this.__widgetChildren__P_28_7 = [child];
         }
 
-        this.__addHelper__P_24_9(child, options);
+        this.__addHelper__P_28_9(child, options);
       },
 
       /**
@@ -1743,28 +1743,28 @@
        * @param options {Map?null} Optional layout data for widget.
        */
       _addAt: function _addAt(child, index, options) {
-        if (!this.__widgetChildren__P_24_7) {
-          this.__widgetChildren__P_24_7 = [];
+        if (!this.__widgetChildren__P_28_7) {
+          this.__widgetChildren__P_28_7 = [];
         } // When moving in the same widget, remove widget first
 
 
         if (child.getLayoutParent() == this) {
-          qx.lang.Array.remove(this.__widgetChildren__P_24_7, child);
+          qx.lang.Array.remove(this.__widgetChildren__P_28_7, child);
         }
 
-        var ref = this.__widgetChildren__P_24_7[index];
+        var ref = this.__widgetChildren__P_28_7[index];
 
         if (ref === child) {
           child.setLayoutProperties(options);
         }
 
         if (ref) {
-          qx.lang.Array.insertBefore(this.__widgetChildren__P_24_7, child, ref);
+          qx.lang.Array.insertBefore(this.__widgetChildren__P_28_7, child, ref);
         } else {
-          this.__widgetChildren__P_24_7.push(child);
+          this.__widgetChildren__P_28_7.push(child);
         }
 
-        this.__addHelper__P_24_9(child, options);
+        this.__addHelper__P_28_9(child, options);
       },
 
       /**
@@ -1783,18 +1783,18 @@
           return;
         }
 
-        if (!this.__widgetChildren__P_24_7) {
-          this.__widgetChildren__P_24_7 = [];
+        if (!this.__widgetChildren__P_28_7) {
+          this.__widgetChildren__P_28_7 = [];
         } // When moving in the same widget, remove widget first
 
 
         if (child.getLayoutParent() == this) {
-          qx.lang.Array.remove(this.__widgetChildren__P_24_7, child);
+          qx.lang.Array.remove(this.__widgetChildren__P_28_7, child);
         }
 
-        qx.lang.Array.insertBefore(this.__widgetChildren__P_24_7, child, before);
+        qx.lang.Array.insertBefore(this.__widgetChildren__P_28_7, child, before);
 
-        this.__addHelper__P_24_9(child, options);
+        this.__addHelper__P_28_9(child, options);
       },
 
       /**
@@ -1814,18 +1814,18 @@
           return;
         }
 
-        if (!this.__widgetChildren__P_24_7) {
-          this.__widgetChildren__P_24_7 = [];
+        if (!this.__widgetChildren__P_28_7) {
+          this.__widgetChildren__P_28_7 = [];
         } // When moving in the same widget, remove widget first
 
 
         if (child.getLayoutParent() == this) {
-          qx.lang.Array.remove(this.__widgetChildren__P_24_7, child);
+          qx.lang.Array.remove(this.__widgetChildren__P_28_7, child);
         }
 
-        qx.lang.Array.insertAfter(this.__widgetChildren__P_24_7, child, after);
+        qx.lang.Array.insertAfter(this.__widgetChildren__P_28_7, child, after);
 
-        this.__addHelper__P_24_9(child, options);
+        this.__addHelper__P_28_9(child, options);
       },
 
       /**
@@ -1834,13 +1834,13 @@
        * @param child {qx.ui.core.LayoutItem} the widget to remove
        */
       _remove: function _remove(child) {
-        if (!this.__widgetChildren__P_24_7) {
+        if (!this.__widgetChildren__P_28_7) {
           throw new Error("This widget has no children!");
         }
 
-        qx.lang.Array.remove(this.__widgetChildren__P_24_7, child);
+        qx.lang.Array.remove(this.__widgetChildren__P_28_7, child);
 
-        this.__removeHelper__P_24_10(child);
+        this.__removeHelper__P_28_10(child);
       },
 
       /**
@@ -1850,14 +1850,14 @@
        * @return {qx.ui.core.LayoutItem} The removed item.
        */
       _removeAt: function _removeAt(index) {
-        if (!this.__widgetChildren__P_24_7) {
+        if (!this.__widgetChildren__P_28_7) {
           throw new Error("This widget has no children!");
         }
 
-        var child = this.__widgetChildren__P_24_7[index];
-        qx.lang.Array.removeAt(this.__widgetChildren__P_24_7, index);
+        var child = this.__widgetChildren__P_28_7[index];
+        qx.lang.Array.removeAt(this.__widgetChildren__P_28_7, index);
 
-        this.__removeHelper__P_24_10(child);
+        this.__removeHelper__P_28_10(child);
 
         return child;
       },
@@ -1868,18 +1868,18 @@
        * @return {Array} An array containing the removed children.
        */
       _removeAll: function _removeAll() {
-        if (!this.__widgetChildren__P_24_7) {
+        if (!this.__widgetChildren__P_28_7) {
           return [];
         } // Working on a copy to make it possible to clear the
         // internal array before calling setLayoutParent()
 
 
-        var children = this.__widgetChildren__P_24_7.concat();
+        var children = this.__widgetChildren__P_28_7.concat();
 
-        this.__widgetChildren__P_24_7.length = 0;
+        this.__widgetChildren__P_28_7.length = 0;
 
         for (var i = children.length - 1; i >= 0; i--) {
-          this.__removeHelper__P_24_10(children[i]);
+          this.__removeHelper__P_28_10(children[i]);
         }
 
         qx.ui.core.queue.Layout.add(this);
@@ -1923,7 +1923,7 @@
        * @param child {qx.ui.core.LayoutItem} The child to add.
        * @param options {Map|null} Optional layout data for the widget.
        */
-      __addHelper__P_24_9: function __addHelper__P_24_9(child, options) {
+      __addHelper__P_28_9: function __addHelper__P_28_9(child, options) {
         {
           this.assertInstance(child, qx.ui.core.LayoutItem, "Invalid widget to add: " + child);
           this.assertNotIdentical(child, this, "Could not add widget to itself: " + child);
@@ -1962,7 +1962,7 @@
        *
        * @param child {qx.ui.core.LayoutItem} The child to remove.
        */
-      __removeHelper__P_24_10: function __removeHelper__P_24_10(child) {
+      __removeHelper__P_28_10: function __removeHelper__P_28_10(child) {
         {
           this.assertNotUndefined(child);
         }
@@ -1974,8 +1974,8 @@
 
         child.setLayoutParent(null); // clear the layout's children cache
 
-        if (this.__layoutManager__P_24_5) {
-          this.__layoutManager__P_24_5.invalidateChildrenCache();
+        if (this.__layoutManager__P_28_5) {
+          this.__layoutManager__P_28_5.invalidateChildrenCache();
         } // Add to layout queue
 
 
@@ -2041,7 +2041,7 @@
         this._updateInsets = true;
         qx.ui.core.queue.Layout.add(this);
 
-        this.__updateContentPadding__P_24_11(name, value);
+        this.__updateContentPadding__P_28_11(name, value);
       },
 
       /**
@@ -2050,7 +2050,7 @@
        * @param style {String} The name of the css padding property e.g. <code>paddingTop</code>
        * @param value {Number} The value to set.
        */
-      __updateContentPadding__P_24_11: function __updateContentPadding__P_24_11(style, value) {
+      __updateContentPadding__P_28_11: function __updateContentPadding__P_28_11(style, value) {
         var content = this.getContentElement();
         var decorator = this.getDecorator();
         decorator = qx.theme.manager.Decoration.getInstance().resolve(decorator);
@@ -2095,12 +2095,12 @@
       // property apply
       _applyToolTipText: function _applyToolTipText(value, old) {
         {
-          if (this.__toolTipTextListenerId__P_24_4) {
+          if (this.__toolTipTextListenerId__P_28_4) {
             return;
           }
 
           var manager = qx.locale.Manager.getInstance();
-          this.__toolTipTextListenerId__P_24_4 = manager.addListener("changeLocale", function () {
+          this.__toolTipTextListenerId__P_28_4 = manager.addListener("changeLocale", function () {
             var toolTipText = this.getToolTipText();
 
             if (toolTipText && toolTipText.translate) {
@@ -2212,7 +2212,7 @@
       */
 
       /** @type {Map} The current widget states */
-      __states__P_24_12: null,
+      __states__P_28_12: null,
 
       /** @type {Boolean} Whether the widget has state changes which are not yet queued */
       $$stateChanges: null,
@@ -2227,7 +2227,7 @@
        * @return {Boolean} whether the state is set.
        */
       hasState: function hasState(state) {
-        var states = this.__states__P_24_12;
+        var states = this.__states__P_28_12;
         return !!states && !!states[state];
       },
 
@@ -2238,10 +2238,10 @@
        */
       addState: function addState(state) {
         // Dynamically create state map
-        var states = this.__states__P_24_12;
+        var states = this.__states__P_28_12;
 
         if (!states) {
-          states = this.__states__P_24_12 = {};
+          states = this.__states__P_28_12 = {};
         }
 
         if (states[state]) {
@@ -2249,7 +2249,7 @@
         } // Add state and queue
 
 
-        this.__states__P_24_12[state] = true; // Fast path for hovered state
+        this.__states__P_28_12[state] = true; // Fast path for hovered state
 
         if (state === "hovered") {
           this.syncAppearance();
@@ -2261,7 +2261,7 @@
 
 
         var forward = this._forwardStates;
-        var controls = this.__childControls__P_24_13;
+        var controls = this.__childControls__P_28_13;
 
         if (forward && forward[state] && controls) {
           var control;
@@ -2283,14 +2283,14 @@
        */
       removeState: function removeState(state) {
         // Check for existing state
-        var states = this.__states__P_24_12;
+        var states = this.__states__P_28_12;
 
         if (!states || !states[state]) {
           return;
         } // Clear state and queue
 
 
-        delete this.__states__P_24_12[state]; // Fast path for hovered state
+        delete this.__states__P_28_12[state]; // Fast path for hovered state
 
         if (state === "hovered") {
           this.syncAppearance();
@@ -2302,7 +2302,7 @@
 
 
         var forward = this._forwardStates;
-        var controls = this.__childControls__P_24_13;
+        var controls = this.__childControls__P_28_13;
 
         if (forward && forward[state] && controls) {
           for (var id in controls) {
@@ -2324,10 +2324,10 @@
        * @param value {String} New state
        */
       replaceState: function replaceState(old, value) {
-        var states = this.__states__P_24_12;
+        var states = this.__states__P_28_12;
 
         if (!states) {
-          states = this.__states__P_24_12 = {};
+          states = this.__states__P_28_12 = {};
         }
 
         if (!states[value]) {
@@ -2346,7 +2346,7 @@
 
 
         var forward = this._forwardStates;
-        var controls = this.__childControls__P_24_13;
+        var controls = this.__childControls__P_28_13;
 
         if (forward && forward[value] && controls) {
           for (var id in controls) {
@@ -2366,10 +2366,10 @@
       */
 
       /** @type {String} The currently compiled selector to lookup the matching appearance */
-      __appearanceSelector__P_24_14: null,
+      __appearanceSelector__P_28_14: null,
 
       /** @type {Boolean} Whether the selectors needs to be recomputed before updating appearance */
-      __updateSelector__P_24_15: null,
+      __updateSelector__P_28_15: null,
 
       /**
        * Renders the appearance using the current widget states.
@@ -2377,16 +2377,16 @@
        * Used exclusively by {qx.ui.core.queue.Appearance}.
        */
       syncAppearance: function syncAppearance() {
-        var states = this.__states__P_24_12;
-        var selector = this.__appearanceSelector__P_24_14;
+        var states = this.__states__P_28_12;
+        var selector = this.__appearanceSelector__P_28_14;
         var manager = qx.theme.manager.Appearance.getInstance(); // Cache deep accessor
 
         var styler = qx.core.Property.$$method.setThemed;
         var unstyler = qx.core.Property.$$method.resetThemed; // Check for requested selector update
 
-        if (this.__updateSelector__P_24_15) {
+        if (this.__updateSelector__P_28_15) {
           // Clear flag
-          delete this.__updateSelector__P_24_15; // Check if the selector was created previously
+          delete this.__updateSelector__P_28_15; // Check if the selector was created previously
 
           if (selector) {
             // Query old selector
@@ -2408,7 +2408,7 @@
 
 
           selector = id.reverse().join("/").replace(/#[0-9]+/g, "");
-          this.__appearanceSelector__P_24_14 = selector;
+          this.__appearanceSelector__P_28_14 = selector;
         } // Query current selector
 
 
@@ -2442,7 +2442,7 @@
           }
         }
 
-        this.fireDataEvent("syncAppearance", this.__states__P_24_12);
+        this.fireDataEvent("syncAppearance", this.__states__P_28_12);
       },
       // property apply
       _applyAppearance: function _applyAppearance(value, old) {
@@ -2458,9 +2458,9 @@
       checkAppearanceNeeds: function checkAppearanceNeeds() {
         // CASE 1: Widget has never got an appearance already because it was never
         // visible before. Normally add it to the queue is the easiest way to update it.
-        if (!this.__initialAppearanceApplied__P_24_3) {
+        if (!this.__initialAppearanceApplied__P_28_3) {
           qx.ui.core.queue.Appearance.add(this);
-          this.__initialAppearanceApplied__P_24_3 = true;
+          this.__initialAppearanceApplied__P_28_3 = true;
         } // CASE 2: Widget has got an appearance before, but was hidden for some time
         // which results into maybe omitted state changes have not been applied.
         // In this case the widget is already queued in the appearance. This is basically
@@ -2478,11 +2478,11 @@
        */
       updateAppearance: function updateAppearance() {
         // Clear selector
-        this.__updateSelector__P_24_15 = true; // Add to appearance queue
+        this.__updateSelector__P_28_15 = true; // Add to appearance queue
 
         qx.ui.core.queue.Appearance.add(this); // Update child controls
 
-        var controls = this.__childControls__P_24_13;
+        var controls = this.__childControls__P_28_13;
 
         if (controls) {
           var obj;
@@ -3044,15 +3044,15 @@
        * @return {Boolean} <code>true</code> when the child control is registered.
        */
       hasChildControl: function hasChildControl(id) {
-        if (!this.__childControls__P_24_13) {
+        if (!this.__childControls__P_28_13) {
           return false;
         }
 
-        return !!this.__childControls__P_24_13[id];
+        return !!this.__childControls__P_28_13[id];
       },
 
       /** @type {Map} Map of instantiated child controls */
-      __childControls__P_24_13: null,
+      __childControls__P_28_13: null,
 
       /**
        * Returns a map of all already created child controls
@@ -3060,7 +3060,7 @@
        * @return {Map} mapping of child control id to the child widget.
        */
       _getCreatedChildControls: function _getCreatedChildControls() {
-        return this.__childControls__P_24_13;
+        return this.__childControls__P_28_13;
       },
 
       /**
@@ -3082,15 +3082,15 @@
        * @return {qx.ui.core.Widget} Child control
        */
       getChildControl: function getChildControl(id, notcreate) {
-        if (!this.__childControls__P_24_13) {
+        if (!this.__childControls__P_28_13) {
           if (notcreate) {
             return null;
           }
 
-          this.__childControls__P_24_13 = {};
+          this.__childControls__P_28_13 = {};
         }
 
-        var control = this.__childControls__P_24_13[id];
+        var control = this.__childControls__P_28_13[id];
 
         if (control) {
           return control;
@@ -3162,7 +3162,7 @@
         delete control.$$subcontrol;
         delete control.$$subparent; // remove state forwarding
 
-        var states = this.__states__P_24_12;
+        var states = this.__states__P_28_12;
         var forward = this._forwardStates;
 
         if (states && forward && control instanceof qx.ui.core.Widget) {
@@ -3173,7 +3173,7 @@
           }
         }
 
-        delete this.__childControls__P_24_13[id];
+        delete this.__childControls__P_28_13[id];
         return control;
       },
 
@@ -3188,9 +3188,9 @@
        * @throws {Error} when the control was created before
        */
       _createChildControl: function _createChildControl(id) {
-        if (!this.__childControls__P_24_13) {
-          this.__childControls__P_24_13 = {};
-        } else if (this.__childControls__P_24_13[id]) {
+        if (!this.__childControls__P_28_13) {
+          this.__childControls__P_28_13 = {};
+        } else if (this.__childControls__P_28_13[id]) {
           throw new Error("Child control '" + id + "' already created!");
         }
 
@@ -3215,7 +3215,7 @@
         control.$$subcontrol = id;
         control.$$subparent = this; // Support for state forwarding
 
-        var states = this.__states__P_24_12;
+        var states = this.__states__P_28_12;
         var forward = this._forwardStates;
 
         if (states && forward && control instanceof qx.ui.core.Widget) {
@@ -3236,7 +3236,7 @@
 
         this.fireDataEvent("createChildControl", control); // Register control and return
 
-        return this.__childControls__P_24_13[id] = control;
+        return this.__childControls__P_28_13[id] = control;
       },
 
       /**
@@ -3260,7 +3260,7 @@
        *
        */
       _disposeChildControls: function _disposeChildControls() {
-        var controls = this.__childControls__P_24_13;
+        var controls = this.__childControls__P_28_13;
 
         if (!controls) {
           return;
@@ -3278,7 +3278,7 @@
           }
         }
 
-        delete this.__childControls__P_24_13;
+        delete this.__childControls__P_28_13;
       },
 
       /**
@@ -3469,8 +3469,8 @@
       // it just slows down things a bit, so do not do them.
       if (!qx.core.ObjectRegistry.inShutDown) {
         {
-          if (this.__toolTipTextListenerId__P_24_4) {
-            qx.locale.Manager.getInstance().removeListenerById(this.__toolTipTextListenerId__P_24_4);
+          if (this.__toolTipTextListenerId__P_28_4) {
+            qx.locale.Manager.getInstance().removeListenerById(this.__toolTipTextListenerId__P_28_4);
           }
         } // Remove widget pointer from DOM
 
@@ -3497,21 +3497,21 @@
 
       if (!qx.core.ObjectRegistry.inShutDown) {
         this.clearSeparators();
-        this.__separators__P_24_6 = null;
+        this.__separators__P_28_6 = null;
       } else {
-        this._disposeArray("__separators__P_24_6");
+        this._disposeArray("__separators__P_28_6");
       } // Clear children array
 
 
-      this._disposeArray("__widgetChildren__P_24_7"); // Cleanup map of appearance states
+      this._disposeArray("__widgetChildren__P_28_7"); // Cleanup map of appearance states
 
 
-      this.__states__P_24_12 = this.__childControls__P_24_13 = null; // Dispose layout manager and HTML elements
+      this.__states__P_28_12 = this.__childControls__P_28_13 = null; // Dispose layout manager and HTML elements
 
-      this._disposeObjects("__layoutManager__P_24_5", "__contentElement__P_24_0");
+      this._disposeObjects("__layoutManager__P_28_5", "__contentElement__P_28_0");
     }
   });
   qx.ui.core.Widget.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Widget.js.map?dt=1635778900522
+//# sourceMappingURL=Widget.js.map?dt=1636124291632

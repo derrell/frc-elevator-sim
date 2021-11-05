@@ -4854,7 +4854,7 @@
   },
   "events": {},
   "descendants": [
-    "qx.ui.form.ToggleButton",
-    "qx.ui.form.Button"
+    "qx.ui.form.Button",
+    "qx.ui.form.ToggleButton"
   ]
 }

@@ -52,7 +52,7 @@
     type: "singleton",
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__factoriesByTagName__P_146_0 = {};
+      this.__factoriesByTagName__P_160_0 = {};
       this.registerFactory("#text", function (tagName, attributes, styles) {
         return new qx.html.Text("");
       });
@@ -65,7 +65,7 @@
       });
     },
     members: {
-      __factoriesByTagName__P_146_0: null,
+      __factoriesByTagName__P_160_0: null,
 
       /**
        * Registers a factory; a factory is either a class, or a function which is 
@@ -78,11 +78,11 @@
       registerFactory: function registerFactory(tagName, factory) {
         tagName = tagName.toLowerCase();
 
-        if (this.__factoriesByTagName__P_146_0[tagName] === undefined) {
-          this.__factoriesByTagName__P_146_0[tagName] = [];
+        if (this.__factoriesByTagName__P_160_0[tagName] === undefined) {
+          this.__factoriesByTagName__P_160_0[tagName] = [];
         }
 
-        this.__factoriesByTagName__P_146_0[tagName].push(factory);
+        this.__factoriesByTagName__P_160_0[tagName].push(factory);
       },
 
       /**
@@ -132,7 +132,7 @@
           }
         }
 
-        var factories = this.__factoriesByTagName__P_146_0[tagName];
+        var factories = this.__factoriesByTagName__P_160_0[tagName];
 
         if (factories) {
           for (var i = factories.length - 1; i > -1; i--) {
@@ -160,4 +160,4 @@
   qx.html.Factory.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Factory.js.map?dt=1635778909514
+//# sourceMappingURL=Factory.js.map?dt=1636124299537

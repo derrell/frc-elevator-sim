@@ -84,15 +84,15 @@
   qx.Bootstrap.define("qx.bom.element.AnimationCss", {
     statics: {
       // initialization
-      __sheet__P_159_0: null,
-      __rulePrefix__P_159_1: "Anni",
-      __id__P_159_2: 0,
+      __sheet__P_173_0: null,
+      __rulePrefix__P_173_1: "Anni",
+      __id__P_173_2: 0,
 
       /** Static map of rules */
-      __rules__P_159_3: {},
+      __rules__P_173_3: {},
 
       /** The used keys for transforms. */
-      __transitionKeys__P_159_4: {
+      __transitionKeys__P_173_4: {
         "scale": true,
         "rotate": true,
         "skew": true,
@@ -100,7 +100,7 @@
       },
 
       /** Map of cross browser CSS keys. */
-      __cssAnimationKeys__P_159_5: qx.core.Environment.get("css.animation"),
+      __cssAnimationKeys__P_173_5: qx.core.Environment.get("css.animation"),
 
       /**
        * This is the main function to start the animation in reverse mode.
@@ -142,11 +142,11 @@
        * @return {qx.bom.element.AnimationHandle} The handle.
        */
       _animate: function _animate(el, desc, duration, reverse) {
-        this.__normalizeDesc__P_159_6(desc); // debug validation
+        this.__normalizeDesc__P_173_6(desc); // debug validation
 
 
         {
-          this.__validateDesc__P_159_7(desc);
+          this.__validateDesc__P_173_7(desc);
         } // reverse the keep property if the animation is reverse as well
 
         var keep = desc.keep;
@@ -155,8 +155,8 @@
           keep = 100 - keep;
         }
 
-        if (!this.__sheet__P_159_0) {
-          this.__sheet__P_159_0 = qx.bom.Stylesheet.createElement();
+        if (!this.__sheet__P_173_0) {
+          this.__sheet__P_173_0 = qx.bom.Stylesheet.createElement();
         }
 
         var keyFrames = desc.keyFrames;
@@ -166,22 +166,22 @@
         } // if animations are supported
 
 
-        if (this.__cssAnimationKeys__P_159_5 != null) {
-          var name = this.__addKeyFrames__P_159_8(keyFrames, reverse);
+        if (this.__cssAnimationKeys__P_173_5 != null) {
+          var name = this.__addKeyFrames__P_173_8(keyFrames, reverse);
 
           var style = name + " " + duration + "ms " + desc.timing + " " + (desc.delay ? desc.delay + "ms " : "") + desc.repeat + " " + (desc.alternate ? "alternate" : "");
-          qx.bom.Event.addNativeListener(el, this.__cssAnimationKeys__P_159_5["start-event"], this.__onAnimationStart__P_159_9);
-          qx.bom.Event.addNativeListener(el, this.__cssAnimationKeys__P_159_5["iteration-event"], this.__onAnimationIteration__P_159_10);
-          qx.bom.Event.addNativeListener(el, this.__cssAnimationKeys__P_159_5["end-event"], this.__onAnimationEnd__P_159_11);
+          qx.bom.Event.addNativeListener(el, this.__cssAnimationKeys__P_173_5["start-event"], this.__onAnimationStart__P_173_9);
+          qx.bom.Event.addNativeListener(el, this.__cssAnimationKeys__P_173_5["iteration-event"], this.__onAnimationIteration__P_173_10);
+          qx.bom.Event.addNativeListener(el, this.__cssAnimationKeys__P_173_5["end-event"], this.__onAnimationEnd__P_173_11);
           {
             if (qx.bom.element.Style.get(el, "display") == "none") {
               qx.log.Logger.warn(el, "Some browsers will not animate elements with display==none");
             }
           }
-          el.style[qx.lang.String.camelCase(this.__cssAnimationKeys__P_159_5["name"])] = style; // use the fill mode property if available and suitable
+          el.style[qx.lang.String.camelCase(this.__cssAnimationKeys__P_173_5["name"])] = style; // use the fill mode property if available and suitable
 
-          if (keep && keep == 100 && this.__cssAnimationKeys__P_159_5["fill-mode"]) {
-            el.style[this.__cssAnimationKeys__P_159_5["fill-mode"]] = "forwards";
+          if (keep && keep == 100 && this.__cssAnimationKeys__P_173_5["fill-mode"]) {
+            el.style[this.__cssAnimationKeys__P_173_5["fill-mode"]] = "forwards";
           }
         }
 
@@ -196,9 +196,9 @@
         } // fallback for browsers not supporting animations
 
 
-        if (this.__cssAnimationKeys__P_159_5 == null) {
+        if (this.__cssAnimationKeys__P_173_5 == null) {
           window.setTimeout(function () {
-            qx.bom.element.AnimationCss.__onAnimationEnd__P_159_11({
+            qx.bom.element.AnimationCss.__onAnimationEnd__P_173_11({
               target: el
             });
           }, 0);
@@ -211,7 +211,7 @@
        * Handler for the animation start.
        * @param e {Event} The native event from the browser.
        */
-      __onAnimationStart__P_159_9: function __onAnimationStart__P_159_9(e) {
+      __onAnimationStart__P_173_9: function __onAnimationStart__P_173_9(e) {
         if (e.target.$$animation) {
           e.target.$$animation.emit("start", e.target);
         }
@@ -221,7 +221,7 @@
        * Handler for the animation iteration.
        * @param e {Event} The native event from the browser.
        */
-      __onAnimationIteration__P_159_10: function __onAnimationIteration__P_159_10(e) {
+      __onAnimationIteration__P_173_10: function __onAnimationIteration__P_173_10(e) {
         // It could happen that an animation end event is fired before an
         // animation iteration appears [BUG #6928]
         if (e.target != null && e.target.$$animation != null) {
@@ -233,7 +233,7 @@
        * Handler for the animation end.
        * @param e {Event} The native event from the browser.
        */
-      __onAnimationEnd__P_159_11: function __onAnimationEnd__P_159_11(e) {
+      __onAnimationEnd__P_173_11: function __onAnimationEnd__P_173_11(e) {
         var el = e.target;
         var animation = el.$$animation; // ignore events when already cleaned up
 
@@ -243,18 +243,18 @@
 
         var desc = animation.desc;
 
-        if (qx.bom.element.AnimationCss.__cssAnimationKeys__P_159_5 != null) {
+        if (qx.bom.element.AnimationCss.__cssAnimationKeys__P_173_5 != null) {
           // reset the styling
-          var key = qx.lang.String.camelCase(qx.bom.element.AnimationCss.__cssAnimationKeys__P_159_5["name"]);
+          var key = qx.lang.String.camelCase(qx.bom.element.AnimationCss.__cssAnimationKeys__P_173_5["name"]);
           el.style[key] = "";
-          qx.bom.Event.removeNativeListener(el, qx.bom.element.AnimationCss.__cssAnimationKeys__P_159_5["name"], qx.bom.element.AnimationCss.__onAnimationEnd__P_159_11);
+          qx.bom.Event.removeNativeListener(el, qx.bom.element.AnimationCss.__cssAnimationKeys__P_173_5["name"], qx.bom.element.AnimationCss.__onAnimationEnd__P_173_11);
         }
 
         if (desc.origin != null) {
           qx.bom.element.Transform.setOrigin(el, "");
         }
 
-        qx.bom.element.AnimationCss.__keepFrame__P_159_12(el, desc.keyFrames[animation.keep]);
+        qx.bom.element.AnimationCss.__keepFrame__P_173_12(el, desc.keyFrames[animation.keep]);
 
         el.$$animation = null;
         animation.el = null;
@@ -270,12 +270,12 @@
        * @param endFrame {Map} The description of the end frame, which is basically
        *   a map containing CSS properties and values including transforms.
        */
-      __keepFrame__P_159_12: function __keepFrame__P_159_12(el, endFrame) {
+      __keepFrame__P_173_12: function __keepFrame__P_173_12(el, endFrame) {
         // keep the element at this animation step
         var transforms;
 
         for (var style in endFrame) {
-          if (style in qx.bom.element.AnimationCss.__transitionKeys__P_159_4) {
+          if (style in qx.bom.element.AnimationCss.__transitionKeys__P_173_4) {
             if (!transforms) {
               transforms = {};
             }
@@ -297,7 +297,7 @@
        * set to its default.
        * @param desc {Map} The description of the animation.
        */
-      __normalizeDesc__P_159_6: function __normalizeDesc__P_159_6(desc) {
+      __normalizeDesc__P_173_6: function __normalizeDesc__P_173_6(desc) {
         if (!desc.hasOwnProperty("alternate")) {
           desc.alternate = false;
         }
@@ -324,7 +324,7 @@
        * @signature function(desc)
        * @param desc {Map} The description of the animation.
        */
-      __validateDesc__P_159_7: function __validateDesc__P_159_7(desc) {
+      __validateDesc__P_173_7: function __validateDesc__P_173_7(desc) {
         var possibleKeys = ["origin", "duration", "keep", "keyFrames", "delay", "repeat", "timing", "alternate"]; // check for unknown keys
 
         for (var name in desc) {
@@ -353,7 +353,7 @@
        *   be added in reverse order.
        * @return {String} The generated name of the keyframes rule.
        */
-      __addKeyFrames__P_159_8: function __addKeyFrames__P_159_8(frames, reverse) {
+      __addKeyFrames__P_173_8: function __addKeyFrames__P_173_8(frames, reverse) {
         var rule = ""; // for each key frame
 
         for (var position in frames) {
@@ -362,7 +362,7 @@
           var transforms; // each style
 
           for (var style in frame) {
-            if (style in this.__transitionKeys__P_159_4) {
+            if (style in this.__transitionKeys__P_173_4) {
               if (!transforms) {
                 transforms = {};
               }
@@ -384,28 +384,28 @@
         } // cached shorthand
 
 
-        if (this.__rules__P_159_3[rule]) {
-          return this.__rules__P_159_3[rule];
+        if (this.__rules__P_173_3[rule]) {
+          return this.__rules__P_173_3[rule];
         }
 
-        var name = this.__rulePrefix__P_159_1 + this.__id__P_159_2++;
-        var selector = this.__cssAnimationKeys__P_159_5["keyframes"] + " " + name;
-        qx.bom.Stylesheet.addRule(this.__sheet__P_159_0, selector, rule);
-        this.__rules__P_159_3[rule] = name;
+        var name = this.__rulePrefix__P_173_1 + this.__id__P_173_2++;
+        var selector = this.__cssAnimationKeys__P_173_5["keyframes"] + " " + name;
+        qx.bom.Stylesheet.addRule(this.__sheet__P_173_0, selector, rule);
+        this.__rules__P_173_3[rule] = name;
         return name;
       },
 
       /**
        * Internal helper to reset the cache.
        */
-      __clearCache__P_159_13: function __clearCache__P_159_13() {
-        this.__id__P_159_2 = 0;
+      __clearCache__P_173_13: function __clearCache__P_173_13() {
+        this.__id__P_173_2 = 0;
 
-        if (this.__sheet__P_159_0) {
-          this.__sheet__P_159_0.ownerNode.remove();
+        if (this.__sheet__P_173_0) {
+          this.__sheet__P_173_0.ownerNode.remove();
 
-          this.__sheet__P_159_0 = null;
-          this.__rules__P_159_3 = {};
+          this.__sheet__P_173_0 = null;
+          this.__rules__P_173_3 = {};
         }
       }
     },
@@ -415,7 +415,7 @@
       if (qx.core.Environment.get("os.name") === "ios" && parseInt(qx.core.Environment.get("os.version")) >= 8) {
         document.addEventListener("visibilitychange", function () {
           if (!document.hidden) {
-            statics.__clearCache__P_159_13();
+            statics.__clearCache__P_173_13();
           }
         }, false);
       }
@@ -424,4 +424,4 @@
   qx.bom.element.AnimationCss.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AnimationCss.js.map?dt=1635778910463
+//# sourceMappingURL=AnimationCss.js.map?dt=1636124300212

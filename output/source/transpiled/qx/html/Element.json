@@ -3309,8 +3309,8 @@
     "qx.html.Label",
     "qx.html.Iframe",
     "qx.html.Blocker",
+    "qx.html.Input",
     "qx.html.Root",
-    "qx.html.Image",
-    "qx.html.Input"
+    "qx.html.Image"
   ]
 }

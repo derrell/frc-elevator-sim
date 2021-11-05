@@ -298,7 +298,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.core.Object",
+      "overriddenFrom": "qx.event.type.Event",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -323,7 +323,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.core.Object",
+      "overriddenFrom": "qx.event.type.Event",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -349,7 +349,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.core.Object",
+      "overriddenFrom": "qx.event.type.Event",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -367,7 +367,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.core.Object",
+      "overriddenFrom": "qx.event.type.Event",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -391,7 +391,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.core.Object",
+      "overriddenFrom": "qx.event.type.Event",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -416,7 +416,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.core.Object",
+      "overriddenFrom": "qx.event.type.Event",
       "property": "reset",
       "jsdoc": {
         "@description": [

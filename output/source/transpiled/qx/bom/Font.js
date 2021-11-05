@@ -55,7 +55,7 @@
      */
     construct: function construct(size, family) {
       qx.core.Object.constructor.call(this);
-      this.__lookupMap__P_5_0 = {
+      this.__lookupMap__P_6_0 = {
         fontFamily: "",
         fontSize: null,
         fontWeight: null,
@@ -143,7 +143,7 @@
       },
 
       /** @type {Map} Default (empty) CSS styles */
-      __defaultStyles__P_5_1: {
+      __defaultStyles__P_6_1: {
         fontFamily: "",
         fontSize: "",
         fontWeight: "",
@@ -164,7 +164,7 @@
        * @return {Map} Default styles
        */
       getDefaultStyles: function getDefaultStyles() {
-        return this.__defaultStyles__P_5_1;
+        return this.__defaultStyles__P_6_1;
       }
     },
 
@@ -285,13 +285,13 @@
     *****************************************************************************
     */
     members: {
-      __lookupMap__P_5_0: null,
+      __lookupMap__P_6_0: null,
       // property apply
       _applySize: function _applySize(value, old) {
-        this.__lookupMap__P_5_0.fontSize = value === null ? null : value + "px";
+        this.__lookupMap__P_6_0.fontSize = value === null ? null : value + "px";
       },
       _applyLineHeight: function _applyLineHeight(value, old) {
-        this.__lookupMap__P_5_0.lineHeight = value === null ? null : value;
+        this.__lookupMap__P_6_0.lineHeight = value === null ? null : value;
       },
       // property apply
       _applyFamily: function _applyFamily(value, old) {
@@ -314,39 +314,39 @@
         // the browser from applying the element style
 
 
-        this.__lookupMap__P_5_0.fontFamily = family;
+        this.__lookupMap__P_6_0.fontFamily = family;
       },
       // property apply
       _applyBold: function _applyBold(value, old) {
-        this.__lookupMap__P_5_0.fontWeight = value == null ? null : value ? "bold" : "normal";
+        this.__lookupMap__P_6_0.fontWeight = value == null ? null : value ? "bold" : "normal";
       },
       // property apply
       _applyItalic: function _applyItalic(value, old) {
-        this.__lookupMap__P_5_0.fontStyle = value == null ? null : value ? "italic" : "normal";
+        this.__lookupMap__P_6_0.fontStyle = value == null ? null : value ? "italic" : "normal";
       },
       // property apply
       _applyDecoration: function _applyDecoration(value, old) {
-        this.__lookupMap__P_5_0.textDecoration = value == null ? null : value;
+        this.__lookupMap__P_6_0.textDecoration = value == null ? null : value;
       },
       // property apply
       _applyColor: function _applyColor(value, old) {
-        this.__lookupMap__P_5_0.color = null;
+        this.__lookupMap__P_6_0.color = null;
 
         if (value) {
-          this.__lookupMap__P_5_0.color = qx.theme.manager.Color.getInstance().resolve(value);
+          this.__lookupMap__P_6_0.color = qx.theme.manager.Color.getInstance().resolve(value);
         }
       },
       // property apply
       _applyWeight: function _applyWeight(value, old) {
-        this.__lookupMap__P_5_0.fontWeight = value;
+        this.__lookupMap__P_6_0.fontWeight = value;
       },
       // property apply
       _applyTextShadow: function _applyTextShadow(value, old) {
-        this.__lookupMap__P_5_0.textShadow = value == null ? null : value;
+        this.__lookupMap__P_6_0.textShadow = value == null ? null : value;
       },
       // property apply
       _applyLetterSpacing: function _applyLetterSpacing(value, old) {
-        this.__lookupMap__P_5_0.letterSpacing = value === null ? null : value + "px";
+        this.__lookupMap__P_6_0.letterSpacing = value === null ? null : value + "px";
       },
 
       /**
@@ -358,11 +358,11 @@
        * widget.
        */
       getStyles: function getStyles() {
-        return this.__lookupMap__P_5_0;
+        return this.__lookupMap__P_6_0;
       }
     }
   });
   qx.bom.Font.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Font.js.map?dt=1635778898098
+//# sourceMappingURL=Font.js.map?dt=1636124289349

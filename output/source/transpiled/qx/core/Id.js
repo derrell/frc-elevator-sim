@@ -38,8 +38,8 @@
     extend: qx.core.Object,
     type: "singleton",
     members: {
-      __registeredObjects__P_121_0: null,
-      __registeredIdHashes__P_121_1: null,
+      __registeredObjects__P_122_0: null,
+      __registeredIdHashes__P_122_1: null,
 
       /*
        * @Override
@@ -55,8 +55,8 @@
        * @Override
        */
       _createQxObjectImpl: function _createQxObjectImpl(id) {
-        if (this.__registeredObjects__P_121_0) {
-          var obj = this.__registeredObjects__P_121_0[id];
+        if (this.__registeredObjects__P_122_0) {
+          var obj = this.__registeredObjects__P_122_0[id];
 
           if (obj !== undefined) {
             return obj;
@@ -88,7 +88,7 @@
        * @return {String} full path to the object
        */
       getAbsoluteIdOf: function getAbsoluteIdOf(obj, suppressWarnings) {
-        if (this.__registeredIdHashes__P_121_1 && this.__registeredIdHashes__P_121_1[obj.toHashCode()]) {
+        if (this.__registeredIdHashes__P_122_1 && this.__registeredIdHashes__P_122_1[obj.toHashCode()]) {
           return obj.getQxObjectId();
         }
 
@@ -116,7 +116,7 @@
             if (owner === application) {
               ownerId = "application";
             } else {
-              ownerId = this.__registeredIdHashes__P_121_1 && this.__registeredIdHashes__P_121_1[owner.toHashCode()] || null;
+              ownerId = this.__registeredIdHashes__P_122_1 && this.__registeredIdHashes__P_122_1[owner.toHashCode()] || null;
             } // When we have found the ID of a top level object, add it to the path and stop
 
 
@@ -149,17 +149,17 @@
        * @param id {String?} the ID to register the object under, otherwise the object's own Object Id is used
        */
       register: function register(obj, id) {
-        if (!this.__registeredObjects__P_121_0) {
-          this.__registeredObjects__P_121_0 = {};
-          this.__registeredIdHashes__P_121_1 = {};
+        if (!this.__registeredObjects__P_122_0) {
+          this.__registeredObjects__P_122_0 = {};
+          this.__registeredIdHashes__P_122_1 = {};
         }
 
         if (!id) {
           id = obj.getQxObjectId();
         }
 
-        this.__registeredObjects__P_121_0[id] = obj;
-        this.__registeredIdHashes__P_121_1[obj.toHashCode()] = id;
+        this.__registeredObjects__P_122_0[id] = obj;
+        this.__registeredIdHashes__P_122_1[obj.toHashCode()] = id;
 
         obj._cascadeQxObjectIdChanges();
       },
@@ -171,7 +171,7 @@
        * @return {Boolean} whether there was an object to unregister
        */
       unregister: function unregister(data) {
-        if (!this.__registeredObjects__P_121_0) {
+        if (!this.__registeredObjects__P_122_0) {
           return false;
         }
 
@@ -181,18 +181,18 @@
           id = data;
         } else {
           var hash = data.toHashCode();
-          id = this.__registeredIdHashes__P_121_1[hash];
+          id = this.__registeredIdHashes__P_122_1[hash];
 
           if (!id) {
             return false;
           }
         }
 
-        var obj = this.__registeredObjects__P_121_0[id];
+        var obj = this.__registeredObjects__P_122_0[id];
 
         if (obj) {
-          delete this.__registeredObjects__P_121_0[id];
-          delete this.__registeredIdHashes__P_121_1[obj.toHashCode()];
+          delete this.__registeredObjects__P_122_0[id];
+          delete this.__registeredIdHashes__P_122_1[obj.toHashCode()];
 
           obj._cascadeQxObjectIdChanges();
 
@@ -208,7 +208,7 @@
        * @return {Object}
        */
       getRegisteredObjects: function getRegisteredObjects() {
-        return this.__registeredObjects__P_121_0;
+        return this.__registeredObjects__P_122_0;
       }
     },
     statics: {
@@ -237,4 +237,4 @@
   qx.core.Id.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Id.js.map?dt=1635778908076
+//# sourceMappingURL=Id.js.map?dt=1636124297436

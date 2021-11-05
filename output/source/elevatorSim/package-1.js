@@ -417,7 +417,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       },
 
       /** Private list of classes which have a defer method that needs to be executed */
-      __pendingDefers__P_11_0: [],
+      __pendingDefers__P_15_0: [],
 
       /**
        * Adds a callback for a class so that it's defer method can be called, either after all classes
@@ -428,7 +428,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       addPendingDefer: function addPendingDefer(clazz, cb) {
         if (qx.$$loader && qx.$$loader.delayDefer) {
-          this.__pendingDefers__P_11_0.push(clazz);
+          this.__pendingDefers__P_15_0.push(clazz);
 
           clazz.$$pendingDefer = cb;
         } else {
@@ -521,8 +521,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         };
 
         if (!dbClassInfo) {
-          var pendingDefers = this.__pendingDefers__P_11_0;
-          this.__pendingDefers__P_11_0 = [];
+          var pendingDefers = this.__pendingDefers__P_15_0;
+          this.__pendingDefers__P_15_0 = [];
           pendingDefers.forEach(execute);
           return;
         }
@@ -590,7 +590,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @internal
        * @type {String[]}
        */
-      __shadowedKeys__P_11_1: ["isPrototypeOf", "hasOwnProperty", "toLocaleString", "toString", "valueOf", "propertyIsEnumerable", "constructor"],
+      __shadowedKeys__P_15_1: ["isPrototypeOf", "hasOwnProperty", "toLocaleString", "toString", "valueOf", "propertyIsEnumerable", "constructor"],
 
       /**
        * Get the keys of a map as array as returned by a "for ... in" statement.
@@ -619,7 +619,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           // This is why this checks are needed.
 
 
-          var shadowedKeys = qx.Bootstrap.__shadowedKeys__P_11_1;
+          var shadowedKeys = qx.Bootstrap.__shadowedKeys__P_15_1;
 
           for (var i = 0, a = shadowedKeys, l = a.length; i < l; i++) {
             if (hasOwnProperty.call(map, a[i])) {
@@ -658,7 +658,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @internal
        * @type {Map}
        */
-      __classToTypeMap__P_11_2: {
+      __classToTypeMap__P_15_2: {
         "[object String]": "String",
         "[object Array]": "Array",
         "[object Object]": "Object",
@@ -763,7 +763,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
 
         var classString = Object.prototype.toString.call(value);
-        return qx.Bootstrap.__classToTypeMap__P_11_2[classString] || classString.slice(8, -1);
+        return qx.Bootstrap.__classToTypeMap__P_15_2[classString] || classString.slice(8, -1);
       },
 
       /**
@@ -945,16 +945,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       inShutDown: false,
 
       /** @type {Map} Internal data structure to store objects */
-      __registry__P_22_0: {},
+      __registry__P_25_0: {},
 
       /** @type {Integer} Next new hash code. */
-      __nextHash__P_22_1: 0,
+      __nextHash__P_25_1: 0,
 
       /** @type {String} Post id for hash code creation. */
-      __postId__P_22_2: "",
+      __postId__P_25_2: "",
 
       /** @type {Map} Object hashes to stack traces (for dispose profiling only) */
-      __stackTraces__P_22_3: {},
+      __stackTraces__P_25_3: {},
 
       /**
        * Registers an object into the database. This adds a hashcode
@@ -969,7 +969,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param obj {Object} Any object with a dispose() method
        */
       register: function register(obj) {
-        var registry = this.__registry__P_22_0;
+        var registry = this.__registry__P_25_0;
 
         if (!registry) {
           return;
@@ -996,7 +996,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           return;
         }
 
-        var registry = this.__registry__P_22_0;
+        var registry = this.__registry__P_25_0;
 
         if (registry && registry[hash]) {
           delete registry[hash];
@@ -1037,7 +1037,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String}
        */
       createHashCode: function createHashCode() {
-        var hash = String(this.__nextHash__P_22_1++ + this.__postId__P_22_2);
+        var hash = String(this.__nextHash__P_25_1++ + this.__postId__P_25_2);
         return hash;
       },
 
@@ -1079,7 +1079,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.core.Object} The corresponding object or <code>null</code>.
        */
       fromHashCode: function fromHashCode(hash, suppressWarnings) {
-        var obj = this.__registry__P_22_0[hash] || null;
+        var obj = this.__registry__P_25_0[hash] || null;
 
         if (!obj && !suppressWarnings) {
           qx.log.Logger.warn(this, "Object with hash code " + hash + " does not exist (since Qooxdoo 6.0 fromHashCode requires that you explicitly register objects with qx.core.ObjectRegistry.register)");
@@ -1096,7 +1096,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.core.Object} The corresponding object or <code>null</code>.
        */
       hasHashCode: function hasHashCode(hash) {
-        return !!this.__registry__P_22_0[hash];
+        return !!this.__registry__P_25_0[hash];
       },
 
       /**
@@ -1109,7 +1109,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       shutdown: function shutdown() {
         this.inShutDown = true;
-        var registry = this.__registry__P_22_0;
+        var registry = this.__registry__P_25_0;
         var hashes = [];
 
         for (var hash in registry) {
@@ -1148,7 +1148,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
 
         qx.Bootstrap.debug(this, "Disposed " + l + " objects");
-        delete this.__registry__P_22_0;
+        delete this.__registry__P_25_0;
       },
 
       /**
@@ -1157,7 +1157,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Object} The registry
        */
       getRegistry: function getRegistry() {
-        return this.__registry__P_22_0;
+        return this.__registry__P_25_0;
       },
 
       /**
@@ -1167,7 +1167,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @internal
        */
       getNextHash: function getNextHash() {
-        return this.__nextHash__P_22_1;
+        return this.__nextHash__P_25_1;
       },
 
       /**
@@ -1177,7 +1177,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @internal
        */
       getPostId: function getPostId() {
-        return this.__postId__P_22_2;
+        return this.__postId__P_25_2;
       },
 
       /**
@@ -1187,7 +1187,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @internal
        */
       getStackTraces: function getStackTraces() {
-        return this.__stackTraces__P_22_3;
+        return this.__stackTraces__P_25_3;
       }
     },
     defer: function defer(statics) {
@@ -1196,13 +1196,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         for (var i = 0; i < frames.length; i++) {
           if (frames[i] === window) {
-            statics.__postId__P_22_2 = "-" + (i + 1);
+            statics.__postId__P_25_2 = "-" + (i + 1);
             return;
           }
         }
       }
 
-      statics.__postId__P_22_2 = "-0";
+      statics.__postId__P_25_2 = "-0";
     }
   });
   qx.core.ObjectRegistry.$$dbClassInfo = $$dbClassInfo;
@@ -2100,7 +2100,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       _asyncChecks: {},
 
       /** Internal cache for all checks. */
-      __cache__P_13_0: {},
+      __cache__P_17_0: {},
 
       /**
        * Internal map for environment keys to check methods.
@@ -2164,8 +2164,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       get: function get(key) {
         // check the cache
-        if (this.__cache__P_13_0[key] != undefined) {
-          return this.__cache__P_13_0[key];
+        if (this.__cache__P_17_0[key] != undefined) {
+          return this.__cache__P_17_0[key];
         } // search for a matching check
 
 
@@ -2174,7 +2174,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         if (check) {
           // execute the check and write the result in the cache
           var value = check();
-          this.__cache__P_13_0[key] = value;
+          this.__cache__P_17_0[key] = value;
           return value;
         } // try class lookup
 
@@ -2186,7 +2186,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           var method = classAndMethod[1];
           var value = clazz[method](); // call the check method
 
-          this.__cache__P_13_0[key] = value;
+          this.__cache__P_17_0[key] = value;
           return value;
         } // debug flag
 
@@ -2240,10 +2240,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         // check the cache
         var env = this;
 
-        if (this.__cache__P_13_0[key] != undefined) {
+        if (this.__cache__P_17_0[key] != undefined) {
           // force async behavior
           window.setTimeout(function () {
-            callback.call(self, env.__cache__P_13_0[key]);
+            callback.call(self, env.__cache__P_17_0[key]);
           }, 0);
           return;
         }
@@ -2252,7 +2252,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         if (check) {
           check(function (result) {
-            env.__cache__P_13_0[key] = result;
+            env.__cache__P_17_0[key] = result;
             callback.call(self, result);
           });
           return;
@@ -2266,7 +2266,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           var method = classAndMethod[1];
           clazz[method](function (result) {
             // call the check method
-            env.__cache__P_13_0[key] = result;
+            env.__cache__P_17_0[key] = result;
             callback.call(self, result);
           });
           return;
@@ -2289,7 +2289,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   check of the key.
        */
       select: function select(key, values) {
-        return this.__pickFromValues__P_13_1(this.get(key), values);
+        return this.__pickFromValues__P_17_1(this.get(key), values);
       },
 
       /**
@@ -2305,7 +2305,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       selectAsync: function selectAsync(key, values, self) {
         this.getAsync(key, function (result) {
-          var value = this.__pickFromValues__P_13_1(key, values);
+          var value = this.__pickFromValues__P_17_1(key, values);
 
           value.call(self, result);
         }, this);
@@ -2321,7 +2321,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param values {Map} A map containing some keys.
        * @return {var} The value stored as values[key] usually.
        */
-      __pickFromValues__P_13_1: function __pickFromValues__P_13_1(key, values) {
+      __pickFromValues__P_17_1: function __pickFromValues__P_17_1(key, values) {
         var value = values[key];
 
         if (values.hasOwnProperty(key)) {
@@ -2376,7 +2376,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param key {String} The key of the check.
        */
       invalidateCacheKey: function invalidateCacheKey(key) {
-        delete this.__cache__P_13_0[key];
+        delete this.__cache__P_17_0[key];
       },
 
       /**
@@ -2399,7 +2399,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
             this._checks[key] = check; // otherwise, create a check function and use that
           } else {
-            this._checks[key] = this.__createCheck__P_13_2(check);
+            this._checks[key] = this.__createCheck__P_17_2(check);
           }
         }
       },
@@ -2457,12 +2457,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * Import checks from global qx.$$environment into the Environment class.
        */
-      __importFromGenerator__P_13_3: function __importFromGenerator__P_13_3() {
+      __importFromGenerator__P_17_3: function __importFromGenerator__P_17_3() {
         // import the environment map
         if (qx && qx.$$environment) {
           for (var key in qx.$$environment) {
             var value = qx.$$environment[key];
-            this._checks[key] = this.__createCheck__P_13_2(value);
+            this._checks[key] = this.__createCheck__P_17_2(value);
           }
         }
       },
@@ -2471,7 +2471,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Checks the URL for environment settings and imports these into the
        * Environment class.
        */
-      __importFromUrl__P_13_4: function __importFromUrl__P_13_4() {
+      __importFromUrl__P_17_4: function __importFromUrl__P_17_4() {
         if (window.document && window.document.location) {
           var urlChecks = window.document.location.search.slice(1).split("&");
 
@@ -2493,7 +2493,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               value = parseFloat(value);
             }
 
-            this._checks[key] = this.__createCheck__P_13_2(value);
+            this._checks[key] = this.__createCheck__P_17_2(value);
           }
         }
       },
@@ -2504,7 +2504,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param value {var} The value which should be returned.
        * @return {Function} A function which could be used by a test.
        */
-      __createCheck__P_13_2: function __createCheck__P_13_2(value) {
+      __createCheck__P_17_2: function __createCheck__P_17_2(value) {
         return qx.Bootstrap.bind(function (value) {
           return value;
         }, null, value);
@@ -2515,11 +2515,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       statics._initDefaultQxValues(); // load the checks from the generator
 
 
-      statics.__importFromGenerator__P_13_3(); // load the checks from the url
+      statics.__importFromGenerator__P_17_3(); // load the checks from the url
 
 
       if (statics.get("qx.allowUrlSettings") === true) {
-        statics.__importFromUrl__P_13_4();
+        statics.__importFromUrl__P_17_4();
       }
     }
   });
@@ -3553,7 +3553,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
           {
-            this.__validateConfig__P_9_0(name, config);
+            this.__validateConfig__P_13_0(name, config);
           } // Create interface from statics
 
           var iface = config.statics ? config.statics : {}; // Attach configuration
@@ -3656,14 +3656,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   will return a boolean instead of throwing an exception
        * @return {Boolean} <code>true</code> if all members are supported
        */
-      __checkMembers__P_9_1: function __checkMembers__P_9_1(object, clazz, iface, wrap, shouldThrow) {
+      __checkMembers__P_13_1: function __checkMembers__P_13_1(object, clazz, iface, wrap, shouldThrow) {
         // Validate members
         var members = iface.$$members;
 
         if (members) {
           for (var key in members) {
             if (qx.Bootstrap.isFunction(members[key])) {
-              var isPropertyMethod = this.__isPropertyMethod__P_9_2(clazz, key);
+              var isPropertyMethod = this.__isPropertyMethod__P_13_2(clazz, key);
 
               var hasMemberFunction = isPropertyMethod || qx.Bootstrap.isFunction(object[key]);
 
@@ -3680,7 +3680,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               var shouldWrapFunction = wrap === true && !isPropertyMethod && !qx.util.OOUtil.hasInterface(clazz, iface);
 
               if (shouldWrapFunction) {
-                object[key] = this.__wrapInterfaceMember__P_9_3(iface, object[key], key, members[key]);
+                object[key] = this.__wrapInterfaceMember__P_13_3(iface, object[key], key, members[key]);
               }
             } else {
               // Other members are not checked more detailed because of
@@ -3713,7 +3713,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} true, if the method will be generated by the property
        *   system.
        */
-      __isPropertyMethod__P_9_2: function __isPropertyMethod__P_9_2(clazz, methodName) {
+      __isPropertyMethod__P_13_2: function __isPropertyMethod__P_13_2(clazz, methodName) {
         var match = methodName.match(/^(is|toggle|get|set|reset)(.*)$/);
 
         if (!match) {
@@ -3745,7 +3745,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   will return a boolean instead of throwing an exception
        * @return {Boolean} <code>true</code> if all properties are supported
        */
-      __checkProperties__P_9_4: function __checkProperties__P_9_4(clazz, iface, shouldThrow) {
+      __checkProperties__P_13_4: function __checkProperties__P_13_4(clazz, iface, shouldThrow) {
         if (iface.$$properties) {
           for (var key in iface.$$properties) {
             if (!qx.util.OOUtil.getPropertyDefinition(clazz, key)) {
@@ -3772,7 +3772,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   will return a boolean instead of throwing an exception
        * @return {Boolean} <code>true</code> if all events are supported
        */
-      __checkEvents__P_9_5: function __checkEvents__P_9_5(clazz, iface, shouldThrow) {
+      __checkEvents__P_13_5: function __checkEvents__P_13_5(clazz, iface, shouldThrow) {
         if (iface.$$events) {
           for (var key in iface.$$events) {
             if (!qx.util.OOUtil.supportsEvent(clazz, key)) {
@@ -3801,11 +3801,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       assertObject: function assertObject(object, iface) {
         var clazz = object.constructor;
 
-        this.__checkMembers__P_9_1(object, clazz, iface, false, true);
+        this.__checkMembers__P_13_1(object, clazz, iface, false, true);
 
-        this.__checkProperties__P_9_4(clazz, iface, true);
+        this.__checkProperties__P_13_4(clazz, iface, true);
 
-        this.__checkEvents__P_9_5(clazz, iface, true); // Validate extends, recursive
+        this.__checkEvents__P_13_5(clazz, iface, true); // Validate extends, recursive
 
 
         var extend = iface.$$extends;
@@ -3826,11 +3826,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *     check parameters etc.
        */
       assert: function assert(clazz, iface, wrap) {
-        this.__checkMembers__P_9_1(clazz.prototype, clazz, iface, wrap, true);
+        this.__checkMembers__P_13_1(clazz.prototype, clazz, iface, wrap, true);
 
-        this.__checkProperties__P_9_4(clazz, iface, true);
+        this.__checkProperties__P_13_4(clazz, iface, true);
 
-        this.__checkEvents__P_9_5(clazz, iface, true); // Validate extends, recursive
+        this.__checkEvents__P_13_5(clazz, iface, true); // Validate extends, recursive
 
 
         var extend = iface.$$extends;
@@ -3853,7 +3853,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       objectImplements: function objectImplements(object, iface) {
         var clazz = object.constructor;
 
-        if (!this.__checkMembers__P_9_1(object, clazz, iface) || !this.__checkProperties__P_9_4(clazz, iface) || !this.__checkEvents__P_9_5(clazz, iface)) {
+        if (!this.__checkMembers__P_13_1(object, clazz, iface) || !this.__checkProperties__P_13_4(clazz, iface) || !this.__checkEvents__P_13_5(clazz, iface)) {
           return false;
         } // Validate extends, recursive
 
@@ -3880,7 +3880,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code> if interface is implemented
        */
       classImplements: function classImplements(clazz, iface) {
-        if (!this.__checkMembers__P_9_1(clazz.prototype, clazz, iface) || !this.__checkProperties__P_9_4(clazz, iface) || !this.__checkEvents__P_9_5(clazz, iface)) {
+        if (!this.__checkMembers__P_13_1(clazz.prototype, clazz, iface) || !this.__checkProperties__P_13_4(clazz, iface) || !this.__checkEvents__P_13_5(clazz, iface)) {
           return false;
         } // Validate extends, recursive
 
@@ -3931,7 +3931,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   Otherwise an exception is thrown.
        * @return {Function} wrapped function
        */
-      __wrapInterfaceMember__P_9_3: function __wrapInterfaceMember__P_9_3(iface, origFunction, functionName, preCondition) {
+      __wrapInterfaceMember__P_13_3: function __wrapInterfaceMember__P_13_3(iface, origFunction, functionName, preCondition) {
         function wrappedFunction() {
           // call precondition
           preCondition.apply(this, arguments); // call original function
@@ -3953,7 +3953,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       },
 
       /** @type {Map} allowed keys in interface definition */
-      __allowedKeys__P_9_6: {
+      __allowedKeys__P_13_6: {
         "extend": "object",
         // Interface | Interface[]
         "statics": "object",
@@ -3973,10 +3973,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param name {String} The name of the class
        * @param config {Map} Configuration map
        */
-      __validateConfig__P_9_0: function __validateConfig__P_9_0(name, config) {
+      __validateConfig__P_13_0: function __validateConfig__P_13_0(name, config) {
         {
           // Validate keys
-          var allowed = this.__allowedKeys__P_9_6;
+          var allowed = this.__allowedKeys__P_13_6;
 
           for (var key in config) {
             if (allowed[key] === undefined) {
@@ -4149,7 +4149,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
           {
-            this.__validateConfig__P_10_0(name, config);
+            this.__validateConfig__P_14_0(name, config);
           } // Create Interface from statics
 
           var mixin = config.statics ? config.statics : {};
@@ -4438,7 +4438,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       $$registry: {},
 
       /** @type {Map} allowed keys in mixin definition */
-      __allowedKeys__P_10_1: {
+      __allowedKeys__P_14_1: {
         "include": "object",
         // Mixin | Mixin[]
         "statics": "object",
@@ -4462,9 +4462,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param name {String} The name of the class
        * @param config {Map} Configuration map
        */
-      __validateConfig__P_10_0: function __validateConfig__P_10_0(name, config) {
+      __validateConfig__P_14_0: function __validateConfig__P_14_0(name, config) {
         // Validate keys
-        var allowed = this.__allowedKeys__P_10_1;
+        var allowed = this.__allowedKeys__P_14_1;
 
         for (var key in config) {
           if (!allowed[key]) {
@@ -5692,7 +5692,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * This is a method which does nothing than gathering dependencies for the
        * module system. Calling this method is useless because it does nothing.
        */
-      __gatherDependency__P_12_0: function __gatherDependency__P_12_0() {
+      __gatherDependency__P_16_0: function __gatherDependency__P_16_0() {
         {
           qx.event.type.Data;
           qx.event.dispatch.Direct;
@@ -5706,7 +5706,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Built-in checks
        * The keys could be used in the check of the properties
        */
-      __checks__P_12_1: {
+      __checks__P_16_1: {
         "Boolean": 'qx.core.Assert.assertBoolean(value, msg) || true',
         "String": 'qx.core.Assert.assertString(value, msg) || true',
         "Number": 'qx.core.Assert.assertNumber(value, msg) || true',
@@ -5737,7 +5737,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * Contains types from {@link #__checks} list which need to be dereferenced
        */
-      __dereference__P_12_2: {
+      __dereference__P_16_2: {
         "Node": true,
         "Element": true,
         "Document": true,
@@ -5853,13 +5853,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @param clazz {Class} clazz to which the refresher should be added
        */
-      __executeOptimizedRefresh__P_12_3: function __executeOptimizedRefresh__P_12_3(clazz) {
-        var inheritables = this.__getInheritablesOfClass__P_12_4(clazz);
+      __executeOptimizedRefresh__P_16_3: function __executeOptimizedRefresh__P_16_3(clazz) {
+        var inheritables = this.__getInheritablesOfClass__P_16_4(clazz);
 
         if (!inheritables.length) {
           var refresher = function refresher() {};
         } else {
-          refresher = this.__createRefresher__P_12_5(inheritables);
+          refresher = this.__createRefresher__P_16_5(inheritables);
         }
 
         clazz.prototype.$$refreshInheritables = refresher;
@@ -5871,7 +5871,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param clazz {Class} class to get the inheritable properties of
        * @return {String[]} List of property names
        */
-      __getInheritablesOfClass__P_12_4: function __getInheritablesOfClass__P_12_4(clazz) {
+      __getInheritablesOfClass__P_16_4: function __getInheritablesOfClass__P_16_4(clazz) {
         var inheritable = [];
 
         while (clazz) {
@@ -5899,7 +5899,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param inheritables {String[]} list of inheritable properties
        * @return {Function} refresher function
        */
-      __createRefresher__P_12_5: function __createRefresher__P_12_5(inheritables) {
+      __createRefresher__P_16_5: function __createRefresher__P_16_5(inheritables) {
         var inherit = this.$$store.inherit;
         var init = this.$$store.init;
         var refresh = this.$$method.refresh;
@@ -5920,7 +5920,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       attachRefreshInheritables: function attachRefreshInheritables(clazz) {
         clazz.prototype.$$refreshInheritables = function () {
-          qx.core.Property.__executeOptimizedRefresh__P_12_3(clazz);
+          qx.core.Property.__executeOptimizedRefresh__P_16_3(clazz);
 
           return this.$$refreshInheritables();
         };
@@ -5935,7 +5935,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       attachMethods: function attachMethods(clazz, name, config) {
         // Divide groups from "normal" properties
-        config.group ? this.__attachGroupMethods__P_12_6(clazz, config, name) : this.__attachPropertyMethods__P_12_7(clazz, config, name);
+        config.group ? this.__attachGroupMethods__P_16_6(clazz, config, name) : this.__attachPropertyMethods__P_16_7(clazz, config, name);
       },
 
       /**
@@ -5945,7 +5945,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param config {Map} Property configuration
        * @param name {String} Name of the property
        */
-      __attachGroupMethods__P_12_6: function __attachGroupMethods__P_12_6(clazz, config, name) {
+      __attachGroupMethods__P_16_6: function __attachGroupMethods__P_16_6(clazz, config, name) {
         var upname = qx.Bootstrap.firstUp(name);
         var members = clazz.prototype;
         var themeable = config.themeable === true;
@@ -6022,7 +6022,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param config {Map} Property configuration
        * @param name {String} Name of the property
        */
-      __attachPropertyMethods__P_12_7: function __attachPropertyMethods__P_12_7(clazz, config, name) {
+      __attachPropertyMethods__P_16_7: function __attachPropertyMethods__P_16_7(clazz, config, name) {
         var upname = qx.Bootstrap.firstUp(name);
         var members = clazz.prototype;
         {
@@ -6032,7 +6032,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // Fill dispose value
 
         if (config.dereference === undefined && typeof config.check === "string") {
-          config.dereference = this.__shouldBeDereferenced__P_12_8(config.check);
+          config.dereference = this.__shouldBeDereferenced__P_16_8(config.check);
         }
 
         // Check for method name conflicts
@@ -6107,10 +6107,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
 
         members[method.get[name]].$$install = function () {
-          qx.core.Property.__installOptimizedGetter__P_12_9(clazz, name, "get", arguments);
+          qx.core.Property.__installOptimizedGetter__P_16_9(clazz, name, "get", arguments);
 
           if (config.async) {
-            qx.core.Property.__installOptimizedGetter__P_12_9(clazz, name, "getAsync", arguments);
+            qx.core.Property.__installOptimizedGetter__P_16_9(clazz, name, "getAsync", arguments);
           }
         };
 
@@ -6132,12 +6132,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         method.setImpl[name] = "$$set" + upname + "Impl";
 
         members[setName].$$install = function () {
-          qx.core.Property.__installOptimizedSetter__P_12_10(clazz, name, "set");
+          qx.core.Property.__installOptimizedSetter__P_16_10(clazz, name, "set");
 
-          qx.core.Property.__installOptimizedSetter__P_12_10(clazz, name, "setImpl");
+          qx.core.Property.__installOptimizedSetter__P_16_10(clazz, name, "setImpl");
 
           if (config.async) {
-            qx.core.Property.__installOptimizedSetter__P_12_10(clazz, name, "setAsync");
+            qx.core.Property.__installOptimizedSetter__P_16_10(clazz, name, "setAsync");
           }
         };
 
@@ -6148,7 +6148,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         };
 
         members[method.reset[name]].$$install = function () {
-          qx.core.Property.__installOptimizedSetter__P_12_10(clazz, name, "reset");
+          qx.core.Property.__installOptimizedSetter__P_16_10(clazz, name, "reset");
         };
 
         if (config.inheritable || config.apply || config.event || config.deferredInit) {
@@ -6232,12 +6232,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param check {var} The check of the property definition.
        * @return {Boolean} If the dereference key should be set.
        */
-      __shouldBeDereferenced__P_12_8: function __shouldBeDereferenced__P_12_8(check) {
-        return !!this.__dereference__P_12_2[check];
+      __shouldBeDereferenced__P_16_8: function __shouldBeDereferenced__P_16_8(check) {
+        return !!this.__dereference__P_16_2[check];
       },
 
       /** @type {Map} Internal data field for error messages used by {@link #error} */
-      __errors__P_12_11: {
+      __errors__P_16_11: {
         0: 'Could not change or apply init value after constructing phase!',
         1: 'Requires exactly one argument!',
         2: 'Undefined value is not allowed!',
@@ -6258,7 +6258,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       error: function error(obj, id, property, variant, value) {
         var classname = obj.constructor.classname;
         var msg = "Error in property " + property + " of class " + classname + " in method " + this.$$method[variant][property] + " with incoming value '" + value + "': ";
-        throw new Error(msg + (this.__errors__P_12_11[id] || "Unknown reason: " + id));
+        throw new Error(msg + (this.__errors__P_16_11[id] || "Unknown reason: " + id));
       },
 
       /**
@@ -6273,8 +6273,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param args {arguments} Incoming arguments of wrapper method
        * @return {var} Return value of the generated function
        */
-      __unwrapFunctionFromCode__P_12_12: function __unwrapFunctionFromCode__P_12_12(instance, members, name, variant, code, args) {
-        var fn = this.__installFunctionFromCode__P_12_13(instance.constructor, name, variant, code, args); // Executing new function
+      __unwrapFunctionFromCode__P_16_12: function __unwrapFunctionFromCode__P_16_12(instance, members, name, variant, code, args) {
+        var fn = this.__installFunctionFromCode__P_16_13(instance.constructor, name, variant, code, args); // Executing new function
 
 
         if (args === undefined) {
@@ -6295,7 +6295,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param args {arguments} Incoming arguments of wrapper method
        * @return {var} Return value of the generated function
        */
-      __installFunctionFromCode__P_12_13: function __installFunctionFromCode__P_12_13(clazz, name, variant, code, args) {
+      __installFunctionFromCode__P_16_13: function __installFunctionFromCode__P_16_13(clazz, name, variant, code, args) {
         var store = this.$$method[variant][name]; // Output generate code
 
         {
@@ -6326,10 +6326,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {var} Execute return value of apply generated function, generally the incoming value
        */
       executeOptimizedGetter: function executeOptimizedGetter(instance, clazz, name, variant) {
-        var code = this.__compileGetter__P_12_14(clazz, name, variant);
+        var code = this.__compileGetter__P_16_14(clazz, name, variant);
 
         var members = clazz.prototype;
-        return this.__unwrapFunctionFromCode__P_12_12(instance, members, name, variant, code);
+        return this.__unwrapFunctionFromCode__P_16_12(instance, members, name, variant, code);
       },
 
       /**
@@ -6340,10 +6340,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param name {String} name of the property
        * @param variant {String} Method variant.
        */
-      __installOptimizedGetter__P_12_9: function __installOptimizedGetter__P_12_9(clazz, name, variant) {
-        var code = this.__compileGetter__P_12_14(clazz, name, variant);
+      __installOptimizedGetter__P_16_9: function __installOptimizedGetter__P_16_9(clazz, name, variant) {
+        var code = this.__compileGetter__P_16_14(clazz, name, variant);
 
-        this.__installFunctionFromCode__P_12_13(clazz, name, variant, code);
+        this.__installFunctionFromCode__P_16_13(clazz, name, variant, code);
       },
 
       /**
@@ -6355,7 +6355,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param variant {String} Method variant.
        * @return {String[]} the string builder array
        */
-      __compileGetter__P_12_14: function __compileGetter__P_12_14(clazz, name, variant) {
+      __compileGetter__P_16_14: function __compileGetter__P_16_14(clazz, name, variant) {
         var config = clazz.$$properties[name];
         var code = [];
         var store = this.$$store;
@@ -6422,10 +6422,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {var} Execute return value of apply generated function, generally the incoming value
        */
       executeOptimizedSetter: function executeOptimizedSetter(instance, clazz, name, variant, args) {
-        var code = this.__compileSetter__P_12_15(clazz, name, variant);
+        var code = this.__compileSetter__P_16_15(clazz, name, variant);
 
         var members = clazz.prototype;
-        return this.__unwrapFunctionFromCode__P_12_12(instance, members, name, variant, code, args);
+        return this.__unwrapFunctionFromCode__P_16_12(instance, members, name, variant, code, args);
       },
 
       /**
@@ -6437,10 +6437,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param variant {String} Method variant.
        * @return {var} Return value of the generated function
        */
-      __installOptimizedSetter__P_12_10: function __installOptimizedSetter__P_12_10(clazz, name, variant) {
-        var code = this.__compileSetter__P_12_15(clazz, name, variant);
+      __installOptimizedSetter__P_16_10: function __installOptimizedSetter__P_16_10(clazz, name, variant) {
+        var code = this.__compileSetter__P_16_15(clazz, name, variant);
 
-        return this.__installFunctionFromCode__P_12_13(clazz, name, variant, code);
+        return this.__installFunctionFromCode__P_16_13(clazz, name, variant, code);
       },
 
       /**
@@ -6453,7 +6453,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param variant {String} Method variant.
        * @return {String[]} the string builder array
        */
-      __compileSetter__P_12_15: function __compileSetter__P_12_15(clazz, name, variant) {
+      __compileSetter__P_16_15: function __compileSetter__P_16_15(clazz, name, variant) {
         var config = clazz.$$properties[name];
         var members = clazz.prototype;
         var code = [];
@@ -6470,22 +6470,22 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var incomingValue = variant === "setImpl" || variant === "setThemed" || variant === "setRuntime" || variant === "init" && config.init === undefined;
         var hasCallback = config.apply || config.event || config.inheritable;
 
-        var store = this.__getStore__P_12_16(variant, name);
+        var store = this.__getStore__P_16_16(variant, name);
 
-        this.__emitIsEqualFunction__P_12_17(code, clazz, config, name);
+        this.__emitIsEqualFunction__P_16_17(code, clazz, config, name);
 
-        this.__emitSetterPreConditions__P_12_18(code, config, name, variant, incomingValue);
+        this.__emitSetterPreConditions__P_16_18(code, config, name, variant, incomingValue);
 
         if (incomingValue || hasCallback) {
-          this.__emitOldValue__P_12_19(code, config, name);
+          this.__emitOldValue__P_16_19(code, config, name);
         }
 
         if (incomingValue) {
-          this.__emitIncomingValueTransformation__P_12_20(code, clazz, config, name);
+          this.__emitIncomingValueTransformation__P_16_20(code, clazz, config, name);
         }
 
         if (hasCallback) {
-          this.__emitOldNewComparison__P_12_21(code, incomingValue, store, variant);
+          this.__emitOldNewComparison__P_16_21(code, incomingValue, store, variant);
         }
 
         if (config.inheritable) {
@@ -6494,25 +6494,25 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         {
           if (incomingValue) {
-            this.__emitIncomingValueValidation__P_12_22(code, config, clazz, name, variant);
+            this.__emitIncomingValueValidation__P_16_22(code, config, clazz, name, variant);
           }
         }
 
         if (!hasCallback) {
-          this.__emitStoreValue__P_12_23(code, name, variant, incomingValue);
+          this.__emitStoreValue__P_16_23(code, name, variant, incomingValue);
         } else {
-          this.__emitStoreComputedValue__P_12_24(code, config, name, variant, incomingValue);
+          this.__emitStoreComputedValue__P_16_24(code, config, name, variant, incomingValue);
         }
 
         if (config.inheritable) {
-          this.__emitStoreInheritedPropertyValue__P_12_25(code, config, name, variant);
+          this.__emitStoreInheritedPropertyValue__P_16_25(code, config, name, variant);
         } else if (hasCallback) {
-          this.__emitNormalizeUndefinedValues__P_12_26(code, config, name, variant);
+          this.__emitNormalizeUndefinedValues__P_16_26(code, config, name, variant);
         }
 
         if (hasCallback) {
           // Emit callback and event firing; Refreshing children (5th parameter) requires the parent/children interface
-          this.__emitCallCallback__P_12_27(code, config, name, variant, !!(config.inheritable && members._getChildren));
+          this.__emitCallCallback__P_16_27(code, config, name, variant, !!(config.inheritable && members._getChildren));
         } // Return value
 
 
@@ -6544,7 +6544,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {Object} the value store
        */
-      __getStore__P_12_16: function __getStore__P_12_16(variant, name) {
+      __getStore__P_16_16: function __getStore__P_16_16(variant, name) {
         if (variant === "setRuntime" || variant === "resetRuntime") {
           var store = this.$$store.runtime[name];
         } else if (variant === "setThemed" || variant === "resetThemed") {
@@ -6566,7 +6566,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param config {Object} The property configuration map
        * @param name {String} name of the property
        */
-      __emitIsEqualFunction__P_12_17: function __emitIsEqualFunction__P_12_17(code, clazz, config, name) {
+      __emitIsEqualFunction__P_16_17: function __emitIsEqualFunction__P_16_17(code, clazz, config, name) {
         code.push('var equ=');
 
         if (typeof config.isEqual === "function") {
@@ -6596,7 +6596,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param variant {String} Method variant.
        * @param incomingValue {Boolean} Whether the setter has an incoming value
        */
-      __emitSetterPreConditions__P_12_18: function __emitSetterPreConditions__P_12_18(code, config, name, variant, incomingValue) {
+      __emitSetterPreConditions__P_16_18: function __emitSetterPreConditions__P_16_18(code, config, name, variant, incomingValue) {
         {
           code.push('var prop=qx.core.Property;');
 
@@ -6627,7 +6627,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param config {Object} The property configuration map
        * @param name {String} name of the property
        */
-      __emitIncomingValueTransformation__P_12_20: function __emitIncomingValueTransformation__P_12_20(code, clazz, config, name) {
+      __emitIncomingValueTransformation__P_16_20: function __emitIncomingValueTransformation__P_16_20(code, clazz, config, name) {
         // Call user-provided transform method, if one is provided.  Transform
         // method should either throw an error or return the new value.
         if (config.transform) {
@@ -6655,7 +6655,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param store {Object} The data store to use for the incoming value
        * @param variant {String} Method variant.
        */
-      __emitOldNewComparison__P_12_21: function __emitOldNewComparison__P_12_21(code, incomingValue, store, variant) {
+      __emitOldNewComparison__P_16_21: function __emitOldNewComparison__P_16_21(code, incomingValue, store, variant) {
         var resetValue = variant === "reset" || variant === "resetThemed" || variant === "resetRuntime";
 
         if (incomingValue) {
@@ -6676,7 +6676,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param name {String} name of the property
        * @param variant {String} Method variant.
        */
-      __emitIncomingValueValidation__P_12_22: function __emitIncomingValueValidation__P_12_22(code, config, clazz, name, variant) {
+      __emitIncomingValueValidation__P_16_22: function __emitIncomingValueValidation__P_16_22(code, config, clazz, name, variant) {
         // Null check
         if (!config.nullable) {
           code.push('if(value===null)prop.error(this,4,"', name, '","', variant, '",value);');
@@ -6697,8 +6697,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
           code.push('if(');
 
-          if (this.__checks__P_12_1[config.check] !== undefined) {
-            code.push('!(', this.__checks__P_12_1[config.check], ')');
+          if (this.__checks__P_16_1[config.check] !== undefined) {
+            code.push('!(', this.__checks__P_16_1[config.check], ')');
           } else if (qx.Class.isDefined(config.check)) {
             code.push('qx.core.Assert.assertInstance(value, qx.Class.getByName("', config.check, '"), msg)');
           } else if (qx.Interface && qx.Interface.isDefined(config.check)) {
@@ -6726,7 +6726,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param variant {String} Method variant.
        * @param incomingValue {Boolean} Whether the setter has an incoming value
        */
-      __emitStoreValue__P_12_23: function __emitStoreValue__P_12_23(code, name, variant, incomingValue) {
+      __emitStoreValue__P_16_23: function __emitStoreValue__P_16_23(code, name, variant, incomingValue) {
         if (variant === "setRuntime") {
           code.push('this.', this.$$store.runtime[name], '=value;');
         } else if (variant === "resetRuntime") {
@@ -6757,7 +6757,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param variant {String} Method variant.
        * @param incomingValue {Boolean} Whether the setter has an incoming value
        */
-      __emitStoreComputedValue__P_12_24: function __emitStoreComputedValue__P_12_24(code, config, name, variant, incomingValue) {
+      __emitStoreComputedValue__P_16_24: function __emitStoreComputedValue__P_16_24(code, config, name, variant, incomingValue) {
         code.push('var computed;'); // OLD = RUNTIME VALUE
 
         code.push('if(this.', this.$$store.runtime[name], '!==undefined){');
@@ -6932,7 +6932,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param config {Object} The property configuration map
        * @param name {String} name of the property
        */
-      __emitOldValue__P_12_19: function __emitOldValue__P_12_19(code, config, name) {
+      __emitOldValue__P_16_19: function __emitOldValue__P_16_19(code, config, name) {
         if (config.inheritable) {
           code.push('var old=this.', this.$$store.inherit[name], ';');
         } else {
@@ -6970,7 +6970,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param name {String} name of the property
        * @param variant {String} Method variant.
        */
-      __emitStoreInheritedPropertyValue__P_12_25: function __emitStoreInheritedPropertyValue__P_12_25(code, config, name, variant) {
+      __emitStoreInheritedPropertyValue__P_16_25: function __emitStoreInheritedPropertyValue__P_16_25(code, config, name, variant) {
         code.push('if(computed===undefined||computed===inherit){');
 
         if (variant === "refresh") {
@@ -7021,7 +7021,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param name {String} name of the property
        * @param variant {String} Method variant.
        */
-      __emitNormalizeUndefinedValues__P_12_26: function __emitNormalizeUndefinedValues__P_12_26(code, config, name, variant) {
+      __emitNormalizeUndefinedValues__P_16_26: function __emitNormalizeUndefinedValues__P_16_26(code, config, name, variant) {
         // Properties which are not inheritable have no possibility to get
         // undefined at this position. (Hint: set(), setRuntime() and setThemed() only allow non undefined values)
         if (variant !== "setImpl" && variant !== "setRuntime" && variant !== "setThemed") {
@@ -7047,7 +7047,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param variant {String} variant of the method e.g. setThemed
        * @param refresh {Boolean} if true, emit code to update the inherited values of child objects
        */
-      __emitCallCallback__P_12_27: function __emitCallCallback__P_12_27(code, config, name, variant, refresh) {
+      __emitCallCallback__P_16_27: function __emitCallCallback__P_16_27(code, config, name, variant, refresh) {
         // Execute user configured setter
         code.push("var self=this;", 'var promise;');
 
@@ -9262,12 +9262,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           while ((hit = lineRe.exec(error.stack)) != null) {
             url = hit[1];
             lineNumber = hit[2];
-            className = this.__fileNameToClassName__P_48_0(url);
+            className = this.__fileNameToClassName__P_27_0(url);
             trace.push(className + ":" + lineNumber);
           }
 
           if (trace.length > 0) {
-            return this.__formatStackTrace__P_48_1(trace);
+            return this.__formatStackTrace__P_27_1(trace);
           }
           /*
            * Chrome trace info comes in three flavors:
@@ -9285,13 +9285,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             var fileMatch = fileReParens.exec(hit[1]);
 
             if (fileMatch) {
-              className = this.__fileNameToClassName__P_48_0(fileMatch[2]);
+              className = this.__fileNameToClassName__P_27_0(fileMatch[2]);
               trace.push(className + fileMatch[3]);
             } else {
               fileMatch = fileRe.exec(hit[1]);
 
               if (fileMatch) {
-                className = this.__fileNameToClassName__P_48_0(fileMatch[1]);
+                className = this.__fileNameToClassName__P_27_0(fileMatch[1]);
                 trace.push(className + fileMatch[2]);
               } else {
                 trace.push(hit[1]);
@@ -9317,12 +9317,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             lineNumber = hit[1];
             columnNumber = hit[2];
             url = hit[3];
-            className = this.__fileNameToClassName__P_48_0(url);
+            className = this.__fileNameToClassName__P_27_0(url);
             trace.push(className + ":" + lineNumber + ":" + columnNumber);
           }
 
           if (trace.length > 0) {
-            return this.__formatStackTrace__P_48_1(trace);
+            return this.__formatStackTrace__P_27_1(trace);
           } // older Opera style
 
 
@@ -9331,7 +9331,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           while ((hit = lineRe.exec(stacktrace)) != null) {
             lineNumber = hit[1];
             url = hit[2];
-            className = this.__fileNameToClassName__P_48_0(url);
+            className = this.__fileNameToClassName__P_27_0(url);
             trace.push(className + ":" + lineNumber);
           }
         } else if (error.message && error.message.indexOf("Backtrace:") >= 0) {
@@ -9344,16 +9344,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
             if (reResult && reResult.length >= 2) {
               lineNumber = reResult[1];
-              fileName = this.__fileNameToClassName__P_48_0(reResult[2]);
+              fileName = this.__fileNameToClassName__P_27_0(reResult[2]);
               trace.push(fileName + ":" + lineNumber);
             }
           }
         } else if (error.sourceURL && error.line) {
           // Safari
-          trace.push(this.__fileNameToClassName__P_48_0(error.sourceURL) + ":" + error.line);
+          trace.push(this.__fileNameToClassName__P_27_0(error.sourceURL) + ":" + error.line);
         }
 
-        return this.__formatStackTrace__P_48_1(trace);
+        return this.__formatStackTrace__P_27_1(trace);
       },
 
       /**
@@ -9364,7 +9364,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param fileName {String} URL of the JavaScript file
        * @return {String} Result of the conversion
        */
-      __fileNameToClassName__P_48_0: function __fileNameToClassName__P_48_0(fileName) {
+      __fileNameToClassName__P_27_0: function __fileNameToClassName__P_27_0(fileName) {
         if (typeof qx.dev.StackTrace.FILENAME_TO_CLASSNAME == "function") {
           var convertedName = qx.dev.StackTrace.FILENAME_TO_CLASSNAME(fileName);
 
@@ -9375,7 +9375,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           return convertedName;
         }
 
-        return qx.dev.StackTrace.__fileNameToClassNameDefault__P_48_2(fileName);
+        return qx.dev.StackTrace.__fileNameToClassNameDefault__P_27_2(fileName);
       },
 
       /**
@@ -9386,7 +9386,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} class name of the file if conversion was possible.
        * Otherwise the fileName is returned unmodified.
        */
-      __fileNameToClassNameDefault__P_48_2: function __fileNameToClassNameDefault__P_48_2(fileName) {
+      __fileNameToClassNameDefault__P_27_2: function __fileNameToClassNameDefault__P_27_2(fileName) {
         var scriptDir = "/source/class/";
         var jsPos = fileName.indexOf(scriptDir);
 
@@ -9413,7 +9413,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param trace {String[]} Stack trace information
        * @return {String[]} Formatted stack trace info
        */
-      __formatStackTrace__P_48_1: function __formatStackTrace__P_48_1(trace) {
+      __formatStackTrace__P_27_1: function __formatStackTrace__P_27_1(trace) {
         if (typeof qx.dev.StackTrace.FORMAT_STACKTRACE == "function") {
           trace = qx.dev.StackTrace.FORMAT_STACKTRACE(trace); // Can't use qx.core.Assert here since it throws an AssertionError which
           // calls getStackTrace in its constructor, leading to infinite recursion
@@ -9490,17 +9490,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     },
     members: {
       //Next slot in ringbuffer to use
-      __nextIndexToStoreTo__P_112_0: 0,
+      __nextIndexToStoreTo__P_90_0: 0,
       //Number of elements in ring buffer
-      __entriesStored__P_112_1: 0,
+      __entriesStored__P_90_1: 0,
       //Was a mark set?
-      __isMarkActive__P_112_2: false,
+      __isMarkActive__P_90_2: false,
       //How many elements were stored since setting of mark?
-      __entriesStoredSinceMark__P_112_3: 0,
+      __entriesStoredSinceMark__P_90_3: 0,
       //ring buffer
-      __entries__P_112_4: null,
+      __entries__P_90_4: null,
       //Maximum number of messages to store. Could be converted to a qx property.
-      __maxEntries__P_112_5: null,
+      __maxEntries__P_90_5: null,
 
       /**
        * Set the maximum number of messages to hold. If null the number of
@@ -9511,7 +9511,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param maxEntries {Integer} the maximum number of messages to hold
        */
       setMaxEntries: function setMaxEntries(maxEntries) {
-        this.__maxEntries__P_112_5 = maxEntries;
+        this.__maxEntries__P_90_5 = maxEntries;
         this.clear();
       },
 
@@ -9521,7 +9521,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Integer}
        */
       getMaxEntries: function getMaxEntries() {
-        return this.__maxEntries__P_112_5;
+        return this.__maxEntries__P_90_5;
       },
 
       /**
@@ -9530,18 +9530,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param entry {var} The data to store
        */
       addEntry: function addEntry(entry) {
-        this.__entries__P_112_4[this.__nextIndexToStoreTo__P_112_0] = entry;
-        this.__nextIndexToStoreTo__P_112_0 = this.__addToIndex__P_112_6(this.__nextIndexToStoreTo__P_112_0, 1); //Count # of stored entries
+        this.__entries__P_90_4[this.__nextIndexToStoreTo__P_90_0] = entry;
+        this.__nextIndexToStoreTo__P_90_0 = this.__addToIndex__P_90_6(this.__nextIndexToStoreTo__P_90_0, 1); //Count # of stored entries
 
         var max = this.getMaxEntries();
 
-        if (this.__entriesStored__P_112_1 < max) {
-          this.__entriesStored__P_112_1++;
+        if (this.__entriesStored__P_90_1 < max) {
+          this.__entriesStored__P_90_1++;
         } //Count # of stored elements since last mark call
 
 
-        if (this.__isMarkActive__P_112_2 && this.__entriesStoredSinceMark__P_112_3 < max) {
-          this.__entriesStoredSinceMark__P_112_3++;
+        if (this.__isMarkActive__P_90_2 && this.__entriesStoredSinceMark__P_90_3 < max) {
+          this.__entriesStoredSinceMark__P_90_3++;
         }
       },
 
@@ -9550,7 +9550,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Integer}
        */
       getNumEntriesStored: function getNumEntriesStored() {
-        return this.__entriesStored__P_112_1;
+        return this.__entriesStored__P_90_1;
       },
 
       /**
@@ -9558,15 +9558,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        */
       mark: function mark() {
-        this.__isMarkActive__P_112_2 = true;
-        this.__entriesStoredSinceMark__P_112_3 = 0;
+        this.__isMarkActive__P_90_2 = true;
+        this.__entriesStoredSinceMark__P_90_3 = 0;
       },
 
       /**
        * Removes the current mark position
        */
       clearMark: function clearMark() {
-        this.__isMarkActive__P_112_2 = false;
+        this.__isMarkActive__P_90_2 = false;
       },
 
       /**
@@ -9590,29 +9590,29 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       getEntries: function getEntries(count, startingFromMark) {
         //Trim count so it does not exceed ringbuffer size
-        if (count > this.__entriesStored__P_112_1) {
-          count = this.__entriesStored__P_112_1;
+        if (count > this.__entriesStored__P_90_1) {
+          count = this.__entriesStored__P_90_1;
         } // Trim count so it does not exceed last call to mark (if mark was called
         // and startingFromMark was true)
 
 
-        if (startingFromMark && this.__isMarkActive__P_112_2 && count > this.__entriesStoredSinceMark__P_112_3) {
-          count = this.__entriesStoredSinceMark__P_112_3;
+        if (startingFromMark && this.__isMarkActive__P_90_2 && count > this.__entriesStoredSinceMark__P_90_3) {
+          count = this.__entriesStoredSinceMark__P_90_3;
         }
 
         if (count > 0) {
-          var indexOfYoungestElementInHistory = this.__addToIndex__P_112_6(this.__nextIndexToStoreTo__P_112_0, -1);
+          var indexOfYoungestElementInHistory = this.__addToIndex__P_90_6(this.__nextIndexToStoreTo__P_90_0, -1);
 
-          var startIndex = this.__addToIndex__P_112_6(indexOfYoungestElementInHistory, -count + 1);
+          var startIndex = this.__addToIndex__P_90_6(indexOfYoungestElementInHistory, -count + 1);
 
           var result;
 
           if (startIndex <= indexOfYoungestElementInHistory) {
             //Requested segment not wrapping around ringbuffer boundary, get in one run
-            result = this.__entries__P_112_4.slice(startIndex, indexOfYoungestElementInHistory + 1);
+            result = this.__entries__P_90_4.slice(startIndex, indexOfYoungestElementInHistory + 1);
           } else {
             //Requested segment wrapping around ringbuffer boundary, get two parts & concat
-            result = this.__entries__P_112_4.slice(startIndex, this.__entriesStored__P_112_1).concat(this.__entries__P_112_4.slice(0, indexOfYoungestElementInHistory + 1));
+            result = this.__entries__P_90_4.slice(startIndex, this.__entriesStored__P_90_1).concat(this.__entries__P_90_4.slice(0, indexOfYoungestElementInHistory + 1));
           }
         } else {
           result = [];
@@ -9625,10 +9625,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Clears all entries
        */
       clear: function clear() {
-        this.__entries__P_112_4 = new Array(this.getMaxEntries());
-        this.__entriesStored__P_112_1 = 0;
-        this.__entriesStoredSinceMark__P_112_3 = 0;
-        this.__nextIndexToStoreTo__P_112_0 = 0;
+        this.__entries__P_90_4 = new Array(this.getMaxEntries());
+        this.__entriesStored__P_90_1 = 0;
+        this.__entriesStoredSinceMark__P_90_3 = 0;
+        this.__nextIndexToStoreTo__P_90_0 = 0;
       },
 
       /**
@@ -9640,7 +9640,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param addMe {Number} The number to add.
        * @return {Number} The new index
        */
-      __addToIndex__P_112_6: function __addToIndex__P_112_6(idx, addMe) {
+      __addToIndex__P_90_6: function __addToIndex__P_90_6(idx, addMe) {
         var max = this.getMaxEntries();
         var result = (idx + addMe) % max; //If negative, wrap up into the ringbuffer space
 
@@ -9864,7 +9864,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         CONFIGURATION
       ---------------------------------------------------------------------------
       */
-      __level__P_18_0: "debug",
+      __level__P_4_0: "debug",
 
       /**
        * Configures the minimum log level required for new messages.
@@ -9872,7 +9872,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param value {String} One of "debug", "info", "warn" or "error".
        */
       setLevel: function setLevel(value) {
-        this.__level__P_18_0 = value;
+        this.__level__P_4_0 = value;
       },
 
       /**
@@ -9882,7 +9882,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Integer} Debug level
        */
       getLevel: function getLevel() {
-        return this.__level__P_18_0;
+        return this.__level__P_4_0;
       },
 
       /**
@@ -9891,7 +9891,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param value {Integer} Any positive integer
        */
       setTreshold: function setTreshold(value) {
-        this.__buffer__P_18_1.setMaxMessages(value);
+        this.__buffer__P_4_1.setMaxMessages(value);
       },
 
       /**
@@ -9901,7 +9901,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Integer} Treshold value
        */
       getTreshold: function getTreshold() {
-        return this.__buffer__P_18_1.getMaxMessages();
+        return this.__buffer__P_4_1.getMaxMessages();
       },
 
       /*
@@ -9911,16 +9911,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       */
 
       /** @type {Map} Map of all known appenders by ID */
-      __appenders__P_18_2: [],
+      __appenders__P_4_2: [],
 
       /** @type {Map} Map of all known appenders by name */
-      __appendersByName__P_18_3: {},
+      __appendersByName__P_4_3: {},
 
       /** @type {Array} Array of filters to apply when selecting appenders to append to */
-      __filters__P_18_4: [],
+      __filters__P_4_4: [],
 
       /** @type {Integer} Last free appender ID */
-      __id__P_18_5: 0,
+      __id__P_4_5: 0,
 
       /**
        * Registers the given appender and inserts the last cached messages.
@@ -9937,18 +9937,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // Register appender
 
 
-        var id = this.__id__P_18_5++;
+        var id = this.__id__P_4_5++;
         var appenderName = appender.appenderName || appender.classname;
-        this.__appenders__P_18_2[id] = appender;
-        this.__appendersByName__P_18_3[appenderName] = appender;
+        this.__appenders__P_4_2[id] = appender;
+        this.__appendersByName__P_4_3[appenderName] = appender;
         appender.$$id = id; // Insert previous messages
 
-        var entries = this.__buffer__P_18_1.getAllLogEvents();
+        var entries = this.__buffer__P_4_1.getAllLogEvents();
 
         for (var i = 0, l = entries.length; i < l; i++) {
           var entry = entries[i];
 
-          var appenders = this.__getAppenders__P_18_6(entry.loggerName, entry.level);
+          var appenders = this.__getAppenders__P_4_6(entry.loggerName, entry.level);
 
           if (appenders[appenderName]) {
             appender.process(entry);
@@ -9969,8 +9969,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
 
         var appenderName = appender.appenderName || appender.classname;
-        delete this.__appendersByName__P_18_3[appenderName];
-        delete this.__appenders__P_18_2[id];
+        delete this.__appendersByName__P_4_3[appenderName];
+        delete this.__appenders__P_4_2[id];
         delete appender.$$id;
       },
 
@@ -10022,9 +10022,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           logger = new RegExp(logger);
         }
 
-        this.__filters__P_18_4.push({
+        this.__filters__P_4_4.push({
           loggerMatch: logger,
-          level: level || this.__level__P_18_0,
+          level: level || this.__level__P_4_0,
           appenderName: appenderName
         });
       },
@@ -10033,7 +10033,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Reset all filters
        */
       resetFilters: function resetFilters() {
-        this.__filters__P_18_4 = [];
+        this.__filters__P_4_4 = [];
       },
 
       /*
@@ -10051,7 +10051,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   does not keep references to other objects.
        */
       debug: function debug(object, message) {
-        qx.log.Logger.__log__P_18_7("debug", arguments);
+        qx.log.Logger.__log__P_4_7("debug", arguments);
       },
 
       /**
@@ -10063,7 +10063,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   does not keep references to other objects.
        */
       info: function info(object, message) {
-        qx.log.Logger.__log__P_18_7("info", arguments);
+        qx.log.Logger.__log__P_4_7("info", arguments);
       },
 
       /**
@@ -10075,7 +10075,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   does not keep references to other objects.
        */
       warn: function warn(object, message) {
-        qx.log.Logger.__log__P_18_7("warn", arguments);
+        qx.log.Logger.__log__P_4_7("warn", arguments);
       },
 
       /**
@@ -10087,7 +10087,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   does not keep references to other objects.
        */
       error: function error(object, message) {
-        qx.log.Logger.__log__P_18_7("error", arguments);
+        qx.log.Logger.__log__P_4_7("error", arguments);
       },
 
       /**
@@ -10104,7 +10104,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           var args = qx.lang.Array.fromArguments(arguments);
           args.push(trace.join("\n"));
 
-          qx.log.Logger.__log__P_18_7("trace", args);
+          qx.log.Logger.__log__P_4_7("trace", args);
         }
       },
 
@@ -10228,7 +10228,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        */
       clear: function clear() {
-        this.__buffer__P_18_1.clearHistory();
+        this.__buffer__P_4_1.clearHistory();
       },
 
       /*
@@ -10238,10 +10238,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       */
 
       /** @type {qx.log.appender.RingBuffer} Message buffer of previously fired messages. */
-      __buffer__P_18_1: new qx.log.appender.RingBuffer(50),
+      __buffer__P_4_1: new qx.log.appender.RingBuffer(50),
 
       /** @type {Map} Numeric translation of log levels */
-      __levels__P_18_8: {
+      __levels__P_4_8: {
         trace: 0,
         debug: 1,
         info: 2,
@@ -10250,7 +10250,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       },
 
       /** @type {Map} cache of appenders for a given logger and level */
-      __appendersCache__P_18_9: {},
+      __appendersCache__P_4_9: {},
 
       /**
        * Detects the name of the logger to use for an object
@@ -10258,7 +10258,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param object {Object} Contextual object (either instance or static class)
        * @return {String} Logger name
        */
-      __getLoggerName__P_18_10: function __getLoggerName__P_18_10(object) {
+      __getLoggerName__P_4_10: function __getLoggerName__P_4_10(object) {
         if (object) {
           if (object.classname) {
             return object.classname;
@@ -10280,9 +10280,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} True if the logger is enabled
        */
       isLoggerEnabled: function isLoggerEnabled(level, object) {
-        var loggerName = this.__getLoggerName__P_18_10(object);
+        var loggerName = this.__getLoggerName__P_4_10(object);
 
-        var appenders = this.__getAppenders__P_18_6(loggerName, level);
+        var appenders = this.__getAppenders__P_4_6(loggerName, level);
 
         return !!Object.keys(appenders).length;
       },
@@ -10294,13 +10294,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param args {Array} List of other arguments, where the first is
        *   taken as the context object.
        */
-      __log__P_18_7: function __log__P_18_7(level, args) {
+      __log__P_4_7: function __log__P_4_7(level, args) {
         // Get object and determine appenders
         var object = args.length < 2 ? null : args[0];
 
-        var loggerName = this.__getLoggerName__P_18_10(object);
+        var loggerName = this.__getLoggerName__P_4_10(object);
 
-        var appenders = this.__getAppenders__P_18_6(loggerName, level);
+        var appenders = this.__getAppenders__P_4_6(loggerName, level);
 
         if (!Object.keys(appenders).length) {
           return;
@@ -10311,7 +10311,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var items = [];
 
         for (var i = start, l = args.length; i < l; i++) {
-          items.push(this.__serialize__P_18_11(args[i], true));
+          items.push(this.__serialize__P_4_11(args[i], true));
         } // Build entry
 
 
@@ -10338,7 +10338,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         }
 
-        this.__buffer__P_18_1.process(entry); // Send to appenders
+        this.__buffer__P_4_1.process(entry); // Send to appenders
 
 
         for (var classname in appenders) {
@@ -10353,21 +10353,21 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param level {String} the minimum logging level to use the appender
        * @return {Array} list of appenders
        */
-      __getAppenders__P_18_6: function __getAppenders__P_18_6(className, level) {
-        var levels = this.__levels__P_18_8; // If no filters, then all appenders apply
+      __getAppenders__P_4_6: function __getAppenders__P_4_6(className, level) {
+        var levels = this.__levels__P_4_8; // If no filters, then all appenders apply
 
-        if (!this.__filters__P_18_4.length) {
+        if (!this.__filters__P_4_4.length) {
           // Check the default level
-          if (levels[level] < levels[this.__level__P_18_0]) {
+          if (levels[level] < levels[this.__level__P_4_0]) {
             return [];
           }
 
-          return this.__appendersByName__P_18_3;
+          return this.__appendersByName__P_4_3;
         } // Check the cache
 
 
         var cacheId = className + "|" + level;
-        var appenders = this.__appendersCache__P_18_9[cacheId];
+        var appenders = this.__appendersCache__P_4_9[cacheId];
 
         if (appenders !== undefined) {
           return appenders;
@@ -10375,8 +10375,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         appenders = {};
 
-        for (var i = 0; i < this.__filters__P_18_4.length; i++) {
-          var filter = this.__filters__P_18_4[i]; // Filters only apply to certain levels
+        for (var i = 0; i < this.__filters__P_4_4.length; i++) {
+          var filter = this.__filters__P_4_4[i]; // Filters only apply to certain levels
 
           if (levels[level] < levels[filter.level]) {
             continue;
@@ -10390,14 +10390,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
           if (!filter.loggerMatch || filter.loggerMatch.test(className)) {
             if (filter.appenderName) {
-              appenders[filter.appenderName] = this.__appendersByName__P_18_3[filter.appenderName];
+              appenders[filter.appenderName] = this.__appendersByName__P_4_3[filter.appenderName];
             } else {
-              return this.__appendersCache__P_18_9[cacheId] = this.__appendersByName__P_18_3;
+              return this.__appendersCache__P_4_9[cacheId] = this.__appendersByName__P_4_3;
             }
           }
         }
 
-        return this.__appendersCache__P_18_9[cacheId] = appenders;
+        return this.__appendersCache__P_4_9[cacheId] = appenders;
       },
 
       /**
@@ -10409,7 +10409,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   "function", "array", "error", "map",
        *   "class", "instance", "node", "stringify", "unknown"
        */
-      __detect__P_18_12: function __detect__P_18_12(value) {
+      __detect__P_4_12: function __detect__P_4_12(value) {
         if (value === undefined) {
           return "undefined";
         } else if (value === null) {
@@ -10458,8 +10458,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Map} Contains the keys <code>type</code>, <code>text</code> and
        * <code>trace</code>.
        */
-      __serialize__P_18_11: function __serialize__P_18_11(value, deep) {
-        var type = this.__detect__P_18_12(value);
+      __serialize__P_4_11: function __serialize__P_4_11(value, deep) {
+        var type = this.__detect__P_4_12(value);
 
         var text = "unknown";
         var trace = [];
@@ -10519,7 +10519,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                   break;
                 }
 
-                text.push(this.__serialize__P_18_11(value[i], false));
+                text.push(this.__serialize__P_4_11(value[i], false));
               }
             } else {
               text = "[...(" + value.length + ")]";
@@ -10549,7 +10549,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
                 key = sorted[i];
-                temp = this.__serialize__P_18_11(value[key], false);
+                temp = this.__serialize__P_4_11(value[key], false);
                 temp.key = key;
                 text.push(temp);
               }
@@ -10577,7 +10577,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       var logs = qx.Bootstrap.$$logs;
 
       for (var i = 0; i < logs.length; i++) {
-        statics.__log__P_18_7(logs[i][0], logs[i][1]);
+        statics.__log__P_4_7(logs[i][0], logs[i][1]);
       }
 
       qx.Bootstrap.debug = statics.debug;
@@ -10629,7 +10629,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.Mixin.define("qx.core.MLogging", {
     members: {
       /** @type {Class} Pointer to the regular logger class */
-      __Logger__P_93_0: qx.log.Logger,
+      __Logger__P_107_0: qx.log.Logger,
 
       /**
        * Logs a debug message.
@@ -10639,7 +10639,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * logged.
        */
       debug: function debug(varargs) {
-        this.__logMessage__P_93_1("debug", arguments);
+        this.__logMessage__P_107_1("debug", arguments);
       },
 
       /**
@@ -10650,7 +10650,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * logged.
        */
       info: function info(varargs) {
-        this.__logMessage__P_93_1("info", arguments);
+        this.__logMessage__P_107_1("info", arguments);
       },
 
       /**
@@ -10661,7 +10661,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * logged.
        */
       warn: function warn(varargs) {
-        this.__logMessage__P_93_1("warn", arguments);
+        this.__logMessage__P_107_1("warn", arguments);
       },
 
       /**
@@ -10672,7 +10672,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * logged.
        */
       error: function error(varargs) {
-        this.__logMessage__P_93_1("error", arguments);
+        this.__logMessage__P_107_1("error", arguments);
       },
 
       /**
@@ -10683,7 +10683,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * logged.
        */
       trace: function trace(varargs) {
-        this.__logMessage__P_93_1("trace", arguments);
+        this.__logMessage__P_107_1("trace", arguments);
       },
 
       /**
@@ -10693,11 +10693,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param level {String} The log level of the message
        * @param varargs {arguments} Arguments list to be logged
        */
-      __logMessage__P_93_1: function __logMessage__P_93_1(level, varargs) {
+      __logMessage__P_107_1: function __logMessage__P_107_1(level, varargs) {
         var argumentsArray = qx.lang.Array.fromArguments(varargs);
         argumentsArray.unshift(this);
 
-        this.__Logger__P_93_0[level].apply(this.__Logger__P_93_0, argumentsArray);
+        this.__Logger__P_107_0[level].apply(this.__Logger__P_107_0, argumentsArray);
       }
     }
   });
@@ -11038,7 +11038,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var agent = window.navigator.userAgent;
         var version = "";
 
-        if (qx.bom.client.Engine.__isMshtml__P_34_0()) {
+        if (qx.bom.client.Engine.__isMshtml__P_38_0()) {
           var isTrident = /Trident\/([^\);]+)(\)|;)/.test(agent);
 
           if (/MSIE\s+([^\);]+)(\)|;)/.test(agent)) {
@@ -11061,7 +11061,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               version = match[1];
             }
           }
-        } else if (qx.bom.client.Engine.__isOpera__P_34_1()) {
+        } else if (qx.bom.client.Engine.__isOpera__P_38_1()) {
           // Opera has a special versioning scheme, where the second part is combined
           // e.g. 8.54 which should be handled like 8.5.4 to be compatible to the
           // common versioning system used by other browsers
@@ -11081,7 +11081,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
             }
           }
-        } else if (qx.bom.client.Engine.__isWebkit__P_34_2()) {
+        } else if (qx.bom.client.Engine.__isWebkit__P_38_2()) {
           if (/AppleWebKit\/([^ ]+)/.test(agent)) {
             version = RegExp.$1; // We need to filter these invalid characters
 
@@ -11091,7 +11091,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               version = version.slice(0, invalidCharacter.index);
             }
           }
-        } else if (qx.bom.client.Engine.__isGecko__P_34_3()) {
+        } else if (qx.bom.client.Engine.__isGecko__P_38_3()) {
           // Parse "rv" section in user agent string
           if (/rv\:([^\);]+)(\)|;)/.test(agent)) {
             version = RegExp.$1;
@@ -11119,13 +11119,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       getName: function getName() {
         var name;
 
-        if (qx.bom.client.Engine.__isMshtml__P_34_0()) {
+        if (qx.bom.client.Engine.__isMshtml__P_38_0()) {
           name = "mshtml";
-        } else if (qx.bom.client.Engine.__isOpera__P_34_1()) {
+        } else if (qx.bom.client.Engine.__isOpera__P_38_1()) {
           name = "opera";
-        } else if (qx.bom.client.Engine.__isWebkit__P_34_2()) {
+        } else if (qx.bom.client.Engine.__isWebkit__P_38_2()) {
           name = "webkit";
-        } else if (qx.bom.client.Engine.__isGecko__P_34_3()) {
+        } else if (qx.bom.client.Engine.__isGecko__P_38_3()) {
           name = "gecko";
         } else {
           // check for the fallback
@@ -11150,7 +11150,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {Boolean} true, if its opera (presto powered).
        */
-      __isOpera__P_34_1: function __isOpera__P_34_1() {
+      __isOpera__P_38_1: function __isOpera__P_38_1() {
         return window.opera && Object.prototype.toString.call(window.opera) == "[object Opera]";
       },
 
@@ -11158,7 +11158,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Internal helper for checking for webkit.
        * @return {Boolean} true, if its webkit.
        */
-      __isWebkit__P_34_2: function __isWebkit__P_34_2() {
+      __isWebkit__P_38_2: function __isWebkit__P_38_2() {
         return window.navigator.userAgent.indexOf("AppleWebKit/") != -1;
       },
 
@@ -11179,7 +11179,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {Boolean} true, if its gecko.
        */
-      __isGecko__P_34_3: function __isGecko__P_34_3() {
+      __isGecko__P_38_3: function __isGecko__P_38_3() {
         return (window.navigator.mozApps || window.navigator.buildID) && window.navigator.product === "Gecko" && window.navigator.userAgent.indexOf("Trident") == -1;
       },
 
@@ -11187,12 +11187,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Internal helper to check for MSHTML.
        * @return {Boolean} true, if its MSHTML.
        */
-      __isMshtml__P_34_0: function __isMshtml__P_34_0() {
+      __isMshtml__P_38_0: function __isMshtml__P_38_0() {
         if (window.navigator.cpuClass && (/MSIE\s+([^\);]+)(\)|;)/.test(window.navigator.userAgent) || /Trident\/\d+?\.\d+?/.test(window.navigator.userAgent))) {
           return true;
         }
 
-        if (qx.bom.client.Engine.__isWindowsPhone__P_34_4()) {
+        if (qx.bom.client.Engine.__isWindowsPhone__P_38_4()) {
           return true;
         }
 
@@ -11203,7 +11203,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Internal helper to check for Windows phone.
        * @return {Boolean} true, if its Windows phone.
        */
-      __isWindowsPhone__P_34_4: function __isWindowsPhone__P_34_4() {
+      __isWindowsPhone__P_38_4: function __isWindowsPhone__P_38_4() {
         return window.navigator.userAgent.indexOf("Windows Phone") > -1;
       }
     },
@@ -11302,7 +11302,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} The name of the current browser.
        */
       detectName: function detectName(agent) {
-        var reg = new RegExp("(" + qx.bom.client.Browser.__agents__P_35_0 + ")(/|)?([0-9]+\.[0-9])?");
+        var reg = new RegExp("(" + qx.bom.client.Browser.__agents__P_39_0 + ")(/|)?([0-9]+\.[0-9])?");
         var match = agent.match(reg);
 
         if (!match) {
@@ -11357,7 +11357,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       getVersion: function getVersion() {
         var agent = navigator.userAgent;
-        var reg = new RegExp("(" + qx.bom.client.Browser.__agents__P_35_0 + ")(/| )([0-9]+\.[0-9])");
+        var reg = new RegExp("(" + qx.bom.client.Browser.__agents__P_39_0 + ")(/| )([0-9]+\.[0-9])");
         var match = agent.match(reg);
 
         if (!match) {
@@ -11426,7 +11426,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * Internal helper map for picking the right browser names to check.
        */
-      __agents__P_35_0: {
+      __agents__P_39_0: {
         // Safari should be the last one to check, because some other Webkit-based browsers
         // use this identifier together with their own one.
         // "Version" is used in Safari 4 to define the Safari version. After "Safari" they place the
@@ -12027,15 +12027,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    */
   qx.Bootstrap.define("qx.event.GlobalError", {
     statics: {
-      __callback__P_51_0: null,
-      __originalOnError__P_51_1: null,
-      __context__P_51_2: null,
+      __callback__P_69_0: null,
+      __originalOnError__P_69_1: null,
+      __context__P_69_2: null,
 
       /**
        * Little helper to check if the global error handling is enabled.
        * @return {Boolean} <code>true</code>, if it is enabled.
        */
-      __isGlobalErrorHandlingEnabled__P_51_3: function __isGlobalErrorHandlingEnabled__P_51_3() {
+      __isGlobalErrorHandlingEnabled__P_69_3: function __isGlobalErrorHandlingEnabled__P_69_3() {
         if (qx.core && qx.core.Environment) {
           return qx.core.Environment.get("qx.globalErrorHandling");
         } else {
@@ -12051,36 +12051,36 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param context {Object?window} The "this" context of the callback function
        */
       setErrorHandler: function setErrorHandler(callback, context) {
-        this.__callback__P_51_0 = callback || null;
-        this.__context__P_51_2 = context || window;
+        this.__callback__P_69_0 = callback || null;
+        this.__context__P_69_2 = context || window;
 
-        if (this.__isGlobalErrorHandlingEnabled__P_51_3()) {
+        if (this.__isGlobalErrorHandlingEnabled__P_69_3()) {
           // wrap the original onerror
           if (callback && window.onerror) {
-            var wrappedHandler = qx.Bootstrap.bind(this.__onErrorWindow__P_51_4, this);
+            var wrappedHandler = qx.Bootstrap.bind(this.__onErrorWindow__P_69_4, this);
 
-            if (this.__originalOnError__P_51_1 == null) {
-              this.__originalOnError__P_51_1 = window.onerror;
+            if (this.__originalOnError__P_69_1 == null) {
+              this.__originalOnError__P_69_1 = window.onerror;
             }
 
             var self = this;
 
             window.onerror = function (msg, uri, lineNumber) {
-              self.__originalOnError__P_51_1(msg, uri, lineNumber);
+              self.__originalOnError__P_69_1(msg, uri, lineNumber);
 
               wrappedHandler(msg, uri, lineNumber);
             };
           }
 
           if (callback && !window.onerror) {
-            window.onerror = qx.Bootstrap.bind(this.__onErrorWindow__P_51_4, this);
+            window.onerror = qx.Bootstrap.bind(this.__onErrorWindow__P_69_4, this);
           } // reset
 
 
-          if (this.__callback__P_51_0 == null) {
-            if (this.__originalOnError__P_51_1 != null) {
-              window.onerror = this.__originalOnError__P_51_1;
-              this.__originalOnError__P_51_1 = null;
+          if (this.__callback__P_69_0 == null) {
+            if (this.__originalOnError__P_69_1 != null) {
+              window.onerror = this.__originalOnError__P_69_1;
+              this.__originalOnError__P_69_1 = null;
             } else {
               window.onerror = null;
             }
@@ -12099,8 +12099,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param columnNumber {Integer} column number of error
        * @param exception {Error} orginal error
        */
-      __onErrorWindow__P_51_4: function __onErrorWindow__P_51_4(msg, uri, lineNumber, columnNumber, exception) {
-        if (this.__callback__P_51_0) {
+      __onErrorWindow__P_69_4: function __onErrorWindow__P_69_4(msg, uri, lineNumber, columnNumber, exception) {
+        if (this.__callback__P_69_0) {
           this.handleError(new qx.core.WindowError(msg, uri, lineNumber, columnNumber, exception));
         }
       },
@@ -12113,10 +12113,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Function} The function wrapped with error handling code
        */
       observeMethod: function observeMethod(method) {
-        if (this.__isGlobalErrorHandlingEnabled__P_51_3()) {
+        if (this.__isGlobalErrorHandlingEnabled__P_69_3()) {
           var self = this;
           return function () {
-            if (!self.__callback__P_51_0) {
+            if (!self.__callback__P_69_0) {
               return method.apply(this, arguments);
             }
 
@@ -12137,8 +12137,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param ex {qx.core.WindowError|Error} Exception to delegate
        */
       handleError: function handleError(ex) {
-        if (this.__callback__P_51_0) {
-          this.__callback__P_51_0.call(this.__context__P_51_2, ex);
+        if (this.__callback__P_69_0) {
+          this.__callback__P_69_0.call(this.__context__P_69_2, ex);
         }
       }
     },
@@ -12250,9 +12250,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      */
     construct: function construct(win, registration) {
       // Assign window object
-      this.__window__P_71_0 = win;
-      this.__windowId__P_71_1 = qx.core.ObjectRegistry.toHashCode(win);
-      this.__registration__P_71_2 = registration; // Register to the page unload event.
+      this.__window__P_87_0 = win;
+      this.__windowId__P_87_1 = qx.core.ObjectRegistry.toHashCode(win);
+      this.__registration__P_87_2 = registration; // Register to the page unload event.
       // Only for iframes and other secondary documents.
 
       if (win.qx !== qx) {
@@ -12271,15 +12271,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       } // Registry for event listeners
 
 
-      this.__listeners__P_71_3 = {}; // The handler and dispatcher instances
+      this.__listeners__P_87_3 = {}; // The handler and dispatcher instances
 
-      this.__handlers__P_71_4 = {};
-      this.__dispatchers__P_71_5 = {};
-      this.__handlerCache__P_71_6 = {};
-      this.__clearBlackList__P_71_7 = new qx.util.DeferredCall(function () {
-        this.__blacklist__P_71_8 = null;
+      this.__handlers__P_87_4 = {};
+      this.__dispatchers__P_87_5 = {};
+      this.__handlerCache__P_87_6 = {};
+      this.__clearBlackList__P_87_7 = new qx.util.DeferredCall(function () {
+        this.__blacklist__P_87_8 = null;
       }, this);
-      this.__clearBlackList__P_71_7.$$blackListCleaner = true;
+      this.__clearBlackList__P_87_7.$$blackListCleaner = true;
     },
 
     /*
@@ -12289,7 +12289,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     */
     statics: {
       /** @type {Integer} Last used ID for an event */
-      __lastUnique__P_71_9: 0,
+      __lastUnique__P_87_9: 0,
 
       /**
        * Returns an unique ID which may be used in combination with a target and
@@ -12298,13 +12298,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} The next free identifier (auto-incremented)
        */
       getNextUniqueId: function getNextUniqueId() {
-        return this.__lastUnique__P_71_9++ + "";
+        return this.__lastUnique__P_87_9++ + "";
       },
 
       /**
        * @type {Array} private list of global event monitor functions
        */
-      __globalEventMonitors__P_71_10: [],
+      __globalEventMonitors__P_87_10: [],
 
       /**
        * Adds a global event monitor function which is called for each event fired
@@ -12320,7 +12320,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         qx.core.Assert.assertFunction(fn);
         fn.$$context = context;
 
-        this.__globalEventMonitors__P_71_10.push(fn);
+        this.__globalEventMonitors__P_87_10.push(fn);
       },
 
       /**
@@ -12330,14 +12330,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       removeGlobalEventMonitor: function removeGlobalEventMonitor(fn) {
         qx.core.Assert.assertFunction(fn);
-        qx.lang.Array.remove(this.__globalEventMonitors__P_71_10, fn);
+        qx.lang.Array.remove(this.__globalEventMonitors__P_87_10, fn);
       },
 
       /**
        * Remove all registered event monitors
        */
       resetGlobalEventMonitors: function resetGlobalEventMonitors() {
-        qx.event.Manager.__globalEventMonitors__P_71_10 = [];
+        qx.event.Manager.__globalEventMonitors__P_87_10 = [];
       },
 
       /**
@@ -12348,7 +12348,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Function?} the global monitor function
        */
       getGlobalEventMonitor: function getGlobalEventMonitor() {
-        return this.__globalEventMonitors__P_71_10[0];
+        return this.__globalEventMonitors__P_87_10[0];
       },
 
       /**
@@ -12361,7 +12361,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       setGlobalEventMonitor: function setGlobalEventMonitor(fn) {
         qx.core.Assert.assertFunction(fn);
-        this.__globalEventMonitors__P_71_10[0] = fn;
+        this.__globalEventMonitors__P_87_10[0] = fn;
       }
     },
 
@@ -12371,16 +12371,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __registration__P_71_2: null,
-      __listeners__P_71_3: null,
-      __dispatchers__P_71_5: null,
-      __disposeWrapper__P_71_11: null,
-      __handlers__P_71_4: null,
-      __handlerCache__P_71_6: null,
-      __window__P_71_0: null,
-      __windowId__P_71_1: null,
-      __blacklist__P_71_8: null,
-      __clearBlackList__P_71_7: null,
+      __registration__P_87_2: null,
+      __listeners__P_87_3: null,
+      __dispatchers__P_87_5: null,
+      __disposeWrapper__P_87_11: null,
+      __handlers__P_87_4: null,
+      __handlerCache__P_87_6: null,
+      __window__P_87_0: null,
+      __windowId__P_87_1: null,
+      __blacklist__P_87_8: null,
+      __clearBlackList__P_87_7: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -12394,7 +12394,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Window} DOM window instance
        */
       getWindow: function getWindow() {
-        return this.__window__P_71_0;
+        return this.__window__P_87_0;
       },
 
       /**
@@ -12403,7 +12403,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} The window's hashcode
        */
       getWindowId: function getWindowId() {
-        return this.__windowId__P_71_1;
+        return this.__windowId__P_87_1;
       },
 
       /**
@@ -12413,13 +12413,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Object} The instance used by this manager
        */
       getHandler: function getHandler(clazz) {
-        var handler = this.__handlers__P_71_4[clazz.classname];
+        var handler = this.__handlers__P_87_4[clazz.classname];
 
         if (handler) {
           return handler;
         }
 
-        return this.__handlers__P_71_4[clazz.classname] = new clazz(this);
+        return this.__handlers__P_87_4[clazz.classname] = new clazz(this);
       },
 
       /**
@@ -12429,13 +12429,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Object} The instance used by this manager
        */
       getDispatcher: function getDispatcher(clazz) {
-        var dispatcher = this.__dispatchers__P_71_5[clazz.classname];
+        var dispatcher = this.__dispatchers__P_87_5[clazz.classname];
 
         if (dispatcher) {
           return dispatcher;
         }
 
-        return this.__dispatchers__P_71_5[clazz.classname] = new clazz(this, this.__registration__P_71_2);
+        return this.__dispatchers__P_87_5[clazz.classname] = new clazz(this, this.__registration__P_87_2);
       },
 
       /*
@@ -12460,7 +12460,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       getListeners: function getListeners(target, type, capture) {
         var targetKey = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var targetMap = this.__listeners__P_71_3[targetKey];
+        var targetMap = this.__listeners__P_87_3[targetKey];
 
         if (!targetMap) {
           return null;
@@ -12479,7 +12479,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Map} All registered listeners. The key is the hash code form an object.
        */
       getAllListeners: function getAllListeners() {
-        return this.__listeners__P_71_3;
+        return this.__listeners__P_87_3;
       },
 
       /**
@@ -12491,7 +12491,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       serializeListeners: function serializeListeners(target) {
         var targetKey = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var targetMap = this.__listeners__P_71_3[targetKey];
+        var targetMap = this.__listeners__P_87_3[targetKey];
         var result = [];
 
         if (targetMap) {
@@ -12533,7 +12533,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       toggleAttachedEvents: function toggleAttachedEvents(target, enable) {
         var targetKey = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var targetMap = this.__listeners__P_71_3[targetKey];
+        var targetMap = this.__listeners__P_87_3[targetKey];
 
         if (targetMap) {
           var indexOf, type, capture, entryList;
@@ -12546,9 +12546,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             entryList = targetMap[entryKey];
 
             if (enable) {
-              this.__registerAtHandler__P_71_12(target, type, capture);
+              this.__registerAtHandler__P_87_12(target, type, capture);
             } else {
-              this.__unregisterAtHandler__P_71_13(target, type, capture);
+              this.__unregisterAtHandler__P_87_13(target, type, capture);
             }
           }
         }
@@ -12572,7 +12572,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         }
         var targetKey = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var targetMap = this.__listeners__P_71_3[targetKey];
+        var targetMap = this.__listeners__P_87_3[targetKey];
 
         if (!targetMap) {
           return false;
@@ -12606,7 +12606,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         }
         var targetKey = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var targetMap = this.__listeners__P_71_3[targetKey] = {};
+        var targetMap = this.__listeners__P_87_3[targetKey] = {};
         var clazz = qx.event.Manager;
 
         for (var listKey in list) {
@@ -12619,14 +12619,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             // Inform the event handler about the new event
             // they perform the event registration at DOM level if needed
 
-            this.__registerAtHandler__P_71_12(target, item.type, item.capture);
+            this.__registerAtHandler__P_87_12(target, item.type, item.capture);
           } // Append listener to list
 
 
           entryList.push({
             handler: item.listener,
             context: item.self,
-            unique: item.unique || clazz.__lastUnique__P_71_9++ + ""
+            unique: item.unique || clazz.__lastUnique__P_87_9++ + ""
           });
         }
       },
@@ -12663,10 +12663,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         }
         var targetKey = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var targetMap = this.__listeners__P_71_3[targetKey];
+        var targetMap = this.__listeners__P_87_3[targetKey];
 
         if (!targetMap) {
-          targetMap = this.__listeners__P_71_3[targetKey] = {};
+          targetMap = this.__listeners__P_87_3[targetKey] = {};
         }
 
         var entryKey = type + (capture ? "|capture" : "|bubble");
@@ -12680,11 +12680,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
         if (entryList.length === 0) {
-          this.__registerAtHandler__P_71_12(target, type, capture);
+          this.__registerAtHandler__P_87_12(target, type, capture);
         } // Append listener to list
 
 
-        var unique = qx.event.Manager.__lastUnique__P_71_9++ + "";
+        var unique = qx.event.Manager.__lastUnique__P_87_9++ + "";
         var entry = {
           handler: listener,
           context: self,
@@ -12718,7 +12718,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // Please note:
         // Identical operator does not work in IE (as of version 7) because
         // document.parentWindow is not identical to window. Crazy stuff.
-        else if (target == this.__window__P_71_0) {
+        else if (target == this.__window__P_87_0) {
           isWindow = true;
           key = "WIN_" + type;
         } else if (target.classname) {
@@ -12728,13 +12728,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           key = "UNKNOWN_" + target + "_" + type;
         }
 
-        var cache = this.__handlerCache__P_71_6;
+        var cache = this.__handlerCache__P_87_6;
 
         if (cache[key]) {
           return cache[key];
         }
 
-        var classes = this.__registration__P_71_2.getHandlers();
+        var classes = this.__registration__P_87_2.getHandlers();
 
         var IEventHandler = qx.event.IEventHandler;
         var clazz, instance, supportedTypes, targetCheck;
@@ -12791,7 +12791,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *         capturing phase or the bubbling phase of the event.
        * @throws {Error} if there is no handler for the event
        */
-      __registerAtHandler__P_71_12: function __registerAtHandler__P_71_12(target, type, capture) {
+      __registerAtHandler__P_87_12: function __registerAtHandler__P_87_12(target, type, capture) {
         var handler = this.findHandler(target, type);
 
         if (handler) {
@@ -12833,7 +12833,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         }
         var targetKey = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var targetMap = this.__listeners__P_71_3[targetKey];
+        var targetMap = this.__listeners__P_87_3[targetKey];
 
         if (!targetMap) {
           return false;
@@ -12854,10 +12854,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           if (entry.handler === listener && entry.context === self) {
             qx.lang.Array.removeAt(entryList, i);
 
-            this.__addToBlacklist__P_71_14(entry.unique);
+            this.__addToBlacklist__P_87_14(entry.unique);
 
             if (entryList.length == 0) {
-              this.__unregisterAtHandler__P_71_13(target, type, capture);
+              this.__unregisterAtHandler__P_87_13(target, type, capture);
             }
 
             return true;
@@ -12887,7 +12887,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         var unique = split[2];
         var targetKey = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var targetMap = this.__listeners__P_71_3[targetKey];
+        var targetMap = this.__listeners__P_87_3[targetKey];
 
         if (!targetMap) {
           return false;
@@ -12908,10 +12908,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           if (entry.unique === unique) {
             qx.lang.Array.removeAt(entryList, i);
 
-            this.__addToBlacklist__P_71_14(entry.unique);
+            this.__addToBlacklist__P_87_14(entry.unique);
 
             if (entryList.length == 0) {
-              this.__unregisterAtHandler__P_71_13(target, type, capture);
+              this.__unregisterAtHandler__P_87_13(target, type, capture);
             }
 
             return true;
@@ -12929,7 +12929,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       removeAllListeners: function removeAllListeners(target) {
         var targetKey = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var targetMap = this.__listeners__P_71_3[targetKey];
+        var targetMap = this.__listeners__P_87_3[targetKey];
 
         if (!targetMap) {
           return false;
@@ -12943,16 +12943,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             // This is quite expensive, see bug #1283
             split = entryKey.split("|");
             targetMap[entryKey].forEach(function (entry) {
-              this.__addToBlacklist__P_71_14(entry.unique);
+              this.__addToBlacklist__P_87_14(entry.unique);
             }, this);
             type = split[0];
             capture = split[1] === "capture";
 
-            this.__unregisterAtHandler__P_71_13(target, type, capture);
+            this.__unregisterAtHandler__P_87_13(target, type, capture);
           }
         }
 
-        delete this.__listeners__P_71_3[targetKey];
+        delete this.__listeners__P_87_3[targetKey];
         return true;
       },
 
@@ -12966,7 +12966,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @internal
        */
       deleteAllListeners: function deleteAllListeners(targetKey) {
-        delete this.__listeners__P_71_3[targetKey];
+        delete this.__listeners__P_87_3[targetKey];
       },
 
       /**
@@ -12980,7 +12980,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *         capturing phase or the bubbling phase of the event.
        * @throws {Error} if there is no handler for the event
        */
-      __unregisterAtHandler__P_71_13: function __unregisterAtHandler__P_71_13(target, type, capture) {
+      __unregisterAtHandler__P_87_13: function __unregisterAtHandler__P_87_13(target, type, capture) {
         var handler = this.findHandler(target, type);
 
         if (handler) {
@@ -13021,7 +13021,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           qx.core.Assert.assertInstance(event, qx.event.type.Event, msg + "Invalid event object.");
         } // Show the decentrally fired events to one or more global monitor functions
 
-        var monitors = qx.event.Manager.__globalEventMonitors__P_71_10;
+        var monitors = qx.event.Manager.__globalEventMonitors__P_87_10;
 
         if (monitors.length) {
           for (var i = 0; i < monitors.length; i++) {
@@ -13055,7 +13055,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // Interacion data
 
 
-        var classes = this.__registration__P_71_2.getDispatchers();
+        var classes = this.__registration__P_87_2.getDispatchers();
 
         var instance; // Loop through the dispatchers
 
@@ -13093,13 +13093,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       dispose: function dispose() {
         // Remove from manager list
-        this.__registration__P_71_2.removeManager(this);
+        this.__registration__P_87_2.removeManager(this);
 
-        qx.util.DisposeUtil.disposeMap(this, "__handlers__P_71_4");
-        qx.util.DisposeUtil.disposeMap(this, "__dispatchers__P_71_5"); // Dispose data fields
+        qx.util.DisposeUtil.disposeMap(this, "__handlers__P_87_4");
+        qx.util.DisposeUtil.disposeMap(this, "__dispatchers__P_87_5"); // Dispose data fields
 
-        this.__listeners__P_71_3 = this.__window__P_71_0 = this.__disposeWrapper__P_71_11 = null;
-        this.__registration__P_71_2 = this.__handlerCache__P_71_6 = null;
+        this.__listeners__P_87_3 = this.__window__P_87_0 = this.__disposeWrapper__P_87_11 = null;
+        this.__registration__P_87_2 = this.__handlerCache__P_87_6 = null;
       },
 
       /**
@@ -13107,14 +13107,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @param uid {number} unique event id
        */
-      __addToBlacklist__P_71_14: function __addToBlacklist__P_71_14(uid) {
-        if (this.__blacklist__P_71_8 === null) {
-          this.__blacklist__P_71_8 = {};
+      __addToBlacklist__P_87_14: function __addToBlacklist__P_87_14(uid) {
+        if (this.__blacklist__P_87_8 === null) {
+          this.__blacklist__P_87_8 = {};
 
-          this.__clearBlackList__P_71_7.schedule();
+          this.__clearBlackList__P_87_7.schedule();
         }
 
-        this.__blacklist__P_71_8[uid] = true;
+        this.__blacklist__P_87_8[uid] = true;
       },
 
       /**
@@ -13124,7 +13124,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {boolean}
        */
       isBlacklisted: function isBlacklisted(uid) {
-        return this.__blacklist__P_71_8 !== null && this.__blacklist__P_71_8[uid] === true;
+        return this.__blacklist__P_87_8 !== null && this.__blacklist__P_87_8[uid] === true;
       }
     }
   });
@@ -14627,7 +14627,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Static list of all instantiated event managers. The key is the qooxdoo
        * hash value of the corresponding window
        */
-      __managers__P_23_0: {},
+      __managers__P_26_0: {},
 
       /**
        * Get an instance of the event manager, which can handle events for the
@@ -14650,11 +14650,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
 
         var hash = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var manager = this.__managers__P_23_0[hash];
+        var manager = this.__managers__P_26_0[hash];
 
         if (!manager) {
           manager = new qx.event.Manager(target, this);
-          this.__managers__P_23_0[hash] = manager;
+          this.__managers__P_26_0[hash] = manager;
         }
 
         return manager;
@@ -14670,7 +14670,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       removeManager: function removeManager(mgr) {
         var id = mgr.getWindowId();
-        delete this.__managers__P_23_0[id];
+        delete this.__managers__P_26_0[id];
       },
 
       /**
@@ -14844,7 +14844,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Event} the event
        * @see #createEvent
        */
-      __fireEvent__P_23_1: function __fireEvent__P_23_1(target, type, clazz, args) {
+      __fireEvent__P_26_1: function __fireEvent__P_26_1(target, type, clazz, args) {
         {
           if (arguments.length > 2 && clazz === undefined && args !== undefined) {
             throw new Error("Create event of type " + type + " with undefined class. Please use null to explicit fallback to default event type!");
@@ -14933,7 +14933,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Event} the event
        * @see #createEvent
        */
-      __fireNonBubblingEvent__P_23_2: function __fireNonBubblingEvent__P_23_2(target, type, clazz, args) {
+      __fireNonBubblingEvent__P_26_2: function __fireNonBubblingEvent__P_26_2(target, type, clazz, args) {
         {
           if (arguments.length > 2 && clazz === undefined && args !== undefined) {
             throw new Error("Create event of type " + type + " with undefined class. Please use null to explicit fallback to default event type!");
@@ -14965,7 +14965,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @see #createEvent
        */
       fireNonBubblingEvent: function fireNonBubblingEvent(target, type, clazz, args) {
-        var evt = this.__fireNonBubblingEvent__P_23_2.apply(this, arguments);
+        var evt = this.__fireNonBubblingEvent__P_26_2.apply(this, arguments);
 
         if (evt === null) {
           return true;
@@ -14989,7 +14989,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @see #createEvent
        */
       fireNonBubblingEventAsync: function fireNonBubblingEventAsync(target, type, clazz, args) {
-        var evt = this.__fireNonBubblingEvent__P_23_2.apply(this, arguments);
+        var evt = this.__fireNonBubblingEvent__P_26_2.apply(this, arguments);
 
         if (evt === null) {
           return qx.Promise.resolve(true);
@@ -15020,7 +15020,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       */
 
       /** @type {Array} Contains all known event handlers */
-      __handlers__P_23_3: [],
+      __handlers__P_26_3: [],
 
       /**
        * Register an event handler.
@@ -15033,10 +15033,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           qx.core.Assert.assertInterface(handler, qx.event.IEventHandler, "Invalid event handler.");
         } // Append to list
 
-        this.__handlers__P_23_3.push(handler); // Re-sort list
+        this.__handlers__P_26_3.push(handler); // Re-sort list
 
 
-        this.__handlers__P_23_3.sort(function (a, b) {
+        this.__handlers__P_26_3.sort(function (a, b) {
           return a.PRIORITY - b.PRIORITY;
         });
       },
@@ -15047,7 +15047,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.event.IEventHandler[]} registered event handlers
        */
       getHandlers: function getHandlers() {
-        return this.__handlers__P_23_3;
+        return this.__handlers__P_26_3;
       },
 
       /*
@@ -15057,7 +15057,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       */
 
       /** @type {Array} Contains all known event dispatchers */
-      __dispatchers__P_23_4: [],
+      __dispatchers__P_26_4: [],
 
       /**
        * Register an event dispatcher.
@@ -15074,10 +15074,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           qx.core.Assert.assertInterface(dispatcher, qx.event.IEventDispatcher, "Invalid event dispatcher!");
         } // Append to list
 
-        this.__dispatchers__P_23_4.push(dispatcher); // Re-sort list
+        this.__dispatchers__P_26_4.push(dispatcher); // Re-sort list
 
 
-        this.__dispatchers__P_23_4.sort(function (a, b) {
+        this.__dispatchers__P_26_4.sort(function (a, b) {
           return a.PRIORITY - b.PRIORITY;
         });
       },
@@ -15088,7 +15088,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.event.IEventDispatcher[]} all registered event dispatcher
        */
       getDispatchers: function getDispatchers() {
-        return this.__dispatchers__P_23_4;
+        return this.__dispatchers__P_26_4;
       }
     }
   });
@@ -15141,7 +15141,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.Mixin.define("qx.core.MEvent", {
     members: {
       /** @type {Class} Pointer to the regular event registration class */
-      __Registration__P_94_0: qx.event.Registration,
+      __Registration__P_108_0: qx.event.Registration,
 
       /**
        * Add event listener to this object.
@@ -15161,7 +15161,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       addListener: function addListener(type, listener, self, capture) {
         if (!this.$$disposed) {
-          return this.__Registration__P_94_0.addListener(this, type, listener, self, capture);
+          return this.__Registration__P_108_0.addListener(this, type, listener, self, capture);
         }
 
         return null;
@@ -15225,7 +15225,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             listener = callback;
           }
 
-          return this.__Registration__P_94_0.removeListener(this, type, listener, self, capture);
+          return this.__Registration__P_108_0.removeListener(this, type, listener, self, capture);
         }
 
         return false;
@@ -15240,7 +15240,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       removeListenerById: function removeListenerById(id) {
         if (!this.$$disposed) {
-          return this.__Registration__P_94_0.removeListenerById(this, id);
+          return this.__Registration__P_108_0.removeListenerById(this, id);
         }
 
         return false;
@@ -15255,7 +15255,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} Whether the object has a listener of the given type.
        */
       hasListener: function hasListener(type, capture) {
-        return this.__Registration__P_94_0.hasListener(this, type, capture);
+        return this.__Registration__P_108_0.hasListener(this, type, capture);
       },
 
       /**
@@ -15267,7 +15267,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       dispatchEvent: function dispatchEvent(evt) {
         if (!this.$$disposed) {
-          return this.__Registration__P_94_0.dispatchEvent(this, evt);
+          return this.__Registration__P_108_0.dispatchEvent(this, evt);
         }
 
         return true;
@@ -15285,7 +15285,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       fireEvent: function fireEvent(type, clazz, args) {
         if (!this.$$disposed) {
-          return this.__Registration__P_94_0.fireEvent(this, type, clazz, args);
+          return this.__Registration__P_108_0.fireEvent(this, type, clazz, args);
         }
 
         return true;
@@ -15304,7 +15304,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       fireEventAsync: function fireEventAsync(type, clazz, args) {
         if (!this.$$disposed) {
-          return this.__Registration__P_94_0.fireEventAsync(this, type, clazz, args);
+          return this.__Registration__P_108_0.fireEventAsync(this, type, clazz, args);
         }
 
         return qx.Promise.resolve(true);
@@ -15324,7 +15324,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       fireNonBubblingEvent: function fireNonBubblingEvent(type, clazz, args) {
         if (!this.$$disposed) {
-          return this.__Registration__P_94_0.fireNonBubblingEvent(this, type, clazz, args);
+          return this.__Registration__P_108_0.fireNonBubblingEvent(this, type, clazz, args);
         }
 
         return true;
@@ -15346,7 +15346,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       fireNonBubblingEventAsync: function fireNonBubblingEventAsync(type, clazz, args) {
         if (!this.$$disposed) {
-          return this.__Registration__P_94_0.fireNonBubblingEventAsync(this, type, clazz, args);
+          return this.__Registration__P_108_0.fireNonBubblingEventAsync(this, type, clazz, args);
         }
 
         return qx.Promise.resolve(true);
@@ -15373,7 +15373,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             oldData = null;
           }
 
-          return this.__Registration__P_94_0.fireEvent(this, type, qx.event.type.Data, [data, oldData, !!cancelable]);
+          return this.__Registration__P_108_0.fireEvent(this, type, qx.event.type.Data, [data, oldData, !!cancelable]);
         }
 
         return true;
@@ -15401,7 +15401,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             oldData = null;
           }
 
-          return this.__Registration__P_94_0.fireEventAsync(this, type, qx.event.type.Data, [data, oldData, !!cancelable]);
+          return this.__Registration__P_108_0.fireEventAsync(this, type, qx.event.type.Data, [data, oldData, !!cancelable]);
         }
 
         return qx.Promise.resolve(true);
@@ -15629,14 +15629,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      * ****************************************************************************
      */
     members: {
-      __ownedQxObjects__P_95_0: null,
-      __changingQxOwner__P_95_1: false,
+      __ownedQxObjects__P_109_0: null,
+      __changingQxOwner__P_109_1: false,
 
       /**
        * Apply owner
        */
       _applyQxOwner: function _applyQxOwner(value, oldValue) {
-        if (!this.__changingQxOwner__P_95_1) {
+        if (!this.__changingQxOwner__P_109_1) {
           throw new Error("Please use API methods to change owner, not the property");
         }
       },
@@ -15645,11 +15645,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Apply objectId
        */
       _applyQxObjectId: function _applyQxObjectId(value, oldValue) {
-        if (!this.__changingQxOwner__P_95_1) {
+        if (!this.__changingQxOwner__P_109_1) {
           var owner = this.getQxOwner();
 
           if (owner) {
-            owner.__onOwnedObjectIdChange__P_95_2(this, value, oldValue);
+            owner.__onOwnedObjectIdChange__P_109_2(this, value, oldValue);
           }
 
           this._cascadeQxObjectIdChanges();
@@ -15659,9 +15659,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * Called when a child's objectId changes
        */
-      __onOwnedObjectIdChange__P_95_2: function __onOwnedObjectIdChange__P_95_2(obj, newId, oldId) {
-        delete this.__ownedQxObjects__P_95_0[oldId];
-        this.__ownedQxObjects__P_95_0[newId] = obj;
+      __onOwnedObjectIdChange__P_109_2: function __onOwnedObjectIdChange__P_109_2(obj, newId, oldId) {
+        delete this.__ownedQxObjects__P_109_0[oldId];
+        this.__ownedQxObjects__P_109_0[newId] = obj;
       },
 
       /**
@@ -15676,9 +15676,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         }
 
-        if (this.__ownedQxObjects__P_95_0) {
-          for (var name in this.__ownedQxObjects__P_95_0) {
-            var obj = this.__ownedQxObjects__P_95_0[name];
+        if (this.__ownedQxObjects__P_109_0) {
+          for (var name in this.__ownedQxObjects__P_109_0) {
+            var obj = this.__ownedQxObjects__P_109_0[name];
 
             if (obj instanceof qx.core.Object) {
               obj._cascadeQxObjectIdChanges();
@@ -15695,8 +15695,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.core.Object?} the found object
        */
       getQxObject: function getQxObject(id) {
-        if (this.__ownedQxObjects__P_95_0) {
-          var obj = this.__ownedQxObjects__P_95_0[id];
+        if (this.__ownedQxObjects__P_109_0) {
+          var obj = this.__ownedQxObjects__P_109_0[id];
 
           if (obj !== undefined) {
             return obj;
@@ -15787,8 +15787,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param id {String?} the id to set when registering the object
        */
       addOwnedQxObject: function addOwnedQxObject(obj, id) {
-        if (!this.__ownedQxObjects__P_95_0) {
-          this.__ownedQxObjects__P_95_0 = {};
+        if (!this.__ownedQxObjects__P_109_0) {
+          this.__ownedQxObjects__P_109_0 = {};
         }
 
         if (!(obj instanceof qx.core.Object)) {
@@ -15796,11 +15796,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             throw new Error("Cannot register an object that has no ID, obj=" + obj);
           }
 
-          if (this.__ownedQxObjects__P_95_0[id]) {
+          if (this.__ownedQxObjects__P_109_0[id]) {
             throw new Error("Cannot register an object with ID '" + id + "' because that ID is already in use, this=" + this + ", obj=" + obj);
           }
 
-          this.__ownedQxObjects__P_95_0[id] = obj;
+          this.__ownedQxObjects__P_109_0[id] = obj;
           return;
         }
 
@@ -15810,11 +15810,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           return;
         }
 
-        obj.__changingQxOwner__P_95_1 = true;
+        obj.__changingQxOwner__P_109_1 = true;
 
         try {
           if (thatOwner) {
-            thatOwner.__removeOwnedQxObjectImpl__P_95_3(obj);
+            thatOwner.__removeOwnedQxObjectImpl__P_109_3(obj);
           }
 
           if (id === undefined) {
@@ -15825,7 +15825,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             throw new Error("Cannot register an object that has no ID, obj=" + obj);
           }
 
-          if (this.__ownedQxObjects__P_95_0[id]) {
+          if (this.__ownedQxObjects__P_109_0[id]) {
             throw new Error("Cannot register an object with ID '" + id + "' because that ID is already in use, this=" + this + ", obj=" + obj);
           }
 
@@ -15838,10 +15838,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
           obj._cascadeQxObjectIdChanges();
         } finally {
-          obj.__changingQxOwner__P_95_1 = false;
+          obj.__changingQxOwner__P_109_1 = false;
         }
 
-        this.__ownedQxObjects__P_95_0[id] = obj;
+        this.__ownedQxObjects__P_109_0[id] = obj;
       },
 
       /**
@@ -15851,7 +15851,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param args {String|Object} the ID of the object to discard, or the object itself
        */
       removeOwnedQxObject: function removeOwnedQxObject(args) {
-        if (!this.__ownedQxObjects__P_95_0) {
+        if (!this.__ownedQxObjects__P_109_0) {
           throw new Error("Cannot discard object because it is not owned by this, this=" + this + ", object=" + obj);
         }
 
@@ -15864,7 +15864,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
 
           id = args;
-          obj = this.__ownedQxObjects__P_95_0[id];
+          obj = this.__ownedQxObjects__P_109_0[id];
 
           if (obj === undefined) {
             return;
@@ -15878,25 +15878,25 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
           id = obj.getQxObjectId();
 
-          if (this.__ownedQxObjects__P_95_0[id] !== obj) {
+          if (this.__ownedQxObjects__P_109_0[id] !== obj) {
             throw new Error("Cannot discard object because it is not owned by this, this=" + this + ", object=" + obj);
           }
         }
 
         if (obj !== null) {
           if (!(obj instanceof qx.core.Object)) {
-            this.__removeOwnedQxObjectImpl__P_95_3(obj);
+            this.__removeOwnedQxObjectImpl__P_109_3(obj);
 
-            delete this.__ownedQxObjects__P_95_0[id];
+            delete this.__ownedQxObjects__P_109_0[id];
           } else {
-            obj.__changingQxOwner__P_95_1 = true;
+            obj.__changingQxOwner__P_109_1 = true;
 
             try {
-              this.__removeOwnedQxObjectImpl__P_95_3(obj);
+              this.__removeOwnedQxObjectImpl__P_109_3(obj);
 
               obj._cascadeQxObjectIdChanges();
             } finally {
-              obj.__changingQxOwner__P_95_1 = false;
+              obj.__changingQxOwner__P_109_1 = false;
             }
           }
         }
@@ -15907,11 +15907,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * 
        * @param obj {qx.core.Object} the object
        */
-      __removeOwnedQxObjectImpl__P_95_3: function __removeOwnedQxObjectImpl__P_95_3(obj) {
+      __removeOwnedQxObjectImpl__P_109_3: function __removeOwnedQxObjectImpl__P_109_3(obj) {
         if (obj !== null) {
           var id = obj.getQxObjectId();
           obj.setQxOwner(null);
-          delete this.__ownedQxObjects__P_95_0[id];
+          delete this.__ownedQxObjects__P_109_0[id];
         }
       },
 
@@ -15922,7 +15922,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Array}
        */
       getOwnedQxObjects: function getOwnedQxObjects() {
-        return this.__ownedQxObjects__P_95_0 ? Object.values(this.__ownedQxObjects__P_95_0) : [];
+        return this.__ownedQxObjects__P_109_0 ? Object.values(this.__ownedQxObjects__P_109_0) : [];
       }
     }
   });
@@ -16164,7 +16164,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    */
   qx.Bootstrap.define("qx.core.Assert", {
     statics: {
-      __logError__P_49_0: true,
+      __logError__P_67_0: true,
 
       /**
        * Assert that the condition evaluates to <code>true</code>. An
@@ -16181,13 +16181,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *                         (much better performance)
        *
        */
-      __fail__P_49_1: function __fail__P_49_1(comment, msgvarargs) {
+      __fail__P_67_1: function __fail__P_67_1(comment, msgvarargs) {
         // Build up message from message varargs. It's not really important
         // how long this takes as it is done only when assertion is triggered
         var msg = "";
 
         for (var i = 1, l = arguments.length; i < l; i++) {
-          msg = msg + this.__toString__P_49_2(arguments[i] === undefined ? "'undefined'" : arguments[i]);
+          msg = msg + this.__toString__P_67_2(arguments[i] === undefined ? "'undefined'" : arguments[i]);
         }
 
         var fullComment = "";
@@ -16203,13 +16203,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         if (qx.Class && qx.Class.isDefined("qx.core.AssertionError")) {
           var err = new qx.core.AssertionError(comment, msg);
 
-          if (this.__logError__P_49_0) {
+          if (this.__logError__P_67_0) {
             qx.Bootstrap.error(errorMsg + "\n Stack trace: \n" + err.getStackTrace());
           }
 
           throw err;
         } else {
-          if (this.__logError__P_49_0) {
+          if (this.__logError__P_67_0) {
             qx.Bootstrap.error(errorMsg);
           }
 
@@ -16223,7 +16223,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param value {var} any value
        * @return {String} a string representation of the value
        */
-      __toString__P_49_2: function __toString__P_49_2(value) {
+      __toString__P_67_2: function __toString__P_67_2(value) {
         var stringValue;
 
         if (value === null) {
@@ -16251,7 +16251,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param msg {String?} Message to be shown if the assertion fails.
        */
       assert: function assert(condition, msg) {
-        condition == true || this.__fail__P_49_1(msg || "", "Called assert with 'false'");
+        condition == true || this.__fail__P_67_1(msg || "", "Called assert with 'false'");
       },
 
       /**
@@ -16263,7 +16263,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       fail: function fail(msg, compact) {
         var msgvarargs = compact ? "" : "Called fail().";
 
-        this.__fail__P_49_1(msg || "", msgvarargs);
+        this.__fail__P_67_1(msg || "", msgvarargs);
       },
 
       /**
@@ -16274,7 +16274,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param msg {String?} Message to be shown if the assertion fails.
        */
       assertTrue: function assertTrue(value, msg) {
-        value === true || this.__fail__P_49_1(msg || "", "Called assertTrue with '", value, "'");
+        value === true || this.__fail__P_67_1(msg || "", "Called assertTrue with '", value, "'");
       },
 
       /**
@@ -16285,7 +16285,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param msg {String?} Message to be shown if the assertion fails.
        */
       assertFalse: function assertFalse(value, msg) {
-        value === false || this.__fail__P_49_1(msg || "", "Called assertFalse with '", value, "'");
+        value === false || this.__fail__P_67_1(msg || "", "Called assertFalse with '", value, "'");
       },
 
       /**
@@ -16297,7 +16297,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param msg {String?} Message to be shown if the assertion fails.
        */
       assertEquals: function assertEquals(expected, found, msg) {
-        expected == found || this.__fail__P_49_1(msg || "", "Expected '", expected, "' but found '", found, "'!");
+        expected == found || this.__fail__P_67_1(msg || "", "Expected '", expected, "' but found '", found, "'!");
       },
 
       /**
@@ -16309,7 +16309,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param msg {String?} Message to be shown if the assertion fails.
        */
       assertNotEquals: function assertNotEquals(expected, found, msg) {
-        expected != found || this.__fail__P_49_1(msg || "", "Expected '", expected, "' to be not equal with '", found, "'!");
+        expected != found || this.__fail__P_67_1(msg || "", "Expected '", expected, "' to be not equal with '", found, "'!");
       },
 
       /**
@@ -16323,7 +16323,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       assertEqualsFloat: function assertEqualsFloat(expected, found, msg) {
         this.assertNumber(expected);
         this.assertNumber(found);
-        qx.lang.Number.equals(expected, found) || this.__fail__P_49_1(msg || "", "Expected '", expected, "' to be equal with '", found, "'!");
+        qx.lang.Number.equals(expected, found) || this.__fail__P_67_1(msg || "", "Expected '", expected, "' to be equal with '", found, "'!");
       },
 
       /**
@@ -16337,7 +16337,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       assertNotEqualsFloat: function assertNotEqualsFloat(expected, found, msg) {
         this.assertNumber(expected);
         this.assertNumber(found);
-        !qx.lang.Number.equals(expected, found) || this.__fail__P_49_1(msg || "", "Expected '", expected, "' to be not equal with '", found, "'!");
+        !qx.lang.Number.equals(expected, found) || this.__fail__P_67_1(msg || "", "Expected '", expected, "' to be not equal with '", found, "'!");
       },
 
       /**
@@ -16349,7 +16349,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param msg {String?} Message to be shown if the assertion fails.
        */
       assertIdentical: function assertIdentical(expected, found, msg) {
-        expected === found || this.__fail__P_49_1(msg || "", "Expected '", expected, "' (identical) but found '", found, "'!");
+        expected === found || this.__fail__P_67_1(msg || "", "Expected '", expected, "' (identical) but found '", found, "'!");
       },
 
       /**
@@ -16361,7 +16361,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param msg {String?} Message to be shown if the assertion fails.
        */
       assertNotIdentical: function assertNotIdentical(expected, found, msg) {
-        expected !== found || this.__fail__P_49_1(msg || "", "Expected '", expected, "' to be not identical with '", found, "'!");
+        expected !== found || this.__fail__P_67_1(msg || "", "Expected '", expected, "' to be not identical with '", found, "'!");
       },
 
       /**
@@ -16371,7 +16371,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param msg {String?} Message to be shown if the assertion fails.
        */
       assertNotUndefined: function assertNotUndefined(value, msg) {
-        value !== undefined || this.__fail__P_49_1(msg || "", "Expected value not to be undefined but found undefined!");
+        value !== undefined || this.__fail__P_67_1(msg || "", "Expected value not to be undefined but found undefined!");
       },
 
       /**
@@ -16381,7 +16381,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param msg {String?} Message to be shown if the assertion fails.
        */
       assertUndefined: function assertUndefined(value, msg) {
-        value === undefined || this.__fail__P_49_1(msg || "", "Expected value to be undefined but found ", value, "!");
+        value === undefined || this.__fail__P_67_1(msg || "", "Expected value to be undefined but found ", value, "!");
       },
 
       /**
@@ -16391,7 +16391,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param msg {String?} Message to be shown if the assertion fails.
        */
       assertNotNull: function assertNotNull(value, msg) {
-        value !== null || this.__fail__P_49_1(msg || "", "Expected value not to be null but found null!");
+        value !== null || this.__fail__P_67_1(msg || "", "Expected value not to be null but found null!");
       },
 
       /**
@@ -16401,7 +16401,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param msg {String?} Message to be shown if the assertion fails.
        */
       assertNull: function assertNull(value, msg) {
-        value === null || this.__fail__P_49_1(msg || "", "Expected value to be null but found ", value, "!");
+        value === null || this.__fail__P_67_1(msg || "", "Expected value to be null but found ", value, "!");
       },
 
       /**
@@ -16426,7 +16426,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       assertMatch: function assertMatch(str, re, msg) {
         this.assertString(str);
         this.assert(qx.lang.Type.isRegExp(re) || qx.lang.Type.isString(re), "The parameter 're' must be a string or a regular expression.");
-        str.search(re) >= 0 || this.__fail__P_49_1(msg || "", "The String '", str, "' does not match the regular expression '", re.toString(), "'!");
+        str.search(re) >= 0 || this.__fail__P_67_1(msg || "", "The String '", str, "' does not match the regular expression '", re.toString(), "'!");
       },
 
       /**
@@ -16439,7 +16439,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       assertArgumentsCount: function assertArgumentsCount(args, minCount, maxCount, msg) {
         var argCount = args.length;
-        argCount >= minCount && argCount <= maxCount || this.__fail__P_49_1(msg || "", "Wrong number of arguments given. Expected '", minCount, "' to '", maxCount, "' arguments but found '", argCount, "' arguments.");
+        argCount >= minCount && argCount <= maxCount || this.__fail__P_67_1(msg || "", "Wrong number of arguments given. Expected '", minCount, "' to '", maxCount, "' arguments but found '", argCount, "' arguments.");
       },
 
       /**
@@ -16479,7 +16479,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         }
 
-        called === true || this.__fail__P_49_1(msg || "", "Event (", event, ") not fired.");
+        called === true || this.__fail__P_67_1(msg || "", "Event (", event, ") not fired.");
       },
 
       /**
@@ -16500,7 +16500,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         var id = obj.addListener(event, listener, obj);
         invokeFunc.call();
-        called === false || this.__fail__P_49_1(msg || "", "Event (", event, ") was fired.");
+        called === false || this.__fail__P_67_1(msg || "", "Event (", event, ") was fired.");
         obj.removeListenerById(id);
       },
 
@@ -16520,19 +16520,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var error;
 
         try {
-          this.__logError__P_49_0 = false;
+          this.__logError__P_67_0 = false;
           callback();
         } catch (ex) {
           error = ex;
         } finally {
-          this.__logError__P_49_0 = true;
+          this.__logError__P_67_0 = true;
         }
 
         if (error == null) {
-          this.__fail__P_49_1(msg || "", "The function did not raise an exception!");
+          this.__fail__P_67_1(msg || "", "The function did not raise an exception!");
         }
 
-        error instanceof exception || this.__fail__P_49_1(msg || "", "The raised exception does not have the expected type! ", exception, " != ", error);
+        error instanceof exception || this.__fail__P_67_1(msg || "", "The raised exception does not have the expected type! ", exception, " != ", error);
 
         if (re) {
           this.assertMatch(error.toString(), re, msg);
@@ -16547,7 +16547,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param msg {String?} Message to be shown if the assertion fails.
        */
       assertInArray: function assertInArray(value, array, msg) {
-        array.indexOf(value) !== -1 || this.__fail__P_49_1(msg || "", "The value '", value, "' must have any of the values defined in the array '", array, "'");
+        array.indexOf(value) !== -1 || this.__fail__P_67_1(msg || "", "The value '", value, "' must have any of the values defined in the array '", array, "'");
       },
 
       /**
@@ -16558,7 +16558,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param msg {String?} Message to be shown if the assertion fails
        */
       assertNotInArray: function assertNotInArray(value, array, msg) {
-        array.indexOf(value) === -1 || this.__fail__P_49_1(msg || "", qx.lang.String.format("The value '%1' must not have any of the values defined in the array '%2'", [value, array]));
+        array.indexOf(value) === -1 || this.__fail__P_67_1(msg || "", qx.lang.String.format("The value '%1' must not have any of the values defined in the array '%2'", [value, array]));
       },
 
       /**
@@ -16592,7 +16592,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param msg {String?} Message to be shown if the assertion fails.
        */
       assertKeyInMap: function assertKeyInMap(value, map, msg) {
-        map[value] !== undefined || this.__fail__P_49_1(msg || "", "The value '", value, "' must must be a key of the map '", map, "'");
+        map[value] !== undefined || this.__fail__P_67_1(msg || "", "The value '", value, "' must must be a key of the map '", map, "'");
       },
 
       /**
@@ -16602,7 +16602,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param msg {String?} Message to be shown if the assertion fails.
        */
       assertFunction: function assertFunction(value, msg) {
-        qx.lang.Type.isFunction(value) || this.__fail__P_49_1(msg || "", "Expected value to be typeof function but found ", value, "!");
+        qx.lang.Type.isFunction(value) || this.__fail__P_67_1(msg || "", "Expected value to be typeof function but found ", value, "!");
       },
 
       /**
@@ -16612,7 +16612,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param msg {String?} Message to be shown if the assertion fails.
        */
       assertFunctionOrAsyncFunction: function assertFunctionOrAsyncFunction(value, msg) {
-        qx.lang.Type.isFunctionOrAsyncFunction(value) || this.__fail__P_49_1(msg || "", "Expected value to be typeof function or typeof async function but found ", value, "!");
+        qx.lang.Type.isFunctionOrAsyncFunction(value) || this.__fail__P_67_1(msg || "", "Expected value to be typeof function or typeof async function but found ", value, "!");
       },
 
       /**
@@ -16622,7 +16622,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param msg {String?} Message to be shown if the assertion fails.
        */
       assertString: function assertString(value, msg) {
-        qx.lang.Type.isString(value) || this.__fail__P_49_1(msg || "", "Expected value to be a string but found ", value, "!");
+        qx.lang.Type.isString(value) || this.__fail__P_67_1(msg || "", "Expected value to be a string but found ", value, "!");
       },
 
       /**
@@ -16632,7 +16632,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param msg {String?} Message to be shown if the assertion fails.
        */
       assertBoolean: function assertBoolean(value, msg) {
-        qx.lang.Type.isBoolean(value) || this.__fail__P_49_1(msg || "", "Expected value to be a boolean but found ", value, "!");
+        qx.lang.Type.isBoolean(value) || this.__fail__P_67_1(msg || "", "Expected value to be a boolean but found ", value, "!");
       },
 
       /**
@@ -16642,7 +16642,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param msg {String?} Message to be shown if the assertion fails.
        */
       assertNumber: function assertNumber(value, msg) {
-        qx.lang.Type.isNumber(value) && isFinite(value) || this.__fail__P_49_1(msg || "", "Expected value to be a number but found ", value, "!");
+        qx.lang.Type.isNumber(value) && isFinite(value) || this.__fail__P_67_1(msg || "", "Expected value to be a number but found ", value, "!");
       },
 
       /**
@@ -16652,7 +16652,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param msg {String?} Message to be shown if the assertion fails.
        */
       assertPositiveNumber: function assertPositiveNumber(value, msg) {
-        qx.lang.Type.isNumber(value) && isFinite(value) && value >= 0 || this.__fail__P_49_1(msg || "", "Expected value to be a number >= 0 but found ", value, "!");
+        qx.lang.Type.isNumber(value) && isFinite(value) && value >= 0 || this.__fail__P_67_1(msg || "", "Expected value to be a number >= 0 but found ", value, "!");
       },
 
       /**
@@ -16662,7 +16662,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param msg {String?} Message to be shown if the assertion fails.
        */
       assertInteger: function assertInteger(value, msg) {
-        qx.lang.Type.isNumber(value) && isFinite(value) && value % 1 === 0 || this.__fail__P_49_1(msg || "", "Expected value to be an integer but found ", value, "!");
+        qx.lang.Type.isNumber(value) && isFinite(value) && value % 1 === 0 || this.__fail__P_67_1(msg || "", "Expected value to be an integer but found ", value, "!");
       },
 
       /**
@@ -16673,7 +16673,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       assertPositiveInteger: function assertPositiveInteger(value, msg) {
         var condition = qx.lang.Type.isNumber(value) && isFinite(value) && value % 1 === 0 && value >= 0;
-        condition || this.__fail__P_49_1(msg || "", "Expected value to be an integer >= 0 but found ", value, "!");
+        condition || this.__fail__P_67_1(msg || "", "Expected value to be an integer >= 0 but found ", value, "!");
       },
 
       /**
@@ -16685,7 +16685,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param msg {String?} Message to be shown if the assertion fails.
        */
       assertInRange: function assertInRange(value, min, max, msg) {
-        value >= min && value <= max || this.__fail__P_49_1(msg || "", qx.lang.String.format("Expected value '%1' to be in the range '%2'..'%3'!", [value, min, max]));
+        value >= min && value <= max || this.__fail__P_67_1(msg || "", qx.lang.String.format("Expected value '%1' to be in the range '%2'..'%3'!", [value, min, max]));
       },
 
       /**
@@ -16696,7 +16696,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       assertObject: function assertObject(value, msg) {
         var condition = value !== null && (qx.lang.Type.isObject(value) || _typeof(value) === "object");
-        condition || this.__fail__P_49_1(msg || "", "Expected value to be typeof object but found ", value, "!");
+        condition || this.__fail__P_67_1(msg || "", "Expected value to be typeof object but found ", value, "!");
       },
 
       /**
@@ -16706,7 +16706,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param msg {String?} Message to be shown if the assertion fails.
        */
       assertArray: function assertArray(value, msg) {
-        qx.lang.Type.isArray(value) || this.__fail__P_49_1(msg || "", "Expected value to be an array but found ", value, "!");
+        qx.lang.Type.isArray(value) || this.__fail__P_67_1(msg || "", "Expected value to be an array but found ", value, "!");
       },
 
       /**
@@ -16717,7 +16717,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param msg {String?} Message to be shown if the assertion fails.
        */
       assertMap: function assertMap(value, msg) {
-        qx.lang.Type.isObject(value) || this.__fail__P_49_1(msg || "", "Expected value to be a map but found ", value, "!");
+        qx.lang.Type.isObject(value) || this.__fail__P_67_1(msg || "", "Expected value to be a map but found ", value, "!");
       },
 
       /**
@@ -16727,7 +16727,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       * @param msg {String?} Message to be shown if the assertion fails.
       */
       assertRegExp: function assertRegExp(value, msg) {
-        qx.lang.Type.isRegExp(value) || this.__fail__P_49_1(msg || "", "Expected value to be a regular expression but found ", value, "!");
+        qx.lang.Type.isRegExp(value) || this.__fail__P_67_1(msg || "", "Expected value to be a regular expression but found ", value, "!");
       },
 
       /**
@@ -16742,7 +16742,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       assertType: function assertType(value, type, msg) {
         this.assertString(type, "Invalid argument 'type'");
-        _typeof(value) === type || this.__fail__P_49_1(msg || "", "Expected value to be typeof '", type, "' but found ", value, "!");
+        _typeof(value) === type || this.__fail__P_67_1(msg || "", "Expected value to be typeof '", type, "' but found ", value, "!");
       },
 
       /**
@@ -16754,7 +16754,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       assertInstance: function assertInstance(value, clazz, msg) {
         var className = clazz.classname || clazz + "";
-        value instanceof clazz || this.__fail__P_49_1(msg || "", "Expected value to be instanceof '", className, "' but found ", value, "!");
+        value instanceof clazz || this.__fail__P_67_1(msg || "", "Expected value to be instanceof '", className, "' but found ", value, "!");
       },
 
       /**
@@ -16765,7 +16765,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param msg {String?} Message to be shown if the assertion fails.
        */
       assertInterface: function assertInterface(value, iface, msg) {
-        qx.Class && qx.Class.implementsInterface(value, iface) || this.__fail__P_49_1(msg || "", "Expected object '", value, "' to implement the interface '", iface, "'!");
+        qx.Class && qx.Class.implementsInterface(value, iface) || this.__fail__P_67_1(msg || "", "Expected object '", value, "' to implement the interface '", iface, "'!");
       },
 
       /**
@@ -16789,11 +16789,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         try {
           var valueRgb = ColorUtil.stringToRgb(value);
         } catch (ex) {
-          this.__fail__P_49_1(msg || "", "Expected value to be the CSS color '", expected, "' (rgb(", expectedRgb.join(","), ")), but found value '", value, "', which cannot be converted to a CSS color!");
+          this.__fail__P_67_1(msg || "", "Expected value to be the CSS color '", expected, "' (rgb(", expectedRgb.join(","), ")), but found value '", value, "', which cannot be converted to a CSS color!");
         }
 
         var condition = expectedRgb[0] == valueRgb[0] && expectedRgb[1] == valueRgb[1] && expectedRgb[2] == valueRgb[2];
-        condition || this.__fail__P_49_1(msg || "", "Expected value to be the CSS color '", expectedRgb, "' (rgb(", expectedRgb.join(","), ")), but found value '", value, "' (rgb(", valueRgb.join(","), "))!");
+        condition || this.__fail__P_67_1(msg || "", "Expected value to be the CSS color '", expectedRgb, "' (rgb(", expectedRgb.join(","), ")), but found value '", value, "' (rgb(", valueRgb.join(","), "))!");
       },
 
       /**
@@ -16804,7 +16804,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       assertElement: function assertElement(value, msg) {
         // see qx.dom.Node.isElement
-        !!(value && value.nodeType === 1) || this.__fail__P_49_1(msg || "", "Expected value to be a DOM element but found  '", value, "'!");
+        !!(value && value.nodeType === 1) || this.__fail__P_67_1(msg || "", "Expected value to be a DOM element but found  '", value, "'!");
       },
 
       /**
@@ -16814,7 +16814,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param msg {String?} Message to be shown if the assertion fails.
        */
       assertQxObject: function assertQxObject(value, msg) {
-        this.__isQxInstance__P_49_3(value, "qx.core.Object") || this.__fail__P_49_1(msg || "", "Expected value to be a qooxdoo object but found ", value, "!");
+        this.__isQxInstance__P_67_3(value, "qx.core.Object") || this.__fail__P_67_1(msg || "", "Expected value to be a qooxdoo object but found ", value, "!");
       },
 
       /**
@@ -16824,7 +16824,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param msg {String?} Message to be shown if the assertion fails.
        */
       assertQxWidget: function assertQxWidget(value, msg) {
-        this.__isQxInstance__P_49_3(value, "qx.ui.core.Widget") || this.__fail__P_49_1(msg || "", "Expected value to be a qooxdoo widget but found ", value, "!");
+        this.__isQxInstance__P_67_3(value, "qx.ui.core.Widget") || this.__fail__P_67_1(msg || "", "Expected value to be a qooxdoo widget but found ", value, "!");
       },
 
       /**
@@ -16836,7 +16836,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code> if the object is an instance of the
        * class
        */
-      __isQxInstance__P_49_3: function __isQxInstance__P_49_3(object, classname) {
+      __isQxInstance__P_67_3: function __isQxInstance__P_67_3(object, classname) {
         if (!object) {
           return false;
         }
@@ -17506,7 +17506,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __Property__P_36_0: true ? qx.core.Property : null,
+      __Property__P_40_0: true ? qx.core.Property : null,
 
       /*
       ---------------------------------------------------------------------------
@@ -17632,8 +17632,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var clazz = this.constructor;
         var clone = new clazz();
         var props = qx.Class.getProperties(clazz);
-        var user = this.__Property__P_36_0.$$store.user;
-        var setter = this.__Property__P_36_0.$$method.set;
+        var user = this.__Property__P_40_0.$$store.user;
+        var setter = this.__Property__P_40_0.$$method.set;
         var name; // Iterate through properties
 
         for (var i = 0, l = props.length; i < l; i++) {
@@ -17655,7 +17655,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       */
 
       /** @type {Map} stored user data */
-      __userData__P_36_1: null,
+      __userData__P_40_1: null,
 
       /**
        * Store user defined data inside the object.
@@ -17664,11 +17664,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param value {Object} the value of the user data
        */
       setUserData: function setUserData(key, value) {
-        if (!this.__userData__P_36_1) {
-          this.__userData__P_36_1 = {};
+        if (!this.__userData__P_40_1) {
+          this.__userData__P_40_1 = {};
         }
 
-        this.__userData__P_36_1[key] = value;
+        this.__userData__P_40_1[key] = value;
       },
 
       /**
@@ -17678,11 +17678,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Object} the user data
        */
       getUserData: function getUserData(key) {
-        if (!this.__userData__P_36_1) {
+        if (!this.__userData__P_40_1) {
           return null;
         }
 
-        var data = this.__userData__P_36_1[key];
+        var data = this.__userData__P_40_1[key];
         return data === undefined ? null : data;
       },
 
@@ -17690,7 +17690,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Clears all user defined data from the object.
        */
       resetUserData: function resetUserData() {
-        this.__userData__P_36_1 = null;
+        this.__userData__P_40_1 = null;
       },
 
       /*
@@ -17871,13 +17871,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
       qx.core.ObjectRegistry.unregister(this); // Cleanup user data
 
-      this.__userData__P_36_1 = null; // only of properties are available
+      this.__userData__P_40_1 = null; // only of properties are available
 
       {
         // Cleanup properties
         var clazz = this.constructor;
         var properties;
-        var store = this.__Property__P_36_0.$$store;
+        var store = this.__Property__P_40_0.$$store;
         var storeUser = store.user;
         var storeTheme = store.theme;
         var storeInherit = store.inherit;
@@ -18474,8 +18474,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __data__P_41_0: null,
-      __old__P_41_1: null,
+      __data__P_42_0: null,
+      __old__P_42_1: null,
 
       /**
        * Initializes an event object.
@@ -18492,8 +18492,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       init: function init(data, old, cancelable) {
         qx.event.type.Data.prototype.init.base.call(this, false, cancelable);
-        this.__data__P_41_0 = data;
-        this.__old__P_41_1 = old;
+        this.__data__P_42_0 = data;
+        this.__old__P_42_1 = old;
         return this;
       },
 
@@ -18508,8 +18508,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       clone: function clone(embryo) {
         var clone = qx.event.type.Data.prototype.clone.base.call(this, embryo);
-        clone.__data__P_41_0 = this.__data__P_41_0;
-        clone.__old__P_41_1 = this.__old__P_41_1;
+        clone.__data__P_42_0 = this.__data__P_42_0;
+        clone.__old__P_42_1 = this.__old__P_42_1;
         return clone;
       },
 
@@ -18520,7 +18520,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {var} The new data of the event
        */
       getData: function getData() {
-        return this.__data__P_41_0;
+        return this.__data__P_42_0;
       },
 
       /**
@@ -18530,7 +18530,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {var} The old data of the event
        */
       getOldData: function getOldData() {
-        return this.__old__P_41_1;
+        return this.__old__P_42_1;
       }
     }
   });
@@ -18868,10 +18868,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     construct: function construct(fn, context) {
       qx.core.Object.constructor.call(this);
 
-      qx.Promise.__initialize__P_50_0();
+      qx.Promise.__initialize__P_68_0();
 
       if (fn instanceof qx.Promise.Bluebird) {
-        this.__p__P_50_1 = fn;
+        this.__p__P_68_1 = fn;
       } else if (fn) {
         if (context !== undefined && context !== null) {
           fn = fn.bind(context);
@@ -18887,7 +18887,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
               if (reason === undefined) {
                 args.shift();
-                args.unshift(qx.Promise.__DEFAULT_ERROR__P_50_2);
+                args.unshift(qx.Promise.__DEFAULT_ERROR__P_68_2);
               } else if (reason && !(reason instanceof Error)) {
                 self.error("Calling reject with non-error object, createdAt=" + JSON.stringify(self.$$createdAt || null));
               }
@@ -18896,16 +18896,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             });
           };
         }
-        this.__p__P_50_1 = new qx.Promise.Bluebird(fn);
+        this.__p__P_68_1 = new qx.Promise.Bluebird(fn);
       } else {
-        this.__p__P_50_1 = new qx.Promise.Bluebird(this.__externalPromise__P_50_3.bind(this));
+        this.__p__P_68_1 = new qx.Promise.Bluebird(this.__externalPromise__P_68_3.bind(this));
       }
 
-      qx.core.Assert.assertTrue(!this.__p__P_50_1.$$qxPromise);
-      this.__p__P_50_1.$$qxPromise = this;
+      qx.core.Assert.assertTrue(!this.__p__P_68_1.$$qxPromise);
+      this.__p__P_68_1.$$qxPromise = this;
 
       if (context !== undefined && context !== null) {
-        this.__p__P_50_1 = this.__p__P_50_1.bind(context);
+        this.__p__P_68_1 = this.__p__P_68_1.bind(context);
       }
     },
 
@@ -18913,15 +18913,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      * Destructor
      */
     destruct: function destruct() {
-      delete this.__p__P_50_1.$$qxPromise;
-      delete this.__p__P_50_1;
+      delete this.__p__P_68_1.$$qxPromise;
+      delete this.__p__P_68_1;
     },
     members: {
       /** The Promise */
-      __p__P_50_1: null,
+      __p__P_68_1: null,
 
       /** Stores data for completing the promise externally */
-      __external__P_50_4: null,
+      __external__P_68_4: null,
 
       /* *********************************************************************************
        *
@@ -18970,7 +18970,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.Promise} the new promise
        */
       bind: function bind(context) {
-        return qx.Promise.__wrap__P_50_5(this.__p__P_50_1.bind(context));
+        return qx.Promise.__wrap__P_68_5(this.__p__P_68_1.bind(context));
       },
 
       /**
@@ -19171,8 +19171,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * External promise handler
        */
-      __externalPromise__P_50_3: function __externalPromise__P_50_3(resolve, reject) {
-        this.__external__P_50_4 = {
+      __externalPromise__P_68_3: function __externalPromise__P_68_3(resolve, reject) {
+        this.__external__P_68_4 = {
           resolve: resolve,
           reject: reject,
           complete: false
@@ -19182,31 +19182,31 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * Returns the data stored by __externalPromise, throws an exception once processed
        */
-      __getPendingExternal__P_50_6: function __getPendingExternal__P_50_6() {
-        if (!this.__external__P_50_4) {
+      __getPendingExternal__P_68_6: function __getPendingExternal__P_68_6() {
+        if (!this.__external__P_68_4) {
           throw new Error("Promise cannot be resolved externally");
         }
 
-        if (this.__external__P_50_4.complete) {
+        if (this.__external__P_68_4.complete) {
           throw new Error("Promise has already been resolved or rejected");
         }
 
-        this.__external__P_50_4.complete = true;
-        return this.__external__P_50_4;
+        this.__external__P_68_4.complete = true;
+        return this.__external__P_68_4;
       },
 
       /**
        * Resolves an external promise
        */
       resolve: function resolve(value) {
-        this.__getPendingExternal__P_50_6().resolve(value);
+        this.__getPendingExternal__P_68_6().resolve(value);
       },
 
       /**
        * Rejects an external promise
        */
       reject: function reject(reason) {
-        this.__getPendingExternal__P_50_6().reject(reason);
+        this.__getPendingExternal__P_68_6().reject(reason);
       },
 
       /* *********************************************************************************
@@ -19219,10 +19219,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Helper method used to call Promise methods which iterate over an array
        */
       _callIterableMethod: function _callIterableMethod(methodName, args) {
-        args = qx.Promise.__bindArgs__P_50_7(args);
-        return qx.Promise.__wrap__P_50_5(this.__p__P_50_1.then(function (value) {
+        args = qx.Promise.__bindArgs__P_68_7(args);
+        return qx.Promise.__wrap__P_68_5(this.__p__P_68_1.then(function (value) {
           var newP = qx.Promise.Bluebird.resolve(value instanceof qx.data.Array ? value.toArray() : value);
-          return qx.Promise.__wrap__P_50_5(newP[methodName].apply(newP, args));
+          return qx.Promise.__wrap__P_68_5(newP[methodName].apply(newP, args));
         }));
       },
 
@@ -19230,8 +19230,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Helper method used to call a Promise method
        */
       _callMethod: function _callMethod(methodName, args) {
-        args = qx.Promise.__bindArgs__P_50_7(args);
-        return qx.Promise.__wrap__P_50_5(this.__p__P_50_1[methodName].apply(this.__p__P_50_1, args));
+        args = qx.Promise.__bindArgs__P_68_7(args);
+        return qx.Promise.__wrap__P_68_5(this.__p__P_68_1[methodName].apply(this.__p__P_68_1, args));
       },
 
       /**
@@ -19245,7 +19245,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @deprecated {6.0} this API method is subject to change
        */
       toPromise: function toPromise() {
-        return this.__p__P_50_1;
+        return this.__p__P_68_1;
       }
     },
     statics: {
@@ -19261,7 +19261,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /** This is used to suppress warnings about rejections without an Error object, only used if
        * the reason is undefined
        */
-      __DEFAULT_ERROR__P_50_2: new Error("Default Error"),
+      __DEFAULT_ERROR__P_68_2: new Error("Default Error"),
 
       /* *********************************************************************************
        *
@@ -19312,7 +19312,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         if (value instanceof qx.Promise) {
           promise = value;
         } else {
-          promise = qx.Promise.__wrap__P_50_5(qx.Promise.Bluebird.resolve(value));
+          promise = qx.Promise.__wrap__P_68_5(qx.Promise.Bluebird.resolve(value));
         }
 
         if (context !== undefined) {
@@ -19333,12 +19333,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         if (reason === undefined) {
           args.shift();
-          args.unshift(qx.Promise.__DEFAULT_ERROR__P_50_2);
+          args.unshift(qx.Promise.__DEFAULT_ERROR__P_68_2);
         } else if (!(reason instanceof Error)) {
           qx.log.Logger.warn("Rejecting a promise with a non-Error value");
         }
 
-        var promise = qx.Promise.__callStaticMethod__P_50_8('reject', args, 0);
+        var promise = qx.Promise.__callStaticMethod__P_68_8('reject', args, 0);
 
         if (context !== undefined) {
           promise = promise.bind(context);
@@ -19387,7 +19387,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.Promise}
        */
       all: function all(iterable) {
-        return qx.Promise.__callStaticMethod__P_50_8('all', arguments);
+        return qx.Promise.__callStaticMethod__P_68_8('all', arguments);
       },
 
       /**
@@ -19397,7 +19397,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.Promise}
        */
       race: function race(iterable) {
-        return qx.Promise.__callStaticMethod__P_50_8('race', arguments);
+        return qx.Promise.__callStaticMethod__P_68_8('race', arguments);
       },
 
       /* *********************************************************************************
@@ -19414,7 +19414,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.Promise}
        */
       any: function any(iterable) {
-        return qx.Promise.__callStaticMethod__P_50_8('any', arguments);
+        return qx.Promise.__callStaticMethod__P_68_8('any', arguments);
       },
 
       /**
@@ -19428,7 +19428,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.Promise}
        */
       some: function some(iterable, count) {
-        return qx.Promise.__callStaticMethod__P_50_8('some', arguments);
+        return qx.Promise.__callStaticMethod__P_68_8('some', arguments);
       },
 
       /**
@@ -19446,7 +19446,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.Promise}
        */
       forEach: function forEach(iterable, iterator) {
-        return qx.Promise.__callStaticMethod__P_50_8('each', arguments);
+        return qx.Promise.__callStaticMethod__P_68_8('each', arguments);
       },
 
       /**
@@ -19474,7 +19474,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.Promise}
        */
       filter: function filter(iterable, iterator, options) {
-        return qx.Promise.__callStaticMethod__P_50_8('filter', arguments);
+        return qx.Promise.__callStaticMethod__P_68_8('filter', arguments);
       },
 
       /**
@@ -19519,7 +19519,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.Promise}
        */
       map: function map(iterable, iterator, options) {
-        return qx.Promise.__callStaticMethod__P_50_8('map', arguments);
+        return qx.Promise.__callStaticMethod__P_68_8('map', arguments);
       },
 
       /**
@@ -19558,7 +19558,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.Promise}
        */
       mapSeries: function mapSeries(iterable, iterator) {
-        return qx.Promise.__callStaticMethod__P_50_8('mapSeries', arguments);
+        return qx.Promise.__callStaticMethod__P_68_8('mapSeries', arguments);
       },
 
       /**
@@ -19598,7 +19598,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.Promise}
        */
       reduce: function reduce(iterable, reducer, initialValue) {
-        return qx.Promise.__callStaticMethod__P_50_8('reduce', arguments);
+        return qx.Promise.__callStaticMethod__P_68_8('reduce', arguments);
       },
 
       /**
@@ -19610,7 +19610,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       method: function method(cb) {
         var wrappedCb = qx.Promise.Bluebird.method(cb);
         return function () {
-          return qx.Promise.__wrap__P_50_5(wrappedCb.apply(this, arguments));
+          return qx.Promise.__wrap__P_68_5(wrappedCb.apply(this, arguments));
         };
       },
 
@@ -19629,7 +19629,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.Promise}
        */
       props: function props(input) {
-        return qx.Promise.__callStaticMethod__P_50_8('props', arguments);
+        return qx.Promise.__callStaticMethod__P_68_8('props', arguments);
       },
 
       /**
@@ -19686,7 +19686,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.Promise}
        */
       promisify: function promisify(f, options) {
-        return qx.Promise.__callStaticMethod__P_50_8('promisify', arguments);
+        return qx.Promise.__callStaticMethod__P_68_8('promisify', arguments);
       },
 
       /* *********************************************************************************
@@ -19699,7 +19699,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Called when the Bluebird Promise class is loaded
        * @param Promise {Class} the Promise class
        */
-      __attachBluebird__P_50_9: function __attachBluebird__P_50_9(Promise) {
+      __attachBluebird__P_68_9: function __attachBluebird__P_68_9(Promise) {
         qx.Promise.Bluebird = Promise;
         Promise.config({
           warnings: true,
@@ -19709,23 +19709,23 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       },
 
       /** Whether one-time initialisaton has happened */
-      __initialized__P_50_10: false,
+      __initialized__P_68_10: false,
 
       /**
        * One-time initializer
        */
-      __initialize__P_50_0: function __initialize__P_50_0() {
-        if (qx.Promise.__initialized__P_50_10) {
+      __initialize__P_68_0: function __initialize__P_68_0() {
+        if (qx.Promise.__initialized__P_68_10) {
           return;
         }
 
-        qx.Promise.__initialized__P_50_10 = true;
+        qx.Promise.__initialized__P_68_10 = true;
         var isNode = typeof process !== "undefined";
 
         if (isNode) {
-          process.on("unhandledRejection", qx.Promise.__onUnhandledRejection__P_50_11.bind(this));
+          process.on("unhandledRejection", qx.Promise.__onUnhandledRejection__P_68_11.bind(this));
         } else {
-          qx.bom.Event.addNativeListener(window, "unhandledrejection", qx.Promise.__onUnhandledRejection__P_50_11.bind(this));
+          qx.bom.Event.addNativeListener(window, "unhandledrejection", qx.Promise.__onUnhandledRejection__P_68_11.bind(this));
         }
       },
 
@@ -19733,7 +19733,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Handles unhandled errors and passes them through to Qooxdoo's global error handler
        * @param e {NativeEvent}
        */
-      __onUnhandledRejection__P_50_11: function __onUnhandledRejection__P_50_11(e) {
+      __onUnhandledRejection__P_68_11: function __onUnhandledRejection__P_68_11(e) {
         if (qx.lang.Type.isFunction(e.preventDefault)) {
           e.preventDefault();
         }
@@ -19757,7 +19757,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param value {Object}
        * @return {Object}
        */
-      __wrap__P_50_5: function __wrap__P_50_5(value) {
+      __wrap__P_68_5: function __wrap__P_68_5(value) {
         if (value instanceof qx.Promise.Bluebird) {
           if (value.$$qxPromise) {
             value = value.$$qxPromise;
@@ -19778,7 +19778,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * 	this is used to determine whether the last value is for binding (default is 1)
        * @return {Array} array of new arguments with functions bound as necessary
        */
-      __bindArgs__P_50_7: function __bindArgs__P_50_7(args, minArgs) {
+      __bindArgs__P_68_7: function __bindArgs__P_68_7(args, minArgs) {
         args = qx.lang.Array.fromArguments(args);
 
         if (minArgs === undefined) {
@@ -19809,16 +19809,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param minArgs {Integer?} {@see __bindArgs}
        * @return {Object?}
        */
-      __callStaticMethod__P_50_8: function __callStaticMethod__P_50_8(methodName, args, minArgs) {
-        args = qx.Promise.__bindArgs__P_50_7(args, minArgs);
-        return qx.Promise.__wrap__P_50_5(qx.Promise.Bluebird[methodName].apply(qx.Promise.Bluebird, qx.Promise.__mapArgs__P_50_12(args)));
+      __callStaticMethod__P_68_8: function __callStaticMethod__P_68_8(methodName, args, minArgs) {
+        args = qx.Promise.__bindArgs__P_68_7(args, minArgs);
+        return qx.Promise.__wrap__P_68_5(qx.Promise.Bluebird[methodName].apply(qx.Promise.Bluebird, qx.Promise.__mapArgs__P_68_12(args)));
       },
 
       /**
        * Maps all arguments ready for passing to a Bluebird function; qx.data.Array are
        * translated to native arrays and qx.Promise to Promise.  This is not recursive.
        */
-      __mapArgs__P_50_12: function __mapArgs__P_50_12(args) {
+      __mapArgs__P_68_12: function __mapArgs__P_68_12(args) {
         var dest = [];
         args.forEach(function (arg) {
           if (arg instanceof qx.data.Array) {
@@ -19917,7 +19917,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      * Features enabled: core, race, call_get, generators, map, nodeify, promisify, props, reduce, settle, some, using, timers, filter, any, each
      */
     !function (e) {
-      qx.Promise.__attachBluebird__P_50_9(e());
+      qx.Promise.__attachBluebird__P_68_9(e());
     }(function () {
       var define, module, exports;
       return function e(t, n, r) {
@@ -21075,10 +21075,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
                 if (trace !== undefined) {
                   trace.attachExtraTrace(error);
-                } else if (!error.__stackCleaned____P_50_13) {
+                } else if (!error.__stackCleaned____P_68_13) {
                   var parsed = parseStackAndMessage(error);
                   util.notEnumerableProp(error, "stack", parsed.message + "\n" + parsed.stack.join("\n"));
-                  util.notEnumerableProp(error, "__stackCleaned____P_50_13", true);
+                  util.notEnumerableProp(error, "__stackCleaned____P_68_13", true);
                 }
               }
             }
@@ -21474,7 +21474,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             };
 
             CapturedTrace.prototype.attachExtraTrace = function (error) {
-              if (error.__stackCleaned____P_50_13) return;
+              if (error.__stackCleaned____P_68_13) return;
               this.uncycle();
               var parsed = parseStackAndMessage(error);
               var message = parsed.message;
@@ -21489,7 +21489,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               removeCommonRoots(stacks);
               removeDuplicateOrEmptyJumps(stacks);
               util.notEnumerableProp(error, "stack", reconstructStack(message, stacks));
-              util.notEnumerableProp(error, "__stackCleaned____P_50_13", true);
+              util.notEnumerableProp(error, "__stackCleaned____P_68_13", true);
             };
 
             var captureStackTrace = function stackDetection() {
@@ -23920,9 +23920,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
             var defaultSuffix = "Async";
             var defaultPromisified = {
-              __isPromisified____P_50_14: true
+              __isPromisified____P_68_14: true
             };
-            var noCopyProps = ["arity", "length", "name", "arguments", "caller", "callee", "prototype", "__isPromisified____P_50_14"];
+            var noCopyProps = ["arity", "length", "name", "arguments", "caller", "callee", "prototype", "__isPromisified____P_68_14"];
             var noCopyPropsPattern = new RegExp("^(?:" + noCopyProps.join("|") + ")$");
 
             var defaultFilter = function defaultFilter(name) {
@@ -23935,7 +23935,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
             function isPromisified(fn) {
               try {
-                return fn.__isPromisified____P_50_14 === true;
+                return fn.__isPromisified____P_68_14 === true;
               } catch (e) {
                 return false;
               }
@@ -23986,7 +23986,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
             var makeNodePromisifiedEval;
 
-            function makeNodePromisifiedClosure(callback, receiver, _, fn, ____P_50_15, multiArgs) {
+            function makeNodePromisifiedClosure(callback, receiver, _, fn, ____P_68_15, multiArgs) {
               var defaultThis = function () {
                 return this;
               }();
@@ -24017,7 +24017,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                 return promise;
               }
 
-              util.notEnumerableProp(promisified, "__isPromisified____P_50_14", true);
+              util.notEnumerableProp(promisified, "__isPromisified____P_68_14", true);
               return promisified;
             }
 
@@ -24038,7 +24038,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                   var promisified = promisifier(fn, function () {
                     return makeNodePromisified(key, THIS, key, fn, suffix, multiArgs);
                   });
-                  util.notEnumerableProp(promisified, "__isPromisified____P_50_14", true);
+                  util.notEnumerableProp(promisified, "__isPromisified____P_68_14", true);
                   obj[promisifiedKey] = promisified;
                 }
               }
@@ -24942,12 +24942,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               return (this._bitField & 8454144) !== 0;
             };
 
-            Promise.prototype.__isCancelled__P_50_16 = function () {
+            Promise.prototype.__isCancelled__P_68_16 = function () {
               return (this._bitField & 65536) === 65536;
             };
 
             Promise.prototype._isCancelled = function () {
-              return this._target().__isCancelled__P_50_16();
+              return this._target().__isCancelled__P_68_16();
             };
 
             Promise.prototype.isCancelled = function () {
@@ -25939,27 +25939,27 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * Unicode letters.  they are taken from Steve Levithan's excellent XRegExp library [http://xregexp.com/addons/unicode/unicode-base.js]
        */
-      __unicodeLetters__P_37_0: "0041-005A0061-007A00AA00B500BA00C0-00D600D8-00F600F8-02C102C6-02D102E0-02E402EC02EE0370-037403760377037A-037D03860388-038A038C038E-03A103A3-03F503F7-0481048A-05250531-055605590561-058705D0-05EA05F0-05F20621-064A066E066F0671-06D306D506E506E606EE06EF06FA-06FC06FF07100712-072F074D-07A507B107CA-07EA07F407F507FA0800-0815081A082408280904-0939093D09500958-0961097109720979-097F0985-098C098F09900993-09A809AA-09B009B209B6-09B909BD09CE09DC09DD09DF-09E109F009F10A05-0A0A0A0F0A100A13-0A280A2A-0A300A320A330A350A360A380A390A59-0A5C0A5E0A72-0A740A85-0A8D0A8F-0A910A93-0AA80AAA-0AB00AB20AB30AB5-0AB90ABD0AD00AE00AE10B05-0B0C0B0F0B100B13-0B280B2A-0B300B320B330B35-0B390B3D0B5C0B5D0B5F-0B610B710B830B85-0B8A0B8E-0B900B92-0B950B990B9A0B9C0B9E0B9F0BA30BA40BA8-0BAA0BAE-0BB90BD00C05-0C0C0C0E-0C100C12-0C280C2A-0C330C35-0C390C3D0C580C590C600C610C85-0C8C0C8E-0C900C92-0CA80CAA-0CB30CB5-0CB90CBD0CDE0CE00CE10D05-0D0C0D0E-0D100D12-0D280D2A-0D390D3D0D600D610D7A-0D7F0D85-0D960D9A-0DB10DB3-0DBB0DBD0DC0-0DC60E01-0E300E320E330E40-0E460E810E820E840E870E880E8A0E8D0E94-0E970E99-0E9F0EA1-0EA30EA50EA70EAA0EAB0EAD-0EB00EB20EB30EBD0EC0-0EC40EC60EDC0EDD0F000F40-0F470F49-0F6C0F88-0F8B1000-102A103F1050-1055105A-105D106110651066106E-10701075-1081108E10A0-10C510D0-10FA10FC1100-1248124A-124D1250-12561258125A-125D1260-1288128A-128D1290-12B012B2-12B512B8-12BE12C012C2-12C512C8-12D612D8-13101312-13151318-135A1380-138F13A0-13F41401-166C166F-167F1681-169A16A0-16EA1700-170C170E-17111720-17311740-17511760-176C176E-17701780-17B317D717DC1820-18771880-18A818AA18B0-18F51900-191C1950-196D1970-19741980-19AB19C1-19C71A00-1A161A20-1A541AA71B05-1B331B45-1B4B1B83-1BA01BAE1BAF1C00-1C231C4D-1C4F1C5A-1C7D1CE9-1CEC1CEE-1CF11D00-1DBF1E00-1F151F18-1F1D1F20-1F451F48-1F4D1F50-1F571F591F5B1F5D1F5F-1F7D1F80-1FB41FB6-1FBC1FBE1FC2-1FC41FC6-1FCC1FD0-1FD31FD6-1FDB1FE0-1FEC1FF2-1FF41FF6-1FFC2071207F2090-209421022107210A-211321152119-211D212421262128212A-212D212F-2139213C-213F2145-2149214E218321842C00-2C2E2C30-2C5E2C60-2CE42CEB-2CEE2D00-2D252D30-2D652D6F2D80-2D962DA0-2DA62DA8-2DAE2DB0-2DB62DB8-2DBE2DC0-2DC62DC8-2DCE2DD0-2DD62DD8-2DDE2E2F300530063031-3035303B303C3041-3096309D-309F30A1-30FA30FC-30FF3105-312D3131-318E31A0-31B731F0-31FF3400-4DB54E00-9FCBA000-A48CA4D0-A4FDA500-A60CA610-A61FA62AA62BA640-A65FA662-A66EA67F-A697A6A0-A6E5A717-A71FA722-A788A78BA78CA7FB-A801A803-A805A807-A80AA80C-A822A840-A873A882-A8B3A8F2-A8F7A8FBA90A-A925A930-A946A960-A97CA984-A9B2A9CFAA00-AA28AA40-AA42AA44-AA4BAA60-AA76AA7AAA80-AAAFAAB1AAB5AAB6AAB9-AABDAAC0AAC2AADB-AADDABC0-ABE2AC00-D7A3D7B0-D7C6D7CB-D7FBF900-FA2DFA30-FA6DFA70-FAD9FB00-FB06FB13-FB17FB1DFB1F-FB28FB2A-FB36FB38-FB3CFB3EFB40FB41FB43FB44FB46-FBB1FBD3-FD3DFD50-FD8FFD92-FDC7FDF0-FDFBFE70-FE74FE76-FEFCFF21-FF3AFF41-FF5AFF66-FFBEFFC2-FFC7FFCA-FFCFFFD2-FFD7FFDA-FFDC",
+      __unicodeLetters__P_41_0: "0041-005A0061-007A00AA00B500BA00C0-00D600D8-00F600F8-02C102C6-02D102E0-02E402EC02EE0370-037403760377037A-037D03860388-038A038C038E-03A103A3-03F503F7-0481048A-05250531-055605590561-058705D0-05EA05F0-05F20621-064A066E066F0671-06D306D506E506E606EE06EF06FA-06FC06FF07100712-072F074D-07A507B107CA-07EA07F407F507FA0800-0815081A082408280904-0939093D09500958-0961097109720979-097F0985-098C098F09900993-09A809AA-09B009B209B6-09B909BD09CE09DC09DD09DF-09E109F009F10A05-0A0A0A0F0A100A13-0A280A2A-0A300A320A330A350A360A380A390A59-0A5C0A5E0A72-0A740A85-0A8D0A8F-0A910A93-0AA80AAA-0AB00AB20AB30AB5-0AB90ABD0AD00AE00AE10B05-0B0C0B0F0B100B13-0B280B2A-0B300B320B330B35-0B390B3D0B5C0B5D0B5F-0B610B710B830B85-0B8A0B8E-0B900B92-0B950B990B9A0B9C0B9E0B9F0BA30BA40BA8-0BAA0BAE-0BB90BD00C05-0C0C0C0E-0C100C12-0C280C2A-0C330C35-0C390C3D0C580C590C600C610C85-0C8C0C8E-0C900C92-0CA80CAA-0CB30CB5-0CB90CBD0CDE0CE00CE10D05-0D0C0D0E-0D100D12-0D280D2A-0D390D3D0D600D610D7A-0D7F0D85-0D960D9A-0DB10DB3-0DBB0DBD0DC0-0DC60E01-0E300E320E330E40-0E460E810E820E840E870E880E8A0E8D0E94-0E970E99-0E9F0EA1-0EA30EA50EA70EAA0EAB0EAD-0EB00EB20EB30EBD0EC0-0EC40EC60EDC0EDD0F000F40-0F470F49-0F6C0F88-0F8B1000-102A103F1050-1055105A-105D106110651066106E-10701075-1081108E10A0-10C510D0-10FA10FC1100-1248124A-124D1250-12561258125A-125D1260-1288128A-128D1290-12B012B2-12B512B8-12BE12C012C2-12C512C8-12D612D8-13101312-13151318-135A1380-138F13A0-13F41401-166C166F-167F1681-169A16A0-16EA1700-170C170E-17111720-17311740-17511760-176C176E-17701780-17B317D717DC1820-18771880-18A818AA18B0-18F51900-191C1950-196D1970-19741980-19AB19C1-19C71A00-1A161A20-1A541AA71B05-1B331B45-1B4B1B83-1BA01BAE1BAF1C00-1C231C4D-1C4F1C5A-1C7D1CE9-1CEC1CEE-1CF11D00-1DBF1E00-1F151F18-1F1D1F20-1F451F48-1F4D1F50-1F571F591F5B1F5D1F5F-1F7D1F80-1FB41FB6-1FBC1FBE1FC2-1FC41FC6-1FCC1FD0-1FD31FD6-1FDB1FE0-1FEC1FF2-1FF41FF6-1FFC2071207F2090-209421022107210A-211321152119-211D212421262128212A-212D212F-2139213C-213F2145-2149214E218321842C00-2C2E2C30-2C5E2C60-2CE42CEB-2CEE2D00-2D252D30-2D652D6F2D80-2D962DA0-2DA62DA8-2DAE2DB0-2DB62DB8-2DBE2DC0-2DC62DC8-2DCE2DD0-2DD62DD8-2DDE2E2F300530063031-3035303B303C3041-3096309D-309F30A1-30FA30FC-30FF3105-312D3131-318E31A0-31B731F0-31FF3400-4DB54E00-9FCBA000-A48CA4D0-A4FDA500-A60CA610-A61FA62AA62BA640-A65FA662-A66EA67F-A697A6A0-A6E5A717-A71FA722-A788A78BA78CA7FB-A801A803-A805A807-A80AA80C-A822A840-A873A882-A8B3A8F2-A8F7A8FBA90A-A925A930-A946A960-A97CA984-A9B2A9CFAA00-AA28AA40-AA42AA44-AA4BAA60-AA76AA7AAA80-AAAFAAB1AAB5AAB6AAB9-AABDAAC0AAC2AADB-AADDABC0-ABE2AC00-D7A3D7B0-D7C6D7CB-D7FBF900-FA2DFA30-FA6DFA70-FAD9FB00-FB06FB13-FB17FB1DFB1F-FB28FB2A-FB36FB38-FB3CFB3EFB40FB41FB43FB44FB46-FBB1FBD3-FD3DFD50-FD8FFD92-FDC7FDF0-FDFBFE70-FE74FE76-FEFCFF21-FF3AFF41-FF5AFF66-FFBEFFC2-FFC7FFCA-FFCFFFD2-FFD7FFDA-FFDC",
 
       /**
        * A RegExp that matches the first letter in a word - unicode aware
        */
-      __unicodeFirstLetterInWordRegexp__P_37_1: null,
+      __unicodeFirstLetterInWordRegexp__P_41_1: null,
 
       /**
        * @type {Map} Cache for often used string operations [camelCasing and hyphenation]
        * e.g. marginTop => margin-top
        */
-      __camelCaseMap__P_37_2: {},
+      __camelCaseMap__P_41_2: {},
 
       /**
        * {Map} Cache for often used hyphenation operations
        * e.g. marginTop => margin-top
        */
-      __hyphenationMap__P_37_3: {},
+      __hyphenationMap__P_41_3: {},
 
       /** @type{Map<char, String} character types, key is the character and the vaklue is `upper`, `lower`, or `digit` */
-      __characterTypes__P_37_4: null,
+      __characterTypes__P_41_4: null,
 
       /**
        * Converts a hyphenated string (separated by '-') to camel case.
@@ -25971,13 +25971,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} camelcase string
        */
       camelCase: function camelCase(str) {
-        var result = this.__camelCaseMap__P_37_2[str];
+        var result = this.__camelCaseMap__P_41_2[str];
 
         if (!result) {
           result = str.replace(/\-([a-z])/g, function (match, chr) {
             return chr.toUpperCase();
           });
-          this.__camelCaseMap__P_37_2[str] = result;
+          this.__camelCaseMap__P_41_2[str] = result;
         }
 
         return result;
@@ -25993,13 +25993,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} hyphenated string
        */
       hyphenate: function hyphenate(str) {
-        var result = this.__hyphenationMap__P_37_3[str];
+        var result = this.__hyphenationMap__P_41_3[str];
 
         if (!result) {
           result = str.replace(/[A-Z]/g, function (match) {
             return '-' + match.charAt(0).toLowerCase();
           });
-          this.__hyphenationMap__P_37_3[str] = result;
+          this.__hyphenationMap__P_41_3[str] = result;
         }
 
         return result;
@@ -26015,16 +26015,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} capitalized string
        */
       capitalize: function capitalize(str) {
-        if (this.__unicodeFirstLetterInWordRegexp__P_37_1 === null) {
+        if (this.__unicodeFirstLetterInWordRegexp__P_41_1 === null) {
           var unicodeEscapePrefix = "\\u";
-          this.__unicodeFirstLetterInWordRegexp__P_37_1 = new RegExp("(^|[^" + this.__unicodeLetters__P_37_0.replace(/[0-9A-F]{4}/g, function (match) {
+          this.__unicodeFirstLetterInWordRegexp__P_41_1 = new RegExp("(^|[^" + this.__unicodeLetters__P_41_0.replace(/[0-9A-F]{4}/g, function (match) {
             return unicodeEscapePrefix + match;
-          }) + "])[" + this.__unicodeLetters__P_37_0.replace(/[0-9A-F]{4}/g, function (match) {
+          }) + "])[" + this.__unicodeLetters__P_41_0.replace(/[0-9A-F]{4}/g, function (match) {
             return unicodeEscapePrefix + match;
           }) + "]", "g");
         }
 
-        return str.replace(this.__unicodeFirstLetterInWordRegexp__P_37_1, function (match) {
+        return str.replace(this.__unicodeFirstLetterInWordRegexp__P_41_1, function (match) {
           return match.toUpperCase();
         });
       },
@@ -26035,7 +26035,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @returns {Boolean}
        */
       isUpperCase: function isUpperCase(str) {
-        return qx.lang.String.__characterRx__P_37_5.upper.test(str);
+        return qx.lang.String.__characterRx__P_41_5.upper.test(str);
       },
 
       /**
@@ -26044,7 +26044,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @returns {Boolean}
        */
       isLowerCase: function isLowerCase(str) {
-        return qx.lang.String.__characterRx__P_37_5.lower.test(str);
+        return qx.lang.String.__characterRx__P_41_5.lower.test(str);
       },
 
       /**
@@ -26053,7 +26053,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @returns {Boolean}
        */
       isLetters: function isLetters(str) {
-        return qx.lang.String.__characterRx__P_37_5.letter.test(str);
+        return qx.lang.String.__characterRx__P_41_5.letter.test(str);
       },
 
       /**
@@ -26062,7 +26062,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @returns {Boolean}
        */
       isDigits: function isDigits(str) {
-        return qx.lang.String.__characterRx__P_37_5.digit.test(str);
+        return qx.lang.String.__characterRx__P_41_5.digit.test(str);
       },
 
       /**
@@ -26297,7 +26297,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       }
     },
     defer: function defer(statics) {
-      statics.__characterRx__P_37_5 = {
+      statics.__characterRx__P_41_5 = {
         letter: RegExp(/^(?:[A-Za-z\xAA\xB5\xBA\xC0-\xD6\xD8-\xF6\xF8-\u02C1\u02C6-\u02D1\u02E0-\u02E4\u02EC\u02EE\u0370-\u0374\u0376\u0377\u037A-\u037D\u037F\u0386\u0388-\u038A\u038C\u038E-\u03A1\u03A3-\u03F5\u03F7-\u0481\u048A-\u052F\u0531-\u0556\u0559\u0560-\u0588\u05D0-\u05EA\u05EF-\u05F2\u0620-\u064A\u066E\u066F\u0671-\u06D3\u06D5\u06E5\u06E6\u06EE\u06EF\u06FA-\u06FC\u06FF\u0710\u0712-\u072F\u074D-\u07A5\u07B1\u07CA-\u07EA\u07F4\u07F5\u07FA\u0800-\u0815\u081A\u0824\u0828\u0840-\u0858\u0860-\u086A\u0870-\u0887\u0889-\u088E\u08A0-\u08C9\u0904-\u0939\u093D\u0950\u0958-\u0961\u0971-\u0980\u0985-\u098C\u098F\u0990\u0993-\u09A8\u09AA-\u09B0\u09B2\u09B6-\u09B9\u09BD\u09CE\u09DC\u09DD\u09DF-\u09E1\u09F0\u09F1\u09FC\u0A05-\u0A0A\u0A0F\u0A10\u0A13-\u0A28\u0A2A-\u0A30\u0A32\u0A33\u0A35\u0A36\u0A38\u0A39\u0A59-\u0A5C\u0A5E\u0A72-\u0A74\u0A85-\u0A8D\u0A8F-\u0A91\u0A93-\u0AA8\u0AAA-\u0AB0\u0AB2\u0AB3\u0AB5-\u0AB9\u0ABD\u0AD0\u0AE0\u0AE1\u0AF9\u0B05-\u0B0C\u0B0F\u0B10\u0B13-\u0B28\u0B2A-\u0B30\u0B32\u0B33\u0B35-\u0B39\u0B3D\u0B5C\u0B5D\u0B5F-\u0B61\u0B71\u0B83\u0B85-\u0B8A\u0B8E-\u0B90\u0B92-\u0B95\u0B99\u0B9A\u0B9C\u0B9E\u0B9F\u0BA3\u0BA4\u0BA8-\u0BAA\u0BAE-\u0BB9\u0BD0\u0C05-\u0C0C\u0C0E-\u0C10\u0C12-\u0C28\u0C2A-\u0C39\u0C3D\u0C58-\u0C5A\u0C5D\u0C60\u0C61\u0C80\u0C85-\u0C8C\u0C8E-\u0C90\u0C92-\u0CA8\u0CAA-\u0CB3\u0CB5-\u0CB9\u0CBD\u0CDD\u0CDE\u0CE0\u0CE1\u0CF1\u0CF2\u0D04-\u0D0C\u0D0E-\u0D10\u0D12-\u0D3A\u0D3D\u0D4E\u0D54-\u0D56\u0D5F-\u0D61\u0D7A-\u0D7F\u0D85-\u0D96\u0D9A-\u0DB1\u0DB3-\u0DBB\u0DBD\u0DC0-\u0DC6\u0E01-\u0E30\u0E32\u0E33\u0E40-\u0E46\u0E81\u0E82\u0E84\u0E86-\u0E8A\u0E8C-\u0EA3\u0EA5\u0EA7-\u0EB0\u0EB2\u0EB3\u0EBD\u0EC0-\u0EC4\u0EC6\u0EDC-\u0EDF\u0F00\u0F40-\u0F47\u0F49-\u0F6C\u0F88-\u0F8C\u1000-\u102A\u103F\u1050-\u1055\u105A-\u105D\u1061\u1065\u1066\u106E-\u1070\u1075-\u1081\u108E\u10A0-\u10C5\u10C7\u10CD\u10D0-\u10FA\u10FC-\u1248\u124A-\u124D\u1250-\u1256\u1258\u125A-\u125D\u1260-\u1288\u128A-\u128D\u1290-\u12B0\u12B2-\u12B5\u12B8-\u12BE\u12C0\u12C2-\u12C5\u12C8-\u12D6\u12D8-\u1310\u1312-\u1315\u1318-\u135A\u1380-\u138F\u13A0-\u13F5\u13F8-\u13FD\u1401-\u166C\u166F-\u167F\u1681-\u169A\u16A0-\u16EA\u16F1-\u16F8\u1700-\u1711\u171F-\u1731\u1740-\u1751\u1760-\u176C\u176E-\u1770\u1780-\u17B3\u17D7\u17DC\u1820-\u1878\u1880-\u1884\u1887-\u18A8\u18AA\u18B0-\u18F5\u1900-\u191E\u1950-\u196D\u1970-\u1974\u1980-\u19AB\u19B0-\u19C9\u1A00-\u1A16\u1A20-\u1A54\u1AA7\u1B05-\u1B33\u1B45-\u1B4C\u1B83-\u1BA0\u1BAE\u1BAF\u1BBA-\u1BE5\u1C00-\u1C23\u1C4D-\u1C4F\u1C5A-\u1C7D\u1C80-\u1C88\u1C90-\u1CBA\u1CBD-\u1CBF\u1CE9-\u1CEC\u1CEE-\u1CF3\u1CF5\u1CF6\u1CFA\u1D00-\u1DBF\u1E00-\u1F15\u1F18-\u1F1D\u1F20-\u1F45\u1F48-\u1F4D\u1F50-\u1F57\u1F59\u1F5B\u1F5D\u1F5F-\u1F7D\u1F80-\u1FB4\u1FB6-\u1FBC\u1FBE\u1FC2-\u1FC4\u1FC6-\u1FCC\u1FD0-\u1FD3\u1FD6-\u1FDB\u1FE0-\u1FEC\u1FF2-\u1FF4\u1FF6-\u1FFC\u2071\u207F\u2090-\u209C\u2102\u2107\u210A-\u2113\u2115\u2119-\u211D\u2124\u2126\u2128\u212A-\u212D\u212F-\u2139\u213C-\u213F\u2145-\u2149\u214E\u2183\u2184\u2C00-\u2CE4\u2CEB-\u2CEE\u2CF2\u2CF3\u2D00-\u2D25\u2D27\u2D2D\u2D30-\u2D67\u2D6F\u2D80-\u2D96\u2DA0-\u2DA6\u2DA8-\u2DAE\u2DB0-\u2DB6\u2DB8-\u2DBE\u2DC0-\u2DC6\u2DC8-\u2DCE\u2DD0-\u2DD6\u2DD8-\u2DDE\u2E2F\u3005\u3006\u3031-\u3035\u303B\u303C\u3041-\u3096\u309D-\u309F\u30A1-\u30FA\u30FC-\u30FF\u3105-\u312F\u3131-\u318E\u31A0-\u31BF\u31F0-\u31FF\u3400-\u4DBF\u4E00-\uA48C\uA4D0-\uA4FD\uA500-\uA60C\uA610-\uA61F\uA62A\uA62B\uA640-\uA66E\uA67F-\uA69D\uA6A0-\uA6E5\uA717-\uA71F\uA722-\uA788\uA78B-\uA7CA\uA7D0\uA7D1\uA7D3\uA7D5-\uA7D9\uA7F2-\uA801\uA803-\uA805\uA807-\uA80A\uA80C-\uA822\uA840-\uA873\uA882-\uA8B3\uA8F2-\uA8F7\uA8FB\uA8FD\uA8FE\uA90A-\uA925\uA930-\uA946\uA960-\uA97C\uA984-\uA9B2\uA9CF\uA9E0-\uA9E4\uA9E6-\uA9EF\uA9FA-\uA9FE\uAA00-\uAA28\uAA40-\uAA42\uAA44-\uAA4B\uAA60-\uAA76\uAA7A\uAA7E-\uAAAF\uAAB1\uAAB5\uAAB6\uAAB9-\uAABD\uAAC0\uAAC2\uAADB-\uAADD\uAAE0-\uAAEA\uAAF2-\uAAF4\uAB01-\uAB06\uAB09-\uAB0E\uAB11-\uAB16\uAB20-\uAB26\uAB28-\uAB2E\uAB30-\uAB5A\uAB5C-\uAB69\uAB70-\uABE2\uAC00-\uD7A3\uD7B0-\uD7C6\uD7CB-\uD7FB\uF900-\uFA6D\uFA70-\uFAD9\uFB00-\uFB06\uFB13-\uFB17\uFB1D\uFB1F-\uFB28\uFB2A-\uFB36\uFB38-\uFB3C\uFB3E\uFB40\uFB41\uFB43\uFB44\uFB46-\uFBB1\uFBD3-\uFD3D\uFD50-\uFD8F\uFD92-\uFDC7\uFDF0-\uFDFB\uFE70-\uFE74\uFE76-\uFEFC\uFF21-\uFF3A\uFF41-\uFF5A\uFF66-\uFFBE\uFFC2-\uFFC7\uFFCA-\uFFCF\uFFD2-\uFFD7\uFFDA-\uFFDC]|\uD800[\uDC00-\uDC0B\uDC0D-\uDC26\uDC28-\uDC3A\uDC3C\uDC3D\uDC3F-\uDC4D\uDC50-\uDC5D\uDC80-\uDCFA\uDE80-\uDE9C\uDEA0-\uDED0\uDF00-\uDF1F\uDF2D-\uDF40\uDF42-\uDF49\uDF50-\uDF75\uDF80-\uDF9D\uDFA0-\uDFC3\uDFC8-\uDFCF]|\uD801[\uDC00-\uDC9D\uDCB0-\uDCD3\uDCD8-\uDCFB\uDD00-\uDD27\uDD30-\uDD63\uDD70-\uDD7A\uDD7C-\uDD8A\uDD8C-\uDD92\uDD94\uDD95\uDD97-\uDDA1\uDDA3-\uDDB1\uDDB3-\uDDB9\uDDBB\uDDBC\uDE00-\uDF36\uDF40-\uDF55\uDF60-\uDF67\uDF80-\uDF85\uDF87-\uDFB0\uDFB2-\uDFBA]|\uD802[\uDC00-\uDC05\uDC08\uDC0A-\uDC35\uDC37\uDC38\uDC3C\uDC3F-\uDC55\uDC60-\uDC76\uDC80-\uDC9E\uDCE0-\uDCF2\uDCF4\uDCF5\uDD00-\uDD15\uDD20-\uDD39\uDD80-\uDDB7\uDDBE\uDDBF\uDE00\uDE10-\uDE13\uDE15-\uDE17\uDE19-\uDE35\uDE60-\uDE7C\uDE80-\uDE9C\uDEC0-\uDEC7\uDEC9-\uDEE4\uDF00-\uDF35\uDF40-\uDF55\uDF60-\uDF72\uDF80-\uDF91]|\uD803[\uDC00-\uDC48\uDC80-\uDCB2\uDCC0-\uDCF2\uDD00-\uDD23\uDE80-\uDEA9\uDEB0\uDEB1\uDF00-\uDF1C\uDF27\uDF30-\uDF45\uDF70-\uDF81\uDFB0-\uDFC4\uDFE0-\uDFF6]|\uD804[\uDC03-\uDC37\uDC71\uDC72\uDC75\uDC83-\uDCAF\uDCD0-\uDCE8\uDD03-\uDD26\uDD44\uDD47\uDD50-\uDD72\uDD76\uDD83-\uDDB2\uDDC1-\uDDC4\uDDDA\uDDDC\uDE00-\uDE11\uDE13-\uDE2B\uDE80-\uDE86\uDE88\uDE8A-\uDE8D\uDE8F-\uDE9D\uDE9F-\uDEA8\uDEB0-\uDEDE\uDF05-\uDF0C\uDF0F\uDF10\uDF13-\uDF28\uDF2A-\uDF30\uDF32\uDF33\uDF35-\uDF39\uDF3D\uDF50\uDF5D-\uDF61]|\uD805[\uDC00-\uDC34\uDC47-\uDC4A\uDC5F-\uDC61\uDC80-\uDCAF\uDCC4\uDCC5\uDCC7\uDD80-\uDDAE\uDDD8-\uDDDB\uDE00-\uDE2F\uDE44\uDE80-\uDEAA\uDEB8\uDF00-\uDF1A\uDF40-\uDF46]|\uD806[\uDC00-\uDC2B\uDCA0-\uDCDF\uDCFF-\uDD06\uDD09\uDD0C-\uDD13\uDD15\uDD16\uDD18-\uDD2F\uDD3F\uDD41\uDDA0-\uDDA7\uDDAA-\uDDD0\uDDE1\uDDE3\uDE00\uDE0B-\uDE32\uDE3A\uDE50\uDE5C-\uDE89\uDE9D\uDEB0-\uDEF8]|\uD807[\uDC00-\uDC08\uDC0A-\uDC2E\uDC40\uDC72-\uDC8F\uDD00-\uDD06\uDD08\uDD09\uDD0B-\uDD30\uDD46\uDD60-\uDD65\uDD67\uDD68\uDD6A-\uDD89\uDD98\uDEE0-\uDEF2\uDFB0]|\uD808[\uDC00-\uDF99]|\uD809[\uDC80-\uDD43]|\uD80B[\uDF90-\uDFF0]|[\uD80C\uD81C-\uD820\uD822\uD840-\uD868\uD86A-\uD86C\uD86F-\uD872\uD874-\uD879\uD880-\uD883][\uDC00-\uDFFF]|\uD80D[\uDC00-\uDC2E]|\uD811[\uDC00-\uDE46]|\uD81A[\uDC00-\uDE38\uDE40-\uDE5E\uDE70-\uDEBE\uDED0-\uDEED\uDF00-\uDF2F\uDF40-\uDF43\uDF63-\uDF77\uDF7D-\uDF8F]|\uD81B[\uDE40-\uDE7F\uDF00-\uDF4A\uDF50\uDF93-\uDF9F\uDFE0\uDFE1\uDFE3]|\uD821[\uDC00-\uDFF7]|\uD823[\uDC00-\uDCD5\uDD00-\uDD08]|\uD82B[\uDFF0-\uDFF3\uDFF5-\uDFFB\uDFFD\uDFFE]|\uD82C[\uDC00-\uDD22\uDD50-\uDD52\uDD64-\uDD67\uDD70-\uDEFB]|\uD82F[\uDC00-\uDC6A\uDC70-\uDC7C\uDC80-\uDC88\uDC90-\uDC99]|\uD835[\uDC00-\uDC54\uDC56-\uDC9C\uDC9E\uDC9F\uDCA2\uDCA5\uDCA6\uDCA9-\uDCAC\uDCAE-\uDCB9\uDCBB\uDCBD-\uDCC3\uDCC5-\uDD05\uDD07-\uDD0A\uDD0D-\uDD14\uDD16-\uDD1C\uDD1E-\uDD39\uDD3B-\uDD3E\uDD40-\uDD44\uDD46\uDD4A-\uDD50\uDD52-\uDEA5\uDEA8-\uDEC0\uDEC2-\uDEDA\uDEDC-\uDEFA\uDEFC-\uDF14\uDF16-\uDF34\uDF36-\uDF4E\uDF50-\uDF6E\uDF70-\uDF88\uDF8A-\uDFA8\uDFAA-\uDFC2\uDFC4-\uDFCB]|\uD837[\uDF00-\uDF1E]|\uD838[\uDD00-\uDD2C\uDD37-\uDD3D\uDD4E\uDE90-\uDEAD\uDEC0-\uDEEB]|\uD839[\uDFE0-\uDFE6\uDFE8-\uDFEB\uDFED\uDFEE\uDFF0-\uDFFE]|\uD83A[\uDC00-\uDCC4\uDD00-\uDD43\uDD4B]|\uD83B[\uDE00-\uDE03\uDE05-\uDE1F\uDE21\uDE22\uDE24\uDE27\uDE29-\uDE32\uDE34-\uDE37\uDE39\uDE3B\uDE42\uDE47\uDE49\uDE4B\uDE4D-\uDE4F\uDE51\uDE52\uDE54\uDE57\uDE59\uDE5B\uDE5D\uDE5F\uDE61\uDE62\uDE64\uDE67-\uDE6A\uDE6C-\uDE72\uDE74-\uDE77\uDE79-\uDE7C\uDE7E\uDE80-\uDE89\uDE8B-\uDE9B\uDEA1-\uDEA3\uDEA5-\uDEA9\uDEAB-\uDEBB]|\uD869[\uDC00-\uDEDF\uDF00-\uDFFF]|\uD86D[\uDC00-\uDF38\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D\uDC20-\uDFFF]|\uD873[\uDC00-\uDEA1\uDEB0-\uDFFF]|\uD87A[\uDC00-\uDFE0]|\uD87E[\uDC00-\uDE1D]|\uD884[\uDC00-\uDF4A])+$/),
         upper: RegExp(/^(?:[A-Z\xC0-\xD6\xD8-\xDE\u0100\u0102\u0104\u0106\u0108\u010A\u010C\u010E\u0110\u0112\u0114\u0116\u0118\u011A\u011C\u011E\u0120\u0122\u0124\u0126\u0128\u012A\u012C\u012E\u0130\u0132\u0134\u0136\u0139\u013B\u013D\u013F\u0141\u0143\u0145\u0147\u014A\u014C\u014E\u0150\u0152\u0154\u0156\u0158\u015A\u015C\u015E\u0160\u0162\u0164\u0166\u0168\u016A\u016C\u016E\u0170\u0172\u0174\u0176\u0178\u0179\u017B\u017D\u0181\u0182\u0184\u0186\u0187\u0189-\u018B\u018E-\u0191\u0193\u0194\u0196-\u0198\u019C\u019D\u019F\u01A0\u01A2\u01A4\u01A6\u01A7\u01A9\u01AC\u01AE\u01AF\u01B1-\u01B3\u01B5\u01B7\u01B8\u01BC\u01C4\u01C7\u01CA\u01CD\u01CF\u01D1\u01D3\u01D5\u01D7\u01D9\u01DB\u01DE\u01E0\u01E2\u01E4\u01E6\u01E8\u01EA\u01EC\u01EE\u01F1\u01F4\u01F6-\u01F8\u01FA\u01FC\u01FE\u0200\u0202\u0204\u0206\u0208\u020A\u020C\u020E\u0210\u0212\u0214\u0216\u0218\u021A\u021C\u021E\u0220\u0222\u0224\u0226\u0228\u022A\u022C\u022E\u0230\u0232\u023A\u023B\u023D\u023E\u0241\u0243-\u0246\u0248\u024A\u024C\u024E\u0370\u0372\u0376\u037F\u0386\u0388-\u038A\u038C\u038E\u038F\u0391-\u03A1\u03A3-\u03AB\u03CF\u03D2-\u03D4\u03D8\u03DA\u03DC\u03DE\u03E0\u03E2\u03E4\u03E6\u03E8\u03EA\u03EC\u03EE\u03F4\u03F7\u03F9\u03FA\u03FD-\u042F\u0460\u0462\u0464\u0466\u0468\u046A\u046C\u046E\u0470\u0472\u0474\u0476\u0478\u047A\u047C\u047E\u0480\u048A\u048C\u048E\u0490\u0492\u0494\u0496\u0498\u049A\u049C\u049E\u04A0\u04A2\u04A4\u04A6\u04A8\u04AA\u04AC\u04AE\u04B0\u04B2\u04B4\u04B6\u04B8\u04BA\u04BC\u04BE\u04C0\u04C1\u04C3\u04C5\u04C7\u04C9\u04CB\u04CD\u04D0\u04D2\u04D4\u04D6\u04D8\u04DA\u04DC\u04DE\u04E0\u04E2\u04E4\u04E6\u04E8\u04EA\u04EC\u04EE\u04F0\u04F2\u04F4\u04F6\u04F8\u04FA\u04FC\u04FE\u0500\u0502\u0504\u0506\u0508\u050A\u050C\u050E\u0510\u0512\u0514\u0516\u0518\u051A\u051C\u051E\u0520\u0522\u0524\u0526\u0528\u052A\u052C\u052E\u0531-\u0556\u10A0-\u10C5\u10C7\u10CD\u13A0-\u13F5\u1C90-\u1CBA\u1CBD-\u1CBF\u1E00\u1E02\u1E04\u1E06\u1E08\u1E0A\u1E0C\u1E0E\u1E10\u1E12\u1E14\u1E16\u1E18\u1E1A\u1E1C\u1E1E\u1E20\u1E22\u1E24\u1E26\u1E28\u1E2A\u1E2C\u1E2E\u1E30\u1E32\u1E34\u1E36\u1E38\u1E3A\u1E3C\u1E3E\u1E40\u1E42\u1E44\u1E46\u1E48\u1E4A\u1E4C\u1E4E\u1E50\u1E52\u1E54\u1E56\u1E58\u1E5A\u1E5C\u1E5E\u1E60\u1E62\u1E64\u1E66\u1E68\u1E6A\u1E6C\u1E6E\u1E70\u1E72\u1E74\u1E76\u1E78\u1E7A\u1E7C\u1E7E\u1E80\u1E82\u1E84\u1E86\u1E88\u1E8A\u1E8C\u1E8E\u1E90\u1E92\u1E94\u1E9E\u1EA0\u1EA2\u1EA4\u1EA6\u1EA8\u1EAA\u1EAC\u1EAE\u1EB0\u1EB2\u1EB4\u1EB6\u1EB8\u1EBA\u1EBC\u1EBE\u1EC0\u1EC2\u1EC4\u1EC6\u1EC8\u1ECA\u1ECC\u1ECE\u1ED0\u1ED2\u1ED4\u1ED6\u1ED8\u1EDA\u1EDC\u1EDE\u1EE0\u1EE2\u1EE4\u1EE6\u1EE8\u1EEA\u1EEC\u1EEE\u1EF0\u1EF2\u1EF4\u1EF6\u1EF8\u1EFA\u1EFC\u1EFE\u1F08-\u1F0F\u1F18-\u1F1D\u1F28-\u1F2F\u1F38-\u1F3F\u1F48-\u1F4D\u1F59\u1F5B\u1F5D\u1F5F\u1F68-\u1F6F\u1FB8-\u1FBB\u1FC8-\u1FCB\u1FD8-\u1FDB\u1FE8-\u1FEC\u1FF8-\u1FFB\u2102\u2107\u210B-\u210D\u2110-\u2112\u2115\u2119-\u211D\u2124\u2126\u2128\u212A-\u212D\u2130-\u2133\u213E\u213F\u2145\u2183\u2C00-\u2C2F\u2C60\u2C62-\u2C64\u2C67\u2C69\u2C6B\u2C6D-\u2C70\u2C72\u2C75\u2C7E-\u2C80\u2C82\u2C84\u2C86\u2C88\u2C8A\u2C8C\u2C8E\u2C90\u2C92\u2C94\u2C96\u2C98\u2C9A\u2C9C\u2C9E\u2CA0\u2CA2\u2CA4\u2CA6\u2CA8\u2CAA\u2CAC\u2CAE\u2CB0\u2CB2\u2CB4\u2CB6\u2CB8\u2CBA\u2CBC\u2CBE\u2CC0\u2CC2\u2CC4\u2CC6\u2CC8\u2CCA\u2CCC\u2CCE\u2CD0\u2CD2\u2CD4\u2CD6\u2CD8\u2CDA\u2CDC\u2CDE\u2CE0\u2CE2\u2CEB\u2CED\u2CF2\uA640\uA642\uA644\uA646\uA648\uA64A\uA64C\uA64E\uA650\uA652\uA654\uA656\uA658\uA65A\uA65C\uA65E\uA660\uA662\uA664\uA666\uA668\uA66A\uA66C\uA680\uA682\uA684\uA686\uA688\uA68A\uA68C\uA68E\uA690\uA692\uA694\uA696\uA698\uA69A\uA722\uA724\uA726\uA728\uA72A\uA72C\uA72E\uA732\uA734\uA736\uA738\uA73A\uA73C\uA73E\uA740\uA742\uA744\uA746\uA748\uA74A\uA74C\uA74E\uA750\uA752\uA754\uA756\uA758\uA75A\uA75C\uA75E\uA760\uA762\uA764\uA766\uA768\uA76A\uA76C\uA76E\uA779\uA77B\uA77D\uA77E\uA780\uA782\uA784\uA786\uA78B\uA78D\uA790\uA792\uA796\uA798\uA79A\uA79C\uA79E\uA7A0\uA7A2\uA7A4\uA7A6\uA7A8\uA7AA-\uA7AE\uA7B0-\uA7B4\uA7B6\uA7B8\uA7BA\uA7BC\uA7BE\uA7C0\uA7C2\uA7C4-\uA7C7\uA7C9\uA7D0\uA7D6\uA7D8\uA7F5\uFF21-\uFF3A]|\uD801[\uDC00-\uDC27\uDCB0-\uDCD3\uDD70-\uDD7A\uDD7C-\uDD8A\uDD8C-\uDD92\uDD94\uDD95]|\uD803[\uDC80-\uDCB2]|\uD806[\uDCA0-\uDCBF]|\uD81B[\uDE40-\uDE5F]|\uD835[\uDC00-\uDC19\uDC34-\uDC4D\uDC68-\uDC81\uDC9C\uDC9E\uDC9F\uDCA2\uDCA5\uDCA6\uDCA9-\uDCAC\uDCAE-\uDCB5\uDCD0-\uDCE9\uDD04\uDD05\uDD07-\uDD0A\uDD0D-\uDD14\uDD16-\uDD1C\uDD38\uDD39\uDD3B-\uDD3E\uDD40-\uDD44\uDD46\uDD4A-\uDD50\uDD6C-\uDD85\uDDA0-\uDDB9\uDDD4-\uDDED\uDE08-\uDE21\uDE3C-\uDE55\uDE70-\uDE89\uDEA8-\uDEC0\uDEE2-\uDEFA\uDF1C-\uDF34\uDF56-\uDF6E\uDF90-\uDFA8\uDFCA]|\uD83A[\uDD00-\uDD21])+$/),
         lower: RegExp(/^(?:[a-z\xB5\xDF-\xF6\xF8-\xFF\u0101\u0103\u0105\u0107\u0109\u010B\u010D\u010F\u0111\u0113\u0115\u0117\u0119\u011B\u011D\u011F\u0121\u0123\u0125\u0127\u0129\u012B\u012D\u012F\u0131\u0133\u0135\u0137\u0138\u013A\u013C\u013E\u0140\u0142\u0144\u0146\u0148\u0149\u014B\u014D\u014F\u0151\u0153\u0155\u0157\u0159\u015B\u015D\u015F\u0161\u0163\u0165\u0167\u0169\u016B\u016D\u016F\u0171\u0173\u0175\u0177\u017A\u017C\u017E-\u0180\u0183\u0185\u0188\u018C\u018D\u0192\u0195\u0199-\u019B\u019E\u01A1\u01A3\u01A5\u01A8\u01AA\u01AB\u01AD\u01B0\u01B4\u01B6\u01B9\u01BA\u01BD-\u01BF\u01C6\u01C9\u01CC\u01CE\u01D0\u01D2\u01D4\u01D6\u01D8\u01DA\u01DC\u01DD\u01DF\u01E1\u01E3\u01E5\u01E7\u01E9\u01EB\u01ED\u01EF\u01F0\u01F3\u01F5\u01F9\u01FB\u01FD\u01FF\u0201\u0203\u0205\u0207\u0209\u020B\u020D\u020F\u0211\u0213\u0215\u0217\u0219\u021B\u021D\u021F\u0221\u0223\u0225\u0227\u0229\u022B\u022D\u022F\u0231\u0233-\u0239\u023C\u023F\u0240\u0242\u0247\u0249\u024B\u024D\u024F-\u0293\u0295-\u02AF\u0371\u0373\u0377\u037B-\u037D\u0390\u03AC-\u03CE\u03D0\u03D1\u03D5-\u03D7\u03D9\u03DB\u03DD\u03DF\u03E1\u03E3\u03E5\u03E7\u03E9\u03EB\u03ED\u03EF-\u03F3\u03F5\u03F8\u03FB\u03FC\u0430-\u045F\u0461\u0463\u0465\u0467\u0469\u046B\u046D\u046F\u0471\u0473\u0475\u0477\u0479\u047B\u047D\u047F\u0481\u048B\u048D\u048F\u0491\u0493\u0495\u0497\u0499\u049B\u049D\u049F\u04A1\u04A3\u04A5\u04A7\u04A9\u04AB\u04AD\u04AF\u04B1\u04B3\u04B5\u04B7\u04B9\u04BB\u04BD\u04BF\u04C2\u04C4\u04C6\u04C8\u04CA\u04CC\u04CE\u04CF\u04D1\u04D3\u04D5\u04D7\u04D9\u04DB\u04DD\u04DF\u04E1\u04E3\u04E5\u04E7\u04E9\u04EB\u04ED\u04EF\u04F1\u04F3\u04F5\u04F7\u04F9\u04FB\u04FD\u04FF\u0501\u0503\u0505\u0507\u0509\u050B\u050D\u050F\u0511\u0513\u0515\u0517\u0519\u051B\u051D\u051F\u0521\u0523\u0525\u0527\u0529\u052B\u052D\u052F\u0560-\u0588\u10D0-\u10FA\u10FD-\u10FF\u13F8-\u13FD\u1C80-\u1C88\u1D00-\u1D2B\u1D6B-\u1D77\u1D79-\u1D9A\u1E01\u1E03\u1E05\u1E07\u1E09\u1E0B\u1E0D\u1E0F\u1E11\u1E13\u1E15\u1E17\u1E19\u1E1B\u1E1D\u1E1F\u1E21\u1E23\u1E25\u1E27\u1E29\u1E2B\u1E2D\u1E2F\u1E31\u1E33\u1E35\u1E37\u1E39\u1E3B\u1E3D\u1E3F\u1E41\u1E43\u1E45\u1E47\u1E49\u1E4B\u1E4D\u1E4F\u1E51\u1E53\u1E55\u1E57\u1E59\u1E5B\u1E5D\u1E5F\u1E61\u1E63\u1E65\u1E67\u1E69\u1E6B\u1E6D\u1E6F\u1E71\u1E73\u1E75\u1E77\u1E79\u1E7B\u1E7D\u1E7F\u1E81\u1E83\u1E85\u1E87\u1E89\u1E8B\u1E8D\u1E8F\u1E91\u1E93\u1E95-\u1E9D\u1E9F\u1EA1\u1EA3\u1EA5\u1EA7\u1EA9\u1EAB\u1EAD\u1EAF\u1EB1\u1EB3\u1EB5\u1EB7\u1EB9\u1EBB\u1EBD\u1EBF\u1EC1\u1EC3\u1EC5\u1EC7\u1EC9\u1ECB\u1ECD\u1ECF\u1ED1\u1ED3\u1ED5\u1ED7\u1ED9\u1EDB\u1EDD\u1EDF\u1EE1\u1EE3\u1EE5\u1EE7\u1EE9\u1EEB\u1EED\u1EEF\u1EF1\u1EF3\u1EF5\u1EF7\u1EF9\u1EFB\u1EFD\u1EFF-\u1F07\u1F10-\u1F15\u1F20-\u1F27\u1F30-\u1F37\u1F40-\u1F45\u1F50-\u1F57\u1F60-\u1F67\u1F70-\u1F7D\u1F80-\u1F87\u1F90-\u1F97\u1FA0-\u1FA7\u1FB0-\u1FB4\u1FB6\u1FB7\u1FBE\u1FC2-\u1FC4\u1FC6\u1FC7\u1FD0-\u1FD3\u1FD6\u1FD7\u1FE0-\u1FE7\u1FF2-\u1FF4\u1FF6\u1FF7\u210A\u210E\u210F\u2113\u212F\u2134\u2139\u213C\u213D\u2146-\u2149\u214E\u2184\u2C30-\u2C5F\u2C61\u2C65\u2C66\u2C68\u2C6A\u2C6C\u2C71\u2C73\u2C74\u2C76-\u2C7B\u2C81\u2C83\u2C85\u2C87\u2C89\u2C8B\u2C8D\u2C8F\u2C91\u2C93\u2C95\u2C97\u2C99\u2C9B\u2C9D\u2C9F\u2CA1\u2CA3\u2CA5\u2CA7\u2CA9\u2CAB\u2CAD\u2CAF\u2CB1\u2CB3\u2CB5\u2CB7\u2CB9\u2CBB\u2CBD\u2CBF\u2CC1\u2CC3\u2CC5\u2CC7\u2CC9\u2CCB\u2CCD\u2CCF\u2CD1\u2CD3\u2CD5\u2CD7\u2CD9\u2CDB\u2CDD\u2CDF\u2CE1\u2CE3\u2CE4\u2CEC\u2CEE\u2CF3\u2D00-\u2D25\u2D27\u2D2D\uA641\uA643\uA645\uA647\uA649\uA64B\uA64D\uA64F\uA651\uA653\uA655\uA657\uA659\uA65B\uA65D\uA65F\uA661\uA663\uA665\uA667\uA669\uA66B\uA66D\uA681\uA683\uA685\uA687\uA689\uA68B\uA68D\uA68F\uA691\uA693\uA695\uA697\uA699\uA69B\uA723\uA725\uA727\uA729\uA72B\uA72D\uA72F-\uA731\uA733\uA735\uA737\uA739\uA73B\uA73D\uA73F\uA741\uA743\uA745\uA747\uA749\uA74B\uA74D\uA74F\uA751\uA753\uA755\uA757\uA759\uA75B\uA75D\uA75F\uA761\uA763\uA765\uA767\uA769\uA76B\uA76D\uA76F\uA771-\uA778\uA77A\uA77C\uA77F\uA781\uA783\uA785\uA787\uA78C\uA78E\uA791\uA793-\uA795\uA797\uA799\uA79B\uA79D\uA79F\uA7A1\uA7A3\uA7A5\uA7A7\uA7A9\uA7AF\uA7B5\uA7B7\uA7B9\uA7BB\uA7BD\uA7BF\uA7C1\uA7C3\uA7C8\uA7CA\uA7D1\uA7D3\uA7D5\uA7D7\uA7D9\uA7F6\uA7FA\uAB30-\uAB5A\uAB60-\uAB68\uAB70-\uABBF\uFB00-\uFB06\uFB13-\uFB17\uFF41-\uFF5A]|\uD801[\uDC28-\uDC4F\uDCD8-\uDCFB\uDD97-\uDDA1\uDDA3-\uDDB1\uDDB3-\uDDB9\uDDBB\uDDBC]|\uD803[\uDCC0-\uDCF2]|\uD806[\uDCC0-\uDCDF]|\uD81B[\uDE60-\uDE7F]|\uD835[\uDC1A-\uDC33\uDC4E-\uDC54\uDC56-\uDC67\uDC82-\uDC9B\uDCB6-\uDCB9\uDCBB\uDCBD-\uDCC3\uDCC5-\uDCCF\uDCEA-\uDD03\uDD1E-\uDD37\uDD52-\uDD6B\uDD86-\uDD9F\uDDBA-\uDDD3\uDDEE-\uDE07\uDE22-\uDE3B\uDE56-\uDE6F\uDE8A-\uDEA5\uDEC2-\uDEDA\uDEDC-\uDEE1\uDEFC-\uDF14\uDF16-\uDF1B\uDF36-\uDF4E\uDF50-\uDF55\uDF70-\uDF88\uDF8A-\uDF8F\uDFAA-\uDFC2\uDFC4-\uDFC9\uDFCB]|\uD837[\uDF00-\uDF09\uDF0B-\uDF1E]|\uD83A[\uDD22-\uDD43])+$/),
@@ -26354,10 +26354,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.Class.define("qx.data.SingleValueBinding", {
     statics: {
       /** internal reference for all bindings indexed by source object */
-      __bindings__P_127_0: {},
+      __bindings__P_147_0: {},
 
       /** internal reference for all bindings indexed by target object */
-      __bindingsByTarget__P_127_1: {},
+      __bindingsByTarget__P_147_1: {},
 
       /**
        * The function is responsible for binding a source objects property to
@@ -26452,12 +26452,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           qx.core.Assert.assertString(targetPropertyChain, "targetPropertyChain");
         } // set up the target binding
 
-        var targetListenerMap = this.__setUpTargetBinding__P_127_2(sourceObject, sourcePropertyChain, targetObject, targetPropertyChain, options); // get the property names
+        var targetListenerMap = this.__setUpTargetBinding__P_147_2(sourceObject, sourcePropertyChain, targetObject, targetPropertyChain, options); // get the property names
 
 
         var propertyNames = sourcePropertyChain.split("."); // stuff that's needed to store for the listener function
 
-        var arrayIndexValues = this.__checkForArrayInPropertyChain__P_127_3(propertyNames);
+        var arrayIndexValues = this.__checkForArrayInPropertyChain__P_147_3(propertyNames);
 
         var sources = [];
         var listeners = [];
@@ -26476,7 +26476,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               // push the array change event
               eventNames.push("change");
             } else {
-              var eventName = this.__getEventNameForProperty__P_127_4(source, propertyName);
+              var eventName = this.__getEventNameForProperty__P_147_4(source, propertyName);
 
               if (!eventName) {
                 if (i == 0) {
@@ -26489,7 +26489,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                 } // call the converter if no event could be found on binding creation
 
 
-                initialPromise = this.__setInitialValue__P_127_5(undefined, targetObject, targetPropertyChain, options, sourceObject);
+                initialPromise = this.__setInitialValue__P_147_5(undefined, targetObject, targetPropertyChain, options, sourceObject);
                 break;
               }
 
@@ -26506,18 +26506,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                 var itemIndex = arrayIndexValues[i] === "last" ? source.length - 1 : arrayIndexValues[i];
                 var currentValue = source.getItem(itemIndex); // set the initial value
 
-                initialPromise = this.__setInitialValue__P_127_5(currentValue, targetObject, targetPropertyChain, options, sourceObject); // bind the event
+                initialPromise = this.__setInitialValue__P_147_5(currentValue, targetObject, targetPropertyChain, options, sourceObject); // bind the event
 
-                listenerIds[i] = this.__bindEventToProperty__P_127_6(source, eventNames[i], targetObject, targetPropertyChain, options, arrayIndexValues[i]);
+                listenerIds[i] = this.__bindEventToProperty__P_147_6(source, eventNames[i], targetObject, targetPropertyChain, options, arrayIndexValues[i]);
               } else {
                 // try to set the initial value
                 if (propertyNames[i] != null && source["get" + qx.lang.String.firstUp(propertyNames[i])] != null) {
                   var currentValue = source["get" + qx.lang.String.firstUp(propertyNames[i])]();
-                  initialPromise = this.__setInitialValue__P_127_5(currentValue, targetObject, targetPropertyChain, options, sourceObject);
+                  initialPromise = this.__setInitialValue__P_147_5(currentValue, targetObject, targetPropertyChain, options, sourceObject);
                 } // bind the property
 
 
-                listenerIds[i] = this.__bindEventToProperty__P_127_6(source, eventNames[i], targetObject, targetPropertyChain, options);
+                listenerIds[i] = this.__bindEventToProperty__P_147_6(source, eventNames[i], targetObject, targetPropertyChain, options);
               } // if its not the last property
 
             } else {
@@ -26534,7 +26534,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                 listeners: listeners
               }; // create a listener
 
-              var listener = qx.lang.Function.bind(this.__chainListener__P_127_7, this, context); // store the listener for further processing
+              var listener = qx.lang.Function.bind(this.__chainListener__P_147_7, this, context); // store the listener for further processing
 
               listeners.push(listener); // add the chaining listener
 
@@ -26557,7 +26557,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
             if (!source) {
               // call the converter if no source could be found on binding creation
-              this.__setInitialValue__P_127_5(source, targetObject, targetPropertyChain, options, sourceObject);
+              this.__setInitialValue__P_147_5(source, targetObject, targetPropertyChain, options, sourceObject);
 
               break;
             }
@@ -26595,7 +26595,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           initialPromise: initialPromise
         }; // store the bindings
 
-        this.__storeBinding__P_127_8(id, sourceObject, sourcePropertyChain, targetObject, targetPropertyChain);
+        this.__storeBinding__P_147_8(id, sourceObject, sourcePropertyChain, targetObject, targetPropertyChain);
 
         return id;
       },
@@ -26605,7 +26605,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @param context {Map} The current context for the listener.
        */
-      __chainListener__P_127_7: function __chainListener__P_127_7(context) {
+      __chainListener__P_147_7: function __chainListener__P_147_7(context) {
         // invoke the onUpdate method
         if (context.options && context.options.onUpdate) {
           context.options.onUpdate(context.sources[context.index], context.targetObject);
@@ -26652,12 +26652,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               if (!ignoreConverter) {
-                this.__setTargetValue__P_127_9(context.targetObject, context.targetPropertyChain, context.options.converter());
+                this.__setTargetValue__P_147_9(context.targetObject, context.targetPropertyChain, context.options.converter());
               } else {
-                this.__resetTargetValue__P_127_10(context.targetObject, context.targetPropertyChain);
+                this.__resetTargetValue__P_147_10(context.targetObject, context.targetPropertyChain);
               }
             } else {
-              this.__resetTargetValue__P_127_10(context.targetObject, context.targetPropertyChain);
+              this.__resetTargetValue__P_147_10(context.targetObject, context.targetPropertyChain);
             }
 
             break;
@@ -26671,34 +26671,34 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               var itemIndex = context.arrayIndexValues[j] === "last" ? source.length - 1 : context.arrayIndexValues[j];
               var currentValue = source.getItem(itemIndex);
 
-              this.__setInitialValue__P_127_5(currentValue, context.targetObject, context.targetPropertyChain, context.options, context.sources[context.index]); // bind the item event to the new target
+              this.__setInitialValue__P_147_5(currentValue, context.targetObject, context.targetPropertyChain, context.options, context.sources[context.index]); // bind the item event to the new target
 
 
-              context.listenerIds[j] = this.__bindEventToProperty__P_127_6(source, "change", context.targetObject, context.targetPropertyChain, context.options, context.arrayIndexValues[j]);
+              context.listenerIds[j] = this.__bindEventToProperty__P_147_6(source, "change", context.targetObject, context.targetPropertyChain, context.options, context.arrayIndexValues[j]);
             } else {
               if (context.propertyNames[j] != null && source["get" + qx.lang.String.firstUp(context.propertyNames[j])] != null) {
                 var currentValue = source["get" + qx.lang.String.firstUp(context.propertyNames[j])]();
 
-                this.__setInitialValue__P_127_5(currentValue, context.targetObject, context.targetPropertyChain, context.options, context.sources[context.index]);
+                this.__setInitialValue__P_147_5(currentValue, context.targetObject, context.targetPropertyChain, context.options, context.sources[context.index]);
               }
 
-              var eventName = this.__getEventNameForProperty__P_127_4(source, context.propertyNames[j]);
+              var eventName = this.__getEventNameForProperty__P_147_4(source, context.propertyNames[j]);
 
               if (!eventName) {
                 context.sources[j] = null;
 
-                this.__resetTargetValue__P_127_10(context.targetObject, context.targetPropertyChain);
+                this.__resetTargetValue__P_147_10(context.targetObject, context.targetPropertyChain);
 
                 return;
               } // bind the last property to the new target
 
 
-              context.listenerIds[j] = this.__bindEventToProperty__P_127_6(source, eventName, context.targetObject, context.targetPropertyChain, context.options);
+              context.listenerIds[j] = this.__bindEventToProperty__P_147_6(source, eventName, context.targetObject, context.targetPropertyChain, context.options);
             }
           } else {
             // check if a listener already created
             if (context.listeners[j] == null) {
-              var listener = qx.lang.Function.bind(this.__chainListener__P_127_7, this, context); // store the listener for further processing
+              var listener = qx.lang.Function.bind(this.__chainListener__P_147_7, this, context); // store the listener for further processing
 
               context.listeners.push(listener);
             } // add a new listener
@@ -26707,13 +26707,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             if (qx.Class.implementsInterface(source, qx.data.IListData)) {
               var eventName = "change";
             } else {
-              var eventName = this.__getEventNameForProperty__P_127_4(source, context.propertyNames[j]);
+              var eventName = this.__getEventNameForProperty__P_147_4(source, context.propertyNames[j]);
             }
 
             if (!eventName) {
               context.sources[j] = null;
 
-              this.__resetTargetValue__P_127_10(context.targetObject, context.targetPropertyChain);
+              this.__resetTargetValue__P_147_10(context.targetObject, context.targetPropertyChain);
 
               return;
             }
@@ -26739,11 +26739,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   converter.
        * @return {var} A map containing the listener ids and the targets.
        */
-      __setUpTargetBinding__P_127_2: function __setUpTargetBinding__P_127_2(sourceObject, sourcePropertyChain, targetObject, targetPropertyChain, options) {
+      __setUpTargetBinding__P_147_2: function __setUpTargetBinding__P_147_2(sourceObject, sourcePropertyChain, targetObject, targetPropertyChain, options) {
         // get the property names
         var propertyNames = targetPropertyChain.split(".");
 
-        var arrayIndexValues = this.__checkForArrayInPropertyChain__P_127_3(propertyNames);
+        var arrayIndexValues = this.__checkForArrayInPropertyChain__P_147_3(propertyNames);
 
         var targets = [];
         var listeners = [];
@@ -26757,7 +26757,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             // push the array change event
             eventNames.push("change");
           } else {
-            var eventName = this.__getEventNameForProperty__P_127_4(target, propertyNames[i]);
+            var eventName = this.__getEventNameForProperty__P_147_4(target, propertyNames[i]);
 
             if (!eventName) {
               // if the event names could not be terminated,
@@ -26815,7 +26815,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               if (qx.Class.implementsInterface(target, qx.data.IListData)) {
                 var eventName = "change";
               } else {
-                var eventName = qx.data.SingleValueBinding.__getEventNameForProperty__P_127_4(target, propertyNames[j]);
+                var eventName = qx.data.SingleValueBinding.__getEventNameForProperty__P_147_4(target, propertyNames[j]);
 
                 if (!eventName) {
                   // if the event name could not be terminated,
@@ -26874,9 +26874,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       updateTarget: function updateTarget(sourceObject, sourcePropertyChain, targetObject, targetPropertyChain, options) {
         var value = this.resolvePropertyChain(sourceObject, sourcePropertyChain); // convert the data before setting
 
-        value = qx.data.SingleValueBinding.__convertValue__P_127_11(value, targetObject, targetPropertyChain, options, sourceObject);
+        value = qx.data.SingleValueBinding.__convertValue__P_147_11(value, targetObject, targetPropertyChain, options, sourceObject);
 
-        this.__setTargetValue__P_127_9(targetObject, targetPropertyChain, value);
+        this.__setTargetValue__P_147_9(targetObject, targetPropertyChain, value);
       },
 
       /**
@@ -26888,9 +26888,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {var?undefined} Returns the set value if defined.
        */
       resolvePropertyChain: function resolvePropertyChain(o, propertyChain) {
-        var properties = this.__getPropertyChainArray__P_127_12(propertyChain);
+        var properties = this.__getPropertyChainArray__P_147_12(propertyChain);
 
-        return this.__getTargetFromChain__P_127_13(o, properties, properties.length);
+        return this.__getTargetFromChain__P_147_13(o, properties, properties.length);
       },
 
       /**
@@ -26906,9 +26906,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param propertyName {String} The name of the property.
        * @return {String|null} The name of the corresponding event or null.
        */
-      __getEventNameForProperty__P_127_4: function __getEventNameForProperty__P_127_4(source, propertyName) {
+      __getEventNameForProperty__P_147_4: function __getEventNameForProperty__P_147_4(source, propertyName) {
         // get the current event name from the property definition
-        var eventName = this.__getEventForProperty__P_127_14(source, propertyName); // if no event name could be found
+        var eventName = this.__getEventForProperty__P_147_14(source, propertyName); // if no event name could be found
 
 
         if (eventName == null) {
@@ -26934,20 +26934,20 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param targetPropertyChain {String} The names of the properties,
        *   separated with a dot.
        */
-      __resetTargetValue__P_127_10: function __resetTargetValue__P_127_10(targetObject, targetPropertyChain) {
+      __resetTargetValue__P_147_10: function __resetTargetValue__P_147_10(targetObject, targetPropertyChain) {
         // get the last target object of the chain
-        var properties = this.__getPropertyChainArray__P_127_12(targetPropertyChain);
+        var properties = this.__getPropertyChainArray__P_147_12(targetPropertyChain);
 
-        var target = this.__getTargetFromChain__P_127_13(targetObject, properties);
+        var target = this.__getTargetFromChain__P_147_13(targetObject, properties);
 
         if (target != null) {
           // get the name of the last property
           var lastProperty = properties[properties.length - 1]; // check for an array and set the value to null
 
-          var index = this.__getArrayIndex__P_127_15(lastProperty);
+          var index = this.__getArrayIndex__P_147_15(lastProperty);
 
           if (index) {
-            this.__setTargetValue__P_127_9(targetObject, targetPropertyChain, null);
+            this.__setTargetValue__P_147_9(targetObject, targetPropertyChain, null);
 
             return;
           } // try to reset the property
@@ -26976,17 +26976,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   separated with a dot.
        * @param value {var} The value to set.
        */
-      __setTargetValue__P_127_9: function __setTargetValue__P_127_9(targetObject, targetPropertyChain, value) {
+      __setTargetValue__P_147_9: function __setTargetValue__P_147_9(targetObject, targetPropertyChain, value) {
         // get the last target object of the chain
-        var properties = this.__getPropertyChainArray__P_127_12(targetPropertyChain);
+        var properties = this.__getPropertyChainArray__P_147_12(targetPropertyChain);
 
-        var target = this.__getTargetFromChain__P_127_13(targetObject, properties);
+        var target = this.__getTargetFromChain__P_147_13(targetObject, properties);
 
         if (target) {
           // get the name of the last property
           var lastProperty = properties[properties.length - 1]; // check for array notation
 
-          var index = this.__getArrayIndex__P_127_15(lastProperty);
+          var index = this.__getArrayIndex__P_147_15(lastProperty);
 
           if (index) {
             if (index === "last") {
@@ -27013,7 +27013,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String|null} Array index or null if the property name does
        * not use bracket notation
        */
-      __getArrayIndex__P_127_15: function __getArrayIndex__P_127_15(propertyName) {
+      __getArrayIndex__P_147_15: function __getArrayIndex__P_147_15(propertyName) {
         var arrayExp = /^\[(\d+|last)\]$/;
         var arrayMatch = propertyName.match(arrayExp);
 
@@ -27030,7 +27030,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param targetPropertyChain {String} property chain
        * @return {String[]} Array of property names
        */
-      __getPropertyChainArray__P_127_12: function __getPropertyChainArray__P_127_12(targetPropertyChain) {
+      __getPropertyChainArray__P_147_12: function __getPropertyChainArray__P_147_12(targetPropertyChain) {
         // split properties (dot notation) and array indexes (bracket notation)
         return targetPropertyChain.replace(/\[/g, ".[").split(".").filter(function (prop) {
           return prop !== "";
@@ -27049,7 +27049,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.core.Object | null} The object on which the last property
        *   should be set.
        */
-      __getTargetFromChain__P_127_13: function __getTargetFromChain__P_127_13(targetObject, targetProperties, index) {
+      __getTargetFromChain__P_147_13: function __getTargetFromChain__P_147_13(targetObject, targetProperties, index) {
         index = index || targetProperties.length - 1;
         var target = targetObject;
 
@@ -27057,7 +27057,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           try {
             var property = targetProperties[i]; // array notation
 
-            var arrIndex = this.__getArrayIndex__P_127_15(property);
+            var arrIndex = this.__getArrayIndex__P_147_15(property);
 
             if (arrIndex) {
               if (arrIndex === "last") {
@@ -27091,18 +27091,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param sourceObject {qx.core.Object} The source object of the binding (
        *   used for the onUpdate callback).
        */
-      __setInitialValue__P_127_5: function __setInitialValue__P_127_5(value, targetObject, targetPropertyChain, options, sourceObject) {
+      __setInitialValue__P_147_5: function __setInitialValue__P_147_5(value, targetObject, targetPropertyChain, options, sourceObject) {
         // first convert the initial value
-        value = this.__convertValue__P_127_11(value, targetObject, targetPropertyChain, options, sourceObject); // check if the converted value is undefined
+        value = this.__convertValue__P_147_11(value, targetObject, targetPropertyChain, options, sourceObject); // check if the converted value is undefined
 
         if (value === undefined) {
-          this.__resetTargetValue__P_127_10(targetObject, targetPropertyChain);
+          this.__resetTargetValue__P_147_10(targetObject, targetPropertyChain);
         } // only set the initial value if one is given (may be null)
 
 
         if (value !== undefined) {
           try {
-            var result = this.__setTargetValue__P_127_9(targetObject, targetPropertyChain, value); // tell the user that the setter was invoked probably
+            var result = this.__setTargetValue__P_147_9(targetObject, targetPropertyChain, value); // tell the user that the setter was invoked probably
 
 
             if (options && options.onUpdate) {
@@ -27133,7 +27133,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Array} An array containing the values of the array properties
        *   corresponding to the property names.
        */
-      __checkForArrayInPropertyChain__P_127_3: function __checkForArrayInPropertyChain__P_127_3(propertyNames) {
+      __checkForArrayInPropertyChain__P_147_3: function __checkForArrayInPropertyChain__P_147_3(propertyNames) {
         // array for the values of the array properties
         var arrayIndexValues = []; // go through all properties and check for array notations
 
@@ -27207,7 +27207,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   there is no property definition for the target object and target
        *   property.
        */
-      __bindEventToProperty__P_127_6: function __bindEventToProperty__P_127_6(sourceObject, sourceEvent, targetObject, targetProperty, options, arrayIndex) {
+      __bindEventToProperty__P_147_6: function __bindEventToProperty__P_147_6(sourceObject, sourceEvent, targetObject, targetProperty, options, arrayIndex) {
         // checks
         {
           // check for the data event
@@ -27227,7 +27227,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             var data = sourceObject.getItem(arrayIndex); // reset the target if the data is not set
 
             if (data === undefined) {
-              qx.data.SingleValueBinding.__resetTargetValue__P_127_10(targetObject, targetProperty);
+              qx.data.SingleValueBinding.__resetTargetValue__P_147_10(targetObject, targetProperty);
             } // only do something if the current array has been changed
 
 
@@ -27244,16 +27244,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
           // convert the data
-          data = qx.data.SingleValueBinding.__convertValue__P_127_11(data, targetObject, targetProperty, options, sourceObject); // debug message
+          data = qx.data.SingleValueBinding.__convertValue__P_147_11(data, targetObject, targetProperty, options, sourceObject); // debug message
 
           // try to set the value
           var result;
 
           try {
             if (data !== undefined) {
-              result = qx.data.SingleValueBinding.__setTargetValue__P_127_9(targetObject, targetProperty, data);
+              result = qx.data.SingleValueBinding.__setTargetValue__P_147_9(targetObject, targetProperty, data);
             } else {
-              result = qx.data.SingleValueBinding.__resetTargetValue__P_127_10(targetObject, targetProperty);
+              result = qx.data.SingleValueBinding.__resetTargetValue__P_147_10(targetObject, targetProperty);
             } // tell the user that the setter was invoked probably
 
 
@@ -27299,27 +27299,27 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param targetProperty {String} The name of the property on the target
        *   object.
        */
-      __storeBinding__P_127_8: function __storeBinding__P_127_8(id, sourceObject, sourceEvent, targetObject, targetProperty) {
+      __storeBinding__P_147_8: function __storeBinding__P_147_8(id, sourceObject, sourceEvent, targetObject, targetProperty) {
         var hash; // add the listener id to the internal registry
 
         hash = sourceObject.toHashCode();
 
-        if (this.__bindings__P_127_0[hash] === undefined) {
-          this.__bindings__P_127_0[hash] = [];
+        if (this.__bindings__P_147_0[hash] === undefined) {
+          this.__bindings__P_147_0[hash] = [];
         }
 
         var binding = [id, sourceObject, sourceEvent, targetObject, targetProperty];
 
-        this.__bindings__P_127_0[hash].push(binding); // add same binding data indexed by target object
+        this.__bindings__P_147_0[hash].push(binding); // add same binding data indexed by target object
 
 
         hash = targetObject.toHashCode();
 
-        if (this.__bindingsByTarget__P_127_1[hash] === undefined) {
-          this.__bindingsByTarget__P_127_1[hash] = [];
+        if (this.__bindingsByTarget__P_147_1[hash] === undefined) {
+          this.__bindingsByTarget__P_147_1[hash] = [];
         }
 
-        this.__bindingsByTarget__P_127_1[hash].push(binding);
+        this.__bindingsByTarget__P_147_1[hash].push(binding);
       },
 
       /**
@@ -27341,7 +27341,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @throws {qx.core.AssertionError} If there is no property definition
        *   of the given target object and target property.
        */
-      __convertValue__P_127_11: function __convertValue__P_127_11(value, targetObject, targetPropertyChain, options, sourceObject) {
+      __convertValue__P_147_11: function __convertValue__P_147_11(value, targetObject, targetPropertyChain, options, sourceObject) {
         // do the conversion given by the user
         if (options && options.converter) {
           var model;
@@ -27352,9 +27352,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
           return options.converter(value, model, sourceObject, targetObject); // try default conversion
         } else {
-          var properties = this.__getPropertyChainArray__P_127_12(targetPropertyChain);
+          var properties = this.__getPropertyChainArray__P_147_12(targetPropertyChain);
 
-          var target = this.__getTargetFromChain__P_127_13(targetObject, properties);
+          var target = this.__getTargetFromChain__P_147_13(targetObject, properties);
 
           var lastProperty = targetPropertyChain.substring(targetPropertyChain.lastIndexOf(".") + 1, targetPropertyChain.length); // if no target is currently available, return the original value
 
@@ -27364,7 +27364,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
           var propertieDefinition = qx.Class.getPropertyDefinition(target.constructor, lastProperty);
           var check = propertieDefinition == null ? "" : propertieDefinition.check;
-          return this.__defaultConversion__P_127_16(value, check);
+          return this.__defaultConversion__P_147_16(value, check);
         }
       },
 
@@ -27379,7 +27379,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @throws {qx.core.AssertionError} If there is no property definition of
        *   the given object property pair.
        */
-      __getEventForProperty__P_127_14: function __getEventForProperty__P_127_14(sourceObject, sourceProperty) {
+      __getEventForProperty__P_147_14: function __getEventForProperty__P_147_14(sourceObject, sourceProperty) {
         // get the event name
         var propertieDefinition = qx.Class.getPropertyDefinition(sourceObject.constructor, sourceProperty);
 
@@ -27398,7 +27398,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   contains the target type.
        * @return {Integer|String|Float} The converted data
        */
-      __defaultConversion__P_127_16: function __defaultConversion__P_127_16(data, targetCheck) {
+      __defaultConversion__P_147_16: function __defaultConversion__P_147_16(data, targetCheck) {
         var dataType = qx.lang.Type.getClass(data); // to integer
 
         if ((dataType == "Number" || dataType == "String") && (targetCheck == "Integer" || targetCheck == "PositiveInteger")) {
@@ -27472,15 +27472,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               // remove binding data from internal reference indexed by target object
               var target = bindings[i][3];
 
-              if (this.__bindingsByTarget__P_127_1[target.toHashCode()]) {
-                qx.lang.Array.remove(this.__bindingsByTarget__P_127_1[target.toHashCode()], bindings[i]);
+              if (this.__bindingsByTarget__P_147_1[target.toHashCode()]) {
+                qx.lang.Array.remove(this.__bindingsByTarget__P_147_1[target.toHashCode()], bindings[i]);
               } // remove binding data from internal reference indexed by source object
 
 
               var source = bindings[i][1];
 
-              if (this.__bindings__P_127_0[source.toHashCode()]) {
-                qx.lang.Array.remove(this.__bindings__P_127_0[source.toHashCode()], bindings[i]);
+              if (this.__bindings__P_147_0[source.toHashCode()]) {
+                qx.lang.Array.remove(this.__bindings__P_147_0[source.toHashCode()], bindings[i]);
               }
 
               return;
@@ -27517,8 +27517,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
 
         var hash = object.toHashCode();
-        delete this.__bindings__P_127_0[hash];
-        delete this.__bindingsByTarget__P_127_1[hash];
+        delete this.__bindings__P_147_0[hash];
+        delete this.__bindingsByTarget__P_147_1[hash];
       },
 
       /**
@@ -27568,9 +27568,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       getAllBindingsForObject: function getAllBindingsForObject(object) {
         var hash = object.toHashCode(); // get all bindings of object as source
 
-        var sourceBindings = this.__bindings__P_127_0[hash]; // get all bindings of object as target
+        var sourceBindings = this.__bindings__P_147_0[hash]; // get all bindings of object as target
 
-        var targetBindings = this.__bindingsByTarget__P_127_1[hash];
+        var targetBindings = this.__bindingsByTarget__P_147_1[hash];
 
         if (!sourceBindings && !targetBindings) {
           return [];
@@ -27595,11 +27595,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       removeAllBindings: function removeAllBindings() {
         // go through all registered objects
-        for (var hash in this.__bindings__P_127_0) {
+        for (var hash in this.__bindings__P_147_0) {
           var object = qx.core.ObjectRegistry.fromHashCode(hash); // check for the object, perhaps its already deleted
 
           if (object == null) {
-            delete this.__bindings__P_127_0[hash];
+            delete this.__bindings__P_147_0[hash];
             continue;
           }
 
@@ -27607,7 +27607,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // reset the bindings map
 
 
-        this.__bindings__P_127_0 = {};
+        this.__bindings__P_147_0 = {};
       },
 
       /**
@@ -27619,7 +27619,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Map} Map containing all bindings.
        */
       getAllBindings: function getAllBindings() {
-        return this.__bindings__P_127_0;
+        return this.__bindings__P_147_0;
       },
 
       /**
@@ -27632,10 +27632,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       showBindingInLog: function showBindingInLog(object, id) {
         var binding; // go through all bindings of the given object
 
-        for (var i = 0; i < this.__bindings__P_127_0[object.toHashCode()].length; i++) {
+        for (var i = 0; i < this.__bindings__P_147_0[object.toHashCode()].length; i++) {
           // the first array item is the id
-          if (this.__bindings__P_127_0[object.toHashCode()][i][0] == id) {
-            binding = this.__bindings__P_127_0[object.toHashCode()][i];
+          if (this.__bindings__P_147_0[object.toHashCode()][i][0] == id) {
+            binding = this.__bindings__P_147_0[object.toHashCode()][i];
             break;
           }
         }
@@ -27656,12 +27656,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       showAllBindingsInLog: function showAllBindingsInLog() {
         // go through all objects in the registry
-        for (var hash in this.__bindings__P_127_0) {
+        for (var hash in this.__bindings__P_147_0) {
           var object = qx.core.ObjectRegistry.fromHashCode(hash);
 
           if (object) {
-            for (var i = 0; i < this.__bindings__P_127_0[hash].length; i++) {
-              this.showBindingInLog(object, this.__bindings__P_127_0[hash][i][0]);
+            for (var i = 0; i < this.__bindings__P_147_0[hash].length; i++) {
+              this.showBindingInLog(object, this.__bindings__P_147_0[hash][i][0]);
             }
           }
         }
@@ -27970,7 +27970,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       },
 
       /** Maps user agent names to system IDs */
-      __ids__P_33_0: {
+      __ids__P_37_0: {
         // Windows
         "Windows NT 10.0": "10",
         "Windows NT 6.3": "8.1",
@@ -28029,10 +28029,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   could not be detected.
        */
       getVersion: function getVersion() {
-        var version = qx.bom.client.OperatingSystem.__getVersionForDesktopOs__P_33_1(navigator.userAgent);
+        var version = qx.bom.client.OperatingSystem.__getVersionForDesktopOs__P_37_1(navigator.userAgent);
 
         if (version == null) {
-          version = qx.bom.client.OperatingSystem.__getVersionForMobileOs__P_33_2(navigator.userAgent);
+          version = qx.bom.client.OperatingSystem.__getVersionForMobileOs__P_37_2(navigator.userAgent);
         }
 
         if (version != null) {
@@ -28047,10 +28047,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param userAgent {String} userAgent parameter, needed for detection.
        * @return {String} version number as string or null.
        */
-      __getVersionForDesktopOs__P_33_1: function __getVersionForDesktopOs__P_33_1(userAgent) {
+      __getVersionForDesktopOs__P_37_1: function __getVersionForDesktopOs__P_37_1(userAgent) {
         var str = [];
 
-        for (var key in qx.bom.client.OperatingSystem.__ids__P_33_0) {
+        for (var key in qx.bom.client.OperatingSystem.__ids__P_37_0) {
           str.push(key);
         }
 
@@ -28058,7 +28058,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var match = reg.exec(userAgent);
 
         if (match && match[1]) {
-          return qx.bom.client.OperatingSystem.__ids__P_33_0[match[1]];
+          return qx.bom.client.OperatingSystem.__ids__P_37_0[match[1]];
         }
 
         return null;
@@ -28069,7 +28069,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param userAgent {String} userAgent parameter, needed for detection.
        * @return {String} version number as string or null.
        */
-      __getVersionForMobileOs__P_33_2: function __getVersionForMobileOs__P_33_2(userAgent) {
+      __getVersionForMobileOs__P_37_2: function __getVersionForMobileOs__P_37_2(userAgent) {
         var windows = userAgent.indexOf("Windows Phone") != -1;
         var android = userAgent.indexOf("Android") != -1;
         var iOs = userAgent.match(/(iPad|iPhone|iPod)/i) ? true : false;
@@ -28165,13 +28165,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Internal lookup table to map property names to CSS names
        * @internal
        */
-      __cssName__P_88_0: {},
+      __cssName__P_103_0: {},
 
       /**
        * A reference to the native CSS.supports function (supportsCSS in Opera)
        * @internal
        */
-      __supports__P_88_1: null,
+      __supports__P_103_1: null,
 
       /**
        * Takes the name of a style property and returns the name the browser uses
@@ -28214,7 +28214,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} CSS property
        */
       getCssName: function getCssName(propertyName) {
-        var cssName = this.__cssName__P_88_0[propertyName];
+        var cssName = this.__cssName__P_103_0[propertyName];
 
         if (!cssName) {
           // all vendor prefixes (except for "ms") start with an uppercase letter
@@ -28226,7 +28226,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             cssName = "-" + cssName;
           }
 
-          this.__cssName__P_88_0[propertyName] = cssName;
+          this.__cssName__P_103_0[propertyName] = cssName;
         }
 
         return cssName;
@@ -28257,8 +28257,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           var supported = false;
           var prefixedVal = vendorPrefixes[i] ? "-" + vendorPrefixes[i].toLowerCase() + "-" + value : value;
 
-          if (qx.bom.Style.__supports__P_88_1) {
-            supported = qx.bom.Style.__supports__P_88_1.call(win, cssProperty, prefixedVal);
+          if (qx.bom.Style.__supports__P_103_1) {
+            supported = qx.bom.Style.__supports__P_103_1.call(win, cssProperty, prefixedVal);
           } else {
             element.style.cssText += cssProperty + ":" + prefixedVal + ";";
             supported = typeof element.style[propertyName] == "string" && element.style[propertyName] !== "";
@@ -28274,9 +28274,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     },
     defer: function defer(statics) {
       if (window.CSS && window.CSS.supports) {
-        qx.bom.Style.__supports__P_88_1 = window.CSS.supports.bind(window.CSS);
+        qx.bom.Style.__supports__P_103_1 = window.CSS.supports.bind(window.CSS);
       } else if (window.supportsCSS) {
-        qx.bom.Style.__supports__P_88_1 = window.supportsCSS.bind(window);
+        qx.bom.Style.__supports__P_103_1 = window.supportsCSS.bind(window);
       }
     }
   });
@@ -28343,11 +28343,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         this.stacktrace = inst.stacktrace;
       }
 
-      this.__failMessage__P_104_0 = failMessage;
-      this.__uri__P_104_1 = uri || "";
-      this.__lineNumber__P_104_2 = lineNumber === undefined ? -1 : lineNumber;
-      this.__columnNumber__P_104_3 = columnNumber === undefined ? -1 : columnNumber;
-      this.__sourceException__P_104_4 = sourceException;
+      this.__failMessage__P_132_0 = failMessage;
+      this.__uri__P_132_1 = uri || "";
+      this.__lineNumber__P_132_2 = lineNumber === undefined ? -1 : lineNumber;
+      this.__columnNumber__P_132_3 = columnNumber === undefined ? -1 : columnNumber;
+      this.__sourceException__P_132_4 = sourceException;
     },
 
     /*
@@ -28356,11 +28356,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __failMessage__P_104_0: null,
-      __uri__P_104_1: null,
-      __lineNumber__P_104_2: null,
-      __columnNumber__P_104_3: null,
-      __sourceException__P_104_4: null,
+      __failMessage__P_132_0: null,
+      __uri__P_132_1: null,
+      __lineNumber__P_132_2: null,
+      __columnNumber__P_132_3: null,
+      __sourceException__P_132_4: null,
 
       /**
        * Returns the error message.
@@ -28368,7 +28368,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} error message
        */
       toString: function toString() {
-        return this.__failMessage__P_104_0;
+        return this.__failMessage__P_132_0;
       },
 
       /**
@@ -28377,7 +28377,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} URI where error was raised
        */
       getUri: function getUri() {
-        return this.__uri__P_104_1;
+        return this.__uri__P_132_1;
       },
 
       /**
@@ -28386,7 +28386,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Integer} The line number where the error was raised
        */
       getLineNumber: function getLineNumber() {
-        return this.__lineNumber__P_104_2;
+        return this.__lineNumber__P_132_2;
       },
 
       /**
@@ -28395,7 +28395,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Integer} The line number where the error was raised
        */
       getColumnNumber: function getColumnNumber() {
-        return this.__columnNumber__P_104_3;
+        return this.__columnNumber__P_132_3;
       },
 
       /**
@@ -28404,7 +28404,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Error} The source error
        */
       getSourceException: function getSourceException() {
-        return this.__sourceException__P_104_4;
+        return this.__sourceException__P_132_4;
       }
     }
   });
@@ -28462,8 +28462,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         qx.core.Assert.assertNotUndefined(exc);
       }
 
-      this.__failMessage__P_105_0 = "GlobalError: " + (exc && exc.message ? exc.message : exc);
-      var inst = Error.call(this, this.__failMessage__P_105_0); // map stack trace properties since they're not added by Error's constructor
+      this.__failMessage__P_133_0 = "GlobalError: " + (exc && exc.message ? exc.message : exc);
+      var inst = Error.call(this, this.__failMessage__P_133_0); // map stack trace properties since they're not added by Error's constructor
 
       if (exc && exc.stack) {
         this.stack = exc.stack;
@@ -28477,13 +28477,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         this.stacktrace = inst.stacktrace;
       }
 
-      this.__arguments__P_105_1 = args;
-      this.__exc__P_105_2 = exc;
+      this.__arguments__P_133_1 = args;
+      this.__exc__P_133_2 = exc;
     },
     members: {
-      __exc__P_105_2: null,
-      __arguments__P_105_1: null,
-      __failMessage__P_105_0: null,
+      __exc__P_133_2: null,
+      __arguments__P_133_1: null,
+      __failMessage__P_133_0: null,
 
       /**
        * Returns the error message.
@@ -28491,7 +28491,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} error message
        */
       toString: function toString() {
-        return this.__failMessage__P_105_0;
+        return this.__failMessage__P_133_0;
       },
 
       /**
@@ -28500,7 +28500,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Object} arguments
        */
       getArguments: function getArguments() {
-        return this.__arguments__P_105_1;
+        return this.__arguments__P_133_1;
       },
 
       /**
@@ -28509,7 +28509,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Error} source exception
        */
       getSourceException: function getSourceException() {
-        return this.__exc__P_105_2;
+        return this.__exc__P_133_2;
       }
     }
   });
@@ -28578,9 +28578,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     construct: function construct() {
-      this.__calls__P_141_0 = {};
-      this.__timeoutWrapper__P_141_1 = qx.lang.Function.bind(this.__timeout__P_141_2, this);
-      this.__hasCalls__P_141_3 = false;
+      this.__calls__P_161_0 = {};
+      this.__timeoutWrapper__P_161_1 = qx.lang.Function.bind(this.__timeout__P_161_2, this);
+      this.__hasCalls__P_161_3 = false;
     },
 
     /*
@@ -28589,11 +28589,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __timeoutId__P_141_4: null,
-      __currentQueue__P_141_5: null,
-      __calls__P_141_0: null,
-      __hasCalls__P_141_3: null,
-      __timeoutWrapper__P_141_1: null,
+      __timeoutId__P_161_4: null,
+      __currentQueue__P_161_5: null,
+      __calls__P_161_0: null,
+      __hasCalls__P_161_3: null,
+      __timeoutWrapper__P_161_1: null,
 
       /**
        * Schedule a deferred call
@@ -28601,19 +28601,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param deferredCall {qx.util.DeferredCall} The call to schedule
        */
       schedule: function schedule(deferredCall) {
-        if (this.__timeoutId__P_141_4 == null) {
-          this.__timeoutId__P_141_4 = window.setTimeout(this.__timeoutWrapper__P_141_1, 0);
+        if (this.__timeoutId__P_161_4 == null) {
+          this.__timeoutId__P_161_4 = window.setTimeout(this.__timeoutWrapper__P_161_1, 0);
         }
 
         var callKey = deferredCall.toHashCode(); // the flush is currently running and the call is already
         // scheduled
 
-        if (this.__currentQueue__P_141_5 && this.__currentQueue__P_141_5[callKey]) {
+        if (this.__currentQueue__P_161_5 && this.__currentQueue__P_161_5[callKey]) {
           return;
         }
 
-        this.__calls__P_141_0[callKey] = deferredCall;
-        this.__hasCalls__P_141_3 = true;
+        this.__calls__P_161_0[callKey] = deferredCall;
+        this.__hasCalls__P_161_3 = true;
       },
 
       /**
@@ -28624,8 +28624,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * DeferredCalls would never fire.
        */
       refreshTimeout: function refreshTimeout() {
-        if (this.__timeoutId__P_141_4 !== null) {
-          this.__timeoutId__P_141_4 = window.setTimeout(this.__timeoutWrapper__P_141_1, 0);
+        if (this.__timeoutId__P_161_4 !== null) {
+          this.__timeoutId__P_161_4 = window.setTimeout(this.__timeoutWrapper__P_161_1, 0);
         }
       },
 
@@ -28638,16 +28638,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var callKey = deferredCall.toHashCode(); // the flush is currently running and the call is already
         // scheduled -> remove it from the current queue
 
-        if (this.__currentQueue__P_141_5 && this.__currentQueue__P_141_5[callKey]) {
-          this.__currentQueue__P_141_5[callKey] = null;
+        if (this.__currentQueue__P_161_5 && this.__currentQueue__P_161_5[callKey]) {
+          this.__currentQueue__P_161_5[callKey] = null;
           return;
         }
 
-        delete this.__calls__P_141_0[callKey]; // stop timer if no other calls are waiting
+        delete this.__calls__P_161_0[callKey]; // stop timer if no other calls are waiting
 
-        if (qx.lang.Object.isEmpty(this.__calls__P_141_0) && this.__timeoutId__P_141_4 != null) {
-          window.clearTimeout(this.__timeoutId__P_141_4);
-          this.__timeoutId__P_141_4 = null;
+        if (qx.lang.Object.isEmpty(this.__calls__P_161_0) && this.__timeoutId__P_161_4 != null) {
+          window.clearTimeout(this.__timeoutId__P_161_4);
+          this.__timeoutId__P_161_4 = null;
         }
       },
 
@@ -28656,26 +28656,26 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @signature function()
        */
-      __timeout__P_141_2: qx.event.GlobalError.observeMethod(function () {
-        this.__timeoutId__P_141_4 = null; // the queue may change while doing the flush so we work on a copy of
+      __timeout__P_161_2: qx.event.GlobalError.observeMethod(function () {
+        this.__timeoutId__P_161_4 = null; // the queue may change while doing the flush so we work on a copy of
         // the queue and loop while the queue has any entries.
 
-        while (this.__hasCalls__P_141_3) {
-          this.__currentQueue__P_141_5 = qx.lang.Object.clone(this.__calls__P_141_0);
-          this.__calls__P_141_0 = {};
-          this.__hasCalls__P_141_3 = false;
+        while (this.__hasCalls__P_161_3) {
+          this.__currentQueue__P_161_5 = qx.lang.Object.clone(this.__calls__P_161_0);
+          this.__calls__P_161_0 = {};
+          this.__hasCalls__P_161_3 = false;
 
-          for (var key in this.__currentQueue__P_141_5) {
-            var call = this.__currentQueue__P_141_5[key];
+          for (var key in this.__currentQueue__P_161_5) {
+            var call = this.__currentQueue__P_161_5[key];
 
             if (call) {
-              this.__currentQueue__P_141_5[key] = null;
+              this.__currentQueue__P_161_5[key] = null;
               call.call();
             }
           }
         }
 
-        this.__currentQueue__P_141_5 = null;
+        this.__currentQueue__P_161_5 = null;
       })
     },
 
@@ -28685,11 +28685,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     destruct: function destruct() {
-      if (this.__timeoutId__P_141_4 != null) {
-        window.clearTimeout(this.__timeoutId__P_141_4);
+      if (this.__timeoutId__P_161_4 != null) {
+        window.clearTimeout(this.__timeoutId__P_161_4);
       }
 
-      this.__timeoutWrapper__P_141_1 = this.__calls__P_141_0 = null;
+      this.__timeoutWrapper__P_161_1 = this.__calls__P_161_0 = null;
     }
   });
   qx.util.DeferredCallManager.$$dbClassInfo = $$dbClassInfo;
@@ -28759,9 +28759,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      */
     construct: function construct(callback, context) {
       qx.core.Object.constructor.call(this);
-      this.__callback__P_117_0 = callback;
-      this.__context__P_117_1 = context || null;
-      this.__manager__P_117_2 = qx.util.DeferredCallManager.getInstance();
+      this.__callback__P_124_0 = callback;
+      this.__context__P_124_1 = context || null;
+      this.__manager__P_124_2 = qx.util.DeferredCallManager.getInstance();
     },
 
     /*
@@ -28770,22 +28770,22 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __callback__P_117_0: null,
-      __context__P_117_1: null,
-      __manager__P_117_2: null,
+      __callback__P_124_0: null,
+      __context__P_124_1: null,
+      __manager__P_124_2: null,
 
       /**
        * Prevent the callback from being called.
        */
       cancel: function cancel() {
-        this.__manager__P_117_2.cancel(this);
+        this.__manager__P_124_2.cancel(this);
       },
 
       /**
        * Issue a deferred call of the callback.
        */
       schedule: function schedule() {
-        this.__manager__P_117_2.schedule(this);
+        this.__manager__P_124_2.schedule(this);
       },
 
       /**
@@ -28794,13 +28794,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       call: function call() {
         {
           // warn if the context is disposed
-          var context = this.__context__P_117_1;
+          var context = this.__context__P_124_1;
 
           if (context && context.isDisposed && context.isDisposed()) {
             this.warn("The context object '" + context + "' of the defered call '" + this + "'is already disposed.");
           }
         }
-        this.__context__P_117_1 ? this.__callback__P_117_0.apply(this.__context__P_117_1) : this.__callback__P_117_0();
+        this.__context__P_124_1 ? this.__callback__P_124_0.apply(this.__context__P_124_1) : this.__callback__P_124_0();
       }
     },
 
@@ -28811,7 +28811,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     */
     destruct: function destruct() {
       this.cancel();
-      this.__context__P_117_1 = this.__callback__P_117_0 = this.__manager__P_117_2 = null;
+      this.__context__P_124_1 = this.__callback__P_124_0 = this.__manager__P_124_2 = null;
     }
   });
   qx.util.DeferredCall.$$dbClassInfo = $$dbClassInfo;
@@ -28879,7 +28879,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      */
     construct: function construct(size) {
       qx.core.Object.constructor.call(this);
-      this.__pool__P_76_0 = {};
+      this.__pool__P_93_0 = {};
 
       if (size != null) {
         this.setSize(size);
@@ -28916,7 +28916,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     */
     members: {
       /** @type {Map} Stores arrays of instances for all managed classes */
-      __pool__P_76_0: null,
+      __pool__P_93_0: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -28944,7 +28944,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
 
         var obj = null;
-        var pool = this.__pool__P_76_0[clazz.classname];
+        var pool = this.__pool__P_93_0[clazz.classname];
 
         if (pool) {
           obj = pool.pop();
@@ -28972,19 +28972,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       poolObject: function poolObject(obj) {
         // Dispose check
-        if (!this.__pool__P_76_0) {
+        if (!this.__pool__P_93_0) {
           return;
         }
 
         var classname = obj.classname;
-        var pool = this.__pool__P_76_0[classname];
+        var pool = this.__pool__P_93_0[classname];
 
         if (obj.$$pooled) {
           throw new Error("Object is already pooled: " + obj);
         }
 
         if (!pool) {
-          this.__pool__P_76_0[classname] = pool = [];
+          this.__pool__P_93_0[classname] = pool = [];
         } // Check to see whether the pool for this type is already full
 
 
@@ -29011,7 +29011,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     destruct: function destruct() {
-      var pool = this.__pool__P_76_0;
+      var pool = this.__pool__P_93_0;
       var classname, list, i, l;
 
       for (classname in pool) {
@@ -29022,7 +29022,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
       }
 
-      delete this.__pool__P_76_0;
+      delete this.__pool__P_93_0;
     }
   });
   qx.util.ObjectPool.$$dbClassInfo = $$dbClassInfo;
@@ -29185,7 +29185,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param newPromise {qx.Promise} the new promise
        * @return {qx.Promise} the new promise
        */
-      __push__P_65_0: function __push__P_65_0(tracker, newPromise) {
+      __push__P_81_0: function __push__P_81_0(tracker, newPromise) {
         {
           if (tracker.promises === undefined) {
             tracker.promises = [];
@@ -29222,11 +29222,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         if (tracker.promise) {
           if (qx.lang.Type.isPromise(fn)) {
-            this.__push__P_65_0(tracker, tracker.promise.then(fn));
+            this.__push__P_81_0(tracker, tracker.promise.then(fn));
           } else {
             var self = this;
 
-            this.__push__P_65_0(tracker, tracker.promise.then(function (result) {
+            this.__push__P_81_0(tracker, tracker.promise.then(function (result) {
               if (tracker.rejected) {
                 return null;
               }
@@ -29241,19 +29241,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             }));
           }
 
-          this.__addCatcher__P_65_1(tracker);
+          this.__addCatcher__P_81_1(tracker);
 
           return tracker.promise;
         }
 
         if (qx.lang.Type.isPromise(fn)) {
-          return this.__thenPromise__P_65_2(tracker, fn);
+          return this.__thenPromise__P_81_2(tracker, fn);
         }
 
         var result = fn(tracker.result);
 
         if (qx.lang.Type.isPromise(result)) {
-          return this.__thenPromise__P_65_2(tracker, result);
+          return this.__thenPromise__P_81_2(tracker, result);
         }
 
         tracker.result = result;
@@ -29272,16 +29272,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param newPromise {qx.Promise} the new promise
        * @return {qx.Promise} the new promise
        */
-      __thenPromise__P_65_2: function __thenPromise__P_65_2(tracker, newPromise) {
+      __thenPromise__P_81_2: function __thenPromise__P_81_2(tracker, newPromise) {
         if (tracker.promise) {
-          this.__push__P_65_0(tracker, tracker.promise.then(function () {
+          this.__push__P_81_0(tracker, tracker.promise.then(function () {
             return newPromise;
           }));
         } else {
-          this.__push__P_65_0(tracker, newPromise);
+          this.__push__P_81_0(tracker, newPromise);
         }
 
-        this.__addCatcher__P_65_1(tracker);
+        this.__addCatcher__P_81_1(tracker);
 
         return tracker.promise;
       },
@@ -29304,7 +29304,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           throw new Error("Rejecting Event");
         }
 
-        var result = this.__catcher__P_65_3(tracker);
+        var result = this.__catcher__P_81_3(tracker);
 
         return result === undefined ? this.ABORT : result;
       },
@@ -29314,10 +29314,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @param tracker {Object} the tracker object
        */
-      __addCatcher__P_65_1: function __addCatcher__P_65_1(tracker) {
+      __addCatcher__P_81_1: function __addCatcher__P_81_1(tracker) {
         if (tracker.promise && tracker["catch"]) {
           if (!tracker.promise["qx.event.Utils.hasCatcher"]) {
-            this.__push__P_65_0(tracker, tracker.promise["catch"](this.__catcher__P_65_3.bind(this, tracker)));
+            this.__push__P_81_0(tracker, tracker.promise["catch"](this.__catcher__P_81_3.bind(this, tracker)));
 
             tracker.promise["qx.event.Utils.hasCatcher"] = true;
           }
@@ -29331,7 +29331,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @param tracker {Object} the tracker object
        */
-      __catcher__P_65_3: function __catcher__P_65_3(tracker, err) {
+      __catcher__P_81_3: function __catcher__P_81_3(tracker, err) {
         var fn = tracker["catch"];
 
         if (fn) {
@@ -29376,7 +29376,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           tracker["catch"] = fn;
         }
 
-        this.__addCatcher__P_65_1(tracker);
+        this.__addCatcher__P_81_1(tracker);
       },
 
       /**
@@ -29632,10 +29632,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       destroyContainer: function destroyContainer(container) {
         {
           if (qx.ui.mobile && container instanceof qx.ui.mobile.core.Widget) {
-            qx.core.Assert.assertTrue(this.__isChildrenContainer__P_96_0(container), "Container must be an instance of qx.ui.mobile.container.Composite.");
+            qx.core.Assert.assertTrue(this.__isChildrenContainer__P_110_0(container), "Container must be an instance of qx.ui.mobile.container.Composite.");
           } else {
             qx.core.Assert.assertQxWidget(container, "First argument must be a container widget!");
-            qx.core.Assert.assertTrue(this.__isChildrenContainer__P_96_0(container), "Container must be an instance of qx.ui.container.Composite or qx.ui.container.Scroll or qx.ui.container.Resizer or qx.ui.container.SlideBar or qx.ui.container.Stack!");
+            qx.core.Assert.assertTrue(this.__isChildrenContainer__P_110_0(container), "Container must be an instance of qx.ui.container.Composite or qx.ui.container.Scroll or qx.ui.container.Resizer or qx.ui.container.SlideBar or qx.ui.container.Stack!");
           }
         }
         var arr = [];
@@ -29663,7 +29663,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           var item = children[i];
           arr.push(item);
 
-          if (this.__isChildrenContainer__P_96_0(item)) {
+          if (this.__isChildrenContainer__P_110_0(item)) {
             this._collectContainerChildren(item, arr);
           }
         }
@@ -29676,7 +29676,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code> if the object is a container for
        * child widgets
        */
-      __isChildrenContainer__P_96_0: function __isChildrenContainer__P_96_0(obj) {
+      __isChildrenContainer__P_110_0: function __isChildrenContainer__P_110_0(obj) {
         var classes = [];
 
         if (qx.ui.mobile && obj instanceof qx.ui.mobile.core.Widget) {
@@ -29805,7 +29805,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         if (value instanceof qx.core.Object && qx.Class.hasMixin(value.constructor, qx.data.marshal.MEventBubbling)) {
           // create the listener
-          var listener = qx.lang.Function.bind(this.__changePropertyListener__P_138_0, this, name); // add the listener
+          var listener = qx.lang.Function.bind(this.__changePropertyListener__P_142_0, this, name); // add the listener
 
           var id = value.addListener("changeBubble", listener, this);
           var listeners = value.getUserData("idBubble-" + this.toHashCode());
@@ -29827,7 +29827,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param e {qx.event.type.Data} The date event fired by the property
        *   change.
        */
-      __changePropertyListener__P_138_0: function __changePropertyListener__P_138_0(name, e) {
+      __changePropertyListener__P_142_0: function __changePropertyListener__P_142_0(name, e) {
         var data = e.getData();
         var value = data.value;
         var old = data.old; // if the target is an array
@@ -29954,32 +29954,32 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       qx.core.Object.constructor.call(this); // if no argument is given
 
       if (param == undefined) {
-        this.__array__P_103_0 = []; // check for elements (create the array)
+        this.__array__P_89_0 = []; // check for elements (create the array)
       } else if (arguments.length > 1) {
         // create an empty array and go through every argument and push it
-        this.__array__P_103_0 = [];
+        this.__array__P_89_0 = [];
 
         for (var i = 0; i < arguments.length; i++) {
-          this.__array__P_103_0.push(arguments[i]);
+          this.__array__P_89_0.push(arguments[i]);
         } // check for a number (length)
 
       } else if (typeof param == "number") {
-        this.__array__P_103_0 = new Array(param); // check for an array itself
+        this.__array__P_89_0 = new Array(param); // check for an array itself
       } else if (param instanceof Array) {
-        this.__array__P_103_0 = qx.lang.Array.clone(param); // error case
+        this.__array__P_89_0 = qx.lang.Array.clone(param); // error case
       } else {
-        this.__array__P_103_0 = [];
+        this.__array__P_89_0 = [];
         this.dispose();
         throw new Error("Type of the parameter not supported!");
       } // propagate changes
 
 
-      for (var i = 0; i < this.__array__P_103_0.length; i++) {
-        this._applyEventPropagation(this.__array__P_103_0[i], null, i);
+      for (var i = 0; i < this.__array__P_89_0.length; i++) {
+        this._applyEventPropagation(this.__array__P_89_0[i], null, i);
       } // update the length at startup
 
 
-      this.__updateLength__P_103_1(); // work against the console printout of the array
+      this.__updateLength__P_89_1(); // work against the console printout of the array
 
 
       {
@@ -30029,7 +30029,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     },
     members: {
       // private members
-      __array__P_103_0: null,
+      __array__P_89_0: null,
 
       /**
        * Concatenates the current and the given array into a new one.
@@ -30044,9 +30044,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         array = qx.lang.Array.toNativeArray(array);
 
         if (array) {
-          var newArray = this.__array__P_103_0.concat(array);
+          var newArray = this.__array__P_89_0.concat(array);
         } else {
-          var newArray = this.__array__P_103_0.concat();
+          var newArray = this.__array__P_89_0.concat();
         }
 
         return new qx.data.Array(newArray);
@@ -30062,7 +30062,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} The array as a string.
        */
       join: function join(connector) {
-        return this.__array__P_103_0.join(connector);
+        return this.__array__P_89_0.join(connector);
       },
 
       /**
@@ -30072,9 +30072,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {var} The last element of the array.
        */
       pop: function pop() {
-        var item = this.__array__P_103_0.pop();
+        var item = this.__array__P_89_0.pop();
 
-        this.__updateLength__P_103_1(); // remove the possible added event listener
+        this.__updateLength__P_89_1(); // remove the possible added event listener
 
 
         this._registerEventChaining(null, item, this.length - 1); // fire change bubble event
@@ -30106,9 +30106,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       push: function push(varargs) {
         for (var i = 0; i < arguments.length; i++) {
-          this.__array__P_103_0.push(arguments[i]);
+          this.__array__P_89_0.push(arguments[i]);
 
-          this.__updateLength__P_103_1(); // apply to every pushed item an event listener for the bubbling
+          this.__updateLength__P_89_1(); // apply to every pushed item an event listener for the bubbling
 
 
           this._registerEventChaining(arguments[i], null, this.length - 1); // fire change bubbles event
@@ -30142,11 +30142,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           return;
         }
 
-        var oldArray = this.__array__P_103_0.concat();
+        var oldArray = this.__array__P_89_0.concat();
 
-        this.__array__P_103_0.reverse();
+        this.__array__P_89_0.reverse();
 
-        this.__updateEventPropagation__P_103_2(0, this.length);
+        this.__updateEventPropagation__P_89_2(0, this.length);
 
         this.fireDataEvent("change", {
           start: 0,
@@ -30157,8 +30157,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }, null); // fire change bubbles event
 
         this.fireDataEvent("changeBubble", {
-          value: this.__array__P_103_0,
-          name: "0-" + (this.__array__P_103_0.length - 1),
+          value: this.__array__P_89_0,
+          name: "0-" + (this.__array__P_89_0.length - 1),
           old: oldArray,
           item: this
         });
@@ -30176,15 +30176,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           return;
         }
 
-        var item = this.__array__P_103_0.shift();
+        var item = this.__array__P_89_0.shift();
 
-        this.__updateLength__P_103_1(); // remove the possible added event listener
+        this.__updateLength__P_89_1(); // remove the possible added event listener
 
 
         this._registerEventChaining(null, item, this.length - 1); // as every item has changed its position, we need to update the event bubbling
 
 
-        this.__updateEventPropagation__P_103_2(0, this.length); // fire change bubbles event
+        this.__updateEventPropagation__P_89_2(0, this.length); // fire change bubbles event
 
 
         this.fireDataEvent("changeBubble", {
@@ -30215,7 +30215,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.data.Array} A new array containing the given range of values.
        */
       slice: function slice(from, to) {
-        return new qx.data.Array(this.__array__P_103_0.slice(from, to));
+        return new qx.data.Array(this.__array__P_89_0.slice(from, to));
       },
 
       /**
@@ -30233,13 +30233,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       splice: function splice(startIndex, amount, varargs) {
         // store the old length
-        var oldLength = this.__array__P_103_0.length; // invoke the slice on the array
+        var oldLength = this.__array__P_89_0.length; // invoke the slice on the array
 
-        var returnArray = this.__array__P_103_0.splice.apply(this.__array__P_103_0, arguments); // fire a change event for the length
+        var returnArray = this.__array__P_89_0.splice.apply(this.__array__P_89_0, arguments); // fire a change event for the length
 
 
-        if (this.__array__P_103_0.length != oldLength) {
-          this.__updateLength__P_103_1();
+        if (this.__array__P_89_0.length != oldLength) {
+          this.__updateLength__P_89_1();
         } else if (amount == arguments.length - 2) {
           // if we added as much items as we removed
           var addedItems = qx.lang.Array.fromArguments(arguments, 2); // check if the array content equals the content before the operation
@@ -30297,7 +30297,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // apply event chaining for every item moved
 
 
-        this.__updateEventPropagation__P_103_2(startIndex + (arguments.length - 2) - amount, this.length); // fire the changeBubble event
+        this.__updateEventPropagation__P_89_2(startIndex + (arguments.length - 2) - amount, this.length); // fire the changeBubble event
 
 
         if (removed || added) {
@@ -30356,16 +30356,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           return;
         }
 
-        var oldArray = this.__array__P_103_0.concat();
+        var oldArray = this.__array__P_89_0.concat();
 
-        this.__array__P_103_0.sort.apply(this.__array__P_103_0, arguments); // prevent changeBubble event if nothing has been changed
+        this.__array__P_89_0.sort.apply(this.__array__P_89_0, arguments); // prevent changeBubble event if nothing has been changed
 
 
-        if (qx.lang.Array.equals(this.__array__P_103_0, oldArray) === true) {
+        if (qx.lang.Array.equals(this.__array__P_89_0, oldArray) === true) {
           return;
         }
 
-        this.__updateEventPropagation__P_103_2(0, this.length);
+        this.__updateEventPropagation__P_89_2(0, this.length);
 
         this.fireDataEvent("change", {
           start: 0,
@@ -30376,7 +30376,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }, null); // fire change bubbles event
 
         this.fireDataEvent("changeBubble", {
-          value: this.__array__P_103_0,
+          value: this.__array__P_89_0,
           name: "0-" + (this.length - 1),
           old: oldArray,
           item: this
@@ -30392,18 +30392,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       unshift: function unshift(varargs) {
         for (var i = arguments.length - 1; i >= 0; i--) {
-          this.__array__P_103_0.unshift(arguments[i]);
+          this.__array__P_89_0.unshift(arguments[i]);
 
-          this.__updateLength__P_103_1(); // apply to every item an event listener for the bubbling
+          this.__updateLength__P_89_1(); // apply to every item an event listener for the bubbling
 
 
-          this.__updateEventPropagation__P_103_2(0, this.length); // fire change bubbles event
+          this.__updateEventPropagation__P_89_2(0, this.length); // fire change bubbles event
 
 
           this.fireDataEvent("changeBubble", {
-            value: [this.__array__P_103_0[0]],
+            value: [this.__array__P_89_0[0]],
             name: "0",
-            old: [this.__array__P_103_0[1]],
+            old: [this.__array__P_89_0[1]],
             item: this
           }); // fire change event
 
@@ -30428,7 +30428,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Array} The native array.
        */
       toArray: function toArray() {
-        return this.__array__P_103_0;
+        return this.__array__P_89_0;
       },
 
       /**
@@ -30440,7 +30440,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {var} The element at the given index.
        */
       getItem: function getItem(index) {
-        return this.__array__P_103_0[index];
+        return this.__array__P_89_0[index];
       },
 
       /**
@@ -30453,19 +30453,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param item {var} The new item to set.
        */
       setItem: function setItem(index, item) {
-        var oldItem = this.__array__P_103_0[index]; // ignore settings of already set items [BUG #4106]
+        var oldItem = this.__array__P_89_0[index]; // ignore settings of already set items [BUG #4106]
 
         if (oldItem === item) {
           return;
         }
 
-        this.__array__P_103_0[index] = item; // set an event listener for the bubbling
+        this.__array__P_89_0[index] = item; // set an event listener for the bubbling
 
         this._registerEventChaining(item, oldItem, index); // only update the length if its changed
 
 
-        if (this.length != this.__array__P_103_0.length) {
-          this.__updateLength__P_103_1();
+        if (this.length != this.__array__P_89_0.length) {
+          this.__updateLength__P_89_1();
         } // fire change bubbles event
 
 
@@ -30503,7 +30503,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Number} The Index of the given item.
        */
       indexOf: function indexOf(item) {
-        return this.__array__P_103_0.indexOf(item);
+        return this.__array__P_89_0.indexOf(item);
       },
 
       /**
@@ -30514,7 +30514,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Number} The Index of the given item.
        */
       lastIndexOf: function lastIndexOf(item) {
-        return this.__array__P_103_0.lastIndexOf(item);
+        return this.__array__P_89_0.lastIndexOf(item);
       },
 
       /**
@@ -30522,8 +30522,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} The array as a string.
        */
       toString: function toString() {
-        if (this.__array__P_103_0 != null) {
-          return this.__array__P_103_0.toString();
+        if (this.__array__P_89_0 != null) {
+          return this.__array__P_89_0.toString();
         }
 
         return "";
@@ -30554,7 +30554,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} true, if the array contains the given item.
        */
       includes: function includes(item) {
-        return this.__array__P_103_0.indexOf(item) !== -1;
+        return this.__array__P_89_0.indexOf(item) !== -1;
       },
 
       /**
@@ -30628,8 +30628,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       removeAll: function removeAll() {
         // remove all possible added event listeners
-        for (var i = 0; i < this.__array__P_103_0.length; i++) {
-          this._registerEventChaining(null, this.__array__P_103_0[i], i);
+        for (var i = 0; i < this.__array__P_89_0.length; i++) {
+          this._registerEventChaining(null, this.__array__P_89_0[i], i);
         } // ignore if array is empty
 
 
@@ -30640,12 +30640,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         var oldLength = this.getLength();
 
-        var items = this.__array__P_103_0.concat(); // change the length
+        var items = this.__array__P_89_0.concat(); // change the length
 
 
-        this.__array__P_103_0.length = 0;
+        this.__array__P_89_0.length = 0;
 
-        this.__updateLength__P_103_1(); // fire change bubbles event
+        this.__updateLength__P_89_1(); // fire change bubbles event
 
 
         this.fireDataEvent("changeBubble", {
@@ -30680,8 +30680,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         {
           qx.core.Assert.assertArray(array, "The parameter must be an array.");
         }
-        var oldLength = this.__array__P_103_0.length;
-        Array.prototype.push.apply(this.__array__P_103_0, array); // add a listener to the new items
+        var oldLength = this.__array__P_89_0.length;
+        Array.prototype.push.apply(this.__array__P_89_0, array); // add a listener to the new items
 
         for (var i = 0; i < array.length; i++) {
           this._registerEventChaining(array[i], null, oldLength + i);
@@ -30689,7 +30689,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         var oldLength = this.length;
 
-        this.__updateLength__P_103_1(); // fire change bubbles
+        this.__updateLength__P_89_1(); // fire change bubbles
 
 
         var name = oldLength == this.length - 1 ? oldLength : oldLength + "-" + (this.length - 1);
@@ -30824,7 +30824,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       forEach: function forEach(callback, context) {
         var _this = this;
 
-        this.__array__P_103_0.forEach(function (element, index) {
+        this.__array__P_89_0.forEach(function (element, index) {
           return callback.call(context, element, index, _this);
         });
       },
@@ -30849,7 +30849,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *  which passed the test.
        */
       filter: function filter(callback, self) {
-        return new qx.data.Array(this.__array__P_103_0.filter(callback, self));
+        return new qx.data.Array(this.__array__P_89_0.filter(callback, self));
       },
 
       /**
@@ -30865,7 +30865,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.data.Array} A new array instance containing the new created items.
        */
       map: function map(callback, self) {
-        return new qx.data.Array(this.__array__P_103_0.map(callback, self));
+        return new qx.data.Array(this.__array__P_89_0.map(callback, self));
       },
 
       /**
@@ -30880,7 +30880,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code>, if any element passed the test function.
        */
       find: function find(callback, self) {
-        return this.__array__P_103_0.find(callback, self);
+        return this.__array__P_89_0.find(callback, self);
       },
 
       /**
@@ -30895,7 +30895,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code>, if any element passed the test function.
        */
       some: function some(callback, self) {
-        return this.__array__P_103_0.some(callback, self);
+        return this.__array__P_89_0.some(callback, self);
       },
 
       /**
@@ -30910,7 +30910,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code>, if every element passed the test function.
        */
       every: function every(callback, self) {
-        return this.__array__P_103_0.every(callback, self);
+        return this.__array__P_89_0.every(callback, self);
       },
 
       /**
@@ -30927,7 +30927,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {var} The returned value of the last accumulator call.
        */
       reduce: function reduce(callback, initValue) {
-        return this.__array__P_103_0.reduce(callback, initValue);
+        return this.__array__P_89_0.reduce(callback, initValue);
       },
 
       /**
@@ -30944,7 +30944,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {var} The returned value of the last accumulator call.
        */
       reduceRight: function reduceRight(callback, initValue) {
-        return this.__array__P_103_0.reduceRight(callback, initValue);
+        return this.__array__P_89_0.reduceRight(callback, initValue);
       },
 
       /*
@@ -30958,9 +30958,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Every time the length will be updated, a {@link #changeLength} data
        * event will be fired.
        */
-      __updateLength__P_103_1: function __updateLength__P_103_1() {
+      __updateLength__P_89_1: function __updateLength__P_89_1() {
         var oldLength = this.length;
-        this.length = this.__array__P_103_0.length;
+        this.length = this.__array__P_89_0.length;
         this.fireDataEvent("changeLength", this.length, oldLength);
       },
 
@@ -30969,9 +30969,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param from {Number} Start index.
        * @param to {Number} End index.
        */
-      __updateEventPropagation__P_103_2: function __updateEventPropagation__P_103_2(from, to) {
+      __updateEventPropagation__P_89_2: function __updateEventPropagation__P_89_2(from, to) {
         for (var i = from; i < to; i++) {
-          this._registerEventChaining(this.__array__P_103_0[i], this.__array__P_103_0[i], i);
+          this._registerEventChaining(this.__array__P_89_0[i], this.__array__P_89_0[i], i);
         }
       }
     },
@@ -30982,8 +30982,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      *****************************************************************************
     */
     destruct: function destruct() {
-      for (var i = 0; i < this.__array__P_103_0.length; i++) {
-        var item = this.__array__P_103_0[i];
+      for (var i = 0; i < this.__array__P_89_0.length; i++) {
+        var item = this.__array__P_89_0[i];
 
         this._applyEventPropagation(null, item, i); // dispose the items on auto dispose
 
@@ -30993,7 +30993,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
       }
 
-      this.__array__P_103_0 = null;
+      this.__array__P_89_0 = null;
     }
   });
   qx.data.Array.$$dbClassInfo = $$dbClassInfo;
@@ -31053,7 +31053,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         this.stacktrace = inst.stacktrace;
       }
 
-      this.__comment__P_137_0 = comment || ""; // opera 10 crashes if the message is an empty string!!!?!?!
+      this.__comment__P_166_0 = comment || ""; // opera 10 crashes if the message is an empty string!!!?!?!
 
       this.message = failMessage || qx.type.BaseError.DEFAULTMESSAGE;
     },
@@ -31073,8 +31073,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __sTrace__P_137_1: null,
-      __comment__P_137_0: null,
+      __sTrace__P_166_1: null,
+      __comment__P_166_0: null,
 
       /** @type {String} Fail message provided by the assertion */
       message: null,
@@ -31085,7 +31085,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} The comment passed to the assertion call
        */
       getComment: function getComment() {
-        return this.__comment__P_137_0;
+        return this.__comment__P_166_0;
       },
 
       /**
@@ -31094,7 +31094,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String} The error message
        */
       toString: function toString() {
-        return this.__comment__P_137_0 + (this.message ? ": " + this.message : "");
+        return this.__comment__P_166_0 + (this.message ? ": " + this.message : "");
       }
     }
   });
@@ -31156,7 +31156,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      */
     construct: function construct(comment, failMessage) {
       qx.type.BaseError.call(this, comment, failMessage);
-      this.__trace__P_102_0 = qx.dev.StackTrace.getStackTrace();
+      this.__trace__P_131_0 = qx.dev.StackTrace.getStackTrace();
     },
 
     /*
@@ -31165,7 +31165,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __trace__P_102_0: null,
+      __trace__P_131_0: null,
 
       /**
        * Stack trace of the error
@@ -31173,7 +31173,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {String[]} The stack trace of the location the exception was thrown
        */
       getStackTrace: function getStackTrace() {
-        return this.__trace__P_102_0;
+        return this.__trace__P_131_0;
       }
     }
   });
@@ -33018,7 +33018,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} The result of the comparison
        */
       equals: function equals(object1, object2) {
-        return qx.lang.Object.__equals__P_78_0(object1, object2, [], []);
+        return qx.lang.Object.__equals__P_95_0(object1, object2, [], []);
       },
 
       /**
@@ -33031,7 +33031,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       * @return {Boolean} The result of the comparison
       *
       */
-      __equals__P_78_0: function __equals__P_78_0(object1, object2, aStack, bStack) {
+      __equals__P_95_0: function __equals__P_95_0(object1, object2, aStack, bStack) {
         // Identical objects are equal. `0 === -0`, but they aren't identical.
         // See the [Harmony `egal` proposal](http://wiki.ecmascript.org/doku.php?id=harmony:egal).
         if (object1 === object2) {
@@ -33113,7 +33113,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           if (result) {
             // Deep compare the contents, ignoring non-numeric properties.
             while (size--) {
-              if (!(result = qx.lang.Object.__equals__P_78_0(object1[size], object2[size], aStack, bStack))) {
+              if (!(result = qx.lang.Object.__equals__P_95_0(object1[size], object2[size], aStack, bStack))) {
                 break;
               }
             }
@@ -33125,7 +33125,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               // Count the expected number of properties.
               size++; // Deep compare each member.
 
-              if (!(result = Object.prototype.hasOwnProperty.call(object2, key) && qx.lang.Object.__equals__P_78_0(object1[key], object2[key], aStack, bStack))) {
+              if (!(result = Object.prototype.hasOwnProperty.call(object2, key) && qx.lang.Object.__equals__P_95_0(object1[key], object2[key], aStack, bStack))) {
                 break;
               }
             }
@@ -33349,11 +33349,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       qx.core.Object.constructor.call(this); // Define shorthands
 
       this._window = manager.getWindow();
-      this.__domReady__P_52_0 = false;
-      this.__loaded__P_52_1 = false;
-      this.__isReady__P_52_2 = false;
-      this.__isInitialized__P_52_3 = false;
-      this.__isUnloaded__P_52_4 = false; // Initialize observers
+      this.__domReady__P_70_0 = false;
+      this.__loaded__P_70_1 = false;
+      this.__isReady__P_70_2 = false;
+      this.__isInitialized__P_70_3 = false;
+      this.__isUnloaded__P_70_4 = false; // Initialize observers
 
       this._initObserver(); // Store instance (only supported for main app window, this
       // is the reason why this is OK here)
@@ -33393,7 +33393,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var inst = qx.event.handler.Application.$$instance;
 
         if (inst) {
-          inst.__fireReady__P_52_5();
+          inst.__fireReady__P_70_5();
         }
       },
 
@@ -33406,7 +33406,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var inst = qx.event.handler.Application.$$instance;
 
         if (inst) {
-          inst.__fireAppInstanceInitialized__P_52_6();
+          inst.__fireAppInstanceInitialized__P_70_6();
         }
       }
     },
@@ -33430,11 +33430,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       // interface implementation
       unregisterEvent: function unregisterEvent(target, type, capture) {// Nothing needs to be done here
       },
-      __isReady__P_52_2: null,
-      __isInitialized__P_52_3: null,
-      __domReady__P_52_0: null,
-      __loaded__P_52_1: null,
-      __isUnloaded__P_52_4: null,
+      __isReady__P_70_2: null,
+      __isInitialized__P_70_3: null,
+      __domReady__P_70_0: null,
+      __loaded__P_70_1: null,
+      __isUnloaded__P_70_4: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -33446,21 +33446,21 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Fires a global ready event.
        *
        */
-      __fireReady__P_52_5: function __fireReady__P_52_5() {
+      __fireReady__P_70_5: function __fireReady__P_70_5() {
         // Wrapper qxloader needed to be compatible with old generator
-        if (!this.__isReady__P_52_2 && this.__domReady__P_52_0 && qx.$$loader.scriptLoaded) {
+        if (!this.__isReady__P_70_2 && this.__domReady__P_70_0 && qx.$$loader.scriptLoaded) {
           // If qooxdoo is loaded within a frame in IE, the document is ready before
           // the "ready" listener can be added. To avoid any startup issue check
           // for the availability of the "ready" listener before firing the event.
           // So at last the native "load" will trigger the "ready" event.
           if (qx.core.Environment.get("engine.name") == "mshtml") {
             if (qx.event.Registration.hasListener(this._window, "ready")) {
-              this.__isReady__P_52_2 = true; // Fire user event
+              this.__isReady__P_70_2 = true; // Fire user event
 
               qx.event.Registration.fireEvent(this._window, "ready");
             }
           } else {
-            this.__isReady__P_52_2 = true; // Fire user event
+            this.__isReady__P_70_2 = true; // Fire user event
 
             qx.event.Registration.fireEvent(this._window, "ready");
           }
@@ -33471,8 +33471,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Fires a global "appinitialized" event.
        *
        */
-      __fireAppInstanceInitialized__P_52_6: function __fireAppInstanceInitialized__P_52_6() {
-        this.__isInitialized__P_52_3 = true; // Fire user event
+      __fireAppInstanceInitialized__P_70_6: function __fireAppInstanceInitialized__P_70_6() {
+        this.__isInitialized__P_70_3 = true; // Fire user event
 
         qx.event.Registration.fireEvent(this._window, "appinitialized");
       },
@@ -33483,7 +33483,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} ready status
        */
       isApplicationReady: function isApplicationReady() {
-        return this.__isReady__P_52_2;
+        return this.__isReady__P_70_2;
       },
 
       /**
@@ -33492,7 +33492,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} initialization status
        */
       isApplicationInitialized: function isApplicationInitialized() {
-        return this.__isInitialized__P_52_3;
+        return this.__isInitialized__P_70_3;
       },
 
       /*
@@ -33508,9 +33508,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       _initObserver: function _initObserver() {
         // in Firefox the loader script sets the ready state
         if (qx.$$domReady || document.readyState == "complete" || document.readyState == "ready") {
-          this.__domReady__P_52_0 = true;
+          this.__domReady__P_70_0 = true;
 
-          this.__fireReady__P_52_5();
+          this.__fireReady__P_70_5();
         } else {
           this._onNativeLoadWrapped = qx.lang.Function.bind(this._onNativeLoad, this);
 
@@ -33574,8 +33574,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       _onNativeLoad: function _onNativeLoad() {
         var callback = qx.core.Environment.select("qx.globalErrorHandling", {
-          "true": qx.event.GlobalError.observeMethod(this.__onNativeLoadHandler__P_52_7),
-          "false": this.__onNativeLoadHandler__P_52_7
+          "true": qx.event.GlobalError.observeMethod(this.__onNativeLoadHandler__P_70_7),
+          "false": this.__onNativeLoadHandler__P_70_7
         });
         callback.apply(this, arguments);
       },
@@ -33583,10 +33583,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * Event listener for native load event
        */
-      __onNativeLoadHandler__P_52_7: function __onNativeLoadHandler__P_52_7() {
-        this.__domReady__P_52_0 = true;
+      __onNativeLoadHandler__P_70_7: function __onNativeLoadHandler__P_70_7() {
+        this.__domReady__P_70_0 = true;
 
-        this.__fireReady__P_52_5();
+        this.__fireReady__P_70_5();
       },
 
       /**
@@ -33594,8 +33594,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       _onNativeUnload: function _onNativeUnload() {
         var callback = qx.core.Environment.select("qx.globalErrorHandling", {
-          "true": qx.event.GlobalError.observeMethod(this.__onNativeUnloadHandler__P_52_8),
-          "false": this.__onNativeUnloadHandler__P_52_8
+          "true": qx.event.GlobalError.observeMethod(this.__onNativeUnloadHandler__P_70_8),
+          "false": this.__onNativeUnloadHandler__P_70_8
         });
         callback.apply(this, arguments);
       },
@@ -33603,9 +33603,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * Event listener for native unload event
        */
-      __onNativeUnloadHandler__P_52_8: function __onNativeUnloadHandler__P_52_8() {
-        if (!this.__isUnloaded__P_52_4) {
-          this.__isUnloaded__P_52_4 = true;
+      __onNativeUnloadHandler__P_70_8: function __onNativeUnloadHandler__P_70_8() {
+        if (!this.__isUnloaded__P_70_4) {
+          this.__isUnloaded__P_70_4 = true;
 
           try {
             // Fire user event
@@ -33968,8 +33968,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       _onNative: function _onNative() {
         var callback = qx.core.Environment.select("qx.globalErrorHandling", {
-          "true": qx.event.GlobalError.observeMethod(this.__onNativeHandler__P_19_0),
-          "false": this.__onNativeHandler__P_19_0
+          "true": qx.event.GlobalError.observeMethod(this.__onNativeHandler__P_22_0),
+          "false": this.__onNativeHandler__P_22_0
         });
         callback.apply(this, arguments);
       },
@@ -33980,7 +33980,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param e {Event} Native event
        * @return {String|undefined}
        */
-      __onNativeHandler__P_19_0: function __onNativeHandler__P_19_0(e) {
+      __onNativeHandler__P_22_0: function __onNativeHandler__P_22_0(e) {
         if (this.isDisposed()) {
           return;
         }
@@ -34111,7 +34111,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     statics: {
-      __application__P_53_0: null,
+      __application__P_71_0: null,
 
       /**
        * Returns the instantiated qooxdoo application.
@@ -34119,7 +34119,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.core.Object} The application instance.
        */
       getApplication: function getApplication() {
-        return this.__application__P_53_0 || null;
+        return this.__application__P_71_0 || null;
       },
 
       /**
@@ -34128,7 +34128,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        */
       ready: function ready() {
-        if (this.__application__P_53_0) {
+        if (this.__application__P_71_0) {
           return;
         }
 
@@ -34152,10 +34152,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var clazz = qx.Class.getByName(app);
 
         if (clazz) {
-          this.__application__P_53_0 = new clazz();
+          this.__application__P_71_0 = new clazz();
           var start = new Date();
 
-          this.__application__P_53_0.main();
+          this.__application__P_71_0.main();
 
           if (qx.core.Environment.get("qx.debug.startupTimings")) {
             qx.log.Logger.debug(this, "Main runtime: " + (new Date() - start) + "ms");
@@ -34163,7 +34163,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
           var start = new Date();
 
-          this.__application__P_53_0.finalize();
+          this.__application__P_71_0.finalize();
 
           if (qx.core.Environment.get("qx.debug.startupTimings")) {
             qx.log.Logger.debug(this, "Finalize runtime: " + (new Date() - start) + "ms");
@@ -34181,8 +34181,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @param e {qx.event.type.Native} Incoming beforeunload event.
        */
-      __close__P_53_1: function __close__P_53_1(e) {
-        var app = this.__application__P_53_0;
+      __close__P_71_1: function __close__P_71_1(e) {
+        var app = this.__application__P_71_0;
 
         if (app) {
           app.close();
@@ -34194,8 +34194,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * created application instance.
        *
        */
-      __shutdown__P_53_2: function __shutdown__P_53_2() {
-        var app = this.__application__P_53_0;
+      __shutdown__P_71_2: function __shutdown__P_71_2() {
+        var app = this.__application__P_71_0;
 
         if (app) {
           app.terminate();
@@ -34287,7 +34287,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @param e {qx.event.type.Native} Incoming beforeunload event.
        */
-      __close__P_14_0: function __close__P_14_0(e) {
+      __close__P_18_0: function __close__P_18_0(e) {
         var app = this.getApplication();
 
         if (app) {
@@ -34300,7 +34300,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * created application instance.
        *
        */
-      __shutdown__P_14_1: function __shutdown__P_14_1() {
+      __shutdown__P_18_1: function __shutdown__P_18_1() {
         var app = this.getApplication();
 
         if (app) {
@@ -34316,8 +34316,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     */
     defer: function defer(statics) {
       qx.event.Registration.addListener(window, "ready", statics.ready, statics);
-      qx.event.Registration.addListener(window, "shutdown", statics.__shutdown__P_14_1, statics);
-      qx.event.Registration.addListener(window, "beforeunload", statics.__close__P_14_0, statics);
+      qx.event.Registration.addListener(window, "shutdown", statics.__shutdown__P_18_1, statics);
+      qx.event.Registration.addListener(window, "beforeunload", statics.__close__P_18_0, statics);
     }
   });
   qx.core.Init.$$dbClassInfo = $$dbClassInfo;
@@ -34594,7 +34594,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     */
     members: {
       /** @type {qx.ui.core.Widget} The root widget */
-      __root__P_15_0: null,
+      __root__P_19_0: null,
 
       /**
        * Create the root widget. This method is abstract and must be overridden
@@ -34619,7 +34619,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.ui.core.Widget} The application's root widget.
        */
       getRoot: function getRoot() {
-        return this.__root__P_15_0;
+        return this.__root__P_19_0;
       },
       // interface method
       main: function main() {
@@ -34629,7 +34629,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         qx.ui.tooltip.Manager.getInstance();
         var rule = ["-webkit-touch-callout: none;", "-ms-touch-select: none;", "-webkit-tap-highlight-color: rgba(0,0,0,0);", "-webkit-tap-highlight-color: transparent;"].join("");
         qx.ui.style.Stylesheet.getInstance().addRule("*", rule);
-        this.__root__P_15_0 = this._createRootWidget(); // make sure we start with a good scroll position
+        this.__root__P_19_0 = this._createRootWidget(); // make sure we start with a good scroll position
 
         window.scrollTo(0, 0);
       },
@@ -34719,7 +34719,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   });
   qx.application.Standalone.$$dbClassInfo = $$dbClassInfo;
 })();
-//# sourceMappingURL=package-1.js.map?dt=1635872824291
+//# sourceMappingURL=package-1.js.map?dt=1636140126666
 qx.$$packageData['1'] = {
   "locales": {},
   "resources": {},
