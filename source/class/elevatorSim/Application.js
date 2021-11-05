@@ -179,6 +179,7 @@ qx.Class.define("elevatorSim.Application",
               code =
                 [
                   "console.clear();",
+                  "qx.log.appender.Console.clear();",
                   "elevatorSim.Elevator.getInstance().reinit();",
                   "do_initially();",
                   event.data.value,

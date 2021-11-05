@@ -181,7 +181,7 @@
             case "control":
               switch (event.data.name) {
                 case "run":
-                  code = ["console.clear();", "elevatorSim.Elevator.getInstance().reinit();", "do_initially();", event.data.value, "enabledPeriodicInterval = setInterval(do_periodically, 50);"].join("\n");
+                  code = ["console.clear();", "qx.log.appender.Console.clear();", "elevatorSim.Elevator.getInstance().reinit();", "do_initially();", event.data.value, "enabledPeriodicInterval = setInterval(do_periodically, 50);"].join("\n");
                   eval(code);
                   break;
 
@@ -311,4 +311,4 @@
   elevatorSim.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1636140125954
+//# sourceMappingURL=Application.js.map?dt=1636141338579
