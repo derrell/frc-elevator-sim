@@ -651,7 +651,7 @@
       {
         let code =
           [
-            'console.log("sending log message to parent");`,
+            'console.log("sending log message to parent");',
             'window.parent.postMessage(',
             ' {',
             '   type  : "control",',
@@ -659,7 +659,7 @@
             `   value : ${(Blockly.JavaScript.valueToCode(
                       block, "TEXT", Blockly.JavaScript.ORDER_NONE) || "''")}`,
             ' },',
-            ' "*");',
+            ' "*");'
           ].join("\n");
         return code;
       }
