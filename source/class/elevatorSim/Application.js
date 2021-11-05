@@ -20,12 +20,13 @@ qx.Class.define("elevatorSim.Application",
 
   members :
   {
-    _win       : null,
-    _code      : null,
-    _blockly   : null,
-    _enabled   : null,
-    _butExport : null,
-    _butImport : null,
+    _win        : null,
+    _code       : null,
+    _blockly    : null,
+    _enabled    : null,
+    _butExport  : null,
+    _butImport  : null,
+    _butShowLog : null,
 
     main : function()
     {
@@ -33,21 +34,45 @@ qx.Class.define("elevatorSim.Application",
       let             hBox;
       let             font;
       let             label;
+      let             sheet;
+      let             style;
+      let             styles;
+      let             appender;
       let             container;
       let             scriptLoader;
       let             elevatorCanvas;
 
       this.base(arguments);
 
-      // Enable logging in debug variant
-      if (qx.core.Environment.get("qx.debug"))
-      {
-        let appender;
+      appender = qx.log.appender.Native;
+      appender = qx.log.appender.Console; // this one must be last; used below
+      qx.log.Logger.setLevel("info");
 
-        appender = qx.log.appender.Native;
-        appender = qx.log.appender.Console;
-      }
+      // Show and then hide the console, so its styles get created
+      appender.show();
+      appender.toggle();
 
+      // We need to fix up where the Console is displayed. Since the
+      // Console code doesn't store the style element it creates,
+      // we'll need to locate it.
+      styles = document.getElementsByTagName("style");
+
+      // The style we care about was just added, so is the last one in the list
+      style = styles[styles.length - 1];
+
+      // Get its sheet object
+      sheet = style.sheet;
+
+      // Delete the rule that places the console
+      qx.bom.Stylesheet.removeRule(sheet, ".qxconsole");
+
+      // Recreate that rule
+      qx.bom.Stylesheet.addRule(
+        sheet,
+        ".qxconsole",
+        "z-index:10000;width:600px;height:300px;bottom:0px;left:0px;position:absolute;border-right:1px solid black;color:black;border-bottom:1px solid black;color:black;font-family:Consolas,Monaco,monospace;font-size:11px;line-height:1.2;");
+
+      // Get the top-level document root where we'll place all widgets
       doc = this.getRoot();
 
       // Add the title
@@ -62,7 +87,7 @@ qx.Class.define("elevatorSim.Application",
       label.setFont(font);
       doc.add(label, { top : 30, left : 10 });
 
-      // Create the Export and Import buttons
+      // Create the buttons
       hBox = new qx.ui.container.Composite(new qx.ui.layout.HBox(10));
       doc.add(hBox, { top : 26, right : 450 });
 
@@ -94,6 +119,18 @@ qx.Class.define("elevatorSim.Application",
       this._butImport = new qx.ui.form.Button("Import");
       hBox.add(this._butImport);
       this._butImport.addListener("execute", this._import, this);
+
+      // Add a spacer before the log button
+      hBox.add(new qx.ui.core.Spacer(40, 1));
+
+      this._butShowLog = new qx.ui.form.Button("Log");
+      hBox.add(this._butShowLog);
+      this._butShowLog.addListener(
+        "execute",
+        () =>
+        {
+          appender.toggle();
+        });
 
       // Create the Enabled checkbox
       this._enabled = new qx.ui.form.CheckBox("Enabled");
@@ -156,6 +193,10 @@ qx.Class.define("elevatorSim.Application",
 
             case "codeXML" :
               this._code = event.data.value;
+              break;
+
+            case "log" :
+              qx.log.Logger.info(event.data.value);
               break;
             }
             break;
