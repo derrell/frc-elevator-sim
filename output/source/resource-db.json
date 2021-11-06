@@ -23,6 +23,9 @@
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
+      },
+      "devEnv/blockly.min.js": {
+        "resourcePath": "resourcePath"
       }
     },
     "qx": {

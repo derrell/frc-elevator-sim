@@ -264,6 +264,12 @@ qx.$$packageData['0'] = {
       "html",
       "elevatorSim"
     ],
+    "devEnv/blockly.min.js": [
+      null,
+      null,
+      "js",
+      "elevatorSim"
+    ],
     "elevatorSim/app.png": [
       180,
       180,
