@@ -1,5 +1,5 @@
 # FRC Elevator Simulator
 
-The instructions are at https://bit.ly/3jVC0xI
+The instructions are at https://tinyurl.com/frc-elevator-sim-instructions
 
 
